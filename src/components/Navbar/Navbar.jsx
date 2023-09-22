@@ -7,14 +7,13 @@ const Navbar = () => {
         <>
             <header className='w-full h-10 mt-6 flex items-center justify-between z-10'>
                 <Link className='font-bold text-xl text-neutral-900' to="/">Blossom UI</Link>
-                <section className='flex items-center w-2/4 h-full border relative border-neutral-300 rounded-lg shadow-md shadow-neutral-100 hover:shadow-neutral-200 duration-300 xl:w-4/12 lg:hidden'>
-                    <h3 className='pl-4'>Search docs</h3>
-                    <BiSearch className='text-xl absolute right-3 top-2' />
+                <section className='flex items-center justify-center relative h-full w-2/4 xl:w-4/12 lg:hidden'>
+                    <input type='text' placeholder='Search docs' className='flex items-center w-full h-full pl-10 placeholder:text-neutral-700 border border-neutral-300 rounded-lg shadow-md shadow-neutral-100 hover:shadow-neutral-200 duration-300'/>
+                    <BiSearch className='text-neutral-700 text-xl absolute left-3 top-2.5' />
                 </section>
                 <section className='lg:hidden'>
                     <ul className='flex items-center gap-8'>
                         <Link className='cursor-pointer' to="/components">Components</Link>
-                        <Link className='cursor-pointer' to="/templates">Templates</Link>
                         <Link className='cursor-pointer' to="/docs">Docs</Link>
                     </ul>
                 </section>

@@ -24,7 +24,11 @@ export default {
       xs: { max: "430px" },
       // => @media (max-width: 430px) { ... }
     },
-    extend: {},
+    extend: {
+      colors: {
+      "corporative": "#f472b6",
+    },
+  },
   },
   plugins: [],
 }
