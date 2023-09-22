@@ -12,10 +12,13 @@ const Explanation = () => {
                                 <span>{"<"}</span>
                                 <span className='tag'>a&nbsp;</span>
                                 <span>className="</span>
-                                <span className='attribute'>flex justify-center gap-2 bg-black text-white px-4 py-3 rounded-lg</span>
+                                <span className='attribute'>flex justify-center gap-2 bg-black text-white max-w-[200px]</span>
                             </div>
                             <div>
-                                <span className='attribute'>cursor-pointer font-medium select-none hover:bg-neutral-800</span>
+                                <span className='attribute'>max-h-[50px] px-4 py-3 rounded-lg cursor-pointer font-medium select-none</span>
+                            </div>
+                            <div>
+                            <span className='attribute'>hover:bg-neutral-800</span>
                                 <span>"</span>
                                 <span>{">"}</span>
                             </div>
@@ -33,8 +36,8 @@ const Explanation = () => {
                 <section className="flex justify-center w-full">
                     <BiChevronDown className='text-3xl mt-4' />
                 </section>
-                <section>
-                    <a className="flex justify-center gap-2 bg-black text-white px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 mt-4">Example button</a>
+                <section className='flex justify-center'>
+                    <a className="flex justify-center gap-2 bg-black text-white max-w-[200px] max-h-[50px] px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 mt-4">Example button</a>
                 </section>
             </section>
             <section className='text-right lg:text-left'>
