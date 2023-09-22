@@ -26,9 +26,10 @@ export default {
     },
     extend: {
       colors: {
-      "corporative": "#f472b6",
+        "corporative": "#f472b6",
+        "corporativeHover": "#f582be"
+      },
     },
-  },
   },
   plugins: [],
 }

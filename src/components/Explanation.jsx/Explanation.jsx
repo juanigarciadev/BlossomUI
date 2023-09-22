@@ -3,9 +3,18 @@ import { BiChevronDown } from 'react-icons/bi'
 
 const Explanation = () => {
     return (
-        <div className='grid grid-cols-2 w-full py-64 lg:flex lg:flex-col-reverse lg:gap-12'>
+        <div className='grid grid-cols-2 w-full py-64 lg:flex lg:flex-col-reverse lg:gap-12 lg:py-32'>
             <section>
-                <pre className='w-full bg-neutral-200 bg-opacity-40 backdrop-blur-md border rounded-md border-neutral-300 px-2 py-2'>
+                <pre className='flex gap-2 w-full bg-neutral-200 bg-opacity-40 backdrop-blur-md border rounded-md border-neutral-300 px-2 py-2 overflow-x-scroll'>
+                    <section className='w-4 h-full'>
+                        <ul className='flex flex-col gap-[4px] pt-[3px]'>
+                            <li className='text-neutral-400 text-sm font-mono'>1</li>
+                            <li className='text-neutral-400 text-sm font-mono'>2</li>
+                            <li className='text-neutral-400 text-sm font-mono'>3</li>
+                            <li className='text-neutral-400 text-sm font-mono'>4</li>
+                            <li className='text-neutral-400 text-sm font-mono'>5</li>
+                        </ul>
+                    </section>
                     <code>
                         <article className='flex flex-col lg:overflow-x-scroll h-full overflow-y-hidden'>
                             <div>
@@ -18,7 +27,7 @@ const Explanation = () => {
                                 <span className='attribute'>max-h-[50px] px-4 py-3 rounded-lg cursor-pointer font-medium select-none</span>
                             </div>
                             <div>
-                            <span className='attribute'>hover:bg-neutral-800</span>
+                                <span className='attribute'>hover:bg-neutral-800</span>
                                 <span>"</span>
                                 <span>{">"}</span>
                             </div>

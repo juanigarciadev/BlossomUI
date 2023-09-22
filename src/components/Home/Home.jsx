@@ -6,6 +6,7 @@ import { FilledBadge } from '../UI/Badges/FilledBadge'
 import { OutlinedBadge } from '../UI/Badges/OutlinedBadge'
 import { PrimaryButton } from '../UI/Buttons/PrimaryButton'
 import { SecondaryButton } from '../UI/Buttons/SecondaryButton'
+import Characteristics from '../Characteristics/Characteristics'
 
 const Home = () => {
   return (
@@ -34,6 +35,7 @@ const Home = () => {
 
         </section>
       </main>
+      <Characteristics />
       <Explanation />
     </>
   )

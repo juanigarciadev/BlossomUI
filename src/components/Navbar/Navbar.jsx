@@ -15,6 +15,7 @@ const Navbar = () => {
                     <ul className='flex items-center gap-8'>
                         <Link className='cursor-pointer' to="/components">Components</Link>
                         <Link className='cursor-pointer' to="/docs">Docs</Link>
+                        <a href="https://www.buymeacoffee.com/juanigarciadev" target='_blank' className='flex justify-center items-center bg-corporative text-white min-w-fit max-w-[200px] max-h-[50px] gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-corporativeHover'>Sponsor</a>
                     </ul>
                 </section>
                 <BiMenu className='text-3xl hidden lg:block'/>
