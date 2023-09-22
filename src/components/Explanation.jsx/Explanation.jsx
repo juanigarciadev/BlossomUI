@@ -5,7 +5,18 @@ const Explanation = () => {
     return (
         <div className='grid grid-cols-2 w-full py-64 lg:flex lg:flex-col-reverse lg:gap-12 lg:py-32'>
             <section>
-                <pre className='flex gap-2 w-full bg-neutral-200 bg-opacity-40 backdrop-blur-md border rounded-md border-neutral-300 px-2 py-2 overflow-x-scroll'>
+                <div className='flex pl-4 w-full h-8 bg-corporative rounded-t-md'>
+                    <svg viewBox="0 0 120 120">
+                        <circle cx="20" cy="60" r="20" />
+                    </svg>
+                    <svg viewBox="0 0 120 120">
+                        <circle cx="20" cy="60" r="20" />
+                    </svg>
+                    <svg viewBox="0 0 120 120">
+                        <circle cx="20" cy="60" r="20" />
+                    </svg>
+                </div>
+                <pre className='flex gap-2 w-full bg-neutral-200 bg-opacity-40 backdrop-blur-md border-x-[1px] border-b-[1px] rounded-b-md border-neutral-300 px-2 py-2 overflow-x-scroll'>
                     <section className='w-4 h-full'>
                         <ul className='flex flex-col gap-[4px] pt-[3px]'>
                             <li className='text-neutral-400 text-sm font-mono'>1</li>
@@ -50,7 +61,7 @@ const Explanation = () => {
                 </section>
             </section>
             <section className='text-right lg:text-left'>
-                <h3 className='text-6xl font-bold text-neutral-800 tracking-tight'>Extremely easy to use. Just copy and paste.</h3>
+                <h3 className='text-6xl font-bold text-neutral-800 tracking-tight'>Extremely <span className='text-corporative'>easy</span> to use. Just <span className='text-corporative'>copy</span> and <span className='text-corporative'>paste</span>.</h3>
             </section>
         </div>
     )

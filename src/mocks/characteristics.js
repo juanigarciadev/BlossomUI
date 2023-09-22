@@ -9,12 +9,12 @@ const characteristics = [
     {
         icon: AiOutlineEdit,
         title: "Customizable",
-        subtitle: "You can use it for free, forever!",
+        subtitle: "Highly customizable, just change the Tailwind tags and voilà!",
     },
     {
         icon: AiOutlineThunderbolt,
         title: "Ultra Fast",
-        subtitle: "You can use it for free, forever!",
+        subtitle: "No extra libraries, just Tailwind!",
     },
 ]
 
