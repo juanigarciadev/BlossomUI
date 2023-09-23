@@ -2,6 +2,10 @@
     font-family: 'Inter', sans-serif;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 #root {
     scrollbar-gutter: auto;
     width: 100vw;

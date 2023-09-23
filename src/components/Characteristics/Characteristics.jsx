@@ -7,12 +7,12 @@ const Characteristics = () => {
             {characteristics.map(item => {
                 const Icon = item.icon
                 return (
-                    <div className='flex flex-col gap-4 w-full h-auto bg-neutral-200 bg-opacity-40 border border-neutral-300 rounded-lg p-8 shadow-sm'>
+                    <div key={item.title} className='flex flex-col gap-4 w-full h-auto bg-neutral-200 bg-opacity-40 border border-neutral-300 rounded-lg p-8 shadow-sm dark:bg-neutral-800'>
                         <div className='flex justify-center items-center bg-corporative rounded-full w-10 h-10'>
                             <Icon className='text-white text-3xl' />
                         </div>
-                        <h3 className='text-black text-2xl font-bold'>{item.title}</h3>
-                        <p className='text-neutral-800 text-sm'>{item.subtitle}</p>
+                        <h3 className='text-black text-2xl font-bold dark:text-white'>{item.title}</h3>
+                        <p className='text-neutral-800 text-sm dark:text-neutral-300'>{item.subtitle}</p>
                     </div>
                 )
             })}

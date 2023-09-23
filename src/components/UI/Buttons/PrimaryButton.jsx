@@ -2,6 +2,6 @@ import React from 'react'
 
 export const PrimaryButton = () => {
   return (
-    <a href="" className='flex justify-center max-w-[200px] max-h-[50px] items-center bg-black text-white gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800'>Primary button</a>
+    <a href="" className='flex justify-center max-w-[200px] max-h-[50px] items-center bg-black text-white gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>Primary button</a>
   )
 }
