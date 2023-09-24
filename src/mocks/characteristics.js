@@ -9,7 +9,7 @@ const characteristics = [
     {
         icon: AiOutlineEdit,
         title: "Customizable",
-        subtitle: "Highly customizable, just change the Tailwind tags and voilà!",
+        subtitle: "Highly customizable, just modify the Tailwind tags and voilà!",
     },
     {
         icon: AiOutlineThunderbolt,
