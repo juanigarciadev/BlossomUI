@@ -1,22 +1,22 @@
 const componentsCard = [
     {
         name: "Buttons",
-        url: "/components/buttons",
+        url: "/docs/buttons",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
         name: "Badges",
-        url: "/components/badges",
+        url: "/docs/badges",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
         name: "Spinners",
-        url: "/components/spinners",
+        url: "/docs/spinners",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
         name: "Cards",
-        url: "/components/cards",
+        url: "/docs/cards",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
 ]
