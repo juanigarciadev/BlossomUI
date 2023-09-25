@@ -14,6 +14,7 @@ import { YellowButtonRounded } from '../UI/Buttons/Rounded/Default'
 import { Apple } from '../UI/Buttons/Normal/Social'
 import { AppleIcon, FacebookIcon, GithubIcon, GoogleIcon, TwitterIcon } from '../UI/Buttons/IconsOnly/Default'
 import { GithubIconRounded } from '../UI/Buttons/IconsOnly/Rounded'
+import { ProgressBar } from '../UI/Progress/ProgressBar'
 
 const Home = () => {
   return (
