@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const ComponentsSection = () => {
     return (
-        <div>
+        <div className='lg:pt-32'>
             <h3 className='text-6xl font-bold text-neutral-800 tracking-tight dark:text-white pb-8 text-center'>Components</h3>
             <section className='grid grid-cols-3 gap-4 pb-32 md:flex lg:grid-cols-2 md:flex-col'>
                 {
