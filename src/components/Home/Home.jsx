@@ -11,12 +11,14 @@ import { Red } from '../UI/Badges/Normal/Default'
 import { PurpleOutlinedRounded } from '../UI/Badges/Rounded/Outlined'
 import { DefaultButton, GreenButton, PinkButton, PurpleButton, SecondaryButton, YellowButton } from '../UI/Buttons/Normal/Default'
 import { YellowButtonRounded } from '../UI/Buttons/Rounded/Default'
-import { Apple, Facebook } from '../UI/Buttons/Normal/Social'
+import { Apple } from '../UI/Buttons/Normal/Social'
+import { AppleIcon, FacebookIcon, GithubIcon, GoogleIcon, TwitterIcon } from '../UI/Buttons/IconsOnly/Default'
+import { GithubIconRounded } from '../UI/Buttons/IconsOnly/Rounded'
 
 const Home = () => {
   return (
     <>
-      <main className='grid grid-cols-2 pt-64 lg:flex lg:flex-col lg:gap-12 home'>
+      <main className='grid grid-cols-2 pt-64 lg:flex lg:flex-col lg:gap-12 home lg:pt-32'>
 
         <section className='flex flex-col gap-6'>
           <span id='badge-dismiss-default' className='flex items-center font-medium h-fit w-fit text-sm px-4 py-2 bg-neutral-100 text-neutral-900 rounded-full cursor-default dark:bg-neutral-700 dark:text-neutral-300'>Now with dark mode! 🌙</span >
@@ -30,14 +32,16 @@ const Home = () => {
           </section>
         </section>
         <section className='flex flex-col gap-4 items-end lg:items-start'>
-          <div className='flex flex-wrap justify-end gap-2 lg:justify-start'>
+          <div className='flex flex-wrap justify-end gap-4 lg:justify-start'>
             <Red />
             <PurpleOutlinedRounded />
           </div>
-          <div className='flex flex-wrap gap-4'>
+          <div className='flex flex-wrap gap-4 justify-end lg:justify-start'>
             <PurpleButton />
             <YellowButtonRounded />
             <Apple />
+            <GoogleIcon />
+            <GithubIconRounded />
           </div>
 
         </section>
