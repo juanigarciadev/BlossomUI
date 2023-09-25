@@ -34,7 +34,10 @@ const Navbar = () => {
                         <button onClick={handleChangeTheme} className='flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white'>{theme === "" ? (<BsFillMoonFill />) : (<BsFillSunFill />)}</button>
                     </ul>
                 </section>
-                <BiMenu className='text-3xl hidden cursor-pointer lg:block dark:text-white' />
+                <div className='flex justify-center items-center gap-4 lg:flex 2xl:hidden'>
+                    <button onClick={handleChangeTheme} className='flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white'>{theme === "" ? (<BsFillMoonFill />) : (<BsFillSunFill />)}</button>
+                    <BiMenu className='text-3xl hidden cursor-pointer lg:block dark:text-white' />
+                </div>
             </header>
             <Outlet />
         </>
