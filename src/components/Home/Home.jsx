@@ -44,7 +44,9 @@ const Home = () => {
             <GoogleIcon />
             <GithubIconRounded />
           </div>
-
+          <div className='w-8/12'>
+            <ProgressBar />
+          </div>
         </section>
       </main>
       <Characteristics />
