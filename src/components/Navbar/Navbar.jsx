@@ -29,7 +29,7 @@ const Navbar = () => {
                 </section>
                 <section className='lg:hidden'>
                     <ul className='flex items-center gap-4'>
-                        <Link className='cursor-pointer dark:text-white' to="/docs">Docs</Link>
+                        <Link className='cursor-pointer dark:text-white' to="/docs/getting-started">Docs</Link>
                         <a href="https://www.buymeacoffee.com/juanigarciadev" target='_blank' className='flex justify-center items-center bg-corporative text-white w-fit h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-corporativeHover'>Sponsor</a>
                         <button onClick={handleChangeTheme} className='flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white'>{theme === "" ? (<BsFillMoonFill />) : (<BsFillSunFill />)}</button>
                     </ul>

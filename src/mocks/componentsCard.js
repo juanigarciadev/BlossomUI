@@ -19,6 +19,16 @@ const componentsCard = [
         url: "/docs/cards",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
+    {
+        name: "Progress",
+        url: "/docs/progress",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Toasts",
+        url: "/docs/toasts",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
 ]
 
 export default componentsCard

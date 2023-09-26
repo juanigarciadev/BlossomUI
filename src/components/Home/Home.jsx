@@ -26,7 +26,7 @@ const Home = () => {
           <h1 className='text-6xl font-bold text-neutral-800 tracking-tight dark:text-white'>Your next project, in record time with <span className='text-corporative'>Blossom UI</span>.</h1>
           <h3 className='text-lg text-neutral-700 dark:text-neutral-300'>Customizable, reusable and beautiful components made with Tailwind.</h3>
           <section className='flex gap-4'>
-            <Link to="/docs" className='flex justify-center items-center bg-black text-white w-fit h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>
+            <Link to="/docs/getting-started" className='flex justify-center items-center bg-black text-white w-fit h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>
               Get started <BiRightArrowAlt className='text-2xl' /></Link>
 
             <Link to="/components" className='flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white'>Explore components <BiRightArrowAlt className='text-2xl' /></Link>
