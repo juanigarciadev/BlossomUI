@@ -14,6 +14,7 @@ function App() {
         <Route element={<Navbar />}>
           <Route path='/' element={<Home />} />
           <Route path='/docs/getting-started' element={<Docs />} />
+          <Route path='/docs/components/*' element={<Docs />} />
         </Route>
       </Routes>
     </BrowserRouter>
