@@ -16,7 +16,7 @@ const Navbar = ({ theme, mobileNavToggle, setMobileNavToggle, handleChangeTheme 
                 </section>
                 <section className='lg:hidden'>
                     <ul className='flex items-center gap-4'>
-                        <Link className='cursor-pointer dark:text-white' to="/docs/getting-started">Docs</Link>
+                        <Link className='cursor-pointer dark:text-white' to="/docs/getting-started/introduction">Docs</Link>
                         <a href="https://www.buymeacoffee.com/juanigarciadev" target='_blank' className='flex justify-center items-center bg-corporative text-white w-fit h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-corporativeHover'>Sponsor</a>
                         <button onClick={handleChangeTheme} className='flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white'>{theme === "" ? (<BsFillMoonFill />) : (<BsFillSunFill />)}</button>
                     </ul>
@@ -26,13 +26,13 @@ const Navbar = ({ theme, mobileNavToggle, setMobileNavToggle, handleChangeTheme 
                     <BiMenu className='text-3xl hidden cursor-pointer lg:block dark:text-white' onClick={() => setMobileNavToggle((prevToggle) => (prevToggle === false ? true : false))} />
                 </div>
             </header>
-            {mobileNavToggle && (<section className='side-navbar fixed z-10 right-0 bg-white border border-l-neutral-200 w-[50%] h-screen'>
+            {mobileNavToggle && (<section className='side-navbar fixed z-10 right-0 bg-white border-l-[1px] border-neutral-200 w-[50%] h-screen dark:bg-neutral-900 dark:text-white dark:border-neutral-800'>
                 <div className='flex justify-end px-4 py-6'>
-                    <AiOutlineClose className='text-black text-xl cursor-pointer' onClick={() => setMobileNavToggle(false)} />
+                    <AiOutlineClose className='text-black text-xl cursor-pointer dark:text-white' onClick={() => setMobileNavToggle(false)} />
                 </div>
                 <div className='flex flex-col w-full'>
-                    <Link to="/" className='p-4 hover:bg-neutral-200' onClick={() => setMobileNavToggle(false)}>Home</Link>
-                    <Link to="/docs/getting-started" className='p-4 hover:bg-neutral-200' onClick={() => setMobileNavToggle(false)}>Docs</Link>
+                    <Link to="/" className='p-4 hover:bg-neutral-200 dark:hover:bg-neutral-800' onClick={() => setMobileNavToggle(false)}>Home</Link>
+                    <Link to="/docs/getting-started" className='p-4 hover:bg-neutral-200 dark:hover:bg-neutral-800' onClick={() => setMobileNavToggle(false)}>Docs</Link>
                 </div>
                 <div className='p-4'>
                     <a href="https://www.buymeacoffee.com/juanigarciadev" target='_blank' className='flex justify-center items-center bg-corporative text-white w-full h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-corporativeHover'>Sponsor</a>
