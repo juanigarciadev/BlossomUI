@@ -19,3 +19,18 @@ body {
     color: #72a4f4;
     font-weight: 500;
 }
+
+
+.side-navbar {
+    animation: sidenavbar .2s ease-in-out;
+}
+
+@keyframes sidenavbar {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(1);
+    }
+}

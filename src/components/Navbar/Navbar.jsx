@@ -4,22 +4,7 @@ import { BiSearch, BiMenu } from 'react-icons/bi'
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs'
 import { AiOutlineClose } from 'react-icons/ai'
 
-const Navbar = () => {
-
-    const [theme, setTheme] = useState("")
-    const [mobileNavToggle, setMobileNavToggle] = useState(false)
-
-    useEffect(() => {
-        if (theme === "dark") {
-            document.querySelector('html').classList.add('dark')
-        } else {
-            document.querySelector('html').classList.remove('dark')
-        }
-    }, [theme])
-
-    const handleChangeTheme = () => {
-        setTheme((prevTheme) => (prevTheme === "" ? "dark" : ""))
-    }
+const Navbar = ({ theme, mobileNavToggle, setMobileNavToggle, handleChangeTheme }) => {
 
     return (
         <>
@@ -41,8 +26,8 @@ const Navbar = () => {
                     <BiMenu className='text-3xl hidden cursor-pointer lg:block dark:text-white' onClick={() => setMobileNavToggle((prevToggle) => (prevToggle === false ? true : false))} />
                 </div>
             </header>
-            {mobileNavToggle && (<section className='fixed z-10 right-0 bg-white border border-l-neutral-200 w-[40%] h-screen'>
-                <div className='flex justify-end p-4'>
+            {mobileNavToggle && (<section className='side-navbar fixed z-10 right-0 bg-white border border-l-neutral-200 w-[50%] h-screen'>
+                <div className='flex justify-end px-4 py-6'>
                     <AiOutlineClose className='text-black text-xl cursor-pointer' onClick={() => setMobileNavToggle(false)} />
                 </div>
                 <div className='flex flex-col w-full'>

@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Home from './components/Home/Home'
-import Navbar from './components/Navbar/Navbar'
 import Docs from './components/Docs/Docs'
+import NavbarContainer from './components/Navbar/NavbarContainer'
 
 
 
@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Navbar />}>
+        <Route element={<NavbarContainer />}>
           <Route path='/' element={<Home />} />
           <Route path='/docs/getting-started' element={<Docs />} />
           <Route path='/docs/components/*' element={<Docs />} />
