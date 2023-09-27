@@ -10,18 +10,7 @@ const Explanation = ({ copy, setCopy, codeString }) => {
     return (
         <div div className='grid grid-cols-2 w-full pt-64 pb-32 lg:flex lg:flex-col-reverse lg:gap-12 lg:pt-32 lg:pb-0' >
             <section>
-                <div className='flex justify-between items-center pl-4 w-full h-8 bg-corporative rounded-t-md'>
-                    <div className='flex'>
-                        <svg viewBox="0 0 120 120">
-                            <circle cx="20" cy="60" r="20" className='transition-colors duration-200 dark:fill-white' />
-                        </svg>
-                        <svg viewBox="0 0 120 120">
-                            <circle cx="20" cy="60" r="20" className='transition-colors duration-200 dark:fill-white' />
-                        </svg>
-                        <svg viewBox="0 0 120 120">
-                            <circle cx="20" cy="60" r="20" className='transition-colors duration-200 dark:fill-white' />
-                        </svg>
-                    </div>
+                <article className='flex justify-end items-center pl-4 w-full h-8 bg-corporative rounded-t-md'>
                     <div className='text-sm pr-4 cursor-pointer'>
                         {copy ? (
                             <div className='flex items-center gap-1'>
@@ -42,7 +31,7 @@ const Explanation = ({ copy, setCopy, codeString }) => {
                                 </div>
                             )}
                     </div>
-                </div>
+                </article>
 
                 <SyntaxHighlighter language="javascript" style={theme === "dark" ? arta : lightfair}>
                     {codeString}

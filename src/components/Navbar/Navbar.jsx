@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { BiSearch, BiMenu } from 'react-icons/bi'
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs'
+import { AiOutlineClose } from 'react-icons/ai'
 
 const Navbar = () => {
 
     const [theme, setTheme] = useState("")
+    const [mobileNavToggle, setMobileNavToggle] = useState(false)
 
     useEffect(() => {
         if (theme === "dark") {
@@ -36,9 +38,21 @@ const Navbar = () => {
                 </section>
                 <div className='hidden justify-center items-center gap-4 lg:flex 2xl:hidden'>
                     <button onClick={handleChangeTheme} className='flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white'>{theme === "" ? (<BsFillMoonFill />) : (<BsFillSunFill />)}</button>
-                    <BiMenu className='text-3xl hidden cursor-pointer lg:block dark:text-white' />
+                    <BiMenu className='text-3xl hidden cursor-pointer lg:block dark:text-white' onClick={() => setMobileNavToggle((prevToggle) => (prevToggle === false ? true : false))} />
                 </div>
             </header>
+            {mobileNavToggle && (<section className='fixed z-10 right-0 bg-white border border-l-neutral-200 w-[40%] h-screen'>
+                <div className='flex justify-end p-4'>
+                    <AiOutlineClose className='text-black text-xl cursor-pointer' onClick={() => setMobileNavToggle(false)} />
+                </div>
+                <div className='flex flex-col w-full'>
+                    <Link to="/" className='p-4 hover:bg-neutral-200' onClick={() => setMobileNavToggle(false)}>Home</Link>
+                    <Link to="/docs/getting-started" className='p-4 hover:bg-neutral-200' onClick={() => setMobileNavToggle(false)}>Docs</Link>
+                </div>
+                <div className='p-4'>
+                    <a href="https://www.buymeacoffee.com/juanigarciadev" target='_blank' className='flex justify-center items-center bg-corporative text-white w-full h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-corporativeHover'>Sponsor</a>
+                </div>
+            </section>)}
             <Outlet context={[theme]} />
         </>
     )
