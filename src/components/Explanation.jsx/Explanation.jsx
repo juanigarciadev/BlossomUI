@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useOutletContext } from "react-router-dom";
 import { BiChevronDown } from 'react-icons/bi'
 import { BsClipboard2, BsCheck2Circle } from 'react-icons/bs'
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { lightfair } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { arta, lightfair } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const Explanation = ({ copy, setCopy, codeString }) => {
-
+    const [theme] = useOutletContext();
     return (
         <div div className='grid grid-cols-2 w-full pt-64 pb-32 lg:flex lg:flex-col-reverse lg:gap-12 lg:pt-32 lg:pb-0' >
             <section>
@@ -43,7 +44,7 @@ const Explanation = ({ copy, setCopy, codeString }) => {
                     </div>
                 </div>
 
-                <SyntaxHighlighter language="javascript" style={lightfair}>
+                <SyntaxHighlighter language="javascript" style={theme === "dark" ? arta : lightfair}>
                     {codeString}
                 </SyntaxHighlighter>
 

@@ -39,7 +39,7 @@ const Navbar = () => {
                     <BiMenu className='text-3xl hidden cursor-pointer lg:block dark:text-white' />
                 </div>
             </header>
-            <Outlet />
+            <Outlet context={[theme]} />
         </>
     )
 }
