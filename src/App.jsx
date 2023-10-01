@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Home from './components/Home/Home'
-import Docs from './components/Docs/Docs'
 import NavbarContainer from './components/Navbar/NavbarContainer'
+import Introduction from './components/Docs/Introduction'
 
 
 
@@ -13,8 +13,8 @@ function App() {
       <Routes>
         <Route element={<NavbarContainer />}>
           <Route path='/' element={<Home />} />
-          <Route path='/docs/getting-started/introduction' element={<Docs />} />
-          <Route path='/docs/components/*' element={<Docs />} />
+          <Route path='/docs/getting-started/introduction' element={<Introduction />} />
+          <Route path='/docs/components/*' element={<Introduction />} />
         </Route>
       </Routes>
     </BrowserRouter>
