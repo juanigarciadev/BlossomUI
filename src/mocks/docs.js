@@ -4,8 +4,8 @@ export const introduction = [
         url: "/docs/getting-started/introduction",
     },
     {
-        name: "Quickstart",
-        url: "/docs/getting-started/quickstart",
+        name: "Installation",
+        url: "/docs/getting-started/installation",
     },
     {
         name: "Changelog",

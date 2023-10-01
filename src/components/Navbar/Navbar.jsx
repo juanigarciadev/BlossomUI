@@ -32,7 +32,7 @@ const Navbar = ({ theme, mobileNavToggle, setMobileNavToggle, handleChangeTheme 
                 </div>
                 <div className='flex flex-col w-full'>
                     <Link to="/" className='p-4 hover:bg-neutral-200 dark:hover:bg-neutral-800' onClick={() => setMobileNavToggle(false)}>Home</Link>
-                    <Link to="/docs/getting-started" className='p-4 hover:bg-neutral-200 dark:hover:bg-neutral-800' onClick={() => setMobileNavToggle(false)}>Docs</Link>
+                    <Link to="/docs/getting-started/introduction" className='p-4 hover:bg-neutral-200 dark:hover:bg-neutral-800' onClick={() => setMobileNavToggle(false)}>Docs</Link>
                 </div>
                 <div className='p-4'>
                     <a href="https://www.buymeacoffee.com/juanigarciadev" target='_blank' className='flex justify-center items-center bg-corporative text-white w-full h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-corporativeHover'>Sponsor</a>
