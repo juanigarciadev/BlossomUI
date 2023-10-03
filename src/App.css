@@ -4,6 +4,8 @@
 
 body {
     overflow-x: hidden;
+    scrollbar-gutter: auto;
+    width: 100vw;
 }
 
 #root {

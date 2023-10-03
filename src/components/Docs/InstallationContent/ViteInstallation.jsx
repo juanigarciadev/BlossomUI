@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { BsClipboard2, BsCheck2Circle } from 'react-icons/bs'
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 const ViteInstallation = () => {
+    const [copy, setCopy] = useState(false)
+
+    const createVite = 'npm create vite@latest my-project -- --template react cd my-project'
     return (
         <div>
             <h3 className='text-4xl font-bold pb-4 text-neutral-800 dark:text-white'>With Vite</h3>
             <ol className='flex flex-col gap-2'>
-                <li className='grid grid-cols-2'>
+                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
                     <section className='flex gap-2 '>
                         <div className='flex flex-col items-center'>
                             <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>1</p>
@@ -16,7 +21,34 @@ const ViteInstallation = () => {
                             <p className='dark:text-neutral-300 pb-4'>Start by creating a new Vite project if you don't have one set up already. The most common aproach is to use Create Vite.</p>
                         </div>
                     </section>
-                    <section className='flex flex-col'></section>
+                    <section className='pl-2 xl:pl-8'>
+                        <article className='flex justify-end items-center pl-4 w-full h-8 bg-corporative rounded-t-md'>
+                            <div className='text-sm pr-4 cursor-pointer'>
+                                {copy ? (
+                                    <div className='flex items-center gap-1'>
+                                        <BsCheck2Circle />
+                                        Copied!
+                                    </div>
+                                ) :
+                                    (
+                                        <div className='flex items-center gap-1' onClick={() => {
+                                            navigator.clipboard.writeText(createVite);
+                                            setCopy(true)
+                                            setTimeout(() => {
+                                                setCopy(false)
+                                            }, 3000)
+                                        }}>
+                                            <BsClipboard2 />
+                                            Copy code
+                                        </div>
+                                    )}
+                            </div>
+                        </article>
+
+                        <SyntaxHighlighter language="bash">
+                            {createVite}
+                        </SyntaxHighlighter>
+                    </section >
                 </li>
                 <li className='grid grid-cols-2'>
                     <section className='flex gap-2 '>
