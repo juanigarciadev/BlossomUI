@@ -1,8 +1,7 @@
 import React from 'react'
 import Aside from './Aside'
 import { Link } from 'react-router-dom'
-import { BiLinkExternal, BiRightArrowAlt } from 'react-icons/bi'
-import { introduction } from '../../mocks/docs'
+import { BiRightArrowAlt } from 'react-icons/bi'
 
 const Introduction = () => {
     return (
