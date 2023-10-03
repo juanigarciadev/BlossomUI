@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import { BiSearch, BiMenu } from 'react-icons/bi'
-import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs'
+import { BsFillSunFill, BsFillMoonFill, BsPlusLg } from 'react-icons/bs'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useContext } from 'react'
 import { ThemeContext } from '../../context/ThemeContext'
+import { introduction } from '../../mocks/docs'
 
-const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
+const Navbar = ({ mobileNavToggle, setMobileNavToggle, moreDocs, setMoreDocs }) => {
     const { theme, handleChangeTheme } = useContext(ThemeContext)
     return (
         <>
@@ -34,8 +35,20 @@ const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
                 </div>
                 <div className='flex flex-col w-full'>
                     <Link to="/" className='p-4 hover:bg-neutral-200 dark:hover:bg-neutral-800' onClick={() => setMobileNavToggle(false)}>Home</Link>
-                    <Link to="/docs/getting-started/introduction" className='p-4 hover:bg-neutral-200 dark:hover:bg-neutral-800' onClick={() => setMobileNavToggle(false)}>Docs</Link>
+                    <div className='flex items-center relative w-full'>
+                        <Link to="/docs/getting-started/introduction" className='w-full p-4 hover:bg-neutral-200 dark:hover:bg-neutral-800' onClick={() => setMobileNavToggle(false)}>Docs</Link>
+                        <section className='absolute right-4 grid place-items-center w-8 h-8 cursor-pointer ' onClick={() => setMoreDocs(!moreDocs)} >
+                            <BsPlusLg className='text-xl' />
+                        </section>
+                    </div>
                 </div>
+                {
+                    moreDocs && (<div className='flex flex-col pb-4 pl-8'>
+                        {introduction.map((link) => {
+                            return (<Link to={link.url} key={link.name} className='p-4 hover:bg-neutral-200 dark:hover:bg-neutral-800' onClick={() => setMobileNavToggle(false)}>{link.name}</Link>)
+                        })}
+                    </div>)
+                }
                 <div className='p-4'>
                     <a href="https://www.buymeacoffee.com/juanigarciadev" target='_blank' className='flex justify-center items-center bg-corporative text-white w-full h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-corporativeHover'>Sponsor</a>
                 </div>

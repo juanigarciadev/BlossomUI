@@ -22,6 +22,14 @@ body {
     font-weight: 500;
 }
 
+.hideDocs {
+    display: none;
+}
+
+.showDocs {
+    display: flex;
+    flex-direction: column;
+}
 
 .side-navbar {
     animation: sidenavbar .2s ease-in-out;
