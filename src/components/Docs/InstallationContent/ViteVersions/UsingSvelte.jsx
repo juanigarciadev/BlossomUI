@@ -9,11 +9,11 @@ const UsingSvelte = () => {
     const { theme } = useContext(ThemeContext)
     const [copy, setCopy] = useState(false)
 
-    const createVite = '> npm create vite@latest my-project -- --template react\n> cd my-project'
-    const installTailwind = '> npm install -D tailwindcss postcss autoprefixer\n> npx tailwindcss init -p'
+    const createVite = 'npm create vite@latest my-project -- --template react\ncd my-project'
+    const installTailwind = 'npm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p'
     const configurePaths = "/** @type {import('tailwindcss').Config} */\nexport default {\n  content: [\n    './index.html',\n    './src/**/*.{svelte,js,ts,jsx,tsx}',\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}"
     const directives = '@tailwind base;\n@tailwind components;\n@tailwind utilities;'
-    const build = '> npm run dev'
+    const build = 'npm run dev'
     const start = '<h1 class="text-3xl font-bold underline">\n  Hello world!\n</h1>'
     return (
         <div>
