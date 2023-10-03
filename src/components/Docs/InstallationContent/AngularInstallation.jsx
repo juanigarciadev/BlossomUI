@@ -50,7 +50,7 @@ const AngularInstallation = () => {
                         </SyntaxHighlighter>
                     </section >
                 </li>
-                <li className='grid grid-cols-2'>
+                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
                     <section className='flex gap-2 '>
                         <div className='flex flex-col items-center'>
                             <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>2</p>
@@ -63,7 +63,7 @@ const AngularInstallation = () => {
                     </section>
                     <section className='flex flex-col'></section>
                 </li>
-                <li className='grid grid-cols-2'>
+                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
                     <section className='flex gap-2 '>
                         <div className='flex flex-col items-center'>
                             <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>3</p>
@@ -76,7 +76,7 @@ const AngularInstallation = () => {
                     </section>
                     <section className='flex flex-col'></section>
                 </li>
-                <li className='grid grid-cols-2'>
+                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
                     <section className='flex gap-2 '>
                         <div className='flex flex-col items-center'>
                             <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>4</p>
@@ -89,7 +89,7 @@ const AngularInstallation = () => {
                     </section>
                     <section className='flex flex-col'></section>
                 </li>
-                <li className='grid grid-cols-2'>
+                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
                     <section className='flex gap-2 '>
                         <div className='flex flex-col items-center'>
                             <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>5</p>
@@ -102,7 +102,7 @@ const AngularInstallation = () => {
                     </section>
                     <section className='flex flex-col'></section>
                 </li>
-                <li className='grid grid-cols-2'>
+                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
                     <section className='flex gap-2 '>
                         <div className='flex flex-col items-center'>
                             <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>5</p>
