@@ -2,12 +2,18 @@ import React from 'react'
 import Aside from './Aside'
 import { Link } from 'react-router-dom'
 import { BiLinkExternal, BiRightArrowAlt } from 'react-icons/bi'
+import { introduction } from '../../mocks/docs'
 
 const Introduction = () => {
     return (
         <div className='flex pt-[70px] w-full h-screen relative'>
             <Aside />
             <section className='absolute left-[22%] w-[78%] pl-8 pt-4 xl:left-[18%] lg:w-[100%] lg:left-0 lg:px-0 dark:text-white'>
+                <div className='hidden lg:flex lg:flex-col'>
+                    {introduction.map((links) => {
+                        return (<Link to={links.url}>{links.name}</Link>)
+                    })}
+                </div>
                 <h1 className='text-4xl font-bold pb-4 text-neutral-800 dark:text-white'>Introduction</h1>
                 <article className='flex flex-col gap-2'>
                     <p className='w-full'>Blossom UI is a library of components created with <a href="https://tailwindcss.com/" target='_blank' className='text-blue-500 cursor-pointer hover:text-blue-600'>Tailwind CSS</a>. Their use is completely free, the only requirement is to have Tailwind installed in the project.</p>
