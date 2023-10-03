@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
+import { useContext } from 'react';
 import { BsClipboard2, BsCheck2Circle } from 'react-icons/bs'
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import { arta, lightfair } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { ThemeContext } from '../../../context/ThemeContext';
 
 const AstroInstallation = () => {
+    const { theme } = useContext(ThemeContext)
     const [copy, setCopy] = useState(false)
 
     const createVite = 'npm create vite@latest my-project -- --template react cd my-project'
@@ -45,7 +49,7 @@ const AstroInstallation = () => {
                             </div>
                         </article>
 
-                        <SyntaxHighlighter language="bash">
+                        <SyntaxHighlighter language="bash" style={theme === "dark" ? arta : lightfair}>
                             {createVite}
                         </SyntaxHighlighter>
                     </section >

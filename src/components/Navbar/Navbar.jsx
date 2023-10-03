@@ -3,9 +3,11 @@ import { Link, Outlet } from 'react-router-dom'
 import { BiSearch, BiMenu } from 'react-icons/bi'
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs'
 import { AiOutlineClose } from 'react-icons/ai'
+import { useContext } from 'react'
+import { ThemeContext } from '../../context/ThemeContext'
 
-const Navbar = ({ theme, mobileNavToggle, setMobileNavToggle, handleChangeTheme }) => {
-
+const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
+    const { theme, handleChangeTheme } = useContext(ThemeContext)
     return (
         <>
             <header className='w-screen bg-white h-[70px] flex items-center justify-between z-10 fixed py-4 px-64 xl:px-32 md:px-16 sm:px-8 dark:bg-neutral-900 transition-colors duration-300'>

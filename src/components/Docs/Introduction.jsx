@@ -11,7 +11,7 @@ const Introduction = () => {
             <section className='absolute left-[22%] w-[78%] pl-8 pt-4 xl:left-[18%] lg:w-[100%] lg:left-0 lg:px-0 dark:text-white'>
                 <div className='hidden lg:flex lg:flex-col'>
                     {introduction.map((links) => {
-                        return (<Link to={links.url}>{links.name}</Link>)
+                        return (<Link key={links.name} to={links.url}>{links.name}</Link>)
                     })}
                 </div>
                 <h1 className='text-4xl font-bold pb-4 text-neutral-800 dark:text-white'>Introduction</h1>

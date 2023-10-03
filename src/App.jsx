@@ -4,6 +4,7 @@ import Home from './components/Home/Home'
 import NavbarContainer from './components/Navbar/NavbarContainer'
 import Introduction from './components/Docs/Introduction'
 import Installation from './components/Docs/Installation'
+import ThemeContextProvider from './context/ThemeContext'
 
 
 
@@ -11,14 +12,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<NavbarContainer />}>
-          <Route path='/' element={<Home />} />
-          <Route path='/docs/getting-started/introduction' element={<Introduction />} />
-          <Route path='/docs/getting-started/installation' element={<Installation />} />
-          <Route path='/docs/components/*' element={<Introduction />} />
-        </Route>
-      </Routes>
+      <ThemeContextProvider>
+        <Routes>
+          <Route element={<NavbarContainer />}>
+            <Route path='/' element={<Home />} />
+            <Route path='/docs/getting-started/introduction' element={<Introduction />} />
+            <Route path='/docs/getting-started/installation' element={<Installation />} />
+            <Route path='/docs/components/*' element={<Introduction />} />
+          </Route>
+        </Routes>
+      </ThemeContextProvider>
     </BrowserRouter>
   )
 }
