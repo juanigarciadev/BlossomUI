@@ -1,4 +1,4 @@
-import { AngularIcon, SvelteIcon, ViteIcon, NuxtIcon, AstroIcon, SolidJSIcon } from "../assets/Icons/Icons"
+import { AngularIcon, SvelteIcon, ViteIcon, NuxtIcon, AstroIcon, SolidJSIcon, NextJSIcon, LaravelIcon, QwikIcon, MeteorIcon, RemixIcon, PhoenixIcon } from "../assets/Icons/Icons"
 
 export const installation = [
     {
@@ -10,6 +10,11 @@ export const installation = [
         name: "Angular",
         img: AngularIcon,
         span: "Platform for building mobile and desktop web applications.",
+    },
+    {
+        name: "NextJS",
+        img: NextJSIcon,
+        span: "Full-featured React framework with great developer experience.",
     },
     {
         name: "Nuxt",
@@ -30,5 +35,30 @@ export const installation = [
         name: "SolidJS",
         img: SolidJSIcon,
         span: "A tool for building simple, performant and reactive user interfaces.",
+    },
+    {
+        name: "Laravel",
+        img: LaravelIcon,
+        span: "PHP web application framework with expressive, elegant syntax.",
+    },
+    {
+        name: "Qwik",
+        img: QwikIcon,
+        span: "Build instantly-interactive web apps without effort.",
+    },
+    {
+        name: "Meteor",
+        img: MeteorIcon,
+        span: "The full stack JavaScript framework for developing cross-platform apps.",
+    },
+    {
+        name: "Remix",
+        img: RemixIcon,
+        span: "Full stack framework focused on web fundamentals and modern UX.",
+    },
+    {
+        name: "Phoenix",
+        img: PhoenixIcon,
+        span: "A framework to build rich, interactive applications with Elixir.",
     },
 ]
