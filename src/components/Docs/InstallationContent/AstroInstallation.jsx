@@ -179,7 +179,7 @@ const AstroInstallation = () => {
                             </div>
                         </article>
 
-                        <SyntaxHighlighter language="jsx" style={theme === "dark" ? arta : lightfair}>
+                        <SyntaxHighlighter language="javascript" style={theme === "dark" ? arta : lightfair}>
                             {start}
                         </SyntaxHighlighter>
                     </section >

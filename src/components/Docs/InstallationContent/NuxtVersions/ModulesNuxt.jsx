@@ -180,7 +180,7 @@ const ModulesNuxt = () => {
                             </div>
                         </article>
 
-                        <SyntaxHighlighter language="css" style={theme === "dark" ? arta : lightfair}>
+                        <SyntaxHighlighter language="javascript" style={theme === "dark" ? arta : lightfair}>
                             {start}
                         </SyntaxHighlighter>
                     </section >

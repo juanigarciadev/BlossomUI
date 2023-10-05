@@ -27,7 +27,6 @@ const UsingVue = () => {
                                 <h3 className='font-medium pb-2'>Create your project</h3>
                             </div>
                             <p className='dark:text-neutral-300 pb-4'>Start by creating a new Vite project if you don't have one set up already. The most common aproach is to use Create Vite.</p>
-
                         </div>
                     </section>
                     <section className='ml-2 xl:ml-8 shadow-md'>
@@ -267,7 +266,7 @@ const UsingVue = () => {
                             </div>
                         </article>
 
-                        <SyntaxHighlighter language="jsx" style={theme === "dark" ? arta : lightfair}>
+                        <SyntaxHighlighter language="javascript" style={theme === "dark" ? arta : lightfair}>
                             {start}
                         </SyntaxHighlighter>
                     </section >
