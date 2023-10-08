@@ -36,6 +36,11 @@ const Installation = () => {
                     })}
                 </div>
                 <div>
+                    <p className='pb-6'>
+                        If you don't see your framework, you can visit the full Tailwind documentation <a href="https://tailwindcss.com/docs/installation/framework-guides" target='_blank' className='text-corporative hover:text-corporativeHover'>here</a>.
+                    </p>
+                </div>
+                <div>
                     {content === "Vite" ? <ViteInstallation /> : null}
                     {content === "Angular" ? <AngularInstallation /> : null}
                     {content === "Nuxt" ? <NuxtInstallation /> : null}

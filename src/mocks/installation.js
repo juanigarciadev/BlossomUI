@@ -31,34 +31,4 @@ export const installation = [
         img: AstroIcon,
         span: "The all-in-one web framework designed for speed.",
     },
-    {
-        name: "SolidJS",
-        img: SolidJSIcon,
-        span: "A tool for building simple, performant and reactive user interfaces.",
-    },
-    {
-        name: "Laravel",
-        img: LaravelIcon,
-        span: "PHP web application framework with expressive, elegant syntax.",
-    },
-    {
-        name: "Qwik",
-        img: QwikIcon,
-        span: "Build instantly-interactive web apps without effort.",
-    },
-    {
-        name: "Meteor",
-        img: MeteorIcon,
-        span: "The full stack JavaScript framework for developing cross-platform apps.",
-    },
-    {
-        name: "Remix",
-        img: RemixIcon,
-        span: "Full stack framework focused on web fundamentals and modern UX.",
-    },
-    {
-        name: "Phoenix",
-        img: PhoenixIcon,
-        span: "A framework to build rich, interactive applications with Elixir.",
-    },
 ]
