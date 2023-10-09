@@ -12,7 +12,7 @@ export const installation = [
         span: "Platform for building mobile and desktop web applications.",
     },
     {
-        name: "NextJS",
+        name: "Next.js",
         img: NextJSIcon,
         span: "Full-featured React framework with great developer experience.",
     },

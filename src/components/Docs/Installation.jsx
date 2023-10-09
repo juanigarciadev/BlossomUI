@@ -7,8 +7,8 @@ import ViteInstallation from './InstallationContent/ViteInstallation'
 import AngularInstallation from './InstallationContent/AngularInstallation'
 import NuxtInstallation from './InstallationContent/NuxtInstallation'
 import AstroInstallation from './InstallationContent/AstroInstallation'
-import SolidJSInstallation from './InstallationContent/SolidJSInstallation'
 import SvelteKitInstallation from './InstallationContent/SvelteKitInstallation'
+import NextJSInstallation from './InstallationContent/NextJSInstallation'
 
 const Installation = () => {
     const [content, setContent] = useState("Vite")
@@ -37,7 +37,7 @@ const Installation = () => {
                 </div>
                 <div>
                     <p className='pb-6'>
-                        If you don't see your framework, you can visit the full Tailwind documentation <a href="https://tailwindcss.com/docs/installation/framework-guides" target='_blank' className='text-corporative hover:text-corporativeHover'>here</a>.
+                        If you don't see your framework, you can visit the <a href="https://tailwindcss.com/docs/installation/framework-guides" target='_blank' className='text-corporative hover:text-corporativeHover'>full Tailwind documentation</a>.
                     </p>
                 </div>
                 <div>
@@ -46,7 +46,7 @@ const Installation = () => {
                     {content === "Nuxt" ? <NuxtInstallation /> : null}
                     {content === "SvelteKit" ? <SvelteKitInstallation /> : null}
                     {content === "Astro" ? <AstroInstallation /> : null}
-                    {content === "SolidJS" ? <SolidJSInstallation /> : null}
+                    {content === "Next.js" ? <NextJSInstallation /> : null}
                 </div>
             </section>
         </div>
