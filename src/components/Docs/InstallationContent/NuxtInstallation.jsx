@@ -6,18 +6,18 @@ const NuxtInstallation = () => {
   const [content, setContent] = useState("Standard")
   return (
     <div>
-      <div className='flex gap-6 pb-2'>
-        <section className='group flex gap-2 cursor-pointer font-medium' onClick={() => setContent("Standard")}>
-          <div className='group h-full w-[3px] group-hover:bg-corporative bg-neutral-200 dark:bg-neutral-800 duration-200'></div>
-          <span>
+      <div className='flex flex-wrap gap-1'>
+        <section className='group flex flex-col cursor-pointer font-medium' onClick={() => setContent("Standard")}>
+          <span className='px-4'>
             Standard installation
           </span>
+          <div className='group h-[3px] w-full group-hover:bg-corporative bg-neutral-200 dark:bg-neutral-800 duration-200'></div>
         </section>
-        <section className='group flex gap-2 cursor-pointer font-medium' onClick={() => setContent("Modules")}>
-          <div className='group h-full w-[3px] group-hover:bg-corporative bg-neutral-200 dark:bg-neutral-800 duration-200'></div>
-          <span>
+        <section className='group flex flex-col cursor-pointer font-medium' onClick={() => setContent("Modules")}>
+          <span className='px-4'>
             Using Nuxt Modules
           </span>
+          <div className='group h-[3px] w-full group-hover:bg-corporative bg-neutral-200 dark:bg-neutral-800 duration-200'></div>
         </section>
       </div>
       <hr className='pb-2' />

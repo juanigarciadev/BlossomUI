@@ -11,7 +11,7 @@ const Introduction = () => {
                 <h1 className='text-4xl font-bold pb-4 text-neutral-800 dark:text-white'>Introduction</h1>
                 <article className='flex flex-col gap-2'>
                     <p className='w-full'>Blossom UI is a library of components created with <a href="https://tailwindcss.com/" target='_blank' className='text-corporative cursor-pointer hover:text-corporativeHover'>Tailwind CSS</a>. Their use is completely free, the only requirement is to have Tailwind installed in the project.</p>
-                    <Link to="/docs/getting-started/quickstart" className='flex text-corporative cursor-pointer hover:text-corporativeHover'>How to install Tailwind CSS in my project<BiRightArrowAlt className='text-2xl' /></Link>
+                    <Link to="/docs/getting-started/installation" className='flex text-corporative cursor-pointer hover:text-corporativeHover'>How to install Tailwind CSS in my project<BiRightArrowAlt className='text-2xl' /></Link>
                 </article>
                 <h2 className='text-2xl font-bold pt-6 text-neutral-800 dark:text-white'>How to use?</h2>
                 <p>Very simple, just copy and paste our components code in your project.</p>

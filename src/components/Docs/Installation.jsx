@@ -17,7 +17,7 @@ const Installation = () => {
             <Aside />
             <section className='absolute left-[22%] w-[78%] pl-8 pt-4 xl:left-[18%] lg:w-[100%] lg:left-0 lg:px-0 dark:text-white'>
                 <h1 className='text-4xl font-bold pb-4 text-neutral-800 dark:text-white'>Installation</h1>
-                <div className='grid grid-cols-3 gap-4 lg:grid-cols-2 pb-8 md:grid-cols-3'>
+                <div className='grid grid-cols-3 gap-4 lg:grid-cols-2 pb-8 md:grid-cols-3 sm:grid-cols-2'>
                     {installation.map((technologie) => {
                         return (
                             <article key={technologie.name} className='group flex flex-col gap-4 h-auto p-4 border border-neutral-300 rounded-xl bg-neutral-200 cursor-pointer shadow-sm md:w-auto hover:shadow-md duration-300 dark:bg-neutral-800 dark:border-neutral-600 hover:border-corporative dark:hover:border-corporative' onClick={() => setContent(`${technologie.name}`)}>
