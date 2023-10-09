@@ -24,7 +24,7 @@ const ModulesNuxt = () => {
                                 <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>1</p>
                                 <h3 className='font-medium pb-2'>Create your project</h3>
                             </div>
-                            <p className='dark:text-neutral-300 pb-4'>Start by creating a new Angular project if you don't have one set up already. The most common aproach is to use Nuxt Command Line Interface.</p>
+                            <p className='dark:text-neutral-300 pb-4'>Start by creating a new Angular project if you don't have one set up already. The most common aproach is to use <a href="https://nuxt.com/docs/getting-started/installation" target='_blank' className='text-corporative hover:text-corporativeHover'>Nuxt Command Line Interface</a>.</p>
                         </div>
                     </section>
                     <section className='ml-2 xl:ml-8 shadow-md'>
