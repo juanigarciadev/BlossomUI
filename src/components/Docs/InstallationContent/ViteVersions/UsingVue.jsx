@@ -26,7 +26,7 @@ const UsingVue = () => {
                                 <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>1</p>
                                 <h3 className='font-medium pb-2'>Create your project</h3>
                             </div>
-                            <p className='dark:text-neutral-300 pb-4'>Start by creating a new Vite project if you don't have one set up already. The most common aproach is to use Create Vite.</p>
+                            <p className='dark:text-neutral-300 pb-4'>Start by creating a new Vite project if you don't have one set up already. The most common aproach is to use <a href="https://vitejs.dev/guide/#scaffolding-your-first-vite-project" target='_blank' className='text-corporative hover:text-corporativeHover'>Create Vite</a>.</p>
                         </div>
                     </section>
                     <section className='ml-2 xl:ml-8 shadow-md'>
