@@ -22,7 +22,7 @@ const Aside = () => {
                 {componentsCard.map((components) => {
                     return (
                         <div key={components.name}>
-                            <article className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{components.name}</article>
+                            <Link to={components.url} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{components.name}</Link>
                         </div>
                     )
                 })}

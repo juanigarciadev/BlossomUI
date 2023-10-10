@@ -2,7 +2,7 @@ import React from 'react'
 import { BiRightArrowAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
-import Explanation from '../Explanation.jsx/Explanation'
+import Explanation from '../Explanation/Explanation'
 import Characteristics from '../Characteristics/Characteristics'
 import ComponentsSection from '../ComponentsSection/ComponentsSection'
 
@@ -15,7 +15,6 @@ import { Apple } from '../UI/Buttons/Normal/Social'
 import { GoogleIcon } from '../UI/Buttons/IconsOnly/Default'
 import { GithubIconRounded } from '../UI/Buttons/IconsOnly/Rounded'
 import { ProgressBar } from '../UI/Progress/ProgressBar'
-import ExplanationContainer from '../Explanation.jsx/ExplanationContainer'
 
 const Home = () => {
   return (
@@ -51,7 +50,7 @@ const Home = () => {
         </section>
       </main>
       <Characteristics />
-      <ExplanationContainer />
+      <Explanation />
       <ComponentsSection />
     </>
   )
