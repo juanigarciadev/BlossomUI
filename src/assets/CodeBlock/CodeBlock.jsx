@@ -16,7 +16,7 @@ export const CodeBlock = ({ name, code, language }) => {
                 </div>
                 <div className='text-sm pr-4 cursor-pointer'>
                     {copy ? (
-                        <div className='flex items-center gap-1'>
+                        <div className='flex items-center gap-1 select-none'>
                             <BsCheck2Circle />
                             <span>Copied!</span>
                         </div>
@@ -29,7 +29,7 @@ export const CodeBlock = ({ name, code, language }) => {
                                     setCopy(false)
                                 }, 3000)
                             }}>
-                                <BsClipboard2 title="Copy to clipboard" />
+                                <BsClipboard2 title="Copy to clipboard" className="select-none" />
                             </div>
                         )}
                 </div>
