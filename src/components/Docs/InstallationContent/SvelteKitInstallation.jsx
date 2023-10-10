@@ -1,14 +1,7 @@
-import React, { useState } from 'react'
-import { useContext } from 'react';
-import { BsClipboard2, BsCheck2Circle } from 'react-icons/bs'
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { ThemeContext } from './../../../context/ThemeContext';
-import { arta, lightfair } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import React from 'react'
+import { CodeBlock } from '../../../assets/CodeBlock/CodeBlock';
 
 const SvelteKitInstallation = () => {
-    const { theme } = useContext(ThemeContext)
-    const [copy, setCopy] = useState(false)
-
     const createSvelteKit = 'npm create svelte@latest my-project\ncd my-project'
     const installTailwind = 'npm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p'
     const postCss = "import adapter from '@sveltejs/adapter-auto';\nimport { vitePreprocess } from '@sveltejs/kit/vite';\n/** @type {import('@sveltejs/kit').Config} *\nconst config = {\n  kit: {\n    adapter: adapter()\n  },\n  preprocess: vitePreprocess()\n};\nexport default config;"
@@ -31,36 +24,7 @@ const SvelteKitInstallation = () => {
                             <p className='dark:text-neutral-300 pb-4'>Start by creating a new SvelteKit project if you don't have one set up already. The most common aproach is outlined in the <a href="https://kit.svelte.dev/docs/introduction#introduction-getting-started" target='_blank' className='text-corporative hover:text-corporativeHover'>Getting Started with SvelteKit</a> introduction.</p>
                         </div>
                     </section>
-                    <section className='ml-2 xl:ml-8 shadow-md'>
-                        <article className='flex justify-between items-center w-full h-8 bg-corporative rounded-t-md'>
-                            <div className='relative flex items-center bg-[#bd4c86] h-8 px-4'>
-                                <span className='cursor-default text-white'>Terminal</span>
-                                <div className='absolute bg-black h-[2px] w-full bottom-0 left-0 dark:bg-white'></div>
-                            </div>
-                            <div className='text-sm pr-4 cursor-pointer'>
-                                {copy ? (
-                                    <div className='flex items-center gap-1'>
-                                        <BsCheck2Circle />
-                                    </div>
-                                ) :
-                                    (
-                                        <div className='flex items-center gap-1' onClick={() => {
-                                            navigator.clipboard.writeText(createSvelteKit);
-                                            setCopy(true)
-                                            setTimeout(() => {
-                                                setCopy(false)
-                                            }, 3000)
-                                        }}>
-                                            <BsClipboard2 />
-                                        </div>
-                                    )}
-                            </div>
-                        </article>
-
-                        <SyntaxHighlighter language="bash" style={theme === "dark" ? arta : lightfair}>
-                            {createSvelteKit}
-                        </SyntaxHighlighter>
-                    </section >
+                    <CodeBlock name={"Terminal"} code={createSvelteKit} language={"bash"} />
                 </li>
 
                 <li className='grid grid-cols-2 xl:flex xl:flex-col'>
@@ -73,36 +37,7 @@ const SvelteKitInstallation = () => {
                             <p className='dark:text-neutral-300 pb-4'>Install `tailwindcss` and its peer dependencies, then generate your `tailwind.config.js` and `postcss.config.js` files.</p>
                         </div>
                     </section>
-                    <section className='ml-2 xl:ml-8 shadow-md'>
-                        <article className='flex justify-between items-center w-full h-8 bg-corporative rounded-t-md'>
-                            <div className='relative flex items-center bg-[#bd4c86] h-8 px-4'>
-                                <span className='cursor-default text-white'>Terminal</span>
-                                <div className='absolute bg-black h-[2px] w-full bottom-0 left-0 dark:bg-white'></div>
-                            </div>
-                            <div className='text-sm pr-4 cursor-pointer'>
-                                {copy ? (
-                                    <div className='flex items-center gap-1'>
-                                        <BsCheck2Circle />
-                                    </div>
-                                ) :
-                                    (
-                                        <div className='flex items-center gap-1' onClick={() => {
-                                            navigator.clipboard.writeText(installTailwind);
-                                            setCopy(true)
-                                            setTimeout(() => {
-                                                setCopy(false)
-                                            }, 3000)
-                                        }}>
-                                            <BsClipboard2 />
-                                        </div>
-                                    )}
-                            </div>
-                        </article>
-
-                        <SyntaxHighlighter language="" style={theme === "dark" ? arta : lightfair}>
-                            {installTailwind}
-                        </SyntaxHighlighter>
-                    </section >
+                    <CodeBlock name={"Terminal"} code={installTailwind} language={"bash"} />
                 </li>
 
                 <li className='grid grid-cols-2 xl:flex xl:flex-col'>
@@ -115,36 +50,7 @@ const SvelteKitInstallation = () => {
                             <p className='dark:text-neutral-300 pb-4'>In your `svelte.config.js` file, import `vitePreprocess` to enable processing `{"<style>"}` blocks as PostCSS.</p>
                         </div>
                     </section>
-                    <section className='ml-2 xl:ml-8 shadow-md'>
-                        <article className='flex justify-between items-center w-full h-8 bg-corporative rounded-t-md'>
-                            <div className='relative flex items-center bg-[#bd4c86] h-8 px-4'>
-                                <span className='cursor-default text-white'>svelte.config.js</span>
-                                <div className='absolute bg-black h-[2px] w-full bottom-0 left-0 dark:bg-white'></div>
-                            </div>
-                            <div className='text-sm pr-4 cursor-pointer'>
-                                {copy ? (
-                                    <div className='flex items-center gap-1'>
-                                        <BsCheck2Circle />
-                                    </div>
-                                ) :
-                                    (
-                                        <div className='flex items-center gap-1' onClick={() => {
-                                            navigator.clipboard.writeText(postCss);
-                                            setCopy(true)
-                                            setTimeout(() => {
-                                                setCopy(false)
-                                            }, 3000)
-                                        }}>
-                                            <BsClipboard2 />
-                                        </div>
-                                    )}
-                            </div>
-                        </article>
-
-                        <SyntaxHighlighter language="" style={theme === "dark" ? arta : lightfair}>
-                            {postCss}
-                        </SyntaxHighlighter>
-                    </section >
+                    <CodeBlock name={"svelte.config.js"} code={postCss} language={"javascript"} />
 
                 </li>
 
@@ -158,36 +64,7 @@ const SvelteKitInstallation = () => {
                             <p className='dark:text-neutral-300 pb-4'>Add the paths to all of your template files in your `tailwind.config.js` file.</p>
                         </div>
                     </section>
-                    <section className='ml-2 xl:ml-8 shadow-md'>
-                        <article className='flex justify-between items-center w-full h-8 bg-corporative rounded-t-md'>
-                            <div className='relative flex items-center bg-[#bd4c86] h-8 px-4'>
-                                <span className='cursor-default text-white'>tailwind.config.js</span>
-                                <div className='absolute bg-black h-[2px] w-full bottom-0 left-0 dark:bg-white'></div>
-                            </div>
-                            <div className='text-sm pr-4 cursor-pointer'>
-                                {copy ? (
-                                    <div className='flex items-center gap-1'>
-                                        <BsCheck2Circle />
-                                    </div>
-                                ) :
-                                    (
-                                        <div className='flex items-center gap-1' onClick={() => {
-                                            navigator.clipboard.writeText(templatePaths);
-                                            setCopy(true)
-                                            setTimeout(() => {
-                                                setCopy(false)
-                                            }, 3000)
-                                        }}>
-                                            <BsClipboard2 />
-                                        </div>
-                                    )}
-                            </div>
-                        </article>
-
-                        <SyntaxHighlighter language="css" style={theme === "dark" ? arta : lightfair}>
-                            {templatePaths}
-                        </SyntaxHighlighter>
-                    </section >
+                    <CodeBlock name={"tailwind.config.js"} code={templatePaths} language={"javascript"} />
                 </li>
 
                 <li className='grid grid-cols-2 xl:flex xl:flex-col'>
@@ -200,36 +77,7 @@ const SvelteKitInstallation = () => {
                             <p className='dark:text-neutral-300 pb-4'>Create an `./src/app.css` file and add tge `@tailwind` directives for each of Tailwind's layers.</p>
                         </div>
                     </section>
-                    <section className='ml-2 xl:ml-8 shadow-md'>
-                        <article className='flex justify-between items-center w-full h-8 bg-corporative rounded-t-md'>
-                            <div className='relative flex items-center bg-[#bd4c86] h-8 px-4'>
-                                <span className='cursor-default text-white'>app.css</span>
-                                <div className='absolute bg-black h-[2px] w-full bottom-0 left-0 dark:bg-white'></div>
-                            </div>
-                            <div className='text-sm pr-4 cursor-pointer'>
-                                {copy ? (
-                                    <div className='flex items-center gap-1'>
-                                        <BsCheck2Circle />
-                                    </div>
-                                ) :
-                                    (
-                                        <div className='flex items-center gap-1' onClick={() => {
-                                            navigator.clipboard.writeText(directives);
-                                            setCopy(true)
-                                            setTimeout(() => {
-                                                setCopy(false)
-                                            }, 3000)
-                                        }}>
-                                            <BsClipboard2 />
-                                        </div>
-                                    )}
-                            </div>
-                        </article>
-
-                        <SyntaxHighlighter language="" style={theme === "dark" ? arta : lightfair}>
-                            {directives}
-                        </SyntaxHighlighter>
-                    </section >
+                    <CodeBlock name={"app.css"} code={directives} language={"css"} />
                 </li>
 
                 <li className='grid grid-cols-2 xl:flex xl:flex-col'>
@@ -242,36 +90,7 @@ const SvelteKitInstallation = () => {
                             <p className='dark:text-neutral-300 pb-4'>Create a `./src/routes/+layout.svelte` file and import the newly-created `app.css` file.</p>
                         </div>
                     </section>
-                    <section className='ml-2 xl:ml-8 shadow-md'>
-                        <article className='flex justify-between items-center w-full h-8 bg-corporative rounded-t-md'>
-                            <div className='relative flex items-center bg-[#bd4c86] h-8 px-4'>
-                                <span className='cursor-default text-white'>+layout.svelte</span>
-                                <div className='absolute bg-black h-[2px] w-full bottom-0 left-0 dark:bg-white'></div>
-                            </div>
-                            <div className='text-sm pr-4 cursor-pointer'>
-                                {copy ? (
-                                    <div className='flex items-center gap-1'>
-                                        <BsCheck2Circle />
-                                    </div>
-                                ) :
-                                    (
-                                        <div className='flex items-center gap-1' onClick={() => {
-                                            navigator.clipboard.writeText(importCss);
-                                            setCopy(true)
-                                            setTimeout(() => {
-                                                setCopy(false)
-                                            }, 3000)
-                                        }}>
-                                            <BsClipboard2 />
-                                        </div>
-                                    )}
-                            </div>
-                        </article>
-
-                        <SyntaxHighlighter language="jsx" style={theme === "dark" ? arta : lightfair}>
-                            {importCss}
-                        </SyntaxHighlighter>
-                    </section >
+                    <CodeBlock name={"+layout.svelte"} code={importCss} language={"javascript"} />
                 </li>
 
                 <li className='grid grid-cols-2 xl:flex xl:flex-col'>
@@ -284,36 +103,7 @@ const SvelteKitInstallation = () => {
                             <p className='dark:text-neutral-300 pb-4'>Run your build process with `npm run dev`</p>
                         </div>
                     </section>
-                    <section className='ml-2 xl:ml-8 shadow-md'>
-                        <article className='flex justify-between items-center w-full h-8 bg-corporative rounded-t-md'>
-                            <div className='relative flex items-center bg-[#bd4c86] h-8 px-4'>
-                                <span className='cursor-default text-white'>Terminal</span>
-                                <div className='absolute bg-black h-[2px] w-full bottom-0 left-0 dark:bg-white'></div>
-                            </div>
-                            <div className='text-sm pr-4 cursor-pointer'>
-                                {copy ? (
-                                    <div className='flex items-center gap-1'>
-                                        <BsCheck2Circle />
-                                    </div>
-                                ) :
-                                    (
-                                        <div className='flex items-center gap-1' onClick={() => {
-                                            navigator.clipboard.writeText(build);
-                                            setCopy(true)
-                                            setTimeout(() => {
-                                                setCopy(false)
-                                            }, 3000)
-                                        }}>
-                                            <BsClipboard2 />
-                                        </div>
-                                    )}
-                            </div>
-                        </article>
-
-                        <SyntaxHighlighter language="jsx" style={theme === "dark" ? arta : lightfair}>
-                            {build}
-                        </SyntaxHighlighter>
-                    </section >
+                    <CodeBlock name={"Terminal"} code={build} language={"bash"} />
                 </li>
 
                 <li className='grid grid-cols-2 xl:flex xl:flex-col'>
@@ -326,36 +116,7 @@ const SvelteKitInstallation = () => {
                             <p className='dark:text-neutral-300 pb-4'>Start using Tailwind's utility classes to style your content, making sure to set `lang="postcss"` for any `{"<style>"}` blocks that need to be processed by Tailwind.</p>
                         </div>
                     </section>
-                    <section className='ml-2 xl:ml-8 shadow-md'>
-                        <article className='flex justify-between items-center w-full h-8 bg-corporative rounded-t-md'>
-                            <div className='relative flex items-center bg-[#bd4c86] h-8 px-4'>
-                                <span className='cursor-default text-white'>+page.svelte</span>
-                                <div className='absolute bg-black h-[2px] w-full bottom-0 left-0 dark:bg-white'></div>
-                            </div>
-                            <div className='text-sm pr-4 cursor-pointer'>
-                                {copy ? (
-                                    <div className='flex items-center gap-1'>
-                                        <BsCheck2Circle />
-                                    </div>
-                                ) :
-                                    (
-                                        <div className='flex items-center gap-1' onClick={() => {
-                                            navigator.clipboard.writeText(start);
-                                            setCopy(true)
-                                            setTimeout(() => {
-                                                setCopy(false)
-                                            }, 3000)
-                                        }}>
-                                            <BsClipboard2 />
-                                        </div>
-                                    )}
-                            </div>
-                        </article>
-
-                        <SyntaxHighlighter language="javascript" style={theme === "dark" ? arta : lightfair}>
-                            {start}
-                        </SyntaxHighlighter>
-                    </section >
+                    <CodeBlock name={"+page.svelte"} code={start} language={"javascript"} />
                 </li>
             </ol>
         </div>

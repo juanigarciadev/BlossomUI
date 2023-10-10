@@ -1,15 +1,7 @@
-import React, { useState } from 'react'
-import { useContext } from 'react';
-import { BsClipboard2, BsCheck2Circle } from 'react-icons/bs'
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { ThemeContext } from '../../../../context/ThemeContext';
-import { arta, lightfair } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import React from 'react'
 import { CodeBlock } from '../../../../assets/CodeBlock/CodeBlock';
 
 const UsingVue = () => {
-    const { theme } = useContext(ThemeContext)
-    const [copy, setCopy] = useState(false)
-
     const createVite = 'npm create vite@latest my-project -- --template vue\ncd my-project'
     const installTailwind = 'npm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p'
     const configurePaths = "/** @type {import('tailwindcss').Config} */\nexport default {\n  content: [\n    './index.html',\n    './src/**/*.{vue,js,ts,jsx,tsx}',\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}"

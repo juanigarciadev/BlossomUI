@@ -18,6 +18,7 @@ export const CodeBlock = ({ name, code, language }) => {
                     {copy ? (
                         <div className='flex items-center gap-1'>
                             <BsCheck2Circle />
+                            <span>Copied!</span>
                         </div>
                     ) :
                         (
@@ -28,7 +29,7 @@ export const CodeBlock = ({ name, code, language }) => {
                                     setCopy(false)
                                 }, 3000)
                             }}>
-                                <BsClipboard2 />
+                                <BsClipboard2 title="Copy to clipboard" />
                             </div>
                         )}
                 </div>
