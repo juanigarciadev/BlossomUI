@@ -15,7 +15,7 @@ const Aside = () => {
                 {introduction.map((docs) => {
                     return (
                         <div key={docs.name}>
-                            <Link to={docs.url} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{docs.name}</Link>
+                            <Link to={docs.url} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{docs.name}</Link>
                         </div>
                     )
                 })}
@@ -25,7 +25,7 @@ const Aside = () => {
                 {componentsCard.map((components) => {
                     return (
                         <div key={components.name}>
-                            <Link to={components.url} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{components.name}</Link>
+                            <Link to={components.url} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{components.name}</Link>
                         </div>
                     )
                 })}
