@@ -8,7 +8,7 @@ const DefaultRoundedBadges = () => {
         <article>
             <div className='pb-4'>
                 <h3 className='text-lg font-medium'>Default rounded badges</h3>
-                <p className='dark:text-neutral-300'>Use badges to highlight some important characteristic of an element or set of elements.</p>
+                <p className='dark:text-neutral-300'>Default badges with fully rounded edges variant.</p>
             </div>
             <div className='flex flex-col'>
                 <section className='flex flex-wrap gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>

@@ -8,7 +8,7 @@ const OutlinedRoundedBadges = () => {
         <article>
             <div className='pb-4'>
                 <h3 className='text-lg font-medium'>Outlined rounded badges</h3>
-                <p className='dark:text-neutral-300'>You can also use outlined version for better contrast.</p>
+                <p className='dark:text-neutral-300'>Outlined badges with fully rounded edges variant.</p>
             </div>
             <div className='flex flex-col'>
                 <section className='flex flex-wrap gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
