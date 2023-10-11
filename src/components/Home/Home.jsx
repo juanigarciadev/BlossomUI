@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BiRightArrowAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 
@@ -17,6 +17,9 @@ import { GithubIconRounded } from '../UI/Buttons/IconsOnly/Rounded'
 import { ProgressBar } from '../UI/Progress/ProgressBar'
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "Blossom UI - Components made with Tailwind"
+  }, [])
   return (
     <>
       <main className='grid grid-cols-2 pt-64 lg:flex lg:flex-col lg:gap-12 home lg:pt-32'>

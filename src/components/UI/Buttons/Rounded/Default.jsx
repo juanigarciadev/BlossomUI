@@ -6,7 +6,7 @@ export const PrimaryButtonRounded = () => {
 
 export const SecondaryButtonRounded = () => {
     return (
-        <a href='' className='flex justify-center items-center text-center border border-neutral-300 bg-transparent w-fit h-fit text-sm gap-2 px-4 py-3 rounded-full cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white dark:hover:bg-neutral-800'>Secondary</a>
+        <button className='flex justify-center items-center text-center border border-neutral-300 bg-transparent w-fit h-fit text-sm gap-2 px-4 py-3 rounded-full cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white dark:hover:bg-neutral-800'>Secondary</button>
     )
 }
 

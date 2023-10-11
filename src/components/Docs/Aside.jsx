@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import componentsCard from '../../mocks/componentsCard'
 import { introduction, components } from '../../mocks/docs'
 import { Link } from 'react-router-dom'
 
 const Aside = () => {
+    useEffect(() => {
+        document.title = "Blossom UI - Docs"
+    }, [])
     return (
         <aside className='flex flex-col gap-12 pt-4 h-screen w-[15%] fixed left-64 xl:left-32 md:left-16 sm:left-8 overflow-y-scroll lg:hidden'>
             <section className='flex flex-col gap-4'>

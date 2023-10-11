@@ -5,6 +5,7 @@ import Rounded from './Rounded'
 import Social from './Social'
 import SocialIconOnly from './SocialIconOnly'
 import SocialIconOnlyRounded from './SocialIconsOnlyRounded'
+import SocialRounded from './SocialRounded'
 
 const Buttons = () => {
     return (
@@ -16,6 +17,7 @@ const Buttons = () => {
                     <Default />
                     <Rounded />
                     <Social />
+                    <SocialRounded />
                     <SocialIconOnly />
                     <SocialIconOnlyRounded />
                 </div>
