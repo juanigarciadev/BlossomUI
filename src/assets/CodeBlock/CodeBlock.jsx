@@ -9,8 +9,8 @@ export const CodeBlock = ({ name, code, language }) => {
     const [copy, setCopy] = useState(false)
     return (
         <section className='shadow-md'>
-            <article className='flex justify-between items-center w-full h-8 bg-corporative rounded-t-md'>
-                <div className='relative flex items-center bg-[#bd4c86] h-8 px-4'>
+            <article className='flex justify-between items-center w-full min-h-0 bg-corporative rounded-t-md'>
+                <div className='relative flex items-center bg-[#bd4c86] min-h-0 px-4 py-2'>
                     <span className='cursor-default text-white'>{name}</span>
                     <div className='absolute bg-black h-[2px] w-full bottom-0 left-0 dark:bg-white'></div>
                 </div>
