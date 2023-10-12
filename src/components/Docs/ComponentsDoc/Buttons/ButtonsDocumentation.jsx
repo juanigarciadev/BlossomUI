@@ -6,6 +6,7 @@ import Social from './Social'
 import SocialIconOnly from './SocialIconOnly'
 import SocialIconOnlyRounded from './SocialIconsOnlyRounded'
 import SocialRounded from './SocialRounded'
+import LoadersButtons from './Loaders'
 
 const Buttons = () => {
     return (
@@ -20,6 +21,7 @@ const Buttons = () => {
                     <SocialRounded />
                     <SocialIconOnly />
                     <SocialIconOnlyRounded />
+                    <LoadersButtons />
                 </div>
             </section>
         </div>
