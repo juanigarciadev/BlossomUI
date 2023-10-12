@@ -14,7 +14,7 @@ import { YellowButtonRounded } from '../UI/Buttons/Rounded/Default'
 import { Apple } from '../UI/Buttons/Normal/Social'
 import { GoogleIcon } from '../UI/Buttons/IconsOnly/Default'
 import { GithubIconRounded } from '../UI/Buttons/IconsOnly/Rounded'
-import { ProgressBar } from '../UI/Progress/ProgressBar'
+import { PercentageInsideProgressBar } from '../UI/Progress/ProgressBar'
 
 const Home = () => {
   useEffect(() => {
@@ -48,7 +48,7 @@ const Home = () => {
             <GithubIconRounded />
           </div>
           <div className='w-8/12'>
-            <ProgressBar />
+            <PercentageInsideProgressBar />
           </div>
         </section>
       </main>
