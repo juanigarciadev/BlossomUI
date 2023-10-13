@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const DocNav = () => {
     return (
-        <div className='absolute flex flex-col bg-white border shadow-sm h-80 overflow-scroll overflow-x-hidden w-60 rounded-lg z-10 dark:bg-neutral-900 dark:border-neutral-800 xl:hidden lg:flex'>
+        <div className='absolute hidden flex-col bg-white border shadow-sm h-80 overflow-scroll overflow-x-hidden w-60 rounded-lg z-10 dark:bg-neutral-900 dark:border-neutral-800 lg:flex'>
             <h3 className='font-medium pl-4 pt-4 pb-2'>Getting started</h3>
             {introduction.map((introduction) => {
                 return (
