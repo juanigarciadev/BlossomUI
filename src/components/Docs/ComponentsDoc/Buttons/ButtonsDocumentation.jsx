@@ -7,6 +7,7 @@ import SocialIconOnly from './SocialIconOnly'
 import SocialIconOnlyRounded from './SocialIconsOnlyRounded'
 import SocialRounded from './SocialRounded'
 import LoadersButtons from './Loaders'
+import RoundedLoadersButtons from './RoundedLoaders'
 
 const Buttons = () => {
     return (
@@ -22,6 +23,7 @@ const Buttons = () => {
                     <SocialIconOnly />
                     <SocialIconOnlyRounded />
                     <LoadersButtons />
+                    <RoundedLoadersButtons />
                 </div>
             </section>
         </div>
