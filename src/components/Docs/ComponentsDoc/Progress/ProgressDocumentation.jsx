@@ -3,6 +3,7 @@ import Aside from '../../Aside'
 import PercentageInside from './PercentageInside'
 import PercentageAbove from './PercentageAbove'
 import DefaultProgress from './Default'
+import ProgressSize from './Sizes'
 
 const ProgressDocumentation = () => {
     return (
@@ -12,6 +13,7 @@ const ProgressDocumentation = () => {
                 <h1 className='text-4xl font-bold pb-4 text-neutral-800 dark:text-white'>Progress</h1>
                 <div className='flex flex-col pb-16 gap-16'>
                     <DefaultProgress />
+                    <ProgressSize />
                     <PercentageInside />
                     <PercentageAbove />
                 </div>
