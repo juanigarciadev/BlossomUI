@@ -1,8 +1,9 @@
 import { useState, useContext } from "react";
-import { BsCheck2Circle, BsClipboard2 } from "react-icons/bs";
+import { BsCheck2Circle } from "react-icons/bs";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
 import { arta, lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { ThemeContext } from "../../context/ThemeContext";
+import { BiCheckCircle, BiCopyAlt } from "react-icons/bi";
 
 export const CodeBlock = ({ name, code, language }) => {
     const { theme } = useContext(ThemeContext)
@@ -17,7 +18,7 @@ export const CodeBlock = ({ name, code, language }) => {
                 <div className='text-sm pr-4 cursor-pointer'>
                     {copy ? (
                         <div className='flex items-center gap-1 select-none'>
-                            <BsCheck2Circle />
+                            <BiCheckCircle className="text-lg" />
                             <span>Copied!</span>
                         </div>
                     ) :
@@ -27,9 +28,9 @@ export const CodeBlock = ({ name, code, language }) => {
                                 setCopy(true)
                                 setTimeout(() => {
                                     setCopy(false)
-                                }, 3000)
+                                }, 1500)
                             }}>
-                                <BsClipboard2 title="Copy to clipboard" className="select-none" />
+                                <BiCopyAlt title="Copy to clipboard" className="select-none text-lg" />
                             </div>
                         )}
                 </div>
