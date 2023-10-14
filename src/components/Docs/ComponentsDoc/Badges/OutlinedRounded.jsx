@@ -22,7 +22,7 @@ const OutlinedRoundedBadges = () => {
             <div className='flex flex-col'>
                 {showCode ?
                     <div>
-                        <section className='flex flex-wrap gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
+                        <section className='flex flex-wrap rounded-lg gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
                             <DefaultOutlinedRounded />
                             <DarkOutlinedRounded />
                             <RedOutlinedRounded />
@@ -34,7 +34,7 @@ const OutlinedRoundedBadges = () => {
                         <CodeBlock name={"Outlined rounded"} code={outlinedBadges} language={"javascript"} />
                     </div>
                     :
-                    <section className='flex flex-wrap gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
+                    <section className='flex flex-wrap rounded-lg gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
                         <DefaultOutlinedRounded />
                         <DarkOutlinedRounded />
                         <RedOutlinedRounded />

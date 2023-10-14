@@ -23,7 +23,7 @@ const DefaultBadges = () => {
             <div className='flex flex-col'>
                 {showCode ?
                     <div>
-                        <section className='flex flex-wrap gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
+                        <section className='flex flex-wrap rounded-lg gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
                             <Default />
                             <Dark />
                             <Red />
@@ -35,7 +35,7 @@ const DefaultBadges = () => {
                         <CodeBlock name={"Default"} code={defaultBadges} language={"javascript"} />
                     </div>
                     :
-                    <section className='flex flex-wrap gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
+                    <section className='flex flex-wrap rounded-lg gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
                         <Default />
                         <Dark />
                         <Red />
