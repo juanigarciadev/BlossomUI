@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { CodeBlock } from '../../../../assets/CodeBlock/CodeBlock'
 import { DefaultButtonLoaders, GreenButtonLoaders, PinkButtonLoaders, PrimaryButtonLoaders, PurpleButtonLoaders, RedButtonLoaders, SecondaryButtonLoaders, YellowButtonLoaders } from '../../../UI/Buttons/Normal/Loaders'
 import { BiCode } from 'react-icons/bi'
+import EditInGithub from '../../../EditInGithub/EditInGithub'
 
 const LoadersButtons = () => {
 
@@ -15,10 +16,11 @@ const LoadersButtons = () => {
                 <h3 className='text-lg font-medium'>Loaders buttons</h3>
                 <p className='dark:text-neutral-300'>Use this buttons to show the user that their request is being loaded.</p>
             </div>
-            <div className='flex pb-2 select-none'>
+            <div className='flex pb-2 gap-2 select-none lg:flex-col'>
                 <div className='flex items-center bg-neutral-200 p-[5px] rounded-lg dark:bg-neutral-800 lg:w-full'>
                     <span className={showCode ? 'flex items-center gap-2 px-4 py-1 rounded-lg cursor-pointer bg-neutral-400 dark:bg-neutral-900 lg:w-full lg:justify-center' : 'flex items-center gap-2 px-4 py-1 rounded-lg cursor-pointer hover:bg-neutral-400 dark:hover:bg-neutral-900 lg:w-full lg:justify-center'} onClick={() => setShowCode(!showCode)}><BiCode />Show code</span>
                 </div>
+                <EditInGithub url={'https://github.com/juanigarciadev/BlossomUI/blob/main/src/components/UI/Buttons/Normal/Loaders.jsx'} />
             </div>
             <div className='flex flex-col'>
                 {showCode ?

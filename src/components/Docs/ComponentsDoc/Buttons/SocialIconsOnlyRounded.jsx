@@ -3,6 +3,7 @@ import { CodeBlock } from '../../../../assets/CodeBlock/CodeBlock'
 import { BiLogoTailwindCss } from 'react-icons/bi'
 import { AppleIconRounded, FacebookIconRounded, GithubIconRounded, GoogleIconRounded, TwitterIconRounded } from '../../../UI/Buttons/IconsOnly/Rounded'
 import { BiCode } from 'react-icons/bi'
+import EditInGithub from '../../../EditInGithub/EditInGithub'
 
 const SocialIconOnlyRounded = () => {
 
@@ -17,10 +18,11 @@ const SocialIconOnlyRounded = () => {
                 <h3 className='text-lg font-medium'>Social icons only rounded buttons</h3>
                 <p className='dark:text-neutral-300'>You don't like buttons with text? Here is a icons only version. This component use the bg-[#hex] class from Tailwind CSS v.3.0.</p>
             </div>
-            <div className='flex pb-2 select-none'>
+            <div className='flex pb-2 gap-2 select-none lg:flex-col'>
                 <div className='flex items-center bg-neutral-200 p-[5px] rounded-lg dark:bg-neutral-800 lg:w-full'>
                     <span className={showCode ? 'flex items-center gap-2 px-4 py-1 rounded-lg cursor-pointer bg-neutral-400 dark:bg-neutral-900 lg:w-full lg:justify-center' : 'flex items-center gap-2 px-4 py-1 rounded-lg cursor-pointer hover:bg-neutral-400 dark:hover:bg-neutral-900 lg:w-full lg:justify-center'} onClick={() => setShowCode(!showCode)}><BiCode />Show code</span>
                 </div>
+                <EditInGithub url={'https://github.com/juanigarciadev/BlossomUI/blob/main/src/components/UI/Buttons/IconsOnly/Rounded.jsx'} />
             </div>
             <div className='flex flex-col'>
                 {showCode ?
