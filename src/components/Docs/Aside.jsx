@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react'
 import componentsCard from '../../mocks/componentsCard'
 import { introduction, components } from '../../mocks/docs'
 import { Link } from 'react-router-dom'
+import Introduction from './Introduction'
 
 const Aside = () => {
-
-    const [selectedDoc, setSelectedDoc] = useState("Introduction")
 
     useEffect(() => {
         document.title = "Blossom UI - Docs"
@@ -19,12 +18,7 @@ const Aside = () => {
                 {introduction.map((docs) => {
                     return (
                         <div key={docs.name} className='flex'>
-                            {
-                                selectedDoc === docs.name ? <div className='w-[1px] h-full bg-neutral-200'></div> : null
-
-                            }
-                            {console.log(selectedDoc)}
-                            <Link to={docs.url} onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }), setSelectedDoc(docs.name) }} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{docs.name}</Link>
+                            <Link to={docs.url} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{docs.name}</Link>
                         </div>
                     )
                 })}

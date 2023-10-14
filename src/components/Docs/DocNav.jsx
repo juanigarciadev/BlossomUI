@@ -8,14 +8,14 @@ const DocNav = () => {
             <h3 className='font-medium pl-4 pt-4 pb-2'>Getting started</h3>
             {introduction.map((introduction) => {
                 return (
-                    <Link to={introduction.url} className='text-neutral-500 pl-8 py-4 hover:bg-neutral-200 dark:hover:bg-neutral-800'>{introduction.name}</Link>
+                    <Link to={introduction.url} key={introduction.name} className='text-neutral-500 pl-8 py-4 hover:bg-neutral-200 dark:hover:bg-neutral-800'>{introduction.name}</Link>
                 )
             })}
             <hr />
             <h3 className='font-medium pl-4 pt-4 pb-2'>Components</h3>
             {components.map((component) => {
                 return (
-                    <Link to={component.url} className='text-neutral-500 pl-8 py-4 hover:bg-neutral-200 dark:hover:bg-neutral-800'>{component.name}</Link>
+                    <Link to={component.url} key={component.name} className='text-neutral-500 pl-8 py-4 hover:bg-neutral-200 dark:hover:bg-neutral-800'>{component.name}</Link>
                 )
             })}
         </div>

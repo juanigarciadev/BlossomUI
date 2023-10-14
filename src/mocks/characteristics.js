@@ -1,16 +1,15 @@
-import { AiOutlineStar, AiOutlineThunderbolt, AiOutlineSmile } from 'react-icons/ai'
-import { BiMoon } from 'react-icons/bi'
+import { AiOutlineThunderbolt } from 'react-icons/ai'
+import { BiStar, BiPencil, BiMoon, BiHappy } from 'react-icons/bi'
 import { TbSvg } from 'react-icons/tb'
-import { MdOutlineEdit } from 'react-icons/md'
 
 const characteristics = [
     {
-        icon: AiOutlineStar,
+        icon: BiStar,
         title: "For Free",
         subtitle: "You can use it for free, forever!",
     },
     {
-        icon: MdOutlineEdit,
+        icon: BiPencil,
         title: "Customizable",
         subtitle: "Highly customizable, just modify the Tailwind tags and voilà!",
     },
@@ -30,7 +29,7 @@ const characteristics = [
         subtitle: "Don't go crazy creating a dark mode, we already did it!",
     },
     {
-        icon: AiOutlineSmile,
+        icon: BiHappy,
         title: "Any problem?",
         subtitle: "Don't be shy, we don't bite and you don't bother us, contact us.",
     },
