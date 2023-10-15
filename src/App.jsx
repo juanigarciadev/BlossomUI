@@ -12,6 +12,7 @@ import SpinnersDocumentation from './components/Docs/ComponentsDoc/Spinners/Spin
 import CardsDocumentation from './components/Docs/ComponentsDoc/Cards/CardsDocumentation'
 import ProgressDocumentation from './components/Docs/ComponentsDoc/Progress/ProgressDocumentation'
 import ToastsDocumentation from './components/Docs/ComponentsDoc/Toasts/ToastsDocumentation'
+import Colors from './components/Docs/Customization/Colors/Colors'
 
 
 
@@ -26,6 +27,7 @@ function App() {
             <Route path='/docs/getting-started/introduction' element={<Introduction />} />
             <Route path='/docs/getting-started/installation' element={<Installation />} />
             <Route path='/docs/getting-started/changelog' element={<Changelog />} />
+            <Route path='/docs/customization/colors' element={<Colors />} />
             <Route path='/docs/components/buttons' element={<Buttons />} />
             <Route path='/docs/components/badges' element={<BadgesDocumentation />} />
             <Route path='/docs/components/spinners' element={<SpinnersDocumentation />} />
