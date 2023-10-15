@@ -26,6 +26,7 @@ import RatingDocumentation from './components/Docs/ComponentsDoc/Rating/Rating'
 import SkeletonDocumentation from './components/Docs/ComponentsDoc/Skeleton/Skeleton'
 import StepperDocumentation from './components/Docs/ComponentsDoc/Stepper/Stepper'
 import TimelineDocumentation from './components/Docs/ComponentsDoc/Timeline/Timeline'
+import ComponentsSection from './components/ComponentsSection/ComponentsSection'
 
 
 
@@ -37,6 +38,7 @@ function App() {
         <Routes>
           <Route element={<NavbarContainer />}>
             <Route path='/' element={<Home />} />
+            <Route path='/components' element={<ComponentsSection />} />
             <Route path='/docs/getting-started/introduction' element={<Introduction />} />
             <Route path='/docs/getting-started/installation' element={<Installation />} />
             <Route path='/docs/getting-started/changelog' element={<Changelog />} />
