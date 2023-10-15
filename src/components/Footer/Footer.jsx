@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <footer className='w-full bg-neutral-200 h-auto my-8 pb-4 pl-4 rounded-lg dark:bg-neutral-800'>
+        <footer className='w-full bg-neutral-200 bg-opacity-40 h-auto my-8 pb-4 pl-4 rounded-lg dark:bg-neutral-800'>
             <section className='py-4'>
                 <Link to="/" className='font-bold text-xl text-neutral-900 cursor-pointer dark:text-white' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Blossom UI</Link>
             </section>
