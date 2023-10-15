@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import componentsCard from '../../mocks/componentsCard'
-import { introduction, components } from '../../mocks/docs'
+import { introduction, components, customization } from '../../mocks/docs'
 import { Link } from 'react-router-dom'
 import Introduction from './Introduction'
 
@@ -19,6 +19,16 @@ const Aside = () => {
                     return (
                         <div key={docs.name} className='flex'>
                             <Link to={docs.url} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{docs.name}</Link>
+                        </div>
+                    )
+                })}
+            </section>
+            <section className='flex flex-col gap-4'>
+                <h3 className='font-medium text-lg dark:text-white'>Customization</h3>
+                {customization.map((customize) => {
+                    return (
+                        <div key={customize.name}>
+                            <Link to={customize.url} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{customize.name}</Link>
                         </div>
                     )
                 })}
