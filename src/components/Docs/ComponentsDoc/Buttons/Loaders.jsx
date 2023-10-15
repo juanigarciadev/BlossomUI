@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../../assets/CodeBlock/CodeBlock'
+import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { DefaultButtonLoaders, GreenButtonLoaders, PinkButtonLoaders, PrimaryButtonLoaders, PurpleButtonLoaders, RedButtonLoaders, SecondaryButtonLoaders, YellowButtonLoaders } from '../../../UI/Buttons/Normal/Loaders'
 import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../../assets/CodeBlock/CodeBlock'
+import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { BiLogoTailwindCss } from 'react-icons/bi'
 import { AppleRounded, FacebookRounded, GithubRounded, GoogleRounded, TwitterRounded } from '../../../UI/Buttons/Rounded/Social'
 import { BiCode } from 'react-icons/bi'

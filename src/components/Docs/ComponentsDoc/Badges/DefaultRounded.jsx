@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../../assets/CodeBlock/CodeBlock'
+import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { DarkRounded, DefaultRounded, GreenRounded, PinkRounded, PurpleRounded, RedRounded, YellowRounded } from '../../../UI/Badges/Rounded/Default'
 import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'

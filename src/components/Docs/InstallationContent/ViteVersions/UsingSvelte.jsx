@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock } from '../../../../assets/CodeBlock/CodeBlock';
+import { CodeBlock } from '../../../CodeBlock/CodeBlock';
 
 const UsingSvelte = () => {
     const createVite = 'npm create vite@latest my-project -- --template react\ncd my-project'

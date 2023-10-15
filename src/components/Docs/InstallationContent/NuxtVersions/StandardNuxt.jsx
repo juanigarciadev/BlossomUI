@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock } from '../../../../assets/CodeBlock/CodeBlock';
+import { CodeBlock } from '../../../CodeBlock/CodeBlock';
 
 const StandardNuxt = () => {
     const createNuxt = 'npx nuxi init my-project\ncd my-project'

@@ -4,7 +4,7 @@ import { BsClipboard2, BsCheck2Circle } from 'react-icons/bs'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { ThemeContext } from './../../../context/ThemeContext';
 import { arta, lightfair } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import { CodeBlock } from '../../../assets/CodeBlock/CodeBlock';
+import { CodeBlock } from '../../CodeBlock/CodeBlock';
 
 const AstroInstallation = () => {
     const { theme } = useContext(ThemeContext)

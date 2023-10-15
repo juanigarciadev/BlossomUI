@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../../assets/CodeBlock/CodeBlock'
+import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { DefaultSpinner, ExtraLargeSpinner, LargeSpinner, MediumSpinner, SmallSpinner } from '../../../UI/Spinners/Spinners'
 import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'

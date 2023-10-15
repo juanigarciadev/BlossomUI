@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock } from '../../../assets/CodeBlock/CodeBlock';
+import { CodeBlock } from '../../CodeBlock/CodeBlock';
 
 const SvelteKitInstallation = () => {
     const createSvelteKit = 'npm create svelte@latest my-project\ncd my-project'
