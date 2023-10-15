@@ -11,7 +11,7 @@ const ComponentsSection = () => {
                 {
                     components.map((card) => {
                         return (
-                            <Link to={card.url} className='flex flex-col border border-neutral-300 w-full h-auto rounded-lg shadow-sm hover:shadow-md duration-300 dark:border-transparent' key={card.name}>
+                            <Link to={card.url} key={card.name} className='flex flex-col border border-neutral-300 w-full h-auto rounded-lg shadow-sm hover:shadow-md duration-300 dark:border-transparent' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                                 <div className='flex items-center justify-between rounded-t-lg py-2 px-4 bg-neutral-300 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white'>
                                     <h3 className='font-bold'>{card.name}</h3>
                                     <BiLinkExternal />
