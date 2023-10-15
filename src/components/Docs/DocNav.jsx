@@ -1,5 +1,5 @@
 import React from 'react'
-import { components, introduction } from '../../mocks/docs'
+import { components, customization, introduction } from '../../mocks/docs'
 import { Link } from 'react-router-dom'
 
 const DocNav = () => {
@@ -9,6 +9,13 @@ const DocNav = () => {
             {introduction.map((introduction) => {
                 return (
                     <Link to={introduction.url} key={introduction.name} className='text-neutral-500 pl-8 py-4 hover:bg-neutral-200 dark:hover:bg-neutral-800'>{introduction.name}</Link>
+                )
+            })}
+            <hr />
+            <h3 className='font-medium pl-4 pt-4 pb-2'>Customization</h3>
+            {customization.map((customize) => {
+                return (
+                    <Link to={customize.url} key={customize.name} className='text-neutral-500 pl-8 py-4 hover:bg-neutral-200 dark:hover:bg-neutral-800'>{customize.name}</Link>
                 )
             })}
             <hr />

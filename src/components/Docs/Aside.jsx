@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
-import componentsCard from '../../mocks/componentsCard'
-import { introduction, components, customization } from '../../mocks/docs'
+import { introduction, customization, components } from '../../mocks/docs'
 import { Link } from 'react-router-dom'
-import Introduction from './Introduction'
 
 const Aside = () => {
 
@@ -35,7 +33,7 @@ const Aside = () => {
             </section>
             <section className='flex flex-col gap-4'>
                 <h3 className='font-medium text-lg dark:text-white'>Components</h3>
-                {componentsCard.map((components) => {
+                {components.map((components) => {
                     return (
                         <div key={components.name}>
                             <Link to={components.url} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className='text-neutral-500 cursor-pointer hover:text-black duration-100 dark:hover:text-white'>{components.name}</Link>
