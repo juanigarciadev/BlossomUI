@@ -6,6 +6,7 @@ import SpinnerColor from './Colors'
 import TransparentSpinnerDoc from './Transparent'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
+import Footer from '../../../Footer/Footer'
 
 const SpinnersDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -28,6 +29,7 @@ const SpinnersDocumentation = () => {
                     <SpinnerColor />
                     <TransparentSpinnerDoc />
                 </div>
+                <Footer />
             </section>
         </div>
     )

@@ -5,7 +5,7 @@ const Indigo = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Indigo</span>
-            <section className='flex gap-2 lg:flex-col'>
+            <section className='flex flex-wrap gap-2 lg:flex-col'>
                 <ColorBlock color={'bg-indigo-50'} number={'50'} hex={'#eef2ff'} />
                 <ColorBlock color={'bg-indigo-100'} number={'100'} hex={'#e0e7ff'} />
                 <ColorBlock color={'bg-indigo-200'} number={'200'} hex={'#c7d2fe'} />

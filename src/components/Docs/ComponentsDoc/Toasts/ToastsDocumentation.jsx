@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Aside from '../../Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
+import Footer from '../../../Footer/Footer'
 
 const ToastsDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -20,6 +21,7 @@ const ToastsDocumentation = () => {
                 )}
                 <div className='grid grid-cols-2'>
                 </div>
+                <Footer />
             </section>
         </div>
     )

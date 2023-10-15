@@ -5,7 +5,7 @@ const Slate = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Slate</span>
-            <section className='flex gap-2 lg:flex-col'>
+            <section className='flex flex-wrap gap-2 lg:flex-col'>
                 <ColorBlock color={'bg-slate-50'} number={'50'} hex={'#f8fafc'} />
                 <ColorBlock color={'bg-slate-100'} number={'100'} hex={'#f1f5f9'} />
                 <ColorBlock color={'bg-slate-200'} number={'200'} hex={'#e2e8f0'} />

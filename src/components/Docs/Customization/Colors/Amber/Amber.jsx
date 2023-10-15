@@ -5,7 +5,7 @@ const Amber = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Amber</span>
-            <section className='flex gap-2 lg:flex-col'>
+            <section className='flex flex-wrap gap-2 lg:flex-col'>
                 <ColorBlock color={'bg-amber-50'} number={'50'} hex={'#fffbeb'} />
                 <ColorBlock color={'bg-amber-100'} number={'100'} hex={'#fef3c7'} />
                 <ColorBlock color={'bg-amber-200'} number={'200'} hex={'#fde68a'} />

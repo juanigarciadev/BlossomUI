@@ -6,6 +6,7 @@ import DefaultRoundedBadges from './DefaultRounded'
 import OutlinedRoundedBadges from './OutlinedRounded'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
+import Footer from '../../../Footer/Footer'
 
 const BadgesDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -28,6 +29,7 @@ const BadgesDocumentation = () => {
                     <DefaultRoundedBadges />
                     <OutlinedRoundedBadges />
                 </div>
+                <Footer />
             </section>
         </div>
     )

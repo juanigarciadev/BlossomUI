@@ -5,7 +5,7 @@ const Neutral = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Neutral</span>
-            <section className='flex gap-2 lg:flex-col'>
+            <section className='flex flex-wrap gap-2 lg:flex-col'>
                 <ColorBlock color={'bg-neutral-50'} number={'50'} hex={'#fafafa'} />
                 <ColorBlock color={'bg-neutral-100'} number={'100'} hex={'#f5f5f5'} />
                 <ColorBlock color={'bg-neutral-200'} number={'200'} hex={'#e5e5e5'} />

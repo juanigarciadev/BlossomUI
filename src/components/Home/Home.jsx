@@ -15,6 +15,7 @@ import { Apple } from '../UI/Buttons/Normal/Social'
 import { GoogleIcon } from '../UI/Buttons/IconsOnly/Default'
 import { GithubIconRounded } from '../UI/Buttons/IconsOnly/Rounded'
 import { PercentageInsideProgressBar } from '../UI/Progress/ProgressBar'
+import Footer from '../Footer/Footer'
 
 const Home = () => {
   useEffect(() => {
@@ -55,6 +56,7 @@ const Home = () => {
       <Characteristics />
       <Explanation />
       <ComponentsSection />
+      <Footer />
     </>
   )
 }

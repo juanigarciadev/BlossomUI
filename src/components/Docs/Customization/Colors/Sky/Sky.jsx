@@ -5,7 +5,7 @@ const Sky = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Sky</span>
-            <section className='flex gap-2 lg:flex-col'>
+            <section className='flex flex-wrap gap-2 lg:flex-col'>
                 <ColorBlock color={'bg-sky-50'} number={'50'} hex={'#f0f9ff'} />
                 <ColorBlock color={'bg-sky-100'} number={'100'} hex={'#e0f2fe'} />
                 <ColorBlock color={'bg-sky-200'} number={'200'} hex={'#bae6fd'} />

@@ -5,7 +5,7 @@ const Lime = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Lime</span>
-            <section className='flex gap-2 lg:flex-col'>
+            <section className='flex flex-wrap gap-2 lg:flex-col'>
                 <ColorBlock color={'bg-lime-50'} number={'50'} hex={'#f7fee7'} />
                 <ColorBlock color={'bg-lime-100'} number={'100'} hex={'#ecfccb'} />
                 <ColorBlock color={'bg-lime-200'} number={'200'} hex={'#d9f99d'} />

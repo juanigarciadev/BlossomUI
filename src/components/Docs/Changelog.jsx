@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Aside from './Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from './DocNav'
+import Footer from '../Footer/Footer'
 
 const Changelog = () => {
     const [docNav, setDocNav] = useState(false)
@@ -25,6 +26,7 @@ const Changelog = () => {
                         <li className='text-neutral-600 dark:text-neutral-500'>Blossom UI now available, completely free and open source.</li>
                     </ol>
                 </div>
+                <Footer />
             </section>
         </div>
     )

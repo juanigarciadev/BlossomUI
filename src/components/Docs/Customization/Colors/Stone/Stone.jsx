@@ -5,7 +5,7 @@ const Stone = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Stone</span>
-            <section className='flex gap-2 lg:flex-col'>
+            <section className='flex flex-wrap gap-2 lg:flex-col'>
                 <ColorBlock color={'bg-stone-50'} number={'50'} hex={'#fafaf9'} />
                 <ColorBlock color={'bg-stone-100'} number={'100'} hex={'#f5f5f4'} />
                 <ColorBlock color={'bg-stone-200'} number={'200'} hex={'#e7e5e4'} />

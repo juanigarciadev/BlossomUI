@@ -5,7 +5,7 @@ const Purple = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Purple</span>
-            <section className='flex gap-2 lg:flex-col'>
+            <section className='flex flex-wrap gap-2 lg:flex-col'>
                 <ColorBlock color={'bg-purple-50'} number={'50'} hex={'#faf5ff'} />
                 <ColorBlock color={'bg-purple-100'} number={'100'} hex={'#f3e8ff'} />
                 <ColorBlock color={'bg-purple-200'} number={'200'} hex={'#e9d5ff'} />

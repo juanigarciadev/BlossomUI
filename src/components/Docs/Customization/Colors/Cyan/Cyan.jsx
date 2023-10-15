@@ -5,7 +5,7 @@ const Cyan = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Cyan</span>
-            <section className='flex gap-2 lg:flex-col'>
+            <section className='flex flex-wrap gap-2 lg:flex-col'>
                 <ColorBlock color={'bg-cyan-50'} number={'50'} hex={'#ecfeff'} />
                 <ColorBlock color={'bg-cyan-100'} number={'100'} hex={'#cffafe'} />
                 <ColorBlock color={'bg-cyan-200'} number={'200'} hex={'#a5f3fc'} />

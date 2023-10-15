@@ -3,6 +3,7 @@ import Aside from './Aside'
 import { Link } from 'react-router-dom'
 import { BiChevronDown, BiRightArrowAlt } from 'react-icons/bi'
 import DocNav from './DocNav'
+import Footer from '../Footer/Footer'
 
 const Introduction = () => {
     const [docNav, setDocNav] = useState(false)
@@ -19,15 +20,19 @@ const Introduction = () => {
                 {docNav && (
                     <DocNav />
                 )}
-                <article className='flex flex-col gap-2'>
+                <section className='flex flex-col gap-2'>
                     <p className='w-full'>Blossom UI is a library of components created with <a href="https://tailwindcss.com/" target='_blank' className='text-corporative cursor-pointer hover:text-corporativeHover'>Tailwind CSS</a>. Their use is completely free, the only requirement is to have Tailwind installed in the project.</p>
                     <Link to="/docs/getting-started/installation" className='flex text-corporative cursor-pointer hover:text-corporativeHover'>How to install Tailwind CSS in my project<BiRightArrowAlt className='text-2xl' /></Link>
-                </article>
-                <h2 className='text-2xl font-bold pt-6 text-neutral-800 dark:text-white'>How to use?</h2>
-                <p>Very simple, just copy and paste our components code in your project.</p>
-                <h2 className='text-2xl font-bold pt-6 text-neutral-800 dark:text-white'>How Tailwind works?</h2>
-                <p>Tailwind CSS works by scanning all of your HTML files, JavaScript components, and any other templates for class names, generating the corresponding styles and then writing them to a static CSS file.</p>
-
+                </section>
+                <section>
+                    <h2 className='text-2xl font-bold pt-6 text-neutral-800 dark:text-white'>How to use?</h2>
+                    <p>Very simple, just copy and paste our components code in your project.</p>
+                </section>
+                <section>
+                    <h2 className='text-2xl font-bold pt-6 text-neutral-800 dark:text-white'>How Tailwind works?</h2>
+                    <p>Tailwind CSS works by scanning all of your HTML files, JavaScript components, and any other templates for class names, generating the corresponding styles and then writing them to a static CSS file.</p>
+                </section>
+                <Footer />
             </section>
         </div>
     )

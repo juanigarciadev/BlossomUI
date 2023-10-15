@@ -24,6 +24,7 @@ import Purple from './Purple/Purple'
 import Fuchsia from './Fuchsia/Fuchsia'
 import Pink from './Pink/Pink'
 import Rose from './Rose/Rose'
+import Footer from '../../../Footer/Footer'
 
 const Colors = () => {
     const [docNav, setDocNav] = useState(false)
@@ -40,7 +41,7 @@ const Colors = () => {
                 {docNav && (
                     <DocNav />
                 )}
-                <div className='flex flex-col pb-16 gap-10 w-full 2xl:flex-col lg:grid lg:grid-cols-5 lg:justify-between lg:gap-4 xs:grid-cols-2 xxs:grid-cols-1'>
+                <div className='flex flex-col gap-10 w-full 2xl:flex-col lg:grid lg:grid-cols-5 lg:justify-between  xs:grid-cols-2 xxs:grid-cols-1'>
                     <Slate />
                     <Gray />
                     <Zinc />
@@ -64,6 +65,7 @@ const Colors = () => {
                     <Pink />
                     <Rose />
                 </div>
+                <Footer />
             </section>
         </div>
     )

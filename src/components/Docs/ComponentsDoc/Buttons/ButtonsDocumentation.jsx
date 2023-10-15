@@ -12,6 +12,7 @@ import { BiChevronDown } from 'react-icons/bi'
 import { components } from '../../../../mocks/docs'
 import { Link } from 'react-router-dom'
 import DocNav from '../../DocNav'
+import Footer from '../../../Footer/Footer'
 
 const Buttons = () => {
     const [docNav, setDocNav] = useState(false)
@@ -38,6 +39,7 @@ const Buttons = () => {
                     <LoadersButtons />
                     <RoundedLoadersButtons />
                 </div>
+                <Footer />
             </section>
         </div>
     )

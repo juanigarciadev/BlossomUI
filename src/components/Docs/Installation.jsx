@@ -10,6 +10,7 @@ import AstroInstallation from './InstallationContent/AstroInstallation'
 import SvelteKitInstallation from './InstallationContent/SvelteKitInstallation'
 import NextJSInstallation from './InstallationContent/NextJSInstallation'
 import DocNav from './DocNav'
+import Footer from '../Footer/Footer'
 
 const Installation = () => {
     const [content, setContent] = useState("Vite")
@@ -58,6 +59,7 @@ const Installation = () => {
                     {content === "Astro" ? <AstroInstallation /> : null}
                     {content === "Next.js" ? <NextJSInstallation /> : null}
                 </div>
+                <Footer />
             </section>
         </div>
     )

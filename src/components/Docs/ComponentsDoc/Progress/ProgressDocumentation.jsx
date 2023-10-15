@@ -6,6 +6,7 @@ import DefaultProgress from './Default'
 import ProgressSize from './Sizes'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
+import Footer from '../../../Footer/Footer'
 
 const ProgressDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -28,6 +29,7 @@ const ProgressDocumentation = () => {
                     <PercentageInside />
                     <PercentageAbove />
                 </div>
+                <Footer />
             </section>
         </div>
     )
