@@ -5,6 +5,7 @@ import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
 import Default from './Default'
 import AlertsWithIcons from './WithIcons'
+import DefaultOutlined from './DefaultOutlined'
 
 const AlertsDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -24,6 +25,7 @@ const AlertsDocumentation = () => {
                 <div className='flex flex-col pb-16 gap-16'>
                     <Default />
                     <AlertsWithIcons />
+                    <DefaultOutlined />
                 </div>
                 <Footer />
             </section>
