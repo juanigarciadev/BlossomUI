@@ -3,6 +3,8 @@ import Aside from '../../Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
+import Default from './Default'
+import AlertsWithIcons from './WithIcons'
 
 const AlertsDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -20,6 +22,8 @@ const AlertsDocumentation = () => {
                     <DocNav />
                 )}
                 <div className='flex flex-col pb-16 gap-16'>
+                    <Default />
+                    <AlertsWithIcons />
                 </div>
                 <Footer />
             </section>
