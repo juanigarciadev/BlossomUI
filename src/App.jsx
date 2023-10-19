@@ -17,7 +17,7 @@ import AvatarDocumentation from './components/Docs/ComponentsDoc/Avatar/AvatarDo
 import BannerDocumentation from './components/Docs/ComponentsDoc/Banner/Banner'
 import PaginationDocumentation from './components/Docs/ComponentsDoc/Pagination/Pagination'
 import JumbotronDocumentation from './components/Docs/ComponentsDoc/Jumbotron/Jumbotron'
-import KBDDocumentation from './components/Docs/ComponentsDoc/KBD/KBD'
+import KBDDocumentation from './components/Docs/ComponentsDoc/KBD/KBDDocumentation'
 import AlertsDocumentation from './components/Docs/ComponentsDoc/Alerts/AlertsDocumentation'
 import FooterDocumentation from './components/Docs/ComponentsDoc/Footer/Footer'
 import FormsDocumentation from './components/Docs/ComponentsDoc/Forms/Forms'

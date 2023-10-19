@@ -29,8 +29,8 @@ const Changelog = () => {
                     </div>
                 </div>
                 <Footer />
-            </section>
-        </div>
+            </section >
+        </div >
     )
 }
 
