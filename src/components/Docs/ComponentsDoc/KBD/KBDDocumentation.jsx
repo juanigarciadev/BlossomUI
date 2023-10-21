@@ -4,6 +4,7 @@ import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
 import SpecialKeys from './Default/SpecialKeys'
+import ReliefKeys from './Default/Relief'
 
 const KBDDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -22,6 +23,7 @@ const KBDDocumentation = () => {
                 )}
                 <div className='flex flex-col pb-16 gap-16'>
                     <SpecialKeys />
+                    <ReliefKeys />
                 </div>
                 <Footer />
             </section>
