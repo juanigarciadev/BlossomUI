@@ -6,6 +6,8 @@ import Footer from '../../../Footer/Footer'
 import Default from './Default'
 import AlertsWithIcons from './WithIcons'
 import DefaultOutlined from './DefaultOutlined'
+import AlertsWithList from './WithList'
+import AlertsWithActions from './WithActions'
 
 const AlertsDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -26,6 +28,8 @@ const AlertsDocumentation = () => {
                     <Default />
                     <AlertsWithIcons />
                     <DefaultOutlined />
+                    <AlertsWithList />
+                    <AlertsWithActions />
                 </div>
                 <Footer />
             </section>
