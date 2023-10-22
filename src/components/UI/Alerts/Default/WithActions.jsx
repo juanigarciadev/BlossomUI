@@ -3,11 +3,18 @@ import React from 'react'
 export const DefaultAlertWithActions = () => {
     return (
         <div className='w-full h-fit px-4 py-4 bg-blue-100 rounded-lg dark:bg-blue-900'>
-            <section className='flex items-center gap-1 md:flex-col md:items-start'>
-                <div>
+            <section className='flex flex-col gap-4 md:flex-col md:items-start'>
+                <div className='flex gap-1'>
                     <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' className='text-blue-900 dark:text-blue-300'><path fill='currentColor' d='M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10s10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8s8 3.589 8 8s-3.589 8-8 8z' /><path fill='currentColor' d='M11 11h2v6h-2zm0-4h2v2h-2z' /></svg>
+                    <span className='text-blue-900 dark:text-blue-300'>Info alert! Change a few things up and try submitting again.</span>
                 </div>
-                <span className='text-blue-900 dark:text-blue-300'>Info alert! Change a few things up and try submitting again.</span>
+                <section>
+                    <span className='text-blue-900 dark:text-blue-300'>Replace this text with something referring to the actions that can be performed with the buttons below.</span>
+                </section>
+                <section className='flex gap-2'>
+                    <button className='flex justify-center w-fit h-fit text-sm items-center text-center bg-blue-700 text-white gap-2 px-4 py-1 rounded-lg cursor-pointer font-medium select-none hover:bg-blue-600'>Primary action</button>
+                    <button className='flex justify-center items-center text-black text-center border border-blue-600 bg-transparent w-fit h-fit text-sm gap-2 px-4 py-[3px] rounded-lg cursor-pointer font-medium select-none hover:bg-blue-700 hover:text-white hover:backdrop-blur-md dark:text-white dark:hover:bg-blue-700'>Secondary action</button>
+                </section>
             </section>
         </div>
     )
@@ -16,11 +23,18 @@ export const DefaultAlertWithActions = () => {
 export const DefaultSuccessfulAlertWithActions = () => {
     return (
         <div className='w-full h-fit px-4 py-4 bg-green-100 rounded-lg dark:bg-green-900'>
-            <section className='flex items-center gap-1 md:flex-col md:items-start'>
-                <div>
+            <section className='flex flex-col gap-4 md:flex-col md:items-start'>
+                <div className='flex gap-1'>
                     <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' className='text-green-900 dark:text-green-300'><path fill='currentColor' d='M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10s10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8s8 3.589 8 8s-3.589 8-8 8z' /><path fill='currentColor' d='M9.999 13.587L7.7 11.292l-1.412 1.416l3.713 3.705l6.706-6.706l-1.414-1.414z' /></svg>
+                    <span className='flex text-green-900 dark:text-green-300'>Successful alert! Change a few things up and try submitting again.</span>
                 </div>
-                <span className='flex text-green-900 dark:text-green-300'>Successful alert! Change a few things up and try submitting again.</span>
+                <section>
+                    <span className='text-green-900 dark:text-green-300'>Replace this text with something referring to the actions that can be performed with the buttons below.</span>
+                </section>
+                <section className='flex gap-2'>
+                    <button className='flex justify-center w-fit h-fit text-sm items-center text-center bg-green-700 text-white gap-2 px-4 py-1 rounded-lg cursor-pointer font-medium select-none hover:bg-green-600'>Primary action</button>
+                    <button className='flex justify-center items-center text-black text-center border border-green-600 bg-transparent w-fit h-fit text-sm gap-2 px-4 py-[3px] rounded-lg cursor-pointer font-medium select-none hover:bg-green-700 hover:text-white hover:backdrop-blur-md dark:text-white dark:hover:bg-green-700'>Secondary action</button>
+                </section>
             </section>
         </div>
     )
