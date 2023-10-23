@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Default = () => {
     return (
         <span className='flex items-center font-medium h-fit w-fit text-sm px-4 py-2 bg-blue-100 text-blue-900 rounded-lg cursor-default dark:bg-blue-900 dark:text-blue-300'>This is the filled version of the badge</span >
