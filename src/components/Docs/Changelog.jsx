@@ -31,13 +31,6 @@ const Changelog = () => {
                             <li className='text-neutral-600 dark:text-neutral-500'>Blossom UI now available, completely free and open source.</li>
                         </ol>
                     </div>
-                    <div className='flex -space-x-4'>
-                        <img className='bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700' src={person1}></img>
-                        <img className='bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700' src={person2}></img>
-                        <img className='bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700' src={person3}></img>
-                        <img className='bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700' src={person4}></img>
-                        <div className='flex items-center justify-center text-sm bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700'>+99</div>
-                    </div>
                 </div>
                 <Footer />
             </section >

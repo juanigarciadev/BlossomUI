@@ -1,21 +1,11 @@
 import React, { useEffect } from 'react'
 import { BiRightArrowAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
-
 import Explanation from '../Explanation/Explanation'
 import Characteristics from '../Characteristics/Characteristics'
 import ComponentsSection from '../ComponentsSection/ComponentsSection'
-
-
-import { Red } from '../UI/Badges/Normal/Default'
-import { PurpleOutlinedRounded } from '../UI/Badges/Rounded/Outlined'
-import { PurpleButton } from '../UI/Buttons/Normal/Default'
-import { YellowButtonRounded } from '../UI/Buttons/Rounded/Default'
-import { Apple } from '../UI/Buttons/Normal/Social'
-import { GoogleIcon } from '../UI/Buttons/IconsOnly/Default'
-import { GithubIconRounded } from '../UI/Buttons/IconsOnly/Rounded'
-import { PercentageInsideProgressBar } from '../UI/Progress/ProgressBar'
 import Footer from '../Footer/Footer'
+import ComponentsExample from '../ComponentsExample/ComponentsExample'
 
 const Home = () => {
   useEffect(() => {
@@ -36,22 +26,7 @@ const Home = () => {
             <Link to="/components" className='flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white sm:w-full'>Explore components<BiRightArrowAlt className='text-2xl' /></Link>
           </section>
         </section>
-        <section className='flex flex-col gap-4 items-end lg:items-start'>
-          <div className='flex flex-wrap justify-end gap-4 lg:justify-start'>
-            <Red />
-            <PurpleOutlinedRounded />
-          </div>
-          <div className='flex flex-wrap gap-4 justify-end lg:justify-start'>
-            <PurpleButton />
-            <YellowButtonRounded />
-            <Apple />
-            <GoogleIcon />
-            <GithubIconRounded />
-          </div>
-          <div className='w-8/12'>
-            <PercentageInsideProgressBar />
-          </div>
-        </section>
+        <ComponentsExample />
       </main>
       <Characteristics />
       <Explanation />
