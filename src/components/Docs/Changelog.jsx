@@ -3,6 +3,10 @@ import Aside from './Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from './DocNav'
 import Footer from '../Footer/Footer'
+import person1 from '../../assets/images/people/person-image-1.jpg'
+import person2 from '../../assets/images/people/person-image-3.jpg'
+import person3 from '../../assets/images/people/person-image-3.jpg'
+import person4 from '../../assets/images/people/person-image-4.jpg'
 
 const Changelog = () => {
     const [docNav, setDocNav] = useState(false)
@@ -26,6 +30,13 @@ const Changelog = () => {
                         <ol className='list-disc pt-4 pl-4'>
                             <li className='text-neutral-600 dark:text-neutral-500'>Blossom UI now available, completely free and open source.</li>
                         </ol>
+                    </div>
+                    <div className='flex -space-x-4'>
+                        <img className='bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700' src={person1}></img>
+                        <img className='bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700' src={person2}></img>
+                        <img className='bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700' src={person3}></img>
+                        <img className='bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700' src={person4}></img>
+                        <div className='flex items-center justify-center text-sm bg-neutral-200 w-10 h-10 rounded-full shadow-sm border border-neutral-300 dark:bg-neutral-800 dark:border-neutral-700'>+99</div>
                     </div>
                 </div>
                 <Footer />
