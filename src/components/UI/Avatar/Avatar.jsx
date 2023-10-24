@@ -9,3 +9,15 @@ export const StackedAvatar = () => {
         </div>
     )
 }
+
+export const CircularAvatar = () => {
+    return (
+        <img className='bg-neutral-200 w-10 h-10 rounded-full' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
+    )
+}
+
+export const RoundedEdgesAvatar = () => {
+    return (
+        <img className='bg-neutral-200 w-10 h-10 rounded-lg' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Rounded edges avatar"></img>
+    )
+}

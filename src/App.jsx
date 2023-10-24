@@ -27,6 +27,7 @@ import SkeletonDocumentation from './components/Docs/ComponentsDoc/Skeleton/Skel
 import StepperDocumentation from './components/Docs/ComponentsDoc/Stepper/Stepper'
 import TimelineDocumentation from './components/Docs/ComponentsDoc/Timeline/Timeline'
 import ComponentsSection from './components/ComponentsSection/ComponentsSection'
+import DarkMode from './components/Docs/DarkMode'
 
 
 
@@ -42,6 +43,7 @@ function App() {
             <Route path='/docs/getting-started/introduction' element={<Introduction />} />
             <Route path='/docs/getting-started/installation' element={<Installation />} />
             <Route path='/docs/getting-started/changelog' element={<Changelog />} />
+            <Route path='/docs/customization/dark-mode' element={<DarkMode />} />
             <Route path='/docs/customization/colors' element={<Colors />} />
             <Route path='/docs/components/avatar' element={<AvatarDocumentation />} />
             <Route path='/docs/components/buttons' element={<Buttons />} />

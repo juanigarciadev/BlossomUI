@@ -4,6 +4,7 @@ import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
 import Stacked from './Stacked'
+import Avatar from './Avatar'
 
 const AvatarDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -21,6 +22,7 @@ const AvatarDocumentation = () => {
                     <DocNav />
                 )}
                 <div className='flex flex-col pb-16 gap-16'>
+                    <Avatar />
                     <Stacked />
                 </div>
                 <Footer />
