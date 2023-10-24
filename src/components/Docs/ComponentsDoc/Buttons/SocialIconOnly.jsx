@@ -15,7 +15,7 @@ const SocialIconOnly = () => {
         <article>
             <div className='pb-4'>
                 <article id='badge-dismiss-default' className='flex gap-2 mb-2 items-center font-medium h-fit w-fit text-sm px-4 py-2 bg-blue-100 text-blue-900 rounded-full cursor-default dark:bg-blue-900 dark:text-blue-300'><BiLogoTailwindCss className='text-xl' />Tailwind CSS v3.0 required.</article>
-                <h3 className='text-lg font-medium'>Social icons only buttons</h3>
+                <h3 className='text-lg font-medium'>Social icons only</h3>
                 <p className='dark:text-neutral-300'>You don't like buttons with text? Here is a icons only version. This component use the bg-[#hex] class from Tailwind CSS v.3.0.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

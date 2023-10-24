@@ -13,8 +13,8 @@ const PointyOutlinedBadges = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Pointy outlined badges</h3>
-                <p className='dark:text-neutral-300'>Use badges to highlight some important characteristic of an element or set of elements.</p>
+                <h3 className='text-lg font-medium'>Pointy outlined</h3>
+                <p className='dark:text-neutral-300'>Also with outlined variant for more contrast.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>
                 <div className='flex items-center bg-neutral-200 p-[5px] rounded-lg dark:bg-neutral-800 lg:w-full'>

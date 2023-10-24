@@ -12,7 +12,7 @@ const DefaultRoundedBadges = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Default rounded badges</h3>
+                <h3 className='text-lg font-medium'>Rounded</h3>
                 <p className='dark:text-neutral-300'>Default badges with fully rounded edges variant.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

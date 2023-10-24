@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { BiCode } from 'react-icons/bi'
-import EditInGithub from '../../../../EditInGithub/EditInGithub'
-import { CodeBlock } from '../../../../CodeBlock/CodeBlock'
-import { AltRelief, CtrlRelief, ShiftRelief, SpacebarRelief } from '../../../../UI/KBD/Default/ReliefKeys'
+import EditInGithub from '../../../EditInGithub/EditInGithub'
+import { CodeBlock } from '../../../CodeBlock/CodeBlock'
+import { AltRelief, CtrlRelief, ShiftRelief, SpacebarRelief } from '../../../UI/KBD/Default/ReliefKeys'
 
 const ReliefKeys = () => {
 
@@ -14,7 +14,7 @@ const ReliefKeys = () => {
         <article>
             <div className='pb-4'>
                 <h3 className='text-lg font-medium'>Default special keys with relief</h3>
-                <p className='dark:text-neutral-300'>You can also use a version with a small relief..</p>
+                <p className='dark:text-neutral-300'>You can also use a version with a small relief.</p>
             </div>
             <div className='flex gap-2 pb-2 select-none lg:flex-col'>
                 <div className='flex items-center bg-neutral-200 p-[5px] rounded-lg dark:bg-neutral-800 lg:w-full'>

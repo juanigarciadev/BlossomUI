@@ -13,7 +13,7 @@ const LoadersButtons = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Loaders buttons</h3>
+                <h3 className='text-lg font-medium'>Loaders</h3>
                 <p className='dark:text-neutral-300'>Use this buttons to show the user that their request is being loaded.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

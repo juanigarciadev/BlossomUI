@@ -13,7 +13,7 @@ const AlertsWithList = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Default alerts with list.</h3>
+                <h3 className='text-lg font-medium'>With list</h3>
                 <p className='dark:text-neutral-300'>You can use this variant to show the user a list of steps.</p>
             </div>
             <div className='flex gap-2 pb-2 select-none lg:flex-col'>

@@ -13,7 +13,7 @@ const Default = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Default alerts</h3>
+                <h3 className='text-lg font-medium'>Default</h3>
                 <p className='dark:text-neutral-300'>Use default alerts with multiple colors to correct user inputs.</p>
             </div>
             <div className='flex gap-2 pb-2 select-none lg:flex-col'>

@@ -13,7 +13,7 @@ const DefaultSpinnerDoc = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Default spinner</h3>
+                <h3 className='text-lg font-medium'>Default</h3>
                 <p className='dark:text-neutral-300'>No, the component is not loading, the spinner is what you see behind this text.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

@@ -13,7 +13,7 @@ const DefaultBadges = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Default badges</h3>
+                <h3 className='text-lg font-medium'>Default</h3>
                 <p className='dark:text-neutral-300'>Use badges to highlight some important characteristic of an element or set of elements.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

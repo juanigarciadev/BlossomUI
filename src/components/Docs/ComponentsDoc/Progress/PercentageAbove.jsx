@@ -13,7 +13,7 @@ const PercentageAbove = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Progress bar with information and percentage above</h3>
+                <h3 className='text-lg font-medium'>With information and percentage above</h3>
                 <p className='dark:text-neutral-300'>You can use this variant if you want to show some information.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

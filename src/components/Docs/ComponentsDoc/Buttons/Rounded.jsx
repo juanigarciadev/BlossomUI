@@ -13,7 +13,7 @@ const Rounded = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Rounded buttons</h3>
+                <h3 className='text-lg font-medium'>Rounded</h3>
                 <p className='dark:text-neutral-300'>You can also use this fully rounded edges variant.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { BiCode } from 'react-icons/bi'
-import EditInGithub from '../../../../EditInGithub/EditInGithub'
-import { Alt, Ctrl, Shift, Spacebar } from '../../../../UI/KBD/Default/SpecialKey'
-import { CodeBlock } from '../../../../CodeBlock/CodeBlock'
+import EditInGithub from '../../../EditInGithub/EditInGithub'
+import { Alt, Ctrl, Shift, Spacebar } from '../../../UI/KBD/Default/SpecialKey'
+import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 
 const SpecialKeys = () => {
 

@@ -12,7 +12,7 @@ const OutlinedRoundedBadges = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Outlined rounded badges</h3>
+                <h3 className='text-lg font-medium'>Rounded outlined</h3>
                 <p className='dark:text-neutral-300'>Outlined badges with fully rounded edges variant.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

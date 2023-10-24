@@ -13,7 +13,7 @@ const AlertsWithActions = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Default alerts with icons</h3>
+                <h3 className='text-lg font-medium'>With actions</h3>
                 <p className='dark:text-neutral-300'>Use default alerts with multiple colors to correct user inputs.</p>
             </div>
             <div className='flex gap-2 pb-2 select-none lg:flex-col'>

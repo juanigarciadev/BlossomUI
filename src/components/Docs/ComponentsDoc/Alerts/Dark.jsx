@@ -13,7 +13,7 @@ const DarkAlerts = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Dark alerts</h3>
+                <h3 className='text-lg font-medium'>Dark</h3>
                 <p className='dark:text-neutral-300'>Use dark alerts for a more minimalistic alert.</p>
             </div>
             <div className='flex gap-2 pb-2 select-none lg:flex-col'>

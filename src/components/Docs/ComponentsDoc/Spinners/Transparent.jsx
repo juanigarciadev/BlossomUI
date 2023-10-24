@@ -13,7 +13,7 @@ const TransparentSpinnerDoc = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Transparent indicator spinner</h3>
+                <h3 className='text-lg font-medium'>Transparent indicator</h3>
                 <p className='dark:text-neutral-300'>If you don't like colors, we have a variant with a transparent indicator.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

@@ -13,7 +13,7 @@ const PercentageInside = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Progress bar with percentage inside</h3>
+                <h3 className='text-lg font-medium'>With percentage inside</h3>
                 <p className='dark:text-neutral-300'>You can also add the progress percentage for impatient users.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

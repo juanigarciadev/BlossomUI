@@ -13,7 +13,7 @@ const DefaultProgress = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Default progress bar</h3>
+                <h3 className='text-lg font-medium'>Default</h3>
                 <p className='dark:text-neutral-300'>Use progress bars to show the progress of actions or work progress.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>

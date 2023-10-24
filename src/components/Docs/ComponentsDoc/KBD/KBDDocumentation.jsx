@@ -3,8 +3,8 @@ import Aside from '../../Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
-import SpecialKeys from './Default/SpecialKeys'
-import ReliefKeys from './Default/Relief'
+import SpecialKeys from './SpecialKeys'
+import ReliefKeys from './Relief'
 
 const KBDDocumentation = () => {
     const [docNav, setDocNav] = useState(false)

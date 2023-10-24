@@ -13,7 +13,7 @@ const OutlinedBadges = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Outlined badges</h3>
+                <h3 className='text-lg font-medium'>Outlined</h3>
                 <p className='dark:text-neutral-300'>You can also use outlined variant for better contrast.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>
