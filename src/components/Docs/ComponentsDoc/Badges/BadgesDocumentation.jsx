@@ -8,6 +8,7 @@ import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
 import PointyBadges from './Pointy'
+import PointyOutlinedBadges from './PointyOutlined'
 
 const BadgesDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -28,6 +29,7 @@ const BadgesDocumentation = () => {
                     <DefaultBadges />
                     <OutlinedBadges />
                     <PointyBadges />
+                    <PointyOutlinedBadges />
                     <DefaultRoundedBadges />
                     <OutlinedRoundedBadges />
                 </div>
