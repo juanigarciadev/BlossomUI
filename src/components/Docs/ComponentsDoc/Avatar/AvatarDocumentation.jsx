@@ -5,6 +5,8 @@ import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
 import Stacked from './Stacked'
 import Avatar from './Avatar'
+import PlaceholderAvatar from './Placeholder'
+import InitialsAvatar from './WithInitials'
 
 const AvatarDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -24,6 +26,8 @@ const AvatarDocumentation = () => {
                 <div className='flex flex-col pb-16 gap-16'>
                     <Avatar />
                     <Stacked />
+                    <PlaceholderAvatar />
+                    <InitialsAvatar />
                 </div>
                 <Footer />
             </section>

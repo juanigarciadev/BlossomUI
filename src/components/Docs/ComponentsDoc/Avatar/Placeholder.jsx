@@ -2,19 +2,19 @@ import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
-import { CircularAvatar, RoundedEdgesAvatar, StackedAvatar } from '../../../UI/Avatar/Avatar'
+import { Placeholder } from '../../../UI/Avatar/Avatar'
 
-const Avatar = () => {
+const PlaceholderAvatar = () => {
 
     const [showCode, setShowCode] = useState(false)
 
-    const circularAvatar = "<img className='bg-neutral-200 w-10 h-10 rounded-full' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt='Circular avatar'></img>\n<img className='bg-neutral-200 w-10 h-10 rounded-lg' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt='Rounded edges avatar'></img>"
+    const placeholderAvatar = "<div className='relative overflow-hidden bg-neutral-200 w-10 h-10 rounded-full dark:bg-neutral-600'>\n    <svg class='absolute w-12 h-12 text-gray-400 -left-1' fill='currentColor' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z' clip-rule='evenodd'></path></svg>\n</div>"
 
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Avatar</h3>
-                <p className='dark:text-neutral-300'>Shows the user's profile image with different rounded edges.</p>
+                <h3 className='text-lg font-medium'>Placeholder</h3>
+                <p className='dark:text-neutral-300'>Use this variant for users who do not have a profile image.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>
                 <div className='flex items-center bg-neutral-200 p-[5px] rounded-lg dark:bg-neutral-800 lg:w-full'>
@@ -26,15 +26,13 @@ const Avatar = () => {
                 {showCode ?
                     <div>
                         <section className='flex flex-wrap rounded-lg gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
-                            <CircularAvatar />
-                            <RoundedEdgesAvatar />
+                            <Placeholder />
                         </section>
-                        <CodeBlock name={"Avatar"} code={circularAvatar} language={"javascript"} />
+                        <CodeBlock name={"Placeholder"} code={placeholderAvatar} language={"javascript"} />
                     </div>
                     :
                     <section className='flex flex-wrap rounded-lg gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
-                        <CircularAvatar />
-                        <RoundedEdgesAvatar />
+                        <Placeholder />
                     </section>}
 
             </div>
@@ -42,4 +40,4 @@ const Avatar = () => {
     )
 }
 
-export default Avatar
+export default PlaceholderAvatar
