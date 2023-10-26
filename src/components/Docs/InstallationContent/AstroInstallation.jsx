@@ -1,15 +1,7 @@
-import React, { useState } from 'react'
-import { useContext } from 'react';
-import { BsClipboard2, BsCheck2Circle } from 'react-icons/bs'
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { ThemeContext } from './../../../context/ThemeContext';
-import { arta, lightfair } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import React from 'react'
 import { CodeBlock } from '../../CodeBlock/CodeBlock';
 
 const AstroInstallation = () => {
-    const { theme } = useContext(ThemeContext)
-    const [copy, setCopy] = useState(false)
-
     const createAstro = 'npm create astro@latest my-project\ncd my-project'
     const installTailwind = 'npx astro add tailwind'
     const build = 'npm run dev'

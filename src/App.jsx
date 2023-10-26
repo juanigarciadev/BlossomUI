@@ -28,6 +28,7 @@ import StepperDocumentation from './components/Docs/ComponentsDoc/Stepper/Steppe
 import TimelineDocumentation from './components/Docs/ComponentsDoc/Timeline/Timeline'
 import ComponentsSection from './components/ComponentsSection/ComponentsSection'
 import DarkMode from './components/Docs/DarkMode'
+import AstroInstallation from './components/Docs/InstallationContent/AstroInstallation'
 
 
 
