@@ -16,7 +16,7 @@ import Colors from './components/Docs/Customization/Colors/Colors'
 import AvatarDocumentation from './components/Docs/ComponentsDoc/Avatar/AvatarDocumentation'
 import BannerDocumentation from './components/Docs/ComponentsDoc/Banner/Banner'
 import PaginationDocumentation from './components/Docs/ComponentsDoc/Pagination/Pagination'
-import JumbotronDocumentation from './components/Docs/ComponentsDoc/Jumbotron/Jumbotron'
+import JumbotronDocumentation from './components/Docs/ComponentsDoc/Jumbotron/JumbotronDocumentation'
 import KBDDocumentation from './components/Docs/ComponentsDoc/KBD/KBDDocumentation'
 import AlertsDocumentation from './components/Docs/ComponentsDoc/Alerts/AlertsDocumentation'
 import FooterDocumentation from './components/Docs/ComponentsDoc/Footer/Footer'
@@ -28,9 +28,6 @@ import StepperDocumentation from './components/Docs/ComponentsDoc/Stepper/Steppe
 import TimelineDocumentation from './components/Docs/ComponentsDoc/Timeline/Timeline'
 import ComponentsSection from './components/ComponentsSection/ComponentsSection'
 import DarkMode from './components/Docs/DarkMode'
-import AstroInstallation from './components/Docs/InstallationContent/AstroInstallation'
-
-
 
 function App() {
 
