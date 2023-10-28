@@ -22,7 +22,7 @@ import AlertsDocumentation from './components/Docs/ComponentsDoc/Alerts/AlertsDo
 import FooterDocumentation from './components/Docs/ComponentsDoc/Footer/Footer'
 import FormsDocumentation from './components/Docs/ComponentsDoc/Forms/Forms'
 import ModalDocumentation from './components/Docs/ComponentsDoc/Modal/Modal'
-import RatingDocumentation from './components/Docs/ComponentsDoc/Rating/Rating'
+import RatingDocumentation from './components/Docs/ComponentsDoc/Rating/RatingDocumentation'
 import SkeletonDocumentation from './components/Docs/ComponentsDoc/Skeleton/Skeleton'
 import StepperDocumentation from './components/Docs/ComponentsDoc/Stepper/Stepper'
 import TimelineDocumentation from './components/Docs/ComponentsDoc/Timeline/Timeline'
