@@ -8,7 +8,13 @@ const WithInformation = () => {
 
     const [showCode, setShowCode] = useState(false)
 
-    const withInformation = "<div className='relative flex items-center justify-center bg-neutral-200 w-10 h-10 rounded-full dark:bg-neutral-600'>\n    <span className='font-medium text-neutral-600 dark:text-neutral-300'>UI</span>\n</div>"
+    const withInformation = `<div className='flex gap-3'>
+    <img className='bg-neutral-200 w-10 h-10 rounded-full' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt='Circular avatar'></img>
+    <div className='flex flex-col -gap-1'>
+        <p className='font-medium dark:text-white'>Katherine Hoffman</p>
+        <span className='text-sm text-neutral-700 dark:text-neutral-300'>Active now</span>
+    </div>
+</div>`
 
     return (
         <article>

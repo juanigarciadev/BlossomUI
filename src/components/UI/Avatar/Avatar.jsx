@@ -1,18 +1,12 @@
-export const StackedAvatar = () => {
-    return (
-        <div className='flex -space-x-4'>
-            <img className='bg-neutral-200 w-10 h-10 rounded-full border-2 border-white dark:bg-neutral-800 dark:border-neutral-700' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg'></img>
-            <img className='bg-neutral-200 w-10 h-10 rounded-full border-2 border-white dark:bg-neutral-800 dark:border-neutral-700' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155371/person-image-4_usvfxg.jpg'></img>
-            <img className='bg-neutral-200 w-10 h-10 rounded-full border-2 border-white dark:bg-neutral-800 dark:border-neutral-700' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-3_fstmzw.jpg'></img>
-            <img className='bg-neutral-200 w-10 h-10 rounded-full border-2 border-white dark:bg-neutral-800 dark:border-neutral-700' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-2_sjyoj5.jpg'></img>
-            <a className='flex items-center justify-center text-sm font-medium bg-neutral-200 w-10 h-10 rounded-full border-2 border-white cursor-pointer select-none hover:bg-neutral-300 dark:bg-neutral-800 dark:border-neutral-700 dark:hover:bg-neutral-600'>+99</a>
-        </div>
-    )
-}
-
 export const CircularAvatar = () => {
     return (
         <img className='bg-neutral-200 w-10 h-10 rounded-full' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
+    )
+}
+
+export const RoundedEdgesAvatar = () => {
+    return (
+        <img className='bg-neutral-200 w-10 h-10 rounded-lg' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Rounded edges avatar"></img>
     )
 }
 
@@ -52,12 +46,6 @@ export const CircularAvatarDoNotDisturbBottom = () => {
     )
 }
 
-export const RoundedEdgesAvatar = () => {
-    return (
-        <img className='bg-neutral-200 w-10 h-10 rounded-lg' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Rounded edges avatar"></img>
-    )
-}
-
 export const RoundedEdgesAvatarOnlineTop = () => {
     return (
         <div className="relative">
@@ -94,6 +82,29 @@ export const RoundedEdgesAvatarDoNotDisturbBottom = () => {
     )
 }
 
+export const StackedAvatar = () => {
+    return (
+        <div className='flex -space-x-4'>
+            <img className='bg-neutral-200 w-10 h-10 rounded-full border-2 border-white dark:bg-neutral-800 dark:border-neutral-700' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg'></img>
+            <img className='bg-neutral-200 w-10 h-10 rounded-full border-2 border-white dark:bg-neutral-800 dark:border-neutral-700' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155371/person-image-4_usvfxg.jpg'></img>
+            <img className='bg-neutral-200 w-10 h-10 rounded-full border-2 border-white dark:bg-neutral-800 dark:border-neutral-700' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-3_fstmzw.jpg'></img>
+            <img className='bg-neutral-200 w-10 h-10 rounded-full border-2 border-white dark:bg-neutral-800 dark:border-neutral-700' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-2_sjyoj5.jpg'></img>
+            <a className='flex items-center justify-center text-sm font-medium bg-neutral-200 w-10 h-10 rounded-full border-2 border-white cursor-pointer select-none hover:bg-neutral-300 dark:text-white dark:bg-neutral-800 dark:border-neutral-700 dark:hover:bg-neutral-600'>+99</a>
+        </div>
+    )
+}
+
+export const InformationAvatar = () => {
+    return (
+        <div className="flex gap-3">
+            <img className='bg-neutral-200 w-10 h-10 rounded-full' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
+            <div className="flex flex-col -gap-1">
+                <p className="font-medium dark:text-white">Katherine Hoffman</p>
+                <span className="text-sm text-neutral-700 dark:text-neutral-300">Active now</span>
+            </div>
+        </div>
+    )
+}
 
 export const Placeholder = () => {
     return (
@@ -107,18 +118,6 @@ export const Initials = () => {
     return (
         <div className='relative flex items-center justify-center bg-neutral-200 w-10 h-10 rounded-full dark:bg-neutral-600'>
             <span className="font-medium text-neutral-600 dark:text-neutral-300">UI</span>
-        </div>
-    )
-}
-
-export const InformationAvatar = () => {
-    return (
-        <div className="flex gap-3">
-            <img className='bg-neutral-200 w-10 h-10 rounded-full' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
-            <div className="flex flex-col -gap-1">
-                <p className="font-medium">Katherine Hoffman</p>
-                <span className="text-sm text-neutral-700 dark:text-neutral-300">Active now</span>
-            </div>
         </div>
     )
 }

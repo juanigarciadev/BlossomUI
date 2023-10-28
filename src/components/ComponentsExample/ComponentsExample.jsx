@@ -7,6 +7,8 @@ import { Apple } from '../UI/Buttons/Normal/Social'
 import { GoogleIcon } from '../UI/Buttons/IconsOnly/Default'
 import { GithubIconRounded } from '../UI/Buttons/IconsOnly/Rounded'
 import { PercentageInsideProgressBar } from '../UI/Progress/ProgressBar'
+import { InformationAvatar, StackedAvatar } from '../UI/Avatar/Avatar'
+import { DefaultSpinner } from '../UI/Spinners/Spinners'
 
 const ComponentsExample = () => {
     return (
@@ -22,8 +24,11 @@ const ComponentsExample = () => {
                 <GoogleIcon />
                 <GithubIconRounded />
             </div>
-            <div className='w-8/12'>
+            <div className='flex flex-wrap items-center gap-4 w-8/12'>
                 <PercentageInsideProgressBar />
+                <StackedAvatar/>
+                <InformationAvatar/>
+                <DefaultSpinner/>
             </div>
         </section>
     )
