@@ -6,6 +6,7 @@ import Footer from '../../../Footer/Footer'
 import Rating from './Rating'
 import RatingWithText from './RatingWithText'
 import Reviews from './ReviewsNumber'
+import ReviewComment from './ReviewComment'
 
 const RatingDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -26,6 +27,7 @@ const RatingDocumentation = () => {
                     <Rating />
                     <RatingWithText />
                     <Reviews />
+                    <ReviewComment />
                 </div>
                 <Footer />
             </section>
