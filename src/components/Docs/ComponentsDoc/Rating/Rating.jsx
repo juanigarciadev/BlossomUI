@@ -20,13 +20,13 @@ const Rating = () => {
         <article>
             <div className='pb-4'>
                 <h3 className='text-lg font-medium'>Default</h3>
-                <p className='dark:text-neutral-300'>Use progress bars to show the progress of actions or work progress.</p>
+                <p className='dark:text-neutral-300'>Shows the rating of an article so that the user can base their vision of the product on opinions of other users.</p>
             </div>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>
                 <div className='flex items-center bg-neutral-200 p-[5px] rounded-lg dark:bg-neutral-800 lg:w-full'>
                     <span className={showCode ? 'flex items-center gap-2 px-4 py-1 rounded-lg cursor-pointer bg-neutral-400 dark:bg-neutral-900 lg:w-full lg:justify-center' : 'flex items-center gap-2 px-4 py-1 rounded-lg cursor-pointer hover:bg-neutral-400 dark:hover:bg-neutral-900 lg:w-full lg:justify-center'} onClick={() => setShowCode(!showCode)}><BiCode />Show code</span>
                 </div>
-                <EditInGithub url={'https://github.com/juanigarciadev/BlossomUI/blob/main/src/components/UI/Progress/ProgressBar.jsx'} />
+                <EditInGithub url={'https://github.com/juanigarciadev/BlossomUI/tree/main/src/components/UI/Rating/Rating.jsx'} />
             </div>
             <div className='flex flex-col'>
                 {showCode ?
