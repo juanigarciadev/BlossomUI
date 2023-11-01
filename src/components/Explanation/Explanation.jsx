@@ -3,7 +3,7 @@ import { BiChevronDown } from 'react-icons/bi'
 import { CodeBlock } from '../CodeBlock/CodeBlock';
 
 const Explanation = () => {
-    const buttonCode = "<button className='flex justify-center w-fit h-fit text-sm items-center text-center bg-black text-white gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>Example button</button>"
+    const buttonCode = `<button className='flex justify-center w-fit h-fit text-sm items-center text-center bg-black text-white gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>Example button</button>`
     return (
         <div div className='grid grid-cols-2 w-full pt-64 pb-32 lg:flex lg:flex-col-reverse lg:gap-12 lg:pt-32 lg:pb-0' >
             <section>
