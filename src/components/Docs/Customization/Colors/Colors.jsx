@@ -41,7 +41,7 @@ const Colors = () => {
                 {docNav && (
                     <DocNav />
                 )}
-                <div className='flex flex-col gap-10 w-full 2xl:flex-col lg:grid lg:grid-cols-5 lg:justify-between md:gap-2 md:gap-y-10 xs:grid-cols-2 xxs:grid-cols-1'>
+                <div className='flex flex-col gap-10 w-full 2xl:flex-col lg:grid lg:grid-cols-5 lg:justify-between md:gap-2 md:gap-y-10 xs:grid-cols-2 xxs:flex xxs:w-12'>
                     <Slate />
                     <Gray />
                     <Zinc />

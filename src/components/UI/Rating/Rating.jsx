@@ -58,7 +58,7 @@ export const RatingReviewComment = () => {
                 </div>
                 <span className="w-1 h-1 rounded-full bg-black dark:bg-white sm:hidden"></span>
                 <span className="font-medium">
-                    Probably the best purchase of my life
+                    It changed my life
                 </span>
             </section>
             <section className="grid gap-3 text-neutral-700 dark:text-neutral-300">
@@ -67,8 +67,8 @@ export const RatingReviewComment = () => {
                 <a href="#" className="text-blue-700 text-sm hover:underline">Read more</a>
             </section>
             <section className="grid gap-2">
-                <span className="text-xs text-neutral-700 dark:text-neutral-300">19 found this review useful</span>
-                <div className="flex items-center space-x-3 divide-x divide-neutral-500">
+                <span className="text-xs text-neutral-700 dark:text-neutral-300">19 people found this useful</span>
+                <div className="flex items-center space-x-3 divide-x divide-neutral-300 dark:divide-neutral-700">
                     <button className='flex justify-center items-center text-center border border-neutral-300 bg-transparent w-fit h-fit text-sm gap-2 px-4 py-1 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800'>Useful</button>
                     <a href="#" className="text-sm font-medium text-blue-700 pl-3 hover:underline">Report</a>
                 </div>
