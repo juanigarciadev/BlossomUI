@@ -31,7 +31,7 @@ const AlertsWithList = () => {
                             <DefaultErrorAlertWithList />
                             <DefaultWarningAlertWithList />
                         </section>
-                        <CodeBlock name={"With list"} code={defaultButtonsWithList} language={"jsx"} />
+                        <CodeBlock name={"With list"} code={defaultButtonsWithList} language={"javascript"} />
                     </div>
                     :
                     <section className='flex flex-wrap rounded-lg gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>

@@ -9,6 +9,7 @@ import DefaultOutlined from './DefaultOutlined'
 import AlertsWithList from './WithList'
 import AlertsWithActions from './WithActions'
 import DarkAlerts from './Dark'
+import SurveyAlert from './Survey'
 
 const AlertsDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -32,6 +33,7 @@ const AlertsDocumentation = () => {
                     <AlertsWithList />
                     <AlertsWithActions />
                     <DarkAlerts />
+                    <SurveyAlert />
                 </div>
                 <Footer />
             </section>
