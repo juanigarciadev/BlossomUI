@@ -23,7 +23,7 @@ const Home = () => {
             <Link to="/docs/getting-started/introduction" className='flex justify-center items-center bg-black text-white w-fit h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 sm:w-full'>
               Get started<BiRightArrowAlt className='text-2xl' /></Link>
 
-            <Link to="/components" className='flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit text-sm gap-2 px-4 py-[11px] rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 dark:text-white sm:w-full'>Explore components<BiRightArrowAlt className='text-2xl' /></Link>
+            <Link to="/components" className='flex justify-center items-center text-center border border-neutral-300 bg-transparent w-fit h-fit text-sm gap-2 px-4 py-[11px] rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 dark:text-white dark:hover:bg-neutral-800'>Explore components<BiRightArrowAlt className='text-2xl' /></Link>
           </section>
         </section>
         <ComponentsExample />
