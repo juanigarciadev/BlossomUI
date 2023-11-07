@@ -28,6 +28,7 @@ import StepperDocumentation from './components/Docs/ComponentsDoc/Stepper/Steppe
 import TimelineDocumentation from './components/Docs/ComponentsDoc/Timeline/Timeline'
 import ComponentsSection from './components/ComponentsSection/ComponentsSection'
 import DarkMode from './components/Docs/DarkMode'
+import PricingDocumentation from './components/Docs/ComponentsDoc/Pricing/PricingDocumentation'
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
             <Route path='/docs/components/spinners' element={<SpinnersDocumentation />} />
             <Route path='/docs/components/cards' element={<CardsDocumentation />} />
             <Route path='/docs/components/pagination' element={<PaginationDocumentation />} />
+            <Route path='/docs/components/pricing' element={<PricingDocumentation />} />
             <Route path='/docs/components/progress' element={<ProgressDocumentation />} />
             <Route path='/docs/components/jumbotron' element={<JumbotronDocumentation />} />
             <Route path='/docs/components/kbd' element={<KBDDocumentation />} />

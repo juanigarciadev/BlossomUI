@@ -86,6 +86,11 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Pricing",
+        url: "/docs/components/pricing",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Progress",
         url: "/docs/components/progress",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
