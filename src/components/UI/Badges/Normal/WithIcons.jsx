@@ -6,7 +6,7 @@ export const DefaultBadgeWithIcon = () => {
 
 export const DarkBadgeWithIcon = () => {
     return (
-        <span className='flex items-center font-medium h-fit w-fit text-xs px-2.5 py-1 gap-1 bg-neutral-100 text-neutral-900 rounded-lg cursor-default dark:bg-neutral-700 dark:text-neutral-300'><svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'><path fill='#737373' d='M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m4.2 14.2L11 13V7h1.5v5.2l4.5 2.7l-.8 1.3Z' /></svg>3 minutes ago</span>
+        <span className='flex items-center font-medium h-fit w-fit text-xs px-2.5 py-1 gap-1 bg-neutral-100 text-neutral-900 rounded-lg cursor-default dark:bg-neutral-700 dark:text-neutral-300'><svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'><path fill='currentColor' d='M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2m4.2 14.2L11 13V7h1.5v5.2l4.5 2.7l-.8 1.3Z' /></svg>3 minutes ago</span>
     )
 }
 
