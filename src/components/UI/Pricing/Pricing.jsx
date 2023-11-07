@@ -1,6 +1,6 @@
 export const DefaultPricing = () => {
     return (
-        <div className="flex w-full justify-center p-4 gap-4 bg-neutral-200 dark:bg-neutral-900">
+        <div className="flex w-full justify-center p-4 gap-4 bg-neutral-200 dark:bg-neutral-900 md:flex-col md:items-center">
             <article className="flex flex-col gap-6 items-center justify-start w-64 h-auto py-6 bg-white rounded-lg shadow-md dark:bg-neutral-800">
                 <div className="flex flex-col w-full items-center gap-2 pb-6 border-b-[1px] border-neutral-300 dark:border-neutral-700">
                     <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">FREE</span>
@@ -151,7 +151,7 @@ export const DefaultPricing = () => {
 
 export const BorderAccentPricing = () => {
     return (
-        <div className="flex w-full justify-center p-4 pt-6 gap-4 bg-neutral-200 dark:bg-neutral-900">
+        <div className="flex w-full justify-center p-4 pt-6 gap-4 bg-neutral-200 dark:bg-neutral-900 md:flex-col md:items-center">
             <article className="flex flex-col gap-6 items-center justify-start w-64 h-auto py-6 bg-white rounded-lg shadow-md dark:bg-neutral-800">
                 <div className="flex flex-col w-full items-center gap-2 pb-6 border-b-[1px] border-neutral-300 dark:border-neutral-700">
                     <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">STARTER</span>
