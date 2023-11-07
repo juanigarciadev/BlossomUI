@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { BsCheck2Circle } from "react-icons/bs";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
 import { arta, lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -36,7 +35,7 @@ export const CodeBlock = ({ name, code, language }) => {
                 </div>
             </article>
 
-            <SyntaxHighlighter language={language} style={theme === "dark" ? arta : lightfair}> 
+            <SyntaxHighlighter language={language} style={theme === "dark" ? arta : lightfair}>
                 {code}
             </SyntaxHighlighter>
         </section >
