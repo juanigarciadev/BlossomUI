@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
-import { Alt, Ctrl, Shift, Spacebar } from '../../../UI/KBD/Default/SpecialKey'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { BorderAccentPricing, DefaultPricing } from '../../../UI/Pricing/Pricing'
-import Default from '../Buttons/Default'
 
 const BorderAccent = () => {
 
