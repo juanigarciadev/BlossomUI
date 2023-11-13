@@ -4,3 +4,5 @@ Stylish, clean and reusable UI component library made with Tailwind. Open source
 ```
 https://github.com/juanigarciadev/BlossomUI
 ```
+
+Technologies used
