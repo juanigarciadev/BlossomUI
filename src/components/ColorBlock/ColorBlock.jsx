@@ -11,7 +11,7 @@ const ColorBlock = ({ color, number, hex }) => {
             }, 1500)
         }}>
             {tooltip ? (
-                <span className='tooltip h-6 px-4 rounded-lg bg-neutral-200 absolute -top-9 text-xs font-medium z-10 flex items-center dark:bg-neutral-800 dark:darkTooltip'>Copied!</span>
+                <span className='tooltip h-6 px-4 rounded-lg bg-neutral-200 absolute -top-9 text-xs font-medium z-10 flex items-center dark:bg-neutral-800 dark:darkTooltip' role='tooltip'>Copied!</span>
             ) :
                 null}
             <article className='flex flex-col w-16 cursor-pointer lg:w-12 xs:flex-row xs:w-full xs:items-center xs:gap-2 xxs:flex-col xxs:items-start'>
