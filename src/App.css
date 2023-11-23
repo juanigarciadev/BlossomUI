@@ -35,28 +35,6 @@ body {
     animation: sidenavbar .2s ease-in-out;
 }
 
-.tooltip::after {
-    height: 10px;
-    width: 10px;
-    content: '';
-    rotate: 45deg;
-    background-color: #e5e5e5;
-    position: absolute;
-    bottom: -5px;
-    left: 32px;
-}
-
-.darkTooltip::after {
-    height: 10px;
-    width: 10px;
-    content: '';
-    rotate: 45deg;
-    background-color: #262626;
-    position: absolute;
-    bottom: -5px;
-    left: 35px;
-}
-
 @keyframes sidenavbar {
     from {
         transform: translateX(100%);
