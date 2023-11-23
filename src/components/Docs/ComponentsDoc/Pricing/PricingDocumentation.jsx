@@ -5,6 +5,7 @@ import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
 import Pricing from './Default'
 import BorderAccent from './BorderAccent'
+import SizeAccent from './SizeAccent'
 
 const PricingDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -24,6 +25,7 @@ const PricingDocumentation = () => {
                 <div className='flex flex-col pb-16 gap-16'>
                     <Pricing />
                     <BorderAccent />
+                    <SizeAccent />
                 </div>
                 <Footer />
             </section>
