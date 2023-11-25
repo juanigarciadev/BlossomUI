@@ -7,5 +7,5 @@ https://github.com/juanigarciadev/BlossomUI
 
 Technologies used:
 
-[Vite](https://vitejs.dev/)
+[Vite](https://vitejs.dev/)</br>
 [TailwindCSS](https://tailwindcss.com/)
