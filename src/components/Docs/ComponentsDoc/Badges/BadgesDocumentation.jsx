@@ -10,6 +10,7 @@ import Footer from '../../../Footer/Footer'
 import PointyBadges from './Pointy'
 import PointyOutlinedBadges from './PointyOutlined'
 import BadgesWithIcons from './WithIcons'
+import BadgesWithIconsOnly from './IconsOnly'
 
 const BadgesDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -29,6 +30,7 @@ const BadgesDocumentation = () => {
                 <div className='flex flex-col pb-16 gap-16'>
                     <DefaultBadges />
                     <BadgesWithIcons />
+                    <BadgesWithIconsOnly />
                     <OutlinedBadges />
                     <PointyBadges />
                     <PointyOutlinedBadges />
