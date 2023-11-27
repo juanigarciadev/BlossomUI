@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { DefaultButton, GreenButton, PinkButton, PrimaryButton, PurpleButton, RedButton, SecondaryButton, YellowButton } from '../../../UI/Buttons/Normal/Default'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 
 const Default = () => {

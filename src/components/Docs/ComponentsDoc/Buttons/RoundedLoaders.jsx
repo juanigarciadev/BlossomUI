@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { DefaultRoundedButtonLoaders, GreenRoundedButtonLoaders, PinkRoundedButtonLoaders, PrimaryRoundedButtonLoaders, PurpleRoundedButtonLoaders, RedRoundedButtonLoaders, SecondaryRoundedButtonLoaders, YellowRoundedButtonLoaders } from '../../../UI/Buttons/Rounded/Loaders'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 
 const RoundedLoadersButtons = () => {

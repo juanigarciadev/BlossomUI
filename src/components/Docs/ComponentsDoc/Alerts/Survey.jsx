@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { Survey } from '../../../UI/Alerts/Default/Survey'
 

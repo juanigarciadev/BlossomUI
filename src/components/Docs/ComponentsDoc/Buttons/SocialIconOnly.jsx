@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { BiLogoTailwindCss } from 'react-icons/bi'
 import { AppleIcon, FacebookIcon, GithubIcon, GoogleIcon, TwitterIcon } from '../../../UI/Buttons/IconsOnly/Default'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 
 const SocialIconOnly = () => {

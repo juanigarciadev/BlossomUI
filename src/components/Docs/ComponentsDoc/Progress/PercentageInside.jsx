@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { PercentageInsideProgressBar } from '../../../UI/Progress/ProgressBar'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 
 const PercentageInside = () => {

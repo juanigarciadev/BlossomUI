@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { DarkPointy, DefaultPointy, GreenPointy, PinkPointy, PurplePointy, RedPointy, YellowPointy } from '../../../UI/Badges/Normal/Pointy'
 

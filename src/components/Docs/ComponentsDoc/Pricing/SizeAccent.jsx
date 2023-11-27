@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
-import { DefaultPricing, SizeAccentPricing } from '../../../UI/Pricing/Pricing'
+import { SizeAccentPricing } from '../../../UI/Pricing/Pricing'
 const SizeAccent = () => {
 
     const [showCode, setShowCode] = useState(false)

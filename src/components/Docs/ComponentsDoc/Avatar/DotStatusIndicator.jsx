@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { CircularAvatarDoNotDisturbBottom, CircularAvatarDoNotDisturbTop, CircularAvatarOnlineBottom, CircularAvatarOnlineTop, RoundedEdgesAvatar, RoundedEdgesAvatarDoNotDisturbBottom, RoundedEdgesAvatarDoNotDisturbTop, RoundedEdgesAvatarOnlineBottom, RoundedEdgesAvatarOnlineTop, StackedAvatar } from '../../../UI/Avatar/Avatar'
 

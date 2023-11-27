@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { DarkOutlinedRounded, DefaultOutlinedRounded, GreenOutlinedRounded, PinkOutlinedRounded, PurpleOutlinedRounded, RedOutlinedRounded, YellowOutlinedRounded } from '../../../UI/Badges/Rounded/Outlined'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 
 const OutlinedRoundedBadges = () => {

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { BorderAccentPricing, DefaultPricing } from '../../../UI/Pricing/Pricing'

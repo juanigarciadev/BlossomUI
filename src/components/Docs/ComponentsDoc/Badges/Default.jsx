@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { Dark, Default, Green, Pink, Purple, Red, Yellow } from '../../../UI/Badges/Normal/Default'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 
 const DefaultBadges = () => {

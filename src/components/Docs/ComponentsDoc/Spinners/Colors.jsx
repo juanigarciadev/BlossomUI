@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { DefaultSpinner, GreenSpinner, PinkSpinner, PurpleSpinner, RedSpinner, YellowSpinner } from '../../../UI/Spinners/Spinners'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 
 const SpinnerColor = () => {

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
-import { BiCode } from 'react-icons/bi'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { DefaultOutlinedAlert, DefaultOutlinedErrorAlert, DefaultOutlinedSuccessfulAlert, DefaultOutlinedWarningAlert } from '../../../UI/Alerts/Default/DefaultOutlined'
 
