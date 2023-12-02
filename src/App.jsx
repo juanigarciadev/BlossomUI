@@ -29,6 +29,7 @@ import TimelineDocumentation from './components/Docs/ComponentsDoc/Timeline/Time
 import ComponentsSection from './components/ComponentsSection/ComponentsSection'
 import DarkMode from './components/Docs/DarkMode'
 import PricingDocumentation from './components/Docs/ComponentsDoc/Pricing/PricingDocumentation'
+import SurveyDocumentation from './components/Docs/ComponentsDoc/Survey/SurveyDocumentation'
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
             <Route path='/docs/components/rating' element={<RatingDocumentation />} />
             <Route path='/docs/components/skeleton' element={<SkeletonDocumentation />} />
             <Route path='/docs/components/stepper' element={<StepperDocumentation />} />
+            <Route path='/docs/components/survey' element={<SurveyDocumentation />} />
             <Route path='/docs/components/toasts' element={<ToastsDocumentation />} />
             <Route path='/docs/components/timeline' element={<TimelineDocumentation />} />
           </Route>

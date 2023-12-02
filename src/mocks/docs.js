@@ -116,6 +116,11 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Survey",
+        url: "/docs/components/survey",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Timeline",
         url: "/docs/components/timeline",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
