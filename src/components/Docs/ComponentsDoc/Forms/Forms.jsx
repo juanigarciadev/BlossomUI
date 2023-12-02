@@ -20,6 +20,7 @@ const FormsDocumentation = () => {
                     <DocNav />
                 )}
                 <div className='flex flex-col pb-16 gap-16'>
+                    <h3 className='animate-pulse'>Working in...</h3>
                 </div>
                 <Footer />
             </section>

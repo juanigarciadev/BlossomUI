@@ -19,7 +19,8 @@ const SurveyDocumentation = () => {
                 {docNav && (
                     <DocNav />
                 )}
-                <div className='grid grid-cols-2'>
+                <div className='flex flex-col pb-16 gap-16'>
+                    <h3 className='animate-pulse'>Working in...</h3>
                 </div>
                 <Footer />
             </section>
