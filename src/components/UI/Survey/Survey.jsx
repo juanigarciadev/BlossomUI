@@ -1,4 +1,4 @@
-export const Survey = () => {
+export const EmojiRatingSurvey = () => {
     return (
         <article className='flex flex-col gap-2 w-full h-fit relative px-4 py-4 bg-blue-100 rounded-lg dark:bg-blue-900'>
             <span className='absolute select-none text-3xl text-blue-100 -top-6 left-[45%] -rotate-90 dark:text-blue-900'>▶</span>

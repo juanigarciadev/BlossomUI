@@ -3,6 +3,7 @@ import Aside from '../../Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
+import SurveyAlert from './Survey'
 
 const SurveyDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -20,7 +21,7 @@ const SurveyDocumentation = () => {
                     <DocNav />
                 )}
                 <div className='flex flex-col pb-16 gap-16'>
-                    <h3 className='animate-pulse'>Working in...</h3>
+                    <SurveyAlert />
                 </div>
                 <Footer />
             </section>
