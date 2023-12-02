@@ -3,6 +3,7 @@ import Aside from '../../Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
+import Products from './Products'
 
 const CardsDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -19,7 +20,8 @@ const CardsDocumentation = () => {
                 {docNav && (
                     <DocNav />
                 )}
-                <div className='grid grid-cols-2'>
+                <div className='flex flex-col pb-16 gap-16'>
+                    <Products />
                 </div>
                 <Footer />
             </section>
