@@ -35,6 +35,10 @@ body {
     animation: sidenavbar .2s ease-in-out;
 }
 
+.codeblock-transition {
+    animation: codeblockTransition .3s ease-in-out;
+}
+
 @keyframes sidenavbar {
     from {
         transform: translateX(100%);
@@ -42,5 +46,17 @@ body {
 
     to {
         transform: translateX(1);
+    }
+}
+
+@keyframes codeblockTransition {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(1);
+        opacity: 1;
     }
 }

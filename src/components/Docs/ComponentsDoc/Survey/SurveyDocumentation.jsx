@@ -3,7 +3,7 @@ import Aside from '../../Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
-import SurveyAlert from './Survey'
+import EmojiRating from './EmojiRating'
 
 const SurveyDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -21,7 +21,7 @@ const SurveyDocumentation = () => {
                     <DocNav />
                 )}
                 <div className='flex flex-col pb-16 gap-16'>
-                    <SurveyAlert />
+                    <EmojiRating />
                 </div>
                 <Footer />
             </section>

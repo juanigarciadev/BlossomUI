@@ -8,7 +8,7 @@ export const CodeBlock = ({ name, code, language }) => {
     const { theme } = useContext(ThemeContext)
     const [copy, setCopy] = useState(false)
     return (
-        <section className='shadow-md pt-2'>
+        <section className='shadow-md pt-2 codeblock-transition'>
             <article className='flex justify-between items-center w-full min-h-0 bg-corporative rounded-t-lg'>
                 <div className='relative flex items-center bg-[#bd4c86] rounded-tl-lg min-h-0 px-4 py-2'>
                     <span className='cursor-default text-white'>{name}</span>
