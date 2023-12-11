@@ -3,7 +3,7 @@ import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { ProductAddedToast, ProductRemovedToast } from '../../../UI/Toasts/Toasts'
 
-const AddedToast = () => {
+const ProductToast = () => {
 
     const [showCode, setShowCode] = useState(false)
 
@@ -57,4 +57,4 @@ const AddedToast = () => {
     )
 }
 
-export default AddedToast
+export default ProductToast

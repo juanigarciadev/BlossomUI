@@ -3,7 +3,8 @@ import Aside from '../../Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
-import AddedToast from './AddedToast'
+import ProductToast from './ProductToast'
+import ActionToast from './ActionsToast'
 
 const ToastsDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -21,7 +22,8 @@ const ToastsDocumentation = () => {
                     <DocNav />
                 )}
                 <div className='flex flex-col pb-16 gap-16'>
-                    <AddedToast/>
+                    <ActionToast/>
+                    <ProductToast/>
                 </div>
                 <Footer />
             </section>
