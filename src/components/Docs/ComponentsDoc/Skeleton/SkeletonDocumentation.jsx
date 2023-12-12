@@ -3,6 +3,8 @@ import Aside from '../../Aside'
 import { BiChevronDown } from 'react-icons/bi'
 import DocNav from '../../DocNav'
 import Footer from '../../../Footer/Footer'
+import DefaultSkeletonDoc from './Default'
+import ImageSkeletonDoc from './Image'
 
 const SkeletonDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -20,7 +22,8 @@ const SkeletonDocumentation = () => {
                     <DocNav />
                 )}
                 <div className='flex flex-col pb-16 gap-16'>
-                    <h3 className='animate-pulse'>Working in...</h3>
+                    <DefaultSkeletonDoc/>
+                    <ImageSkeletonDoc/>
                 </div>
                 <Footer />
             </section>
