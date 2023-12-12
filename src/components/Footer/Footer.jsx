@@ -44,7 +44,7 @@ const Footer = () => {
                 </article>
             </section>
             <section className='w-full flex justify-center text-sm py-2 rounded-b-lg bg-neutral-200 dark:bg-neutral-700'>
-                <p className='text-center'>&copy; 2023 Blossom UI &#124; All Rights Reserved</p>
+                <p className='text-center text-black dark:text-white'>&copy; 2023 Blossom UI &#124; All Rights Reserved</p>
             </section>
         </footer>
     )
