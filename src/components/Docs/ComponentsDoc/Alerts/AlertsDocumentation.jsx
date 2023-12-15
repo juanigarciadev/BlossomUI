@@ -9,6 +9,7 @@ import DefaultOutlined from './DefaultOutlined'
 import AlertsWithList from './WithList'
 import AlertsWithActions from './WithActions'
 import DarkAlerts from './Dark'
+import BorderAccentAlerts from './BorderAccent'
 
 const AlertsDocumentation = () => {
     const [docNav, setDocNav] = useState(false)
@@ -29,6 +30,7 @@ const AlertsDocumentation = () => {
                     <Default />
                     <AlertsWithIcons />
                     <DefaultOutlined />
+                    <BorderAccentAlerts/>
                     <AlertsWithList />
                     <AlertsWithActions />
                     <DarkAlerts />
