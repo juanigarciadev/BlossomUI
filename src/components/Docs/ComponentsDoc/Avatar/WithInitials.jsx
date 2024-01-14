@@ -7,7 +7,7 @@ const InitialsAvatar = () => {
 
     const [showCode, setShowCode] = useState(false)
 
-    const initialsAvatar = "<div className='relative flex items-center justify-center bg-neutral-200 w-10 h-10 rounded-full dark:bg-neutral-600'>\n    <span className='font-medium text-neutral-600 dark:text-neutral-300'>UI</span>\n</div>"
+    const initialsAvatar = `<div className='relative flex items-center justify-center bg-neutral-200 w-10 h-10 rounded-full dark:bg-neutral-600'>\n    <span className='font-medium text-neutral-600 dark:text-neutral-300'>UI</span>\n</div>`
 
     return (
         <article>

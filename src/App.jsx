@@ -14,7 +14,7 @@ import ProgressDocumentation from './components/Docs/ComponentsDoc/Progress/Prog
 import ToastsDocumentation from './components/Docs/ComponentsDoc/Toasts/ToastsDocumentation'
 import Colors from './components/Docs/Customization/Colors/Colors'
 import AvatarDocumentation from './components/Docs/ComponentsDoc/Avatar/AvatarDocumentation'
-import BannerDocumentation from './components/Docs/ComponentsDoc/Banner/Banner'
+import BannerDocumentation from './components/Docs/ComponentsDoc/Banner/BannerDocumentation'
 import PaginationDocumentation from './components/Docs/ComponentsDoc/Pagination/Pagination'
 import JumbotronDocumentation from './components/Docs/ComponentsDoc/Jumbotron/JumbotronDocumentation'
 import KBDDocumentation from './components/Docs/ComponentsDoc/KBD/KBDDocumentation'

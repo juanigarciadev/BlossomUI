@@ -50,7 +50,7 @@ const Navbar = ({ mobileNavToggle, setMobileNavToggle, moreDocs, setMoreDocs }) 
                     </div>)
                 }
                 <div className='p-4'>
-                    <a href="https://www.buymeacoffee.com/juanigarciadev" target='_blank' className='flex justify-center items-center bg-corporative text-white w-full h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-corporativeHover'>Sponsor</a>
+                    <a href="https://github.com/sponsors/juanigarciadev" target='_blank' className='flex justify-center items-center bg-corporative text-white w-full h-fit text-sm gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-corporativeHover'>Sponsor</a>
                 </div>
             </section>)}
             <Outlet context={[theme]} />

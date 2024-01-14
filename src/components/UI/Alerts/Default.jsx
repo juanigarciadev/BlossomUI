@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const DefaultAlert = () => {
     return (
         <div className='w-full h-fit px-4 py-4 bg-blue-100 rounded-lg dark:bg-blue-900'>
