@@ -21,7 +21,7 @@ const Navbar = ({
   const { theme, handleChangeTheme } = useContext(ThemeContext);
   return (
     <>
-      <header className="w-screen bg-white h-[70px] flex items-center justify-between z-20 fixed py-4 px-64 xl:px-32 md:px-16 sm:px-8 dark:bg-neutral-900 transition-colors duration-300">
+      <header className="w-screen bg-white h-[70px] flex items-center justify-between z-50 fixed py-4 px-64 xl:px-32 md:px-16 sm:px-8 dark:bg-neutral-900 transition-colors duration-300">
         <Link
           className="font-bold text-xl text-neutral-900 dark:text-white"
           to="/"
