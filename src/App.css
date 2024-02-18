@@ -1,62 +1,85 @@
 * {
-    font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 body {
-    overflow-x: hidden;
-    scrollbar-gutter: auto;
-    width: 100vw;
+  overflow-x: hidden;
+  scrollbar-gutter: auto;
+  width: 100vw;
 }
 
 #root {
-    scrollbar-gutter: auto;
-    width: 100vw;
+  scrollbar-gutter: auto;
+  width: 100vw;
 }
 
 .tag {
-    color: #f472b6;
+  color: #f472b6;
 }
 
 .attribute {
-    color: #72a4f4;
-    font-weight: 500;
+  color: #72a4f4;
+  font-weight: 500;
 }
 
 .hideDocs {
-    display: none;
+  display: none;
 }
 
 .showDocs {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .side-navbar {
-    animation: sidenavbar .2s ease-in-out;
+  animation: sidenavbar 0.2s ease-in-out;
 }
 
 .codeblock-transition {
-    animation: codeblockTransition .3s ease-in-out;
+  animation: codeblockTransition 0.3s ease-in-out;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #5d5d5d;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 @keyframes sidenavbar {
-    from {
-        transform: translateX(100%);
-    }
+  from {
+    transform: translateX(100%);
+  }
 
-    to {
-        transform: translateX(1);
-    }
+  to {
+    transform: translateX(1);
+  }
 }
 
 @keyframes codeblockTransition {
-    0% {
-        transform: translateY(100px);
-        opacity: 0;
-    }
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
 
-    100% {
-        transform: translateY(1);
-        opacity: 1;
-    }
+  100% {
+    transform: translateY(1);
+    opacity: 1;
+  }
 }
