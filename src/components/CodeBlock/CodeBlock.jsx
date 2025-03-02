@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import SyntaxHighlighter from "react-syntax-highlighter";
 import { arta, lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { ThemeContext } from "../../context/ThemeContext";
 import { BiCheckCircle, BiCopyAlt } from "react-icons/bi";
