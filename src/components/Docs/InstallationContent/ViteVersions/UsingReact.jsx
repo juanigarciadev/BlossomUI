@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock';
+import CodeBlock from '@codeBlock'
 
 const UsingReact = () => {
     const createVite = 'npm create vite@latest my-project -- --template react\ncd my-project'

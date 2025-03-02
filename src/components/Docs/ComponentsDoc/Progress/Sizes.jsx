@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { DefaultProgressBar, ExtraLargeProgressBar, LargeProgressBar, MediumProgressBar, SmallProgressBar } from '../../../UI/Progress/ProgressBar'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const ProgressSize = () => {

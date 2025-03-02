@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { Apple, Facebook, Github, Google, Twitter } from '../../../UI/Buttons/Normal/Social'
 import { BiLogoTailwindCss } from 'react-icons/bi'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const Social = () => {

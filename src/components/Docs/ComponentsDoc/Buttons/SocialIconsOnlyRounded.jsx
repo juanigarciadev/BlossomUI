@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { BiLogoTailwindCss } from 'react-icons/bi'
 import { AppleIconRounded, FacebookIconRounded, GithubIconRounded, GoogleIconRounded, TwitterIconRounded } from '../../../UI/Buttons/IconsOnly/Rounded'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const SocialIconOnlyRounded = () => {

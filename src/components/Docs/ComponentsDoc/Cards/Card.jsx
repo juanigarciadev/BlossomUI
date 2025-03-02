@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { CodeBlock } from "../../../CodeBlock/CodeBlock";
-import EditInGithub from "../../../EditInGithub/EditInGithub";
 import { DefaultCard } from "../../../UI/Card/Card";
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import { HideCodeIcon, ShowCodeIcon } from '@icons'
 
 const Card = () => {

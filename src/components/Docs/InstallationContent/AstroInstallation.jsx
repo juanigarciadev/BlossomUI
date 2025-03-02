@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock } from '../../CodeBlock/CodeBlock';
+import CodeBlock from '@codeBlock'
 
 const AstroInstallation = () => {
     const createAstro = 'npm create astro@latest my-project\ncd my-project'

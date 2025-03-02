@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { CircularAvatarDoNotDisturbBottom, CircularAvatarDoNotDisturbTop, CircularAvatarOnlineBottom, CircularAvatarOnlineTop, RoundedEdgesAvatar, RoundedEdgesAvatarDoNotDisturbBottom, RoundedEdgesAvatarDoNotDisturbTop, RoundedEdgesAvatarOnlineBottom, RoundedEdgesAvatarOnlineTop, StackedAvatar } from '../../../UI/Avatar/Avatar'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const DotStatusIndicatorAvatar = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock } from '../../CodeBlock/CodeBlock';
+import CodeBlock from '@codeBlock'
 
 const AngularInstallation = () => {
     const createAngular = 'ng new my-project\ncd my-project'

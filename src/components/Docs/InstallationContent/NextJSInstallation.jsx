@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock } from '../../CodeBlock/CodeBlock';
+import CodeBlock from '@codeBlock'
 
 const NextJSInstallation = () => {
     const createNext = 'npx create-next-app@latest my-project --typescript --eslint\ncd my-project'

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { DarkAlertWithIcon, DarkErrorAlertWithIcon, DarkSuccessfulAlertWithIcon, DarkWarningAlertWithIcon } from '../../../UI/Alerts/Dark'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const DarkAlerts = () => {

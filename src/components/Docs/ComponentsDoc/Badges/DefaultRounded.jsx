@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { DarkRounded, DefaultRounded, GreenRounded, PinkRounded, PurpleRounded, RedRounded, YellowRounded } from '../../../UI/Badges/Rounded/Default'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const DefaultRoundedBadges = () => {

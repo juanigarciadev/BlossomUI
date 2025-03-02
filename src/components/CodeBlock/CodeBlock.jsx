@@ -4,7 +4,7 @@ import { arta, lightfair } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { ThemeContext } from "../../context/ThemeContext";
 import { BiCheckCircle, BiCopyAlt } from "react-icons/bi";
 
-export const CodeBlock = ({ name, code, language }) => {
+const CodeBlock = ({ name, code, language }) => {
     const { theme } = useContext(ThemeContext)
     const [copy, setCopy] = useState(false)
     return (
@@ -41,3 +41,5 @@ export const CodeBlock = ({ name, code, language }) => {
         </section >
     )
 }
+
+export default CodeBlock

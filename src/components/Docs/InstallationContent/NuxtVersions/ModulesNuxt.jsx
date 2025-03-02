@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock';
+import CodeBlock from '@codeBlock'
 
 const ModulesNuxt = () => {
     const createNuxt = 'npx nuxi init my-project\ncd my-project'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { BiChevronDown } from 'react-icons/bi'
-import { CodeBlock } from '../CodeBlock/CodeBlock';
+import CodeBlock from '@codeBlock'
 
 const Explanation = () => {
     const buttonCode = `<button className='flex justify-center w-fit h-fit text-sm items-center text-center bg-black text-white gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>Example button</button>`

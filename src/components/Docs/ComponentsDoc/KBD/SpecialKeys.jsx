@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { Alt, Ctrl, Shift, Spacebar } from '../../../UI/KBD/Default/SpecialKey'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const SpecialKeys = () => {

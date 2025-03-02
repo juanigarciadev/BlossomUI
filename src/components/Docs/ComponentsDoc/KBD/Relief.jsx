@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { AltRelief, CtrlRelief, ShiftRelief, SpacebarRelief } from '../../../UI/KBD/Default/ReliefKeys'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const ReliefKeys = () => {

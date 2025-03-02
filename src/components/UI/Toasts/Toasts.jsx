@@ -66,7 +66,7 @@ export const UpdateToasts = () => {
   return (
     <div className='inline-flex items-center gap-4 w-fit h-fit px-4 py-4 bg-blue-600 rounded-lg'>
       <section className="bg-blue-500 rounded p-1">
-        <svg className="text-blue-100 dark:text-blue-100" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="square" stroke-miterlimit="10" stroke-width="40" d="M196 220h64v172m-73 4h138"/><path fill="currentColor" d="M256 160a32 32 0 1 1 32-32a32 32 0 0 1-32 32"/></svg>
+        <svg className="text-blue-100 dark:text-blue-100" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="40" d="M196 220h64v172m-73 4h138"/><path fill="currentColor" d="M256 160a32 32 0 1 1 32-32a32 32 0 0 1-32 32"/></svg>
       </section>
       <span className='text-white'>An update is available</span>
       <section className="inline-flex gap-2">

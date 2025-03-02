@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { BorderAccentPricing } from '../../../UI/Pricing/Pricing'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const BorderAccent = () => {

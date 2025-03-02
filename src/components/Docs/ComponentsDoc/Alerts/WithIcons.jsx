@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { CodeBlock } from '../../../CodeBlock/CodeBlock'
-import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { DefaultAlertWithIcon, DefaultErrorAlertWithIcon, DefaultSuccessfulAlertWithIcon, DefaultWarningAlertWithIcon } from '../../../UI/Alerts/WithIcons'
+import CodeBlock from '@codeBlock'
+import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const AlertsWithIcons = () => {

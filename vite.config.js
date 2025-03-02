@@ -8,6 +8,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@icons': path.resolve(__dirname, 'src/assets/Icons/Icons'),
+      '@codeBlock': path.resolve(__dirname, 'src/components/CodeBlock/CodeBlock'),
+      '@editInGithub': path.resolve(__dirname, 'src/components/EditInGithub/EditInGithub')
     },
   }
 })
