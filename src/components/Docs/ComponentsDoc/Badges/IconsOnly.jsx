@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
 import { ArrowDownBadge, ArrowUpBadge, DiscountBadge, TimeBadge } from '../../../UI/Badges/Normal/IconsOnly'
-import { HideCodeIcon, ShowCodeIcon } from '../../../../assets/Icons/Icons'
+import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const BadgesWithIconsOnly = () => {
 

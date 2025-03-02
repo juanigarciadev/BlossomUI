@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { Dark, Default, Green, Pink, Purple, Red, Yellow } from '../../../UI/Badges/Normal/Default'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
-import { HideCodeIcon, ShowCodeIcon } from '../../../../assets/Icons/Icons'
+import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const DefaultBadges = () => {
 

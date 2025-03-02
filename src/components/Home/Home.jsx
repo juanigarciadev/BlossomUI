@@ -5,7 +5,7 @@ import Explanation from "../Explanation/Explanation";
 import Characteristics from "../Characteristics/Characteristics";
 import ComponentsSection from "../ComponentsSection/ComponentsSection";
 import Footer from "../Footer/Footer";
-import ComponentsExample from "../ComponentsExample/ComponentsExample";
+import HeroComponents from "../HeroComponents/HeroComponents";
 
 const Home = () => {
   useEffect(() => {
@@ -47,7 +47,7 @@ const Home = () => {
             </Link>
           </section>
         </section>
-        <ComponentsExample />
+        <HeroComponents />
       </main>
       <Characteristics />
       <Explanation />

@@ -10,7 +10,7 @@ import { PercentageInsideProgressBar } from '../UI/Progress/ProgressBar'
 import { InformationAvatar, StackedAvatar } from '../UI/Avatar/Avatar'
 import { DefaultSpinner } from '../UI/Spinners/Spinners'
 
-const ComponentsExample = () => {
+const HeroComponents = () => {
     return (
         <section className='flex flex-col gap-4 items-end lg:items-start'>
             <div className='flex flex-wrap justify-end gap-4 lg:justify-start'>
@@ -34,4 +34,4 @@ const ComponentsExample = () => {
     )
 }
 
-export default ComponentsExample
+export default HeroComponents

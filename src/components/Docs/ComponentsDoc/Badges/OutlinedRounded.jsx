@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CodeBlock } from '../../../CodeBlock/CodeBlock'
 import { DarkOutlinedRounded, DefaultOutlinedRounded, GreenOutlinedRounded, PinkOutlinedRounded, PurpleOutlinedRounded, RedOutlinedRounded, YellowOutlinedRounded } from '../../../UI/Badges/Rounded/Outlined'
 import EditInGithub from '../../../EditInGithub/EditInGithub'
-import { HideCodeIcon, ShowCodeIcon } from '../../../../assets/Icons/Icons'
+import {HideCodeIcon, ShowCodeIcon} from '@icons'
 
 const OutlinedRoundedBadges = () => {
 
