@@ -55,16 +55,16 @@ export const components = [
         url: "/docs/components/cards",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
-    {
-        name: "Footer",
-        url: "/docs/components/footer",
-        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
-    },
-    {
-        name: "Forms",
-        url: "/docs/components/forms",
-        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
-    },
+    // {
+    //     name: "Footer",
+    //     url: "/docs/components/footer",
+    //     img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    // },
+    // {
+    //     name: "Forms",
+    //     url: "/docs/components/forms",
+    //     img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    // },
     {
         name: "Jumbotron",
         url: "/docs/components/jumbotron",
@@ -75,16 +75,16 @@ export const components = [
         url: "/docs/components/kbd",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
-    {
-        name: "Modal",
-        url: "/docs/components/modal",
-        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
-    },
-    {
-        name: "Pagination",
-        url: "/docs/components/pagination",
-        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
-    },
+    // {
+    //     name: "Modal",
+    //     url: "/docs/components/modal",
+    //     img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    // },
+    // {
+    //     name: "Pagination",
+    //     url: "/docs/components/pagination",
+    //     img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    // },
     {
         name: "Pricing",
         url: "/docs/components/pricing",
@@ -110,21 +110,21 @@ export const components = [
         url: "/docs/components/spinners",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
-    {
-        name: "Stepper",
-        url: "/docs/components/stepper",
-        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
-    },
+    // {
+    //     name: "Stepper",
+    //     url: "/docs/components/stepper",
+    //     img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    // },
     {
         name: "Survey",
         url: "/docs/components/survey",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
-    {
-        name: "Timeline",
-        url: "/docs/components/timeline",
-        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
-    },
+    // {
+    //     name: "Timeline",
+    //     url: "/docs/components/timeline",
+    //     img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    // },
     {
         name: "Toasts",
         url: "/docs/components/toasts",
