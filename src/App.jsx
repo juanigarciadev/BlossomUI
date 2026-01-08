@@ -30,6 +30,7 @@ import ComponentsSection from './components/ComponentsSection/ComponentsSection'
 import DarkMode from './components/Docs/DarkMode'
 import PricingDocumentation from './components/Docs/ComponentsDoc/Pricing/PricingDocumentation'
 import SurveyDocumentation from './components/Docs/ComponentsDoc/Survey/SurveyDocumentation'
+import DocsLayout from './components/Docs/DocsLayout'
 
 function App() {
 
@@ -40,32 +41,34 @@ function App() {
           <Route element={<NavbarContainer />}>
             <Route path='/' element={<Home />} />
             <Route path='/components' element={<ComponentsSection />} />
-            <Route path='/docs/getting-started/introduction' element={<Introduction />} />
-            <Route path='/docs/getting-started/installation' element={<Installation />} />
-            <Route path='/docs/getting-started/changelog' element={<Changelog />} />
-            <Route path='/docs/customization/dark-mode' element={<DarkMode />} />
-            <Route path='/docs/customization/colors' element={<Colors />} />
-            <Route path='/docs/components/avatar' element={<AvatarDocumentation />} />
-            <Route path='/docs/components/buttons' element={<Buttons />} />
-            <Route path='/docs/components/badges' element={<BadgesDocumentation />} />
-            <Route path='/docs/components/banner' element={<BannerDocumentation />} />
-            <Route path='/docs/components/spinners' element={<SpinnersDocumentation />} />
-            <Route path='/docs/components/cards' element={<CardsDocumentation />} />
-            <Route path='/docs/components/pagination' element={<PaginationDocumentation />} />
-            <Route path='/docs/components/pricing' element={<PricingDocumentation />} />
-            <Route path='/docs/components/progress' element={<ProgressDocumentation />} />
-            <Route path='/docs/components/jumbotron' element={<JumbotronDocumentation />} />
-            <Route path='/docs/components/kbd' element={<KBDDocumentation />} />
-            <Route path='/docs/components/alerts' element={<AlertsDocumentation />} />
-            <Route path='/docs/components/footer' element={<FooterDocumentation />} />
-            <Route path='/docs/components/forms' element={<FormsDocumentation />} />
-            <Route path='/docs/components/modal' element={<ModalDocumentation />} />
-            <Route path='/docs/components/rating' element={<RatingDocumentation />} />
-            <Route path='/docs/components/skeleton' element={<SkeletonDocumentation />} />
-            <Route path='/docs/components/stepper' element={<StepperDocumentation />} />
-            <Route path='/docs/components/survey' element={<SurveyDocumentation />} />
-            <Route path='/docs/components/toasts' element={<ToastsDocumentation />} />
-            <Route path='/docs/components/timeline' element={<TimelineDocumentation />} />
+            <Route path='/docs' element={<DocsLayout />}>
+              <Route path='/docs/getting-started/introduction' element={<Introduction />} />
+              <Route path='/docs/getting-started/installation' element={<Installation />} />
+              <Route path='/docs/getting-started/changelog' element={<Changelog />} />
+              <Route path='/docs/customization/dark-mode' element={<DarkMode />} />
+              <Route path='/docs/customization/colors' element={<Colors />} />
+              <Route path='/docs/components/avatar' element={<AvatarDocumentation />} />
+              <Route path='/docs/components/buttons' element={<Buttons />} />
+              <Route path='/docs/components/badges' element={<BadgesDocumentation />} />
+              <Route path='/docs/components/banner' element={<BannerDocumentation />} />
+              <Route path='/docs/components/spinners' element={<SpinnersDocumentation />} />
+              <Route path='/docs/components/cards' element={<CardsDocumentation />} />
+              <Route path='/docs/components/pagination' element={<PaginationDocumentation />} />
+              <Route path='/docs/components/pricing' element={<PricingDocumentation />} />
+              <Route path='/docs/components/progress' element={<ProgressDocumentation />} />
+              <Route path='/docs/components/jumbotron' element={<JumbotronDocumentation />} />
+              <Route path='/docs/components/kbd' element={<KBDDocumentation />} />
+              <Route path='/docs/components/alerts' element={<AlertsDocumentation />} />
+              <Route path='/docs/components/footer' element={<FooterDocumentation />} />
+              <Route path='/docs/components/forms' element={<FormsDocumentation />} />
+              <Route path='/docs/components/modal' element={<ModalDocumentation />} />
+              <Route path='/docs/components/rating' element={<RatingDocumentation />} />
+              <Route path='/docs/components/skeleton' element={<SkeletonDocumentation />} />
+              <Route path='/docs/components/stepper' element={<StepperDocumentation />} />
+              <Route path='/docs/components/survey' element={<SurveyDocumentation />} />
+              <Route path='/docs/components/toasts' element={<ToastsDocumentation />} />
+              <Route path='/docs/components/timeline' element={<TimelineDocumentation />} />
+            </Route>
           </Route>
         </Routes>
       </ThemeContextProvider>

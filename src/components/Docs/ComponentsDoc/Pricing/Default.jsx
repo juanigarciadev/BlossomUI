@@ -15,7 +15,7 @@ const Pricing = () => {
     return (
         <article>
             <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Default</h3>
+                <h3 className='text-lg font-medium hover:underline hover:cursor-pointer w-fit'>Default</h3>
                 <p className='dark:text-neutral-300'>Use these cards to give the user a subscription option.</p>
             </div>
             <div className='flex gap-2 pb-2 select-none lg:flex-col'>

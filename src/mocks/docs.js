@@ -14,10 +14,10 @@ export const introduction = [
 ];
 
 export const customization = [
-    {
-        name: "Dark mode",
-        url: "/docs/customization/dark-mode",
-    },
+    // {
+    //     name: "Dark mode",
+    //     url: "/docs/customization/dark-mode",
+    // },
     {
         name: "Colors",
         url: "/docs/customization/colors",
