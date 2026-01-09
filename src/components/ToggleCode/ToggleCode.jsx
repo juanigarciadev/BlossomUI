@@ -7,7 +7,7 @@ const showCodeIcon = <svg xmlns="http://www.w3.org/2000/svg" width="20" height="
 const ToggleCode = (showCode, setShowCode, editInGithubUrl) => {
     return(
         <div className='flex pb-2 gap-2 select-none lg:flex-col'>
-                <button className='bg-neutral-200 px-5 py-3 rounded-lg dark:bg-neutral-800 lg:w-full lg:flex lg:justify-center' onClick={() => setShowCode(!showCode)}>{showCode ? <div className='flex items-center gap-1'>{hideCodeIcon}<span>Hide code</span></div> : <div className='flex items-center gap-1'>{showCodeIcon}<span>Show code</span></div>}</button>
+                <button className='bg-neutral-200 px-5 py-3 rounded-lg dark:bg-neutral-800 hover:bg-neutral-400 dark:hover:bg-neutral-600 duration-200 lg:w-full lg:flex lg:justify-center' onClick={() => setShowCode(!showCode)}>{showCode ? <div className='flex items-center gap-1'>{showCodeIcon}<span>Show code</span></div> : <div className='flex items-center gap-1'>{hideCodeIcon}<span>Hide code</span></div>}</button>
                 <EditInGithub url={editInGithubUrl} />
             </div>
     )

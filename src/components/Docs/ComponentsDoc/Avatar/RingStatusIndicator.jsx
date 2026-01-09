@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { CircularAvatarDoNotDisturbBottom, CircularAvatarDoNotDisturbTop, CircularAvatarOnlineBottom, CircularAvatarOnlineTop, RoundedEdgesAvatar, RoundedEdgesAvatarDoNotDisturbBottom, RoundedEdgesAvatarDoNotDisturbTop, RoundedEdgesAvatarOnlineBottom, RoundedEdgesAvatarOnlineTop, StackedAvatar } from '../../../UI/Avatar/Avatar'
+import { CircularAvatarDoNotDisturbBottom, CircularAvatarDoNotDisturbTop, CircularAvatarOnlineBottom, CircularAvatarOnlineTop, CircularRingAvatarBusy, CircularRingAvatarOffline, CircularRingAvatarOnline, RoundedEdgesAvatar, RoundedEdgesAvatarDoNotDisturbBottom, RoundedEdgesAvatarDoNotDisturbTop, RoundedEdgesAvatarOnlineBottom, RoundedEdgesAvatarOnlineTop, RoundedEdgesRingAvatarBusy, RoundedEdgesRingAvatarOffline, RoundedEdgesRingAvatarOnline, StackedAvatar } from '../../../UI/Avatar/Avatar'
 import CodeBlock from '@codeBlock'
 import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 import CompVersionTitle from '../../../CompVersionTitle/CompVersionTitle'
 
-const DotStatusIndicatorAvatar = () => {
+const RingStatusIndicatorAvatar = () => {
 
     const [showCode, setShowCode] = useState(false)
 
@@ -15,7 +15,7 @@ const DotStatusIndicatorAvatar = () => {
 
     return (
         <article>
-            <CompVersionTitle title={"Dot status indicator"} paragraph={"Shows the user's activity status with a colored circle in the avatar."}/>
+            <CompVersionTitle title={"Ring status indicator"} paragraph={"Shows the user's activity status with a colored ring outlining the avatar."}/>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>
                 <button className='bg-neutral-200 px-5 py-3 rounded-lg dark:bg-neutral-800 lg:w-full lg:flex lg:justify-center' onClick={() => setShowCode(!showCode)}>{showCode ? <div className='flex items-center gap-1'><HideCodeIcon/><span>Hide code</span></div> : <div className='flex items-center gap-1'><ShowCodeIcon/><span>Show code</span></div>}</button>
                 <EditInGithub url={githubUrl} />
@@ -25,33 +25,29 @@ const DotStatusIndicatorAvatar = () => {
                     <div>
                         <section className='flex flex-col flex-wrap rounded-lg gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
                             <div className='flex gap-4'>
-                                <CircularAvatarOnlineTop />
-                                <CircularAvatarOnlineBottom />
-                                <CircularAvatarDoNotDisturbTop />
-                                <CircularAvatarDoNotDisturbBottom />
+                                <CircularRingAvatarOnline />
+                                <CircularRingAvatarOffline />
+                                <CircularRingAvatarBusy />
                             </div>
                             <div className='flex gap-4'>
-                                <RoundedEdgesAvatarOnlineTop />
-                                <RoundedEdgesAvatarOnlineBottom />
-                                <RoundedEdgesAvatarDoNotDisturbTop />
-                                <RoundedEdgesAvatarDoNotDisturbBottom />
+                                <RoundedEdgesRingAvatarOnline />
+                                <RoundedEdgesRingAvatarOffline />
+                                <RoundedEdgesRingAvatarBusy />
                             </div>
                         </section>
                         <CodeBlock name={"Dot status indicator"} code={circularAvatar} language={"javascript"} />
                     </div>
                     :
-                    <section className='flex flex-col flex-wrap rounded-lg gap-1 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
+                    <section className='flex flex-col flex-wrap rounded-lg gap-3 p-4 bg-white border border-neutral-200 w-full dark:bg-[#222222] dark:border-neutral-700'>
                         <div className='flex gap-4'>
-                            <CircularAvatarOnlineTop />
-                            <CircularAvatarOnlineBottom />
-                            <CircularAvatarDoNotDisturbTop />
-                            <CircularAvatarDoNotDisturbBottom />
+                            <CircularRingAvatarOnline />
+                            <CircularRingAvatarOffline />
+                            <CircularRingAvatarBusy />
                         </div>
                         <div className='flex gap-4'>
-                            <RoundedEdgesAvatarOnlineTop />
-                            <RoundedEdgesAvatarOnlineBottom />
-                            <RoundedEdgesAvatarDoNotDisturbTop />
-                            <RoundedEdgesAvatarDoNotDisturbBottom />
+                            <RoundedEdgesRingAvatarOnline />
+                            <RoundedEdgesRingAvatarOffline />
+                            <RoundedEdgesRingAvatarBusy />
                         </div>
                     </section>}
 
@@ -60,4 +56,4 @@ const DotStatusIndicatorAvatar = () => {
     )
 }
 
-export default DotStatusIndicatorAvatar
+export default RingStatusIndicatorAvatar

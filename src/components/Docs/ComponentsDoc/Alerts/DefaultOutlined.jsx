@@ -3,6 +3,7 @@ import { DefaultOutlinedAlert, DefaultOutlinedErrorAlert, DefaultOutlinedSuccess
 import CodeBlock from '@codeBlock'
 import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
+import CompVersionTitle from '../../../CompVersionTitle/CompVersionTitle'
 
 const DefaultOutlined = () => {
 
@@ -14,10 +15,7 @@ const DefaultOutlined = () => {
 
     return (
         <article>
-            <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Default outlined</h3>
-                <p className='dark:text-neutral-300'>Use default alerts with multiple colors to correct user inputs.</p>
-            </div>
+            <CompVersionTitle title={"Default outlined"} paragraph={"Use default alerts with multiple colors to correct user inputs."}/>
             <div className='flex gap-2 pb-2 select-none lg:flex-col'>
                 <button className='bg-neutral-200 px-5 py-3 rounded-lg dark:bg-neutral-800 lg:w-full lg:flex lg:justify-center' onClick={() => setShowCode(!showCode)}>{showCode ? <div className='flex items-center gap-1'><HideCodeIcon/><span>Hide code</span></div> : <div className='flex items-center gap-1'><ShowCodeIcon/><span>Show code</span></div>}</button>
                 <EditInGithub url={githubUrl} />

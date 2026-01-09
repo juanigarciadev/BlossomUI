@@ -82,6 +82,54 @@ export const RoundedEdgesAvatarDoNotDisturbBottom = () => {
     )
 }
 
+export const CircularRingAvatarOnline = () => {
+    return (
+        <div className="relative">
+            <img className='bg-neutral-200 w-10 h-10 rounded-full ring-2 ring-offset-1 ring-green-600' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
+        </div>
+    )
+}
+
+export const CircularRingAvatarOffline = () => {
+    return (
+        <div className="relative">
+            <img className='bg-neutral-200 w-10 h-10 rounded-full ring-2 ring-offset-1 ring-red-600' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
+        </div>
+    )
+}
+
+export const CircularRingAvatarBusy = () => {
+    return (
+        <div className="relative">
+            <img className='bg-neutral-200 w-10 h-10 rounded-full ring-2 ring-offset-1 ring-yellow-500' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
+        </div>
+    )
+}
+
+export const RoundedEdgesRingAvatarOnline = () => {
+    return (
+        <div className="relative">
+            <img className='bg-neutral-200 w-10 h-10 rounded-lg ring-2 ring-offset-1 ring-green-600' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
+        </div>
+    )
+}
+
+export const RoundedEdgesRingAvatarOffline = () => {
+    return (
+        <div className="relative">
+            <img className='bg-neutral-200 w-10 h-10 rounded-lg ring-2 ring-offset-1 ring-red-600' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
+        </div>
+    )
+}
+
+export const RoundedEdgesRingAvatarBusy = () => {
+    return (
+        <div className="relative">
+            <img className='bg-neutral-200 w-10 h-10 rounded-lg ring-2 ring-offset-1 ring-yellow-500' src='https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-1_mqb6ut.jpg' alt="Circular avatar"></img>
+        </div>
+    )
+}
+
 export const StackedAvatar = () => {
     return (
         <div className='flex -space-x-4'>

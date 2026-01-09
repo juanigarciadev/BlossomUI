@@ -3,6 +3,7 @@ import { StackedAvatar } from '../../../UI/Avatar/Avatar'
 import CodeBlock from '@codeBlock'
 import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
+import CompVersionTitle from '../../../CompVersionTitle/CompVersionTitle'
 
 const Stacked = () => {
 
@@ -14,10 +15,7 @@ const Stacked = () => {
 
     return (
         <article>
-            <div className='pb-4'>
-                <h3 className='text-lg font-medium'>Stacked</h3>
-                <p className='dark:text-neutral-300'>Use the stacked variant to display a group of users.</p>
-            </div>
+            <CompVersionTitle title={"Stacked"} paragraph={"Use the stacked variant to display a group of users."}/>
             <div className='flex pb-2 gap-2 select-none lg:flex-col'>
                 <button className='bg-neutral-200 px-5 py-3 rounded-lg dark:bg-neutral-800 lg:w-full lg:flex lg:justify-center' onClick={() => setShowCode(!showCode)}>{showCode ? <div className='flex items-center gap-1'><HideCodeIcon/><span>Hide code</span></div> : <div className='flex items-center gap-1'><ShowCodeIcon/><span>Show code</span></div>}</button>
                 <EditInGithub url={githubUrl} />
