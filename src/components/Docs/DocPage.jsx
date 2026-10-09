@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import DocNav from './DocNav'
 import Footer from '../Footer/Footer'
+import { Appear, FadeIn } from '../Motion/Motion'
 import { introduction, customization, components } from '../../mocks/docs'
 
 const allPages = [
@@ -25,18 +26,17 @@ const DocPage = ({ title, description, children }) => {
 
     // Index of the variants on the page, built from the headings CompVersionTitle renders.
     useEffect(() => {
-        const headings = content.current?.querySelectorAll('h3[id]') ?? []
+        const headings = content.current?.querySelectorAll('h2[id]') ?? []
         setSections([...headings].map((h) => ({ id: h.id, label: h.textContent })))
     }, [pathname, children])
 
     useEffect(() => {
-        document.title = `${title} - Blossom UI`
         setDocNav(false)
-    }, [title, pathname])
+    }, [pathname])
 
     return (
         <div className='w-full min-w-0 relative pl-8 pt-4 lg:pl-0 dark:text-white'>
-            <div className='relative mb-10 border-b border-neutral-200 pb-8 dark:border-neutral-800'>
+            <Appear className='relative z-20 mb-10 border-b border-neutral-200 pb-8 dark:border-neutral-800'>
                 {current && <span className='inline-block mb-3 rounded-full border border-corporative/40 bg-corporative/10 px-3 py-1 text-xs font-medium text-corporativeHover dark:text-corporative'>{current.group}</span>}
                 <div className='flex gap-4 items-center'>
                     <h1 className='text-5xl font-bold tracking-tight text-neutral-800 dark:text-white xs:text-4xl'>{title}</h1>
@@ -66,12 +66,12 @@ const DocPage = ({ title, description, children }) => {
                     </nav>
                 )}
                 {docNav && <DocNav />}
-            </div>
+            </Appear>
 
             <div ref={content} className='flex flex-col pb-16 gap-16'>{children}</div>
 
             {current && (prev || next) && (
-                <nav aria-label='Pagination' className='grid grid-cols-2 gap-4 pb-4 sm:grid-cols-1'>
+                <FadeIn as='nav' aria-label='Pagination' className='grid grid-cols-2 gap-4 pb-4 sm:grid-cols-1'>
                     {prev ? (
                         <Link to={prev.url} className='group flex flex-col gap-1 p-4 rounded-xl border border-neutral-200 hover:border-corporative duration-200 dark:border-neutral-700 dark:hover:border-corporative'>
                             <span className='flex items-center text-sm text-neutral-500'><ChevronLeft size={18} />Previous</span>
@@ -84,7 +84,7 @@ const DocPage = ({ title, description, children }) => {
                             <span className='font-medium group-hover:text-corporative duration-200'>{next.name}</span>
                         </Link>
                     )}
-                </nav>
+                </FadeIn>
             )}
             <Footer />
         </div>
