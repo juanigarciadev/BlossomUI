@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { Search, Menu, Sun, Moon, X, Heart } from "lucide-react";
@@ -137,7 +137,9 @@ const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
           </aside>
         </>
       )}
-      <Outlet context={[theme]} />
+      <Suspense fallback={<div className="min-h-screen w-full" role="status" aria-label="Loading page" />}>
+        <Outlet context={[theme]} />
+      </Suspense>
     </>
   );
 };

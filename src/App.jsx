@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import NavbarContainer from './components/Navbar/NavbarContainer'
@@ -37,15 +37,12 @@ const SurveyDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/S
 const TimelineDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Timeline/Timeline'))
 const ToastsDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Toasts/ToastsDocumentation'))
 
-const Loading = () => <div className='min-h-screen w-full' role='status' aria-label='Loading page' />
-
 function App() {
 
   return (
     <BrowserRouter>
       <ThemeContextProvider>
         <RouteSeo />
-        <Suspense fallback={<Loading />}>
           <Routes>
             <Route element={<NavbarContainer />}>
               <Route path='/' element={<Home />} />
@@ -81,7 +78,6 @@ function App() {
               <Route path='*' element={<NotFound />} />
             </Route>
           </Routes>
-        </Suspense>
       </ThemeContextProvider>
     </BrowserRouter>
   )

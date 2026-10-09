@@ -1,6 +1,6 @@
 import Aside from './Aside'
 import { Outlet, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 
 const DocsLayout = () => {
     const { pathname } = useLocation()
@@ -18,7 +18,9 @@ const DocsLayout = () => {
             <Aside />
 
             <main className='relative z-10 min-w-0 flex-1 ml-60 pt-4 lg:ml-0 lg:w-full lg:pt-[70px]'>
-                <Outlet />
+                <Suspense fallback={<div className='min-h-screen w-full' role='status' aria-label='Loading page' />}>
+                    <Outlet />
+                </Suspense>
             </main>
         </div>
     )
