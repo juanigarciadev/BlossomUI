@@ -1,6 +1,6 @@
 ![BlossomUI](https://res.cloudinary.com/diruiumfk/image/upload/v1724003620/blossomui_wcxsqc.png)
 
-**BlossomUI** is a library of open source, easily copyable and usable components made with TailwindCSS. This project seeks to help anyone who wants to follow a design scheme without breaking their head too much (because someone has already broken it before). Its use is completely free and non-profit.
+**BlossomUI** is a library of open source React components written in TypeScript and styled with TailwindCSS. Each component is a single file with typed props (and React hooks where they make sense) that you copy into your project. This project seeks to help anyone who wants to follow a design scheme without breaking their head too much (because someone has already broken it before). Its use is completely free and non-profit.
 
 **Fast clonation**
 ```

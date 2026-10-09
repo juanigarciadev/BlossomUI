@@ -3,10 +3,11 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="ico" href="./cherry-blossom.ico" />
+  <link rel="icon" type="image/x-icon" href="./cherry-blossom.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 
   <script>
@@ -15,7 +16,29 @@
       if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
     } catch (e) {}
   </script>
-  <title>Blossom UI - Components made with Tailwind</title>
+
+  <!-- SEO. The build writes the right values of these tags into one html file per route. -->
+  <title>Blossom UI - React components made with Tailwind CSS</title>
+  <meta name="description" content="Blossom UI is a free and open source library of React components written in TypeScript and styled with Tailwind CSS. Copy a single file into your project: buttons, forms, modals, selects, toasts, pagination and more, all with dark mode and typed props." />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="author" content="Juan Ignacio García" />
+  <meta name="keywords" content="react components, tailwind css components, typescript, ui library, copy and paste components, open source, dark mode, react hooks" />
+  <meta name="theme-color" content="#f472b6" />
+  <link rel="canonical" href="https://blossomui.vercel.app" />
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="Blossom UI for language models" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Blossom UI" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Blossom UI - React components made with Tailwind CSS" />
+  <meta property="og:description" content="Free and open source React components written in TypeScript and styled with Tailwind CSS. Copy a single file into your project." />
+  <meta property="og:url" content="https://blossomui.vercel.app" />
+  <meta property="og:image" content="https://res.cloudinary.com/diruiumfk/image/upload/v1724003620/blossomui_wcxsqc.png" />
+  <meta property="og:image:alt" content="Blossom UI, React components made with Tailwind CSS" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blossom UI - React components made with Tailwind CSS" />
+  <meta name="twitter:description" content="Free and open source React components written in TypeScript and styled with Tailwind CSS." />
+  <meta name="twitter:image" content="https://res.cloudinary.com/diruiumfk/image/upload/v1724003620/blossomui_wcxsqc.png" />
 </head>
 
 <body class="dark:bg-neutral-900 transition-colors duration-300">
