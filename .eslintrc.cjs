@@ -17,4 +17,16 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
+      extends: ['plugin:@typescript-eslint/recommended'],
+      rules: {
+        'react/prop-types': 'off',
+        'react-refresh/only-export-components': 'off',
+      },
+    },
+  ],
 }
