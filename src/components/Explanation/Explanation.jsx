@@ -1,24 +1,30 @@
-import React from 'react'
 import { ChevronDown } from 'lucide-react'
 import CodeBlock from '@codeBlock'
+import { Button } from '../UI/Buttons/Button'
+import { FadeIn } from '../Motion/Motion'
+
+const usageCode = `import { Button } from './components/ui/Button'
+
+export default function App() {
+  return <Button color="primary">Example button</Button>
+}`
 
 const Explanation = () => {
-    const buttonCode = `<button className='flex justify-center w-fit h-fit text-sm items-center text-center bg-black text-white gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>Example button</button>`
     return (
-        <div className='grid grid-cols-2 w-full items-center gap-8 pt-24 pb-24 lg:flex lg:flex-col-reverse lg:gap-12 lg:pt-16 lg:pb-0' >
-            <section>
-                <CodeBlock name={"Button"} code={buttonCode} language={"javascript"} />
-                <section className="flex justify-center w-full">
+        <div className='grid grid-cols-2 w-full items-center gap-8 pt-24 pb-24 lg:flex lg:flex-col-reverse lg:items-stretch lg:gap-12 lg:pt-16 lg:pb-0'>
+            <FadeIn as='section' className='min-w-0'>
+                <CodeBlock name='App.tsx' code={usageCode} language='tsx' />
+                <div className='flex w-full justify-center'>
                     <ChevronDown size={30} className='my-4 dark:text-white' />
-                </section>
-                <section className='flex justify-center'>
-                    <button className='flex justify-center w-fit h-fit text-sm items-center text-center bg-black text-white gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>Example button</button>
-                </section>
-            </section >
-            <section className='text-right lg:text-left'>
-                <h3 className='text-6xl font-bold text-neutral-800 tracking-tight dark:text-white'>Extremely <span className='text-corporative'>easy</span> to use. Just <span className='text-corporative'>copy</span> and <span className='text-corporative'>paste</span>.</h3>
-            </section>
-        </div >
+                </div>
+                <div className='flex justify-center'>
+                    <Button color='primary'>Example button</Button>
+                </div>
+            </FadeIn>
+            <FadeIn as='section' delay={0.05} className='min-w-0 text-right lg:text-left'>
+                <h2 className='text-6xl font-bold text-neutral-800 tracking-tight dark:text-white xs:text-5xl'>Extremely <span className='text-corporative'>easy</span> to use. Just <span className='text-corporative'>copy</span> and <span className='text-corporative'>paste</span>.</h2>
+            </FadeIn>
+        </div>
     )
 }
 

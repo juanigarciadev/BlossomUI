@@ -156,6 +156,66 @@ const skeletons = {
             ))}
         </div>
     ),
+    Footer: () => (
+        <div className='flex flex-col w-full gap-3 p-3 rounded-lg border border-neutral-300 dark:border-neutral-700'>
+            <div className='flex justify-between gap-3'>
+                <div className={`h-3 w-16 ${bar}`} />
+                {[0, 1, 2].map((i) => <Lines key={i} widths={['36px', '28px', '32px']} />)}
+            </div>
+            <div className='h-px w-full bg-neutral-300 dark:bg-neutral-700' />
+            <Lines widths={['90px']} className='items-center self-center' />
+        </div>
+    ),
+    Forms: () => (
+        <div className='flex flex-col w-full gap-3'>
+            <Lines widths={['48px']} />
+            <div className='h-9 w-full rounded-lg border-2 border-corporative' />
+            <div className='flex items-center gap-2'>
+                <div className={`h-4 w-8 ${accent} rounded-full`} />
+                <Lines widths={['70px']} />
+            </div>
+        </div>
+    ),
+    Modal: () => (
+        <div className='flex flex-col w-4/5 gap-3 p-3 rounded-lg bg-white shadow-lg dark:bg-neutral-800'>
+            <div className='flex items-center justify-between'>
+                <div className={`h-3 w-20 ${bar}`} />
+                <div className={`w-4 h-4 ${bar}`} />
+            </div>
+            <Lines widths={['100%', '75%']} />
+            <div className='flex justify-end gap-2'>
+                <div className={`h-6 w-12 rounded-md ${block}`} />
+                <div className={`h-6 w-12 rounded-md ${accent}`} />
+            </div>
+        </div>
+    ),
+    Pagination: () => (
+        <div className='flex items-center gap-1'>
+            {[0, 1, 2, 3, 4].map((i) => (
+                <div key={i} className={`w-8 h-8 rounded-lg ${i === 2 ? accent : block}`} />
+            ))}
+        </div>
+    ),
+    Stepper: () => (
+        <div className='flex items-center w-full'>
+            {[0, 1, 2].map((i) => (
+                <div key={i} className={`flex items-center ${i < 2 ? 'flex-1' : ''}`}>
+                    <div className={`w-7 h-7 shrink-0 rounded-full ${i === 0 ? accent : i === 1 ? 'border-2 border-corporative' : bar}`} />
+                    {i < 2 && <div className={`h-0.5 flex-1 mx-1 ${i === 0 ? accent : bar}`} />}
+                </div>
+            ))}
+        </div>
+    ),
+    Timeline: () => (
+        <div className='flex flex-col gap-4 border-l border-neutral-300 pl-4 dark:border-neutral-700'>
+            {[accent, bar, bar].map((c, i) => (
+                <div key={i} className='relative'>
+                    <div className={`absolute -left-[21px] top-0.5 w-2.5 h-2.5 rounded-full ${c}`} />
+                    <Lines widths={['90px', '130px']} />
+                </div>
+            ))}
+        </div>
+    ),
 }
 
 const ComponentSkeleton = ({ name }) => {

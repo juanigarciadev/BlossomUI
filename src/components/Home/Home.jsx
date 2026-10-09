@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { ArrowRight, Sparkles, Copy, Moon, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 import Explanation from "../Explanation/Explanation";
@@ -7,6 +6,7 @@ import ComponentsSection from "../ComponentsSection/ComponentsSection";
 import Footer from "../Footer/Footer";
 import HeroComponents from "../HeroComponents/HeroComponents";
 import Marquee from "./Marquee";
+import { Appear, FadeIn } from "../Motion/Motion";
 import CallToAction from "./CallToAction";
 import { components } from "../../mocks/docs";
 
@@ -19,9 +19,6 @@ const stats = [
 ];
 
 const Home = () => {
-  useEffect(() => {
-    document.title = "Blossom UI - Components made with Tailwind";
-  }, []);
   return (
     <>
       {/* Decorative glow behind the hero */}
@@ -31,7 +28,7 @@ const Home = () => {
       </div>
 
       <main className="relative z-10 grid grid-cols-2 items-center gap-8 pt-52 lg:flex lg:flex-col lg:items-start lg:gap-12 lg:pt-32">
-        <section className="fade-up flex flex-col gap-6">
+        <Appear as="section" className="flex flex-col gap-6">
           <span className="flex items-center gap-2 font-medium h-fit w-fit text-sm px-4 py-2 rounded-full border border-corporative/40 bg-corporative/10 text-corporativeHover cursor-default dark:text-corporative">
             <Sparkles size={14} />
             Now with dark mode
@@ -70,11 +67,13 @@ const Home = () => {
               </div>
             ))}
           </dl>
-        </section>
+        </Appear>
         <HeroComponents />
       </main>
 
-      <Marquee />
+      <FadeIn>
+        <Marquee />
+      </FadeIn>
       <Characteristics />
       <Explanation />
       <ComponentsSection />
