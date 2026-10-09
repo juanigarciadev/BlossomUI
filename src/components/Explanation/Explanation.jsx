@@ -1,5 +1,5 @@
 import React from 'react'
-import { BiChevronDown } from 'react-icons/bi'
+import { ChevronDown } from 'lucide-react'
 import CodeBlock from '@codeBlock'
 
 const Explanation = () => {
@@ -9,7 +9,7 @@ const Explanation = () => {
             <section>
                 <CodeBlock name={"Button"} code={buttonCode} language={"javascript"} />
                 <section className="flex justify-center w-full">
-                    <BiChevronDown className='text-3xl my-4 dark:text-white' />
+                    <ChevronDown size={30} className='my-4 dark:text-white' />
                 </section>
                 <section className='flex justify-center'>
                     <button className='flex justify-center w-fit h-fit text-sm items-center text-center bg-black text-white gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>Example button</button>

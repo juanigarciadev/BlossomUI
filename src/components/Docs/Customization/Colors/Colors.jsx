@@ -1,6 +1,3 @@
-import React, { useState } from 'react'
-import { BiChevronDown } from 'react-icons/bi'
-import DocNav from '../../DocNav'
 import Slate from './Slate/Slate'
 import Gray from './Gray/Gray'
 import Zinc from './Zinc/Zinc'
@@ -23,22 +20,11 @@ import Purple from './Purple/Purple'
 import Fuchsia from './Fuchsia/Fuchsia'
 import Pink from './Pink/Pink'
 import Rose from './Rose/Rose'
-import Footer from '../../../Footer/Footer'
+import DocPage from '../../DocPage'
 
 const Colors = () => {
-    const [docNav, setDocNav] = useState(false)
     return (
-        <div className='flex lg:pt-[70px] w-full h-screen relative'>
-            <section className='absolute pl-8 pt-4 lg:w-full lg:left-0 lg:px-0 dark:text-white'>
-                <div className='flex gap-4 items-center pb-4'>
-                    <h1 className='text-4xl font-bold text-neutral-800 dark:text-white'>Colors</h1>
-                    <div className='hidden items-center justify-center cursor-pointer h-8 w-8 rounded-lg bg-neutral-200 dark:bg-neutral-800 lg:flex' onClick={() => setDocNav(!docNav)}>
-                        <BiChevronDown />
-                    </div>
-                </div>
-                {docNav && (
-                    <DocNav />
-                )}
+        <DocPage title='Colors'>
                 <div className='flex flex-col gap-10 w-full 2xl:flex-col lg:grid lg:grid-cols-5 lg:justify-between md:gap-2 md:gap-y-10 xs:grid-cols-2 xxs:flex xxs:w-12'>
                     <Slate />
                     <Gray />
@@ -63,9 +49,7 @@ const Colors = () => {
                     <Pink />
                     <Rose />
                 </div>
-                <Footer />
-            </section>
-        </div>
+        </DocPage>
     )
 }
 

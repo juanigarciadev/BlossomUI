@@ -1,5 +1,5 @@
 import React from "react";
-import { BiLinkExternal } from "react-icons/bi";
+import { ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 import { components } from "../../mocks/docs";
 
@@ -20,7 +20,7 @@ const ComponentsSection = () => {
             >
               <div className="flex items-center justify-between rounded-t-lg py-2 px-4 bg-neutral-300 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
                 <h3 className="font-bold">{card.name}</h3>
-                <BiLinkExternal />
+                <ExternalLink size={16} />
               </div>
               <hr />
               <img src={card.img} className="rounded-b-lg" alt={card.name} />

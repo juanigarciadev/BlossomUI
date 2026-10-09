@@ -1,13 +1,7 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { BiSearch, BiMenu } from "react-icons/bi";
-import {
-  BsFillSunFill,
-  BsFillMoonFill,
-  BsPlusLg,
-  BsGithub,
-} from "react-icons/bs";
-import { AiOutlineClose } from "react-icons/ai";
+import { Search, Menu, Sun, Moon, Plus, X } from "lucide-react";
+import { BsGithub } from "react-icons/bs";
 import { useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import { introduction } from "../../mocks/docs";
@@ -34,7 +28,7 @@ const Navbar = ({
             placeholder="Search docs"
             className="flex items-center w-full h-full pl-10 placeholder:text-neutral-700 text-sm border border-neutral-300 rounded-lg shadow-md shadow-neutral-100 hover:shadow-neutral-200 duration-300 dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-sm dark:shadow-neutral-950 dark:hover:shadow-md dark:text-white dark:placeholder:text-neutral-300"
           />
-          <BiSearch className="text-neutral-700 text-xl absolute left-3 top-2.5 dark:text-neutral-300 dark:placeholder:text-neutral-300" />
+          <Search size={20} className="text-neutral-700 absolute left-3 top-2.5 dark:text-neutral-300" />
         </div>
         <div className="lg:hidden">
           <ul className="flex items-center gap-4">
@@ -55,7 +49,7 @@ const Navbar = ({
               onClick={handleChangeTheme}
               className="flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white"
             >
-              {theme === "" ? <BsFillMoonFill /> : <BsFillSunFill />}
+              {theme === "" ? <Moon size={18} /> : <Sun size={18} />}
             </button>
             <div className="border-l-[1px] border-neutral-300 dark:border-neutral-700 h-full py-1 pl-3">
               <a href="https://github.com/juanigarciadev" target="_blank">
@@ -69,10 +63,11 @@ const Navbar = ({
             onClick={handleChangeTheme}
             className="flex justify-center items-center border border-neutral-300 bg-transparent w-fit h-fit gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-200 hover:bg-opacity-40 hover:backdrop-blur-md dark:text-white"
           >
-            {theme === "" ? <BsFillMoonFill /> : <BsFillSunFill />}
+            {theme === "" ? <Moon size={18} /> : <Sun size={18} />}
           </button>
-          <BiMenu
-            className="text-3xl hidden cursor-pointer lg:block dark:text-white"
+          <Menu
+            size={30}
+            className="hidden cursor-pointer lg:block dark:text-white"
             onClick={() =>
               setMobileNavToggle((prevToggle) =>
                 prevToggle === false ? true : false
@@ -84,8 +79,9 @@ const Navbar = ({
       {mobileNavToggle && (
         <section className="side-navbar hidden fixed z-20 right-0 bg-white border-l-[1px] border-neutral-200 w-[50%] h-screen dark:bg-neutral-900 dark:text-white dark:border-neutral-80 lg:block">
           <div className="flex justify-end px-4 py-6">
-            <AiOutlineClose
-              className="text-black text-xl cursor-pointer dark:text-white"
+            <X
+              size={22}
+              className="text-black cursor-pointer dark:text-white"
               onClick={() => setMobileNavToggle(false)}
             />
           </div>
@@ -109,7 +105,7 @@ const Navbar = ({
                 className="absolute right-4 grid place-items-center w-8 h-8 cursor-pointer "
                 onClick={() => setMoreDocs(!moreDocs)}
               >
-                <BsPlusLg className="text-xl" />
+                <Plus size={20} />
               </section>
             </div>
           </div>

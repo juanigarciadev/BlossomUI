@@ -1,42 +1,74 @@
-import React, { useState } from 'react'
-import Aside from '../../Aside'
-import { BiChevronDown } from 'react-icons/bi'
-import DocNav from '../../DocNav'
-import Footer from '../../../Footer/Footer'
-import Stacked from './Stacked'
-import Avatar from './Avatar'
-import PlaceholderAvatar from './Placeholder'
-import InitialsAvatar from './WithInitials'
-import WithInformation from './WithInformation'
-import DotStatusIndicatorAvatar from './DotStatusIndicator'
-import RingStatusIndicatorAvatar from './RingStatusIndicator'
+import DocPage from '../../DocPage'
+import Variant from '../../../Variant/Variant'
+import avatarSource from '../../../UI/Avatar/Avatar.jsx?raw'
+import {
+    CircularAvatar, RoundedEdgesAvatar,
+    CircularAvatarOnlineTop, CircularAvatarOnlineBottom, CircularAvatarDoNotDisturbTop, CircularAvatarDoNotDisturbBottom,
+    RoundedEdgesAvatarOnlineTop, RoundedEdgesAvatarOnlineBottom, RoundedEdgesAvatarDoNotDisturbTop, RoundedEdgesAvatarDoNotDisturbBottom,
+    CircularRingAvatarOnline, CircularRingAvatarOffline, CircularRingAvatarBusy,
+    RoundedEdgesRingAvatarOnline, RoundedEdgesRingAvatarOffline, RoundedEdgesRingAvatarBusy,
+    StackedAvatar, InformationAvatar, Placeholder, Initials,
+} from '../../../UI/Avatar/Avatar'
+
+const file = 'src/components/UI/Avatar/Avatar.jsx'
 
 const AvatarDocumentation = () => {
-    const [docNav, setDocNav] = useState(false)
     return (
-        <div className='flex lg:pt-[70px] w-full h-screen relative'>
-            <section className='absolute pl-8 pt-4 lg:w-[100%] lg:left-0 lg:px-0 dark:text-white'>
-                <div className='flex gap-4 items-center pb-4'>
-                    <h1 className='text-4xl font-bold text-neutral-800 dark:text-white'>Avatar</h1>
-                    <div className='hidden items-center justify-center cursor-pointer h-8 w-8 rounded-lg bg-neutral-200 dark:bg-neutral-800 lg:flex' onClick={() => setDocNav(!docNav)}>
-                        <BiChevronDown />
-                    </div>
+        <DocPage title='Avatar'>
+            <Variant title='Avatar' description="Shows the user's profile image with different rounded edges." source={avatarSource} file={file}
+                exports={['CircularAvatar', 'RoundedEdgesAvatar']}>
+                <CircularAvatar />
+                <RoundedEdgesAvatar />
+            </Variant>
+
+            <Variant title='Dot status indicator' description="Shows the user's activity status with a colored circle in the avatar." source={avatarSource} file={file}
+                previewClassName='flex flex-col gap-4'
+                exports={['CircularAvatarOnlineTop', 'CircularAvatarOnlineBottom', 'CircularAvatarDoNotDisturbTop', 'CircularAvatarDoNotDisturbBottom', 'RoundedEdgesAvatarOnlineTop', 'RoundedEdgesAvatarOnlineBottom', 'RoundedEdgesAvatarDoNotDisturbTop', 'RoundedEdgesAvatarDoNotDisturbBottom']}>
+                <div className='flex gap-4'>
+                    <CircularAvatarOnlineTop />
+                    <CircularAvatarOnlineBottom />
+                    <CircularAvatarDoNotDisturbTop />
+                    <CircularAvatarDoNotDisturbBottom />
                 </div>
-                {docNav && (
-                    <DocNav />
-                )}
-                <div className='flex flex-col pb-16 gap-16'>
-                    <Avatar />
-                    <DotStatusIndicatorAvatar />
-                    <RingStatusIndicatorAvatar />
-                    <Stacked />
-                    <WithInformation />
-                    <PlaceholderAvatar />
-                    <InitialsAvatar />
+                <div className='flex gap-4'>
+                    <RoundedEdgesAvatarOnlineTop />
+                    <RoundedEdgesAvatarOnlineBottom />
+                    <RoundedEdgesAvatarDoNotDisturbTop />
+                    <RoundedEdgesAvatarDoNotDisturbBottom />
                 </div>
-                <Footer />
-            </section>
-        </div>
+            </Variant>
+
+            <Variant title='Ring status indicator' description="Shows the user's activity status with a colored ring outlining the avatar." source={avatarSource} file={file}
+                previewClassName='flex flex-col gap-4'
+                exports={['CircularRingAvatarOnline', 'CircularRingAvatarOffline', 'CircularRingAvatarBusy', 'RoundedEdgesRingAvatarOnline', 'RoundedEdgesRingAvatarOffline', 'RoundedEdgesRingAvatarBusy']}>
+                <div className='flex gap-4'>
+                    <CircularRingAvatarOnline />
+                    <CircularRingAvatarOffline />
+                    <CircularRingAvatarBusy />
+                </div>
+                <div className='flex gap-4'>
+                    <RoundedEdgesRingAvatarOnline />
+                    <RoundedEdgesRingAvatarOffline />
+                    <RoundedEdgesRingAvatarBusy />
+                </div>
+            </Variant>
+
+            <Variant title='Stacked' description='Use the stacked variant to display a group of users.' source={avatarSource} file={file} exports='StackedAvatar'>
+                <StackedAvatar />
+            </Variant>
+
+            <Variant title='With information' description="Show the user's name and status next to the avatar." source={avatarSource} file={file} exports='InformationAvatar'>
+                <InformationAvatar />
+            </Variant>
+
+            <Variant title='Placeholder' description='Use this variant for users who do not have a profile image.' source={avatarSource} file={file} exports='Placeholder'>
+                <Placeholder />
+            </Variant>
+
+            <Variant title='With initials' description="Show the user's initials if they have not added a profile image and you do not like the placeholder variant." source={avatarSource} file={file} exports='Initials'>
+                <Initials />
+            </Variant>
+        </DocPage>
     )
 }
 

@@ -4,7 +4,6 @@ import CodeBlock from '@codeBlock'
 import EditInGithub from '@editInGithub'
 import {HideCodeIcon, ShowCodeIcon} from '@icons'
 import CompVersionTitle from '../../../CompVersionTitle/CompVersionTitle'
-import ToggleCode from '../../../ToggleCode/ToggleCode'
 
 const Default = () => {
 

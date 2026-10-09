@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BiRightArrowAlt } from "react-icons/bi";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Explanation from "../Explanation/Explanation";
 import Characteristics from "../Characteristics/Characteristics";
@@ -35,7 +35,7 @@ const Home = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
               Get started
-              <BiRightArrowAlt className="text-2xl" />
+              <ArrowRight size={22} />
             </Link>
             <Link
               to="/components"
@@ -43,7 +43,7 @@ const Home = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             >
               Explore components
-              <BiRightArrowAlt className="text-2xl" />
+              <ArrowRight size={22} />
             </Link>
           </section>
         </section>

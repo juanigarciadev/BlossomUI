@@ -1,35 +1,33 @@
-import { AiOutlineThunderbolt } from 'react-icons/ai'
-import { BiStar, BiPencil, BiMoon, BiHappy } from 'react-icons/bi'
-import { TbSvg } from 'react-icons/tb'
+import { Zap, Star, Pencil, Moon, Smile, Shapes } from 'lucide-react'
 
 const characteristics = [
     {
-        icon: BiStar,
+        icon: Star,
         title: "For Free",
         subtitle: "You can use it for free, forever!",
     },
     {
-        icon: BiPencil,
+        icon: Pencil,
         title: "Customizable",
         subtitle: "Highly customizable, just modify the Tailwind tags and voilà!",
     },
     {
-        icon: AiOutlineThunderbolt,
+        icon: Zap,
         title: "Ultra Fast",
         subtitle: "No extra libraries, just Tailwind!",
     },
     {
-        icon: TbSvg,
+        icon: Shapes,
         title: "SVG-Only",
         subtitle: "We save data consumption and provide rescalability using only SVGs in our components.",
     },
     {
-        icon: BiMoon,
+        icon: Moon,
         title: "Dark mode",
         subtitle: "Don't go crazy creating a dark mode, we already did it!",
     },
     {
-        icon: BiHappy,
+        icon: Smile,
         title: "Any problem?",
         subtitle: "Don't be shy, we don't bite and you don't bother us, contact us.",
     },
