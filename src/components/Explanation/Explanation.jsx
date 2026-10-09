@@ -11,7 +11,7 @@ export default function App() {
 
 const Explanation = () => {
     return (
-        <div className='grid grid-cols-2 w-full items-center gap-8 pt-24 pb-24 lg:flex lg:flex-col-reverse lg:items-stretch lg:gap-12 lg:pt-16 lg:pb-0'>
+        <div className='grid grid-cols-2 w-full items-center gap-8 lg:flex lg:flex-col-reverse lg:items-stretch lg:gap-12'>
             <FadeIn as='section' className='min-w-0'>
                 <CodeBlock name='App.tsx' code={usageCode} language='tsx' />
                 <div className='flex w-full justify-center'>

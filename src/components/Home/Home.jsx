@@ -5,8 +5,8 @@ import Characteristics from "../Characteristics/Characteristics";
 import ComponentsSection from "../ComponentsSection/ComponentsSection";
 import Footer from "../Footer/Footer";
 import HeroComponents from "../HeroComponents/HeroComponents";
-import Marquee from "./Marquee";
-import { Appear, FadeIn } from "../Motion/Motion";
+import ComponentRows from "./ComponentRows";
+import { Appear } from "../Motion/Motion";
 import CallToAction from "./CallToAction";
 import { components } from "../../mocks/docs";
 
@@ -42,7 +42,7 @@ const Home = () => {
           <div className="flex gap-4 sm:flex-col">
             <Link
               to="/docs/getting-started/introduction"
-              className="group flex justify-center items-center bg-corporative text-white w-fit h-fit text-sm gap-2 px-5 py-3 rounded-lg font-medium select-none shadow-lg shadow-corporative/30 hover:bg-corporativeHover hover:-translate-y-0.5 duration-200 sm:w-full"
+              className="group flex justify-center items-center bg-corporative text-white w-fit h-fit text-sm gap-2 px-5 py-3 rounded-xl font-medium select-none shadow-lg shadow-corporative/30 hover:bg-corporativeHover hover:-translate-y-0.5 duration-200 sm:w-full"
               onClick={scrollTop}
             >
               Get started
@@ -50,7 +50,7 @@ const Home = () => {
             </Link>
             <Link
               to="/components"
-              className="flex justify-center items-center text-center border border-neutral-300 bg-transparent w-fit h-fit text-sm gap-2 px-5 py-[11px] rounded-lg font-medium select-none hover:border-corporative hover:text-corporative duration-200 dark:border-neutral-700 dark:text-white dark:hover:border-corporative dark:hover:text-corporative sm:w-full"
+              className="flex justify-center items-center text-center border border-neutral-300 bg-transparent w-fit h-fit text-sm gap-2 px-5 py-[11px] rounded-xl font-medium select-none hover:border-corporative hover:text-corporative duration-200 dark:border-neutral-700 dark:text-white dark:hover:border-corporative dark:hover:text-corporative sm:w-full"
               onClick={scrollTop}
             >
               Explore components
@@ -71,14 +71,17 @@ const Home = () => {
         <HeroComponents />
       </main>
 
-      <FadeIn>
-        <Marquee />
-      </FadeIn>
-      <Characteristics />
-      <Explanation />
-      <ComponentsSection />
-      <CallToAction />
-      <Footer />
+      {/* One vertical rhythm for every section of the home. */}
+      <div className="mt-40 flex w-full min-w-0 flex-col gap-40 lg:mt-[6.5rem] lg:gap-[6.5rem]">
+        <ComponentRows />
+        <Characteristics />
+        <Explanation />
+        <ComponentsSection />
+        <CallToAction />
+        <div className="-mt-8">
+          <Footer />
+        </div>
+      </div>
     </>
   );
 };

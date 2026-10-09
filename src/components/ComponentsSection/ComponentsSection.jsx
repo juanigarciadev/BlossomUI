@@ -7,7 +7,7 @@ import { FadeIn, Stagger, StaggerItem } from "../Motion/Motion";
 const ComponentsSection = ({ page = false }) => {
   const Heading = page ? "h1" : "h2";
   return (
-    <div className="pt-8 lg:pt-16">
+    <div className={page ? "pt-8 lg:pt-16" : ""}>
       <FadeIn>
       <Heading className="text-6xl font-bold text-neutral-800 tracking-tight dark:text-white pb-8 text-center">
         Components
