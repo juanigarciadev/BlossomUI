@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { introduction, customization, components } from '../../mocks/docs'
 import { NavLink } from 'react-router-dom'
 
@@ -15,12 +14,8 @@ const linkClass = ({ isActive }) =>
 
 const Aside = () => {
 
-    useEffect(() => {
-        document.title = "Blossom UI - Docs"
-    }, [])
-
     return (
-        <aside className='flex flex-col gap-10 pb-32 pt-4 h-[calc(100vh-70px)] w-[15%] fixed left-64 xl:left-32 md:left-16 sm:left-8 overflow-y-auto lg:hidden'>
+        <aside className='thin-scroll flex flex-col gap-10 pb-32 pt-4 pr-4 h-[calc(100vh-70px)] w-52 fixed left-64 xl:left-32 md:left-16 sm:left-8 overflow-y-auto lg:hidden'>
             {sections.map(({ title, items }) => (
                 <nav key={title} aria-label={title} className='flex flex-col gap-0.5'>
                     <h3 className='px-3 pb-1 text-xs font-medium uppercase tracking-wide text-neutral-400'>{title}</h3>

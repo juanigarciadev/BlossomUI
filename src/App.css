@@ -160,3 +160,68 @@ body {
     clip-path: inset(0 0 0 0);
   }
 }
+
+/* Horizontal scroll of the code blocks: thin and discreet, in both themes */
+.code-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(115, 115, 115, 0.5) transparent;
+}
+
+.code-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.code-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-scroll::-webkit-scrollbar-thumb {
+  background: rgba(115, 115, 115, 0.5);
+  border-radius: 9999px;
+}
+
+.code-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(115, 115, 115, 0.8);
+}
+
+/* Page scrollbars in dark mode */
+.dark ::-webkit-scrollbar-track {
+  background: #262626;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #525252;
+}
+
+.dark .code-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark .code-scroll::-webkit-scrollbar-thumb {
+  background: rgba(115, 115, 115, 0.5);
+}
+
+/* Vertical scroll of side panels: thin, with a transparent track */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(115, 115, 115, 0.5) transparent;
+}
+
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.thin-scroll::-webkit-scrollbar-track,
+.dark .thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scroll::-webkit-scrollbar-thumb,
+.dark .thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(115, 115, 115, 0.5);
+  border-radius: 9999px;
+}
+
+.thin-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(115, 115, 115, 0.8);
+}

@@ -17,9 +17,9 @@ const DocsLayout = () => {
             </div>
             <Aside />
 
-            <section className='relative z-10 w-[78%] min-w-0 ml-[24%] pt-4 lg:w-[100%] lg:ml-0 lg:pt-[70px]'>
+            <main className='relative z-10 min-w-0 flex-1 ml-60 pt-4 lg:ml-0 lg:w-full lg:pt-[70px]'>
                 <Outlet />
-            </section>
+            </main>
         </div>
     )
 }

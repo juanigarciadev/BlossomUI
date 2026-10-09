@@ -1,13 +1,26 @@
 import { useState, useContext, useRef, useEffect } from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneDark, atomOneLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
+// The light build only ships the languages that are registered below, which keeps the bundle small.
+import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/light";
+import typescript from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
+import javascript from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
+import xml from "react-syntax-highlighter/dist/esm/languages/hljs/xml";
+import bash from "react-syntax-highlighter/dist/esm/languages/hljs/bash";
+import css from "react-syntax-highlighter/dist/esm/languages/hljs/css";
+import atomOneDark from "react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dark";
+import atomOneLight from "react-syntax-highlighter/dist/esm/styles/hljs/atom-one-light";
 import { ThemeContext } from "../../context/ThemeContext";
 import { Check, Copy, ChevronDown, ChevronUp } from "lucide-react";
+
+SyntaxHighlighter.registerLanguage("typescript", typescript);
+SyntaxHighlighter.registerLanguage("javascript", javascript);
+SyntaxHighlighter.registerLanguage("xml", xml);
+SyntaxHighlighter.registerLanguage("bash", bash);
+SyntaxHighlighter.registerLanguage("css", css);
 
 const COLLAPSE_AFTER_LINES = 18
 const MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace"
 
-const LANGUAGE_LABELS = { javascript: 'JSX', jsx: 'JSX', typescript: 'TS', bash: 'Shell', css: 'CSS', html: 'HTML' }
+const LANGUAGE_LABELS = { javascript: 'JSX', jsx: 'JSX', tsx: 'TSX', typescript: 'TS', bash: 'Shell', css: 'CSS', html: 'HTML' }
 
 const toolButton = 'flex items-center gap-1 px-3 py-2 text-white text-sm select-none hover:bg-[#a8416f] duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white'
 
@@ -24,7 +37,7 @@ const CodeBlock = ({ name, code, language }) => {
     const collapsed = collapsible && !expanded
     const showNumbers = language !== 'bash' && lineCount > 3
     // highlight.js parses a leading '<' as a comparison in JS and skips the first tag, so markup snippets use the XML grammar
-    const highlightLanguage = (language === 'javascript' || language === 'jsx') && code.trimStart().startsWith('<') ? 'xml' : language
+    const highlightLanguage = language === 'tsx' ? 'typescript' : (language === 'javascript' || language === 'jsx') && code.trimStart().startsWith('<') ? 'xml' : language
 
     const handleCopy = async () => {
         try {
@@ -69,14 +82,14 @@ const CodeBlock = ({ name, code, language }) => {
             </header>
 
             <div className='relative'>
-                <div className={`overflow-x-auto ${collapsed ? 'max-h-96 overflow-y-hidden' : ''}`}>
+                <div className={`code-scroll overflow-x-auto ${collapsed ? 'max-h-96 overflow-y-hidden' : ''}`}>
                     <SyntaxHighlighter
                         language={highlightLanguage}
                         style={theme === "dark" ? atomOneDark : atomOneLight}
                         showLineNumbers={showNumbers}
                         lineNumberStyle={{ minWidth: '2.25em', paddingRight: '1em', opacity: 0.4, userSelect: 'none' }}
                         codeTagProps={{ style: { fontFamily: MONO } }}
-                        customStyle={{ margin: 0, padding: '1rem', fontSize: '0.85rem', lineHeight: 1.6, borderRadius: 0, background: theme === "dark" ? '#1e1f24' : '#fafafa' }}
+                        customStyle={{ margin: 0, padding: '1rem', width: 'max-content', minWidth: '100%', overflow: 'visible', fontSize: '0.85rem', lineHeight: 1.6, borderRadius: 0, background: theme === "dark" ? '#1e1f24' : '#fafafa' }}
                     >
                         {code}
                     </SyntaxHighlighter>

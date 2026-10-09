@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
+import { motion, useReducedMotion } from "framer-motion";
 import { Search, Menu, Sun, Moon, X, Heart } from "lucide-react";
 import { BsGithub } from "react-icons/bs";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -18,6 +19,7 @@ const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
   const { theme, handleChangeTheme } = useContext(ThemeContext);
   const [searchOpen, setSearchOpen] = useState(false);
   const { pathname } = useLocation();
+  const reduceMotion = useReducedMotion();
   const isMac = typeof navigator !== "undefined" && /Mac/i.test(navigator.platform);
 
   // Ctrl/Cmd + K opens the search from anywhere
@@ -34,11 +36,24 @@ const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
 
   useEffect(() => setMobileNavToggle(false), [pathname, setMobileNavToggle]);
 
+  useEffect(() => {
+    if (!mobileNavToggle) return;
+    const onKey = (e) => e.key === "Escape" && setMobileNavToggle(false);
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [mobileNavToggle, setMobileNavToggle]);
+
   const ThemeIcon = theme === "" ? Moon : Sun;
 
   return (
     <>
-      <header className="fixed z-50 flex h-[70px] w-screen items-center justify-between gap-6 border-b border-neutral-200/70 bg-white/80 px-64 backdrop-blur-md transition-colors duration-300 xl:px-32 md:px-16 sm:px-8 dark:border-neutral-800 dark:bg-neutral-900/80">
+      <motion.header initial={reduceMotion ? false : { opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: 0.05 }} className="fixed lg:absolute z-50 flex h-[70px] w-screen items-center justify-between gap-6 border-b border-neutral-200/70 bg-white/80 px-64 backdrop-blur-md transition-colors duration-300 xl:px-32 md:px-16 sm:px-8 dark:border-neutral-800 dark:bg-neutral-900/80">
+        <div className="flex items-center gap-8">
         <Link to="/" className="flex items-center gap-2 text-xl font-bold text-neutral-900 dark:text-white" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-corporative text-white shadow-md shadow-corporative/30">✿</span>
           Blossom <span className="-ml-1.5 text-corporative">UI</span>
@@ -57,11 +72,12 @@ const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
             </NavLink>
           ))}
         </nav>
+        </div>
 
         <button
           type="button"
           onClick={() => setSearchOpen(true)}
-          className="flex h-10 flex-1 max-w-sm items-center gap-3 rounded-lg border border-neutral-200 bg-neutral-50 px-3 text-sm text-neutral-500 hover:border-corporative duration-200 dark:border-neutral-700 dark:bg-neutral-800 lg:max-w-none lg:flex-none lg:w-10 lg:justify-center lg:px-0"
+          className="mx-auto flex h-11 flex-1 max-w-xl items-center gap-3 rounded-lg border border-neutral-200 bg-neutral-50 px-3 text-sm text-neutral-500 hover:border-corporative duration-200 dark:border-neutral-700 dark:bg-neutral-800 lg:max-w-none lg:flex-none lg:w-10 lg:justify-center lg:px-0"
           aria-label="Search docs"
         >
           <Search size={16} />
@@ -88,15 +104,18 @@ const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
             <Menu size={18} />
           </button>
         </div>
-      </header>
+      </motion.header>
 
       <SearchPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {mobileNavToggle && (
-        <div className="fixed inset-0 z-[55] hidden bg-black/40 backdrop-blur-sm lg:block" onClick={() => setMobileNavToggle(false)}>
+        <>
+          <div className="fixed inset-0 z-[55] hidden bg-black/50 lg:block" onClick={() => setMobileNavToggle(false)} aria-hidden="true" />
           <aside
-            className="side-navbar absolute right-0 top-0 h-full w-[75%] max-w-xs overflow-y-auto border-l border-neutral-200 bg-white p-4 dark:border-neutral-800 dark:bg-neutral-900 dark:text-white"
-            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+            className="fixed bottom-0 right-0 top-0 z-[60] hidden w-[80%] max-w-xs flex-col overflow-y-auto border-l border-neutral-200 bg-white p-4 shadow-2xl dark:border-neutral-800 dark:bg-neutral-900 dark:text-white lg:flex"
           >
             <div className="flex justify-end pb-2">
               <button type="button" aria-label="Close menu" className={iconButton} onClick={() => setMobileNavToggle(false)}>
@@ -116,7 +135,7 @@ const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
               <Heart size={14} className="fill-white" /> Sponsor
             </a>
           </aside>
-        </div>
+        </>
       )}
       <Outlet context={[theme]} />
     </>

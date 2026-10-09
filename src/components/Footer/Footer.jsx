@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowUp, Heart } from 'lucide-react'
 import { BsGithub } from 'react-icons/bs'
+import { FadeIn } from '../Motion/Motion'
 import { components, customization, introduction } from '../../mocks/docs'
 
 const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -22,7 +23,7 @@ const Column = ({ title, items, className = '' }) => (
 
 const Footer = () => {
     return (
-        <footer className='my-8 w-full overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800'>
+        <FadeIn as='footer' className='my-8 w-full overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 dark:border-neutral-700 dark:bg-neutral-800 sm:-mx-8 sm:mb-0 sm:w-[calc(100%+4rem)] sm:rounded-b-none sm:border-x-0 sm:border-b-0'>
             <div className='grid grid-cols-[1.4fr_1fr_1fr_2fr] gap-8 p-8 lg:grid-cols-2 sm:grid-cols-1 sm:p-6'>
                 <section className='flex flex-col items-start gap-3'>
                     <Link to='/' className='text-xl font-bold text-neutral-900 dark:text-white' onClick={scrollTop}>
@@ -66,7 +67,7 @@ const Footer = () => {
                     Back to top <ArrowUp size={14} />
                 </button>
             </div>
-        </footer>
+        </FadeIn>
     )
 }
 
