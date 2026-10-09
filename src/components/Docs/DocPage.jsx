@@ -36,10 +36,10 @@ const DocPage = ({ title, description, children }) => {
 
     return (
         <div className='w-full min-w-0 relative pl-8 pt-4 lg:pl-0 dark:text-white'>
-            <div className='relative pb-8'>
-                {current && <span className='text-sm font-medium text-corporative'>{current.group}</span>}
+            <div className='relative mb-10 border-b border-neutral-200 pb-8 dark:border-neutral-800'>
+                {current && <span className='inline-block mb-3 rounded-full border border-corporative/40 bg-corporative/10 px-3 py-1 text-xs font-medium text-corporativeHover dark:text-corporative'>{current.group}</span>}
                 <div className='flex gap-4 items-center'>
-                    <h1 className='text-4xl font-bold text-neutral-800 dark:text-white'>{title}</h1>
+                    <h1 className='text-5xl font-bold tracking-tight text-neutral-800 dark:text-white xs:text-4xl'>{title}</h1>
                     <button
                         type='button'
                         aria-label='Open documentation menu'
