@@ -5,7 +5,7 @@ const surface = 'rounded-lg border border-neutral-300 bg-neutral-200 bg-opacity-
 export interface CardProps {
     title: string
     description?: ReactNode
-    /** Icon shown inside a pink circle. */
+    /** Icon shown inside a tinted square. */
     icon?: ReactNode
     /** Extra content, for example buttons or links. */
     footer?: ReactNode
@@ -13,12 +13,10 @@ export interface CardProps {
 }
 
 export const Card = ({ title, description, icon, footer, className = '' }: CardProps) => (
-    <section className={`flex h-auto w-80 flex-col gap-4 p-6 shadow-sm ${surface} ${className}`}>
-        {icon && <div className='flex h-10 w-10 items-center justify-center rounded-full bg-pink-400 text-white'>{icon}</div>}
-        <div className='flex flex-col gap-1'>
-            <h3 className='text-xl font-bold text-black dark:text-white'>{title}</h3>
-            {description && <p className='text-sm text-neutral-800 dark:text-neutral-300'>{description}</p>}
-        </div>
+    <section className={`flex h-auto w-80 flex-col gap-2 rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 ${className}`}>
+        {icon && <span className='grid h-10 w-10 place-items-center rounded-lg bg-pink-400 bg-opacity-20 text-pink-400'>{icon}</span>}
+        <h3 className='text-lg font-medium text-neutral-900 dark:text-white'>{title}</h3>
+        {description && <p className='text-sm text-neutral-600 dark:text-neutral-300'>{description}</p>}
         {footer}
     </section>
 )
