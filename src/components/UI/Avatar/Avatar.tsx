@@ -35,7 +35,7 @@ const statusColors: Record<AvatarStatus, { bg: string; ring: string }> = {
 export const Avatar = ({ src, alt = '', initials, size = 'md', square = false, status, statusStyle = 'dot', statusPosition = 'top' }: AvatarProps) => {
     const [failed, setFailed] = useState(false)
     const { box, dot, text } = sizes[size]
-    const shape = square ? 'rounded-lg' : 'rounded-full'
+    const shape = square ? 'rounded-xl' : 'rounded-full'
     const ring = status && statusStyle === 'ring' ? `ring-2 ring-offset-1 dark:ring-offset-neutral-900 ${statusColors[status].ring}` : ''
 
     return (

@@ -72,7 +72,7 @@ export const Alert = ({ color = 'default', variant = 'filled', showIcon = false,
     return (
         <div
             role='alert'
-            className={`h-fit w-full px-4 py-4 ${box[color]} ${variant === 'outlined' ? `rounded-lg ${outline[color]}` : variant === 'accent' ? `rounded-r-lg ${accent[color]}` : 'rounded-lg'} ${text[color]}`}
+            className={`h-fit w-full px-4 py-4 ${box[color]} ${variant === 'outlined' ? `rounded-xl ${outline[color]}` : variant === 'accent' ? `rounded-r-xl ${accent[color]}` : 'rounded-xl'} ${text[color]}`}
         >
             <div className='flex items-start gap-2'>
                 {showIcon && (
@@ -90,7 +90,7 @@ export const Alert = ({ color = 'default', variant = 'filled', showIcon = false,
                     {actions && <div className='flex flex-wrap gap-2'>{actions}</div>}
                 </div>
                 {dismissible && (
-                    <button type='button' aria-label='Dismiss alert' onClick={dismiss} className='-m-1 shrink-0 rounded p-1 hover:bg-black/10 dark:hover:bg-white/10'>
+                    <button type='button' aria-label='Dismiss alert' onClick={dismiss} className='-m-1 shrink-0 rounded-lg p-1 hover:bg-black/10 dark:hover:bg-white/10'>
                         <svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round'><path d='M6 6l12 12M18 6 6 18' /></svg>
                     </button>
                 )}

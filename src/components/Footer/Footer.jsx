@@ -36,7 +36,7 @@ const Footer = () => {
                         href='https://github.com/juanigarciadev/BlossomUI'
                         target='_blank'
                         rel='noreferrer'
-                        className='inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-4 py-2 text-sm font-medium text-white hover:bg-[#24292F]/90 duration-200'
+                        className='inline-flex items-center gap-2 rounded-xl bg-[#24292F] px-4 py-2 text-sm font-medium text-white hover:bg-[#24292F]/90 duration-200'
                     >
                         <BsGithub /> Star on GitHub
                     </a>
@@ -62,7 +62,7 @@ const Footer = () => {
                 <button
                     type='button'
                     onClick={scrollTop}
-                    className='flex items-center gap-1 rounded-lg px-3 py-1.5 hover:bg-neutral-200 hover:text-corporative duration-200 dark:hover:bg-neutral-700'
+                    className='flex items-center gap-1 rounded-xl px-3 py-1.5 hover:bg-neutral-200 hover:text-corporative duration-200 dark:hover:bg-neutral-700'
                 >
                     Back to top <ArrowUp size={14} />
                 </button>

@@ -1,6 +1,6 @@
 // Skeleton-style illustrations used as previews of each component in the home grid.
 const bar = 'rounded-full bg-neutral-300 dark:bg-neutral-700'
-const block = 'rounded-lg bg-neutral-300 dark:bg-neutral-700'
+const block = 'rounded-xl bg-neutral-300 dark:bg-neutral-700'
 const accent = 'bg-corporative'
 const soft = 'bg-corporative bg-opacity-30'
 
@@ -14,7 +14,7 @@ const skeletons = {
     Alerts: () => (
         <div className='flex flex-col gap-2 w-full'>
             {['bg-blue-200 dark:bg-blue-900', 'bg-green-200 dark:bg-green-900', 'bg-red-200 dark:bg-red-900'].map((c, i) => (
-                <div key={i} className={`flex items-center gap-2 px-3 py-2 rounded-lg ${c}`}>
+                <div key={i} className={`flex items-center gap-2 px-3 py-2 rounded-xl ${c}`}>
                     <div className='w-2.5 h-2.5 rounded-full bg-white/70' />
                     <div className='h-2 rounded-full bg-white/70' style={{ width: `${70 - i * 12}%` }} />
                 </div>
@@ -44,9 +44,9 @@ const skeletons = {
     ),
     Banner: () => (
         <div className='flex flex-col w-full gap-3'>
-            <div className={`flex items-center justify-between px-3 py-2 rounded-lg ${soft}`}>
+            <div className={`flex items-center justify-between px-3 py-2 rounded-xl ${soft}`}>
                 <Lines widths={['110px']} />
-                <div className={`h-5 w-12 rounded-md ${accent}`} />
+                <div className={`h-5 w-12 rounded-xl ${accent}`} />
             </div>
             <Lines widths={['90%', '70%', '80%']} />
         </div>
@@ -54,7 +54,7 @@ const skeletons = {
     Buttons: () => (
         <div className='flex flex-col items-center gap-3'>
             <div className='flex gap-2'>
-                <div className={`h-9 w-24 rounded-lg ${accent}`} />
+                <div className={`h-9 w-24 rounded-xl ${accent}`} />
                 <div className={`h-9 w-24 ${block}`} />
             </div>
             <div className='flex gap-2'>
@@ -67,10 +67,10 @@ const skeletons = {
     Cards: () => (
         <div className='flex gap-3 w-full'>
             {[0, 1].map((i) => (
-                <div key={i} className='flex flex-col flex-1 gap-2 p-2 rounded-lg border border-neutral-300 dark:border-neutral-700'>
+                <div key={i} className='flex flex-col flex-1 gap-2 p-2 rounded-xl border border-neutral-300 dark:border-neutral-700'>
                     <div className={`h-14 ${block}`} />
                     <Lines widths={['80%', '55%']} />
-                    <div className={`h-5 w-14 rounded-md ${i ? soft : accent}`} />
+                    <div className={`h-5 w-14 rounded-xl ${i ? soft : accent}`} />
                 </div>
             ))}
         </div>
@@ -80,14 +80,14 @@ const skeletons = {
             <div className={`h-3 w-3/4 ${bar}`} />
             <div className={`h-3 w-1/2 ${bar}`} />
             <Lines widths={['85%', '70%']} className='items-center w-full' />
-            <div className={`h-8 w-24 rounded-lg ${accent}`} />
+            <div className={`h-8 w-24 rounded-xl ${accent}`} />
         </div>
     ),
     KBD: () => (
         <div className='flex items-center gap-2'>
             {['w-12', 'w-9', 'w-9'].map((w, i) => (
                 <div key={i} className='flex items-center gap-2'>
-                    <div className={`h-9 ${w} rounded-md border-b-4 border-neutral-400 bg-neutral-200 dark:bg-neutral-700 dark:border-neutral-500`} />
+                    <div className={`h-9 ${w} rounded-xl border-b-4 border-neutral-400 bg-neutral-200 dark:bg-neutral-700 dark:border-neutral-500`} />
                     {i < 2 && <span className='text-neutral-400'>+</span>}
                 </div>
             ))}
@@ -96,9 +96,9 @@ const skeletons = {
     Pricing: () => (
         <div className='flex gap-3'>
             {[false, true, false].map((hot, i) => (
-                <div key={i} className={`flex flex-col items-center gap-2 p-3 rounded-lg border ${hot ? 'border-corporative' : 'border-neutral-300 dark:border-neutral-700'}`} style={{ width: 72 }}>
+                <div key={i} className={`flex flex-col items-center gap-2 p-3 rounded-xl border ${hot ? 'border-corporative' : 'border-neutral-300 dark:border-neutral-700'}`} style={{ width: 72 }}>
                     <div className={`h-2 w-8 ${bar}`} />
-                    <div className={`h-4 w-10 rounded ${hot ? accent : bar}`} />
+                    <div className={`h-4 w-10 rounded-xl ${hot ? accent : bar}`} />
                     <Lines widths={['100%', '80%', '90%']} className='w-full' />
                 </div>
             ))}
@@ -149,15 +149,15 @@ const skeletons = {
     Toasts: () => (
         <div className='flex flex-col gap-2 w-full'>
             {[accent, bar].map((c, i) => (
-                <div key={i} className='flex items-center gap-3 p-3 rounded-lg bg-white shadow-md dark:bg-neutral-800'>
-                    <div className={`w-8 h-8 rounded-lg ${c}`} />
+                <div key={i} className='flex items-center gap-3 p-3 rounded-xl bg-white shadow-md dark:bg-neutral-800'>
+                    <div className={`w-8 h-8 rounded-xl ${c}`} />
                     <Lines widths={['70%', '45%']} className='flex-1' />
                 </div>
             ))}
         </div>
     ),
     Footer: () => (
-        <div className='flex flex-col w-full gap-3 p-3 rounded-lg border border-neutral-300 dark:border-neutral-700'>
+        <div className='flex flex-col w-full gap-3 p-3 rounded-xl border border-neutral-300 dark:border-neutral-700'>
             <div className='flex justify-between gap-3'>
                 <div className={`h-3 w-16 ${bar}`} />
                 {[0, 1, 2].map((i) => <Lines key={i} widths={['36px', '28px', '32px']} />)}
@@ -169,7 +169,7 @@ const skeletons = {
     Forms: () => (
         <div className='flex flex-col w-full gap-3'>
             <Lines widths={['48px']} />
-            <div className='h-9 w-full rounded-lg border-2 border-corporative' />
+            <div className='h-9 w-full rounded-xl border-2 border-corporative' />
             <div className='flex items-center gap-2'>
                 <div className={`h-4 w-8 ${accent} rounded-full`} />
                 <Lines widths={['70px']} />
@@ -177,22 +177,22 @@ const skeletons = {
         </div>
     ),
     Modal: () => (
-        <div className='flex flex-col w-4/5 gap-3 p-3 rounded-lg bg-white shadow-lg dark:bg-neutral-800'>
+        <div className='flex flex-col w-4/5 gap-3 p-3 rounded-xl bg-white shadow-lg dark:bg-neutral-800'>
             <div className='flex items-center justify-between'>
                 <div className={`h-3 w-20 ${bar}`} />
                 <div className={`w-4 h-4 ${bar}`} />
             </div>
             <Lines widths={['100%', '75%']} />
             <div className='flex justify-end gap-2'>
-                <div className={`h-6 w-12 rounded-md ${block}`} />
-                <div className={`h-6 w-12 rounded-md ${accent}`} />
+                <div className={`h-6 w-12 rounded-xl ${block}`} />
+                <div className={`h-6 w-12 rounded-xl ${accent}`} />
             </div>
         </div>
     ),
     Pagination: () => (
         <div className='flex items-center gap-1'>
             {[0, 1, 2, 3, 4].map((i) => (
-                <div key={i} className={`w-8 h-8 rounded-lg ${i === 2 ? accent : block}`} />
+                <div key={i} className={`w-8 h-8 rounded-xl ${i === 2 ? accent : block}`} />
             ))}
         </div>
     ),

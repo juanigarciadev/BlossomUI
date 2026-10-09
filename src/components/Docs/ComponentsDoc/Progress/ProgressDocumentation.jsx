@@ -36,7 +36,7 @@ const UploadDemo = () => {
     return (
         <div className='flex w-full flex-col gap-4'>
             <ProgressBar value={value} label='Uploading file' showValue color='green' />
-            <button type='button' disabled={running} onClick={start} className='w-fit rounded-lg bg-black px-4 py-3 text-sm font-medium text-white hover:bg-neutral-800 disabled:opacity-60 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>
+            <button type='button' disabled={running} onClick={start} className='w-fit rounded-xl bg-black px-4 py-3 text-sm font-medium text-white hover:bg-neutral-800 disabled:opacity-60 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>
                 {running ? 'Uploading...' : 'Start upload'}
             </button>
         </div>

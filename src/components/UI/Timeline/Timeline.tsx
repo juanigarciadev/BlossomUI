@@ -47,7 +47,7 @@ export const Timeline = ({ items, variant = 'dots' }: TimelineProps) => {
                     <li key={item.title} className={`${icons ? 'ml-8' : 'ml-6'} ${last ? '' : cards ? 'mb-6' : 'mb-8'}`}>
                         {marker}
                         {cards ? (
-                            <div className='flex flex-col gap-1 rounded-lg border border-neutral-300 bg-neutral-200 bg-opacity-40 p-4 dark:border-neutral-700 dark:bg-neutral-800'>{body}</div>
+                            <div className='flex flex-col gap-1 rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 p-4 dark:border-neutral-700 dark:bg-neutral-800'>{body}</div>
                         ) : (
                             <div className='flex flex-col gap-1'>{body}</div>
                         )}

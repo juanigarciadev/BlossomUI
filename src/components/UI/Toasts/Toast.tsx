@@ -30,8 +30,8 @@ const icons: Record<ToastColor, string> = {
 export const Toast = ({ color = 'default', children, actionLabel, onAction, onDismiss }: ToastProps) => {
     const style = styles[color]
     return (
-        <div role='status' className={`inline-flex h-fit w-fit items-center gap-4 rounded-lg px-4 py-4 shadow-lg ${style.box}`}>
-            <span className={`rounded p-1 ${style.icon}`}>
+        <div role='status' className={`inline-flex h-fit w-fit items-center gap-4 rounded-xl px-4 py-4 shadow-lg ${style.box}`}>
+            <span className={`rounded-lg p-1 ${style.icon}`}>
                 <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d={icons[color]} /></svg>
             </span>
             <span className='text-white'>{children}</span>
@@ -44,7 +44,7 @@ export const Toast = ({ color = 'default', children, actionLabel, onAction, onDi
                     )}
                     {actionLabel && onDismiss && <div className='h-6 w-px bg-white/60' />}
                     {onDismiss && (
-                        <button type='button' aria-label='Dismiss' onClick={onDismiss} className='rounded p-2 text-white hover:bg-black/20'>
+                        <button type='button' aria-label='Dismiss' onClick={onDismiss} className='rounded-lg p-2 text-white hover:bg-black/20'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d='m16.192 6.344l-4.243 4.242l-4.242-4.242l-1.414 1.414L10.535 12l-4.242 4.242l1.414 1.414l4.242-4.242l4.243 4.242l1.414-1.414L13.364 12l4.242-4.242z' /></svg>
                         </button>
                     )}

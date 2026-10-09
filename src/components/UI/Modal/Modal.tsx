@@ -59,7 +59,7 @@ export const Modal = ({ open, onClose, title, children, footer, size = 'md', clo
                 aria-modal='true'
                 aria-labelledby={titleId}
                 tabIndex={-1}
-                className={`w-full rounded-lg border border-neutral-200 bg-white text-neutral-800 shadow-xl outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-white ${sizes[size]}`}
+                className={`w-full rounded-2xl border border-neutral-200 bg-white text-neutral-800 shadow-xl outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-white ${sizes[size]}`}
             >
                 <div className='flex items-center justify-between border-b border-neutral-200 p-4 dark:border-neutral-700'>
                     <h3 id={titleId} className='text-lg font-medium'>{title}</h3>

@@ -32,7 +32,7 @@ export const Pricing = ({ plans, variant = 'default', billingToggle = false, yea
     const [billing, setBilling] = useState<'monthly' | 'yearly'>('monthly')
 
     return (
-        <div className='flex w-full flex-col items-center gap-6 rounded-lg bg-neutral-200 p-4 py-6 dark:bg-neutral-900'>
+        <div className='flex w-full flex-col items-center gap-6 rounded-xl bg-neutral-200 p-4 py-6 dark:bg-neutral-900'>
             {billingToggle && (
                 <div role='group' aria-label='Billing period' className='inline-flex rounded-full bg-white p-1 text-sm font-medium shadow-sm dark:bg-neutral-800'>
                     {(['monthly', 'yearly'] as const).map((option) => (
@@ -55,7 +55,7 @@ export const Pricing = ({ plans, variant = 'default', billingToggle = false, yea
                     const accent = plan.highlighted && variant === 'border' ? 'border-2 border-blue-700' : 'border-2 border-transparent'
                     const size = plan.highlighted && variant === 'size' ? 'scale-105 py-10' : ''
                     return (
-                        <article key={plan.name} className={`flex h-auto w-64 flex-col items-center gap-6 rounded-lg bg-white py-6 shadow-md dark:bg-neutral-800 ${accent} ${size}`}>
+                        <article key={plan.name} className={`flex h-auto w-64 flex-col items-center gap-6 rounded-xl bg-white py-6 shadow-md dark:bg-neutral-800 ${accent} ${size}`}>
                             <div className='flex w-full flex-col items-center gap-2 border-b border-neutral-300 pb-6 dark:border-neutral-700'>
                                 <span className='text-sm font-medium uppercase text-neutral-600 dark:text-neutral-400'>{plan.name}</span>
                                 <div className='inline-flex items-end dark:text-white'>

@@ -21,9 +21,9 @@ export interface JumbotronProps {
 
 const surfaces = {
     plain: '',
-    card: 'rounded-lg border border-neutral-300 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800',
-    gradient: 'rounded-lg bg-gradient-to-br from-blue-100 via-white to-purple-100 dark:from-blue-950 dark:via-neutral-900 dark:to-purple-950',
-    image: 'relative overflow-hidden rounded-lg bg-neutral-700 bg-cover bg-center',
+    card: 'rounded-xl border border-neutral-300 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800',
+    gradient: 'rounded-xl bg-gradient-to-br from-blue-100 via-white to-purple-100 dark:from-blue-950 dark:via-neutral-900 dark:to-purple-950',
+    image: 'relative overflow-hidden rounded-xl bg-neutral-700 bg-cover bg-center',
 }
 
 export const Jumbotron = ({ title, description, eyebrow, actions, media, align = 'center', variant = 'plain', backgroundImage }: JumbotronProps) => {

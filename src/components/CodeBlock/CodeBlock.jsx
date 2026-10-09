@@ -55,7 +55,7 @@ const CodeBlock = ({ name, code, language }) => {
             <header className='flex items-stretch justify-between bg-corporative'>
                 <div className='flex items-center gap-2 bg-[#bd4c86] px-4 py-2'>
                     <span className='text-white text-sm cursor-default'>{name}</span>
-                    <span className='rounded bg-white/20 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white'>
+                    <span className='rounded-xl bg-white/20 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white'>
                         {LANGUAGE_LABELS[language] ?? language}
                     </span>
                 </div>

@@ -10,7 +10,7 @@ export interface KbdProps {
 
 export const Kbd = ({ children, relief = false, active = false }: KbdProps) => (
     <kbd
-        className={`select-none rounded-lg border px-2 py-1.5 text-sm transition-colors ${relief ? 'border-b-4' : ''} ${active
+        className={`select-none rounded-xl border px-2 py-1.5 text-sm transition-colors ${relief ? 'border-b-4' : ''} ${active
             ? 'border-pink-400 bg-pink-100 text-pink-900 dark:border-pink-400 dark:bg-pink-900 dark:text-pink-300'
             : 'border-neutral-400 bg-neutral-200 dark:border-neutral-400 dark:bg-neutral-600 dark:text-white'}`}
     >

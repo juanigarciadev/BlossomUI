@@ -26,7 +26,7 @@ const LoadingDemo = () => {
                     <p className='text-sm text-neutral-600 dark:text-neutral-300'>Free and open source components made with React and Tailwind CSS.</p>
                 </div>
             )}
-            <button type='button' onClick={() => setLoading(true)} className='w-fit rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-200 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-800'>
+            <button type='button' onClick={() => setLoading(true)} className='w-fit rounded-xl border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-200 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-800'>
                 Reload
             </button>
         </div>

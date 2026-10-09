@@ -24,7 +24,7 @@ const ArrowIcon = () => (
 )
 
 const Mockup = () => (
-    <div className='flex w-full max-w-sm flex-col gap-4 rounded-lg border border-neutral-300 bg-white p-5 shadow-lg dark:border-neutral-700 dark:bg-neutral-900'>
+    <div className='flex w-full max-w-sm flex-col gap-4 rounded-xl border border-neutral-300 bg-white p-5 shadow-lg dark:border-neutral-700 dark:bg-neutral-900'>
         <div className='flex items-center justify-between'>
             <AvatarGroup avatars={photos.map((src) => ({ src }))} size='sm' />
             <Badge color='green' rounded>On track</Badge>

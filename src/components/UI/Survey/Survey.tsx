@@ -35,10 +35,10 @@ export const Survey = ({ question, options = defaultOptions, onSubmit, thanks = 
     }
 
     return (
-        <article className='flex h-fit w-full flex-col gap-3 rounded-lg bg-blue-100 px-4 py-4 dark:bg-blue-900'>
+        <article className='flex h-fit w-full flex-col gap-3 rounded-xl bg-blue-100 px-4 py-4 dark:bg-blue-900'>
             <div className='flex items-start justify-between gap-4'>
                 <span className='text-blue-900 dark:text-blue-300'>{selected ? thanks : question}</span>
-                <button type='button' aria-label='Close survey' onClick={() => setClosed(true)} className='-m-1 shrink-0 rounded p-1 text-blue-900 hover:bg-blue-200 dark:text-blue-300 dark:hover:bg-blue-800'>
+                <button type='button' aria-label='Close survey' onClick={() => setClosed(true)} className='-m-1 shrink-0 rounded-lg p-1 text-blue-900 hover:bg-blue-200 dark:text-blue-300 dark:hover:bg-blue-800'>
                     <svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round'><path d='M6 6l12 12M18 6 6 18' /></svg>
                 </button>
             </div>

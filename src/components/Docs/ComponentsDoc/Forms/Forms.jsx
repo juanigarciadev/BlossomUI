@@ -39,7 +39,7 @@ const LoginDemo = () => {
     }
 
     return (
-        <form onSubmit={submit} noValidate className='flex w-full max-w-sm flex-col gap-4 rounded-lg border border-neutral-300 bg-neutral-200 bg-opacity-40 p-6 dark:border-neutral-700 dark:bg-neutral-800'>
+        <form onSubmit={submit} noValidate className='flex w-full max-w-sm flex-col gap-4 rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 p-6 dark:border-neutral-700 dark:bg-neutral-800'>
             <div>
                 <h3 className='text-xl font-bold text-neutral-800 dark:text-white'>Welcome back</h3>
                 <p className='text-sm text-neutral-600 dark:text-neutral-300'>Sign in to your account.</p>

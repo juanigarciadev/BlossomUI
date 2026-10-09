@@ -6,7 +6,7 @@ import { Toast, Toaster, useToasts } from '../../../UI/Toasts/Toast'
 
 const file = 'src/components/UI/Toasts/Toast.tsx'
 
-const buttonClass = 'rounded-lg border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-200 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-800'
+const buttonClass = 'rounded-xl border border-neutral-300 px-4 py-2 text-sm font-medium hover:bg-neutral-200 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-800'
 
 const StackDemo = () => {
     const { toasts, toast, dismiss } = useToasts()

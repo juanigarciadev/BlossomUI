@@ -69,7 +69,7 @@ const SearchPalette = ({ open, onClose }) => {
             placeholder="Search docs..."
             className="h-14 w-full bg-transparent text-neutral-800 outline-none placeholder:text-neutral-400 dark:text-white"
           />
-          <kbd className="rounded border border-neutral-300 px-1.5 text-xs text-neutral-500 dark:border-neutral-700">Esc</kbd>
+          <kbd className="rounded-xl border border-neutral-300 px-1.5 text-xs text-neutral-500 dark:border-neutral-700">Esc</kbd>
         </div>
         <ul className="max-h-80 overflow-y-auto p-2">
           {results.length === 0 && <li className="px-3 py-8 text-center text-sm text-neutral-500">No results for &quot;{query}&quot;</li>}

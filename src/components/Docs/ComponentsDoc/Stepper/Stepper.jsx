@@ -109,7 +109,7 @@ const StepperDocumentation = () => {
                     numbered
                     current={0}
                     steps={[
-                        { title: 'Install the dependency', description: 'Run the command in your project.', content: <code className='rounded bg-neutral-200 px-2 py-1 text-xs dark:bg-neutral-800'>npm install react</code> },
+                        { title: 'Install the dependency', description: 'Run the command in your project.', content: <code className='rounded-lg bg-neutral-200 px-2 py-1 text-xs dark:bg-neutral-800'>npm install react</code> },
                         { title: 'Copy the component', description: 'Save it in src/components/ui.' },
                         { title: 'Use it', description: 'Import it and pass your props.' },
                     ]}

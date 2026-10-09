@@ -47,7 +47,7 @@ export const Rating = ({ value, max = 5, size = 20, onChange, showValue = false,
                             aria-label={`${star} star${star > 1 ? 's' : ''}`}
                             onMouseEnter={() => setHover(star)}
                             onClick={() => onChange(star)}
-                            className='rounded transition-transform hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-400'
+                            className='rounded-lg transition-transform hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-400'
                         >
                             <Star size={size} fill={Math.min(1, Math.max(0, shown - (star - 1)))} />
                         </button>
@@ -70,7 +70,7 @@ export interface ReviewProps {
 }
 
 export const Review = ({ author, rating, date, children }: ReviewProps) => (
-    <article className='flex w-full max-w-md flex-col gap-2 rounded-lg border border-neutral-300 bg-neutral-200 bg-opacity-40 p-4 dark:border-neutral-600 dark:bg-neutral-800'>
+    <article className='flex w-full max-w-md flex-col gap-2 rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 p-4 dark:border-neutral-600 dark:bg-neutral-800'>
         <div className='flex items-center justify-between'>
             <span className='font-medium text-neutral-900 dark:text-white'>{author}</span>
             <span className='text-sm text-neutral-500'>{date}</span>

@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 
-const surface = 'rounded-lg border border-neutral-300 bg-neutral-200 bg-opacity-40 dark:border-neutral-600 dark:bg-neutral-800'
+const surface = 'rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 dark:border-neutral-600 dark:bg-neutral-800'
 
 export interface CardProps {
     title: string
@@ -14,7 +14,7 @@ export interface CardProps {
 
 export const Card = ({ title, description, icon, footer, className = '' }: CardProps) => (
     <section className={`flex h-auto w-80 flex-col gap-2 rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 ${className}`}>
-        {icon && <span className='grid h-10 w-10 place-items-center rounded-lg bg-pink-400 bg-opacity-20 text-pink-400'>{icon}</span>}
+        {icon && <span className='grid h-10 w-10 place-items-center rounded-xl bg-pink-400 bg-opacity-20 text-pink-400'>{icon}</span>}
         <h3 className='text-lg font-medium text-neutral-900 dark:text-white'>{title}</h3>
         {description && <p className='text-sm text-neutral-600 dark:text-neutral-300'>{description}</p>}
         {footer}
@@ -51,7 +51,7 @@ export const ProductCard = ({ image, name, price, rating = 0, badge, onAddToCart
     return (
         <article className={`relative flex h-fit w-64 flex-col gap-4 p-4 shadow-sm ${surface}`}>
             <div className='relative'>
-                <img src={image} alt={name} className='h-40 w-full rounded-lg bg-neutral-200 object-cover dark:bg-neutral-700' />
+                <img src={image} alt={name} className='h-40 w-full rounded-xl bg-neutral-200 object-cover dark:bg-neutral-700' />
                 {badge && <span className='absolute left-2 top-2 rounded-lg bg-blue-100 px-2.5 py-1 text-xs font-medium text-blue-900 dark:bg-blue-900 dark:text-blue-300'>{badge}</span>}
                 <button
                     type='button'
@@ -76,7 +76,7 @@ export const ProductCard = ({ image, name, price, rating = 0, badge, onAddToCart
                 <button
                     type='button'
                     onClick={add}
-                    className='flex select-none items-center justify-center rounded-lg bg-black px-4 py-3 text-sm font-medium text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'
+                    className='flex select-none items-center justify-center rounded-xl bg-black px-4 py-3 text-sm font-medium text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'
                 >
                     {added ? 'Added!' : 'Add to cart'}
                 </button>

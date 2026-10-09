@@ -44,7 +44,7 @@ const DocPage = ({ title, description, children }) => {
                         type='button'
                         aria-label='Open documentation menu'
                         aria-expanded={docNav}
-                        className='hidden items-center justify-center cursor-pointer h-8 w-8 rounded-lg bg-neutral-200 hover:bg-neutral-300 duration-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 lg:flex'
+                        className='hidden items-center justify-center cursor-pointer h-8 w-8 rounded-xl bg-neutral-200 hover:bg-neutral-300 duration-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 lg:flex'
                         onClick={() => setDocNav((prevNav) => !prevNav)}
                     >
                         <ChevronDown size={18} className={`duration-200 ${docNav ? 'rotate-180' : ''}`} />

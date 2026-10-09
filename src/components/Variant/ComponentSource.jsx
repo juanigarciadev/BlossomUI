@@ -42,7 +42,7 @@ const ComponentSource = ({ source, file }) => {
                             title: 'Copy the file',
                             description: (
                                 <>
-                                    Save the code below as <code className='rounded bg-neutral-200 px-1.5 py-0.5 text-xs dark:bg-neutral-800'>src/components/ui/{fileName}</code>.
+                                    Save the code below as <code className='rounded-xl bg-neutral-200 px-1.5 py-0.5 text-xs dark:bg-neutral-800'>src/components/ui/{fileName}</code>.
                                     {usesHooks && ' It uses React hooks, so in Next.js add "use client" at the top of the file.'}
                                 </>
                             ),
@@ -86,7 +86,7 @@ const ComponentSource = ({ source, file }) => {
                                 <p className='pb-2 text-xs text-neutral-500'>Also accepts every prop of <code>{entry.extendsFrom}</code>.</p>
                             )}
                             {entry.props.length > 0 && (
-                                <div className='overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-700'>
+                                <div className='overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700'>
                                     <table className='w-full min-w-[32rem] text-left text-sm'>
                                         <thead className='bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300'>
                                             <tr>

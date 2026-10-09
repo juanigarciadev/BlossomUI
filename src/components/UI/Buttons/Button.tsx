@@ -41,7 +41,7 @@ export const Button = ({ color = 'primary', rounded = false, loading = false, ic
             type={type}
             disabled={disabled || loading}
             aria-busy={loading}
-            className={`flex w-fit select-none items-center justify-center gap-2 px-4 py-3 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-lg'} ${colors[color]} ${className}`}
+            className={`flex w-fit select-none items-center justify-center gap-2 px-4 py-3 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${colors[color]} ${className}`}
             {...props}
         >
             {loading ? <span className={`h-4 w-4 animate-spin rounded-full border-2 ${spinners[color]}`} /> : icon}
@@ -93,7 +93,7 @@ export const SocialButton = ({ provider, iconOnly = false, rounded = false, clas
         <button
             type={type}
             aria-label={iconOnly ? label : undefined}
-            className={`inline-flex w-fit select-none items-center justify-center gap-2 text-sm font-medium text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 ${iconOnly ? 'p-3' : 'px-5 py-3'} ${rounded ? 'rounded-full' : 'rounded-lg'} ${style} ${className}`}
+            className={`inline-flex w-fit select-none items-center justify-center gap-2 text-sm font-medium text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 ${iconOnly ? 'p-3' : 'px-5 py-3'} ${rounded ? 'rounded-full' : 'rounded-xl'} ${style} ${className}`}
             {...props}
         >
             {icon}

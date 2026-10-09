@@ -50,7 +50,7 @@ const Introduction = () => {
             key={title}
             className="flex flex-col gap-2 p-4 rounded-xl border border-neutral-200 bg-neutral-50 dark:bg-neutral-800 dark:border-neutral-700"
           >
-            <span className="grid place-items-center w-10 h-10 rounded-lg bg-corporative bg-opacity-20 text-corporative text-xl">
+            <span className="grid place-items-center w-10 h-10 rounded-xl bg-corporative bg-opacity-20 text-corporative text-xl">
               <Icon size={20} />
             </span>
             <h3 className="font-medium text-lg">{title}</h3>
@@ -81,7 +81,7 @@ const Introduction = () => {
       </section>
       <section className="flex flex-col gap-3">
         <h2 className="text-2xl font-bold text-neutral-800 dark:text-white">Frequently asked questions</h2>
-        <div className="flex flex-col divide-y divide-neutral-200 rounded-lg border border-neutral-200 dark:divide-neutral-700 dark:border-neutral-700">
+        <div className="flex flex-col divide-y divide-neutral-200 rounded-xl border border-neutral-200 dark:divide-neutral-700 dark:border-neutral-700">
           {faq.map((entry) => (
             <details key={entry.question} className="group px-4 py-3">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium">

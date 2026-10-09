@@ -38,7 +38,7 @@ export const Badge = ({ color = 'default', outlined = false, rounded = false, ic
     const iconOnly = icon && !children
     return (
         <span
-            className={`flex h-fit w-fit cursor-default items-center gap-1 text-xs font-medium ${iconOnly ? 'p-2' : 'px-2.5 py-1'} ${rounded || iconOnly ? 'rounded-full' : 'rounded-lg'} ${outlined ? outline[color] : filled[color]} ${className}`}
+            className={`flex h-fit w-fit cursor-default items-center gap-1 text-xs font-medium ${iconOnly ? 'p-2' : 'px-2.5 py-1'} ${rounded || iconOnly ? 'rounded-full' : 'rounded-xl'} ${outlined ? outline[color] : filled[color]} ${className}`}
             {...props}
         >
             {icon}
@@ -48,7 +48,7 @@ export const Badge = ({ color = 'default', outlined = false, rounded = false, ic
                     type='button'
                     aria-label='Dismiss'
                     onClick={onDismiss}
-                    className='-mr-1 ml-1 rounded p-0.5 hover:bg-black/10 dark:hover:bg-white/10'
+                    className='-mr-1 ml-1 rounded-lg p-0.5 hover:bg-black/10 dark:hover:bg-white/10'
                 >
                     <svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='3' strokeLinecap='round'><path d='M6 6l12 12M18 6 6 18' /></svg>
                 </button>

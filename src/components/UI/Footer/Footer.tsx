@@ -32,7 +32,7 @@ export const Footer = ({ brand, description, columns, links, social, year = new 
 
     if (columns?.length) {
         return (
-            <footer className='w-full rounded-lg border border-neutral-300 bg-neutral-200 bg-opacity-40 p-6 dark:border-neutral-700 dark:bg-neutral-800'>
+            <footer className='w-full rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 p-6 dark:border-neutral-700 dark:bg-neutral-800'>
                 <div className='grid gap-8' style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(9rem, 1fr))' }}>
                     <div className='flex flex-col gap-2'>
                         <span className='text-xl font-bold text-neutral-900 dark:text-white'>{brand}</span>
@@ -55,7 +55,7 @@ export const Footer = ({ brand, description, columns, links, social, year = new 
 
     const centered = align === 'center'
     return (
-        <footer className={`flex w-full gap-4 rounded-lg border border-neutral-300 bg-neutral-200 bg-opacity-40 px-6 py-5 text-sm text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ${centered ? 'flex-col items-center py-8 text-center' : 'items-center justify-between max-[640px]:flex-col'}`}>
+        <footer className={`flex w-full gap-4 rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 px-6 py-5 text-sm text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ${centered ? 'flex-col items-center py-8 text-center' : 'items-center justify-between max-[640px]:flex-col'}`}>
             {centered && <span className='text-xl font-bold text-neutral-900 dark:text-white'>{brand}</span>}
             {!centered && <p>{copyright}</p>}
             {links && (

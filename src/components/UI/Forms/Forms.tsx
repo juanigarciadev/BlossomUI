@@ -16,7 +16,7 @@ export interface FieldProps {
 const stateOf = (error?: string, success?: string): State => (error ? 'error' : success ? 'success' : 'default')
 
 const control: Record<State, string> = {
-    default: 'border-neutral-300 focus:border-pink-400 focus:ring-pink-400/30 dark:border-neutral-700',
+    default: 'border-neutral-300 text-neutral-900 focus:border-pink-400 focus:ring-pink-400/30 dark:border-neutral-700 dark:text-white',
     success: 'border-green-500 bg-green-50 text-green-900 focus:ring-green-500/30 dark:bg-green-900/20 dark:text-green-200',
     error: 'border-red-500 bg-red-50 text-red-900 focus:ring-red-500/30 dark:bg-red-900/20 dark:text-red-200',
 }
@@ -27,7 +27,7 @@ const message: Record<State, string> = {
     error: 'text-red-700 dark:text-red-400',
 }
 
-const base = 'w-full rounded-lg border bg-transparent px-3 py-2.5 text-sm outline-none placeholder:text-neutral-400 focus:ring-2 disabled:cursor-not-allowed disabled:opacity-60'
+const base = 'w-full rounded-xl border bg-transparent px-3 py-2.5 text-sm outline-none placeholder:text-neutral-400 focus:ring-2 disabled:cursor-not-allowed disabled:opacity-60'
 
 /** Label, control and message of every field. */
 const Field = ({ id, label, hint, error, success, children }: FieldProps & { id: string; children: ReactNode }) => {
@@ -143,7 +143,7 @@ const listStyle = (position: Position): CSSProperties => ({
     ...(position.up ? { bottom: window.innerHeight - position.top } : { top: position.top }),
 })
 
-const listBox = 'fixed z-[80] max-h-60 overflow-auto rounded-lg border border-neutral-200 bg-white p-1 text-sm shadow-lg dark:border-neutral-700 dark:bg-neutral-900'
+const listBox = 'fixed z-[80] max-h-60 overflow-auto rounded-xl border border-neutral-200 bg-white p-1 text-sm shadow-lg dark:border-neutral-700 dark:bg-neutral-900'
 
 const chevron = (open: boolean) => (
     <svg className={`h-4 w-4 shrink-0 text-neutral-400 transition-transform ${open ? 'rotate-180' : ''}`} aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'>
@@ -283,7 +283,7 @@ export const Select = ({ label, hint, error, success, options, value, defaultVal
                 onKeyDown={onKeyDown}
                 className={`${base} flex items-center justify-between gap-2 text-left focus:ring-2 ${open ? 'ring-2' : ''} ${control[state]} ${className}`}
             >
-                <span className={`truncate ${selected ? '' : 'text-neutral-400'}`}>{selected?.label ?? placeholder}</span>
+                <span className={`truncate ${selected ? 'text-neutral-900 dark:text-white' : 'text-neutral-400'}`}>{selected?.label ?? placeholder}</span>
                 {chevron(open)}
             </button>
             {name && <input type='hidden' name={name} value={current} />}
@@ -299,7 +299,7 @@ export const Select = ({ label, hint, error, success, options, value, defaultVal
                             aria-disabled={option.disabled}
                             onPointerEnter={() => !option.disabled && setActive(index)}
                             onClick={() => select(option)}
-                            className={`flex cursor-pointer items-center justify-between rounded-md px-3 py-2 ${option.disabled ? 'cursor-not-allowed opacity-40' : ''} ${index === active ? 'bg-pink-100 text-pink-900 dark:bg-pink-950 dark:text-pink-200' : 'text-neutral-800 dark:text-neutral-200'}`}
+                            className={`flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 ${option.disabled ? 'cursor-not-allowed opacity-40' : ''} ${index === active ? 'bg-pink-100 text-pink-900 dark:bg-pink-950 dark:text-pink-200' : 'text-neutral-800 dark:text-neutral-200'}`}
                         >
                             {option.label}
                             {option.value === current && checkMark}
@@ -412,7 +412,7 @@ export const MultiSelect = ({ label, hint, error, success, options, value, defau
                 {current.map((item) => {
                     const option = options.find((candidate) => candidate.value === item)
                     return (
-                        <span key={item} className='flex items-center gap-1 rounded-md bg-pink-100 py-1 pl-2 pr-1 text-xs font-medium text-pink-900 dark:bg-pink-950 dark:text-pink-200'>
+                        <span key={item} className='flex items-center gap-1 rounded-lg bg-pink-100 py-1 pl-2 pr-1 text-xs font-medium text-pink-900 dark:bg-pink-950 dark:text-pink-200'>
                             {option?.label ?? item}
                             <button
                                 type='button'
@@ -422,7 +422,7 @@ export const MultiSelect = ({ label, hint, error, success, options, value, defau
                                     event.stopPropagation()
                                     update(current.filter((candidate) => candidate !== item))
                                 }}
-                                className='rounded p-0.5 hover:bg-pink-200 dark:hover:bg-pink-900'
+                                className='rounded-lg p-0.5 hover:bg-pink-200 dark:hover:bg-pink-900'
                             >
                                 <svg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='currentColor' strokeWidth='3' strokeLinecap='round' aria-hidden='true'><path d='M6 6l12 12M18 6 6 18' /></svg>
                             </button>
@@ -448,7 +448,7 @@ export const MultiSelect = ({ label, hint, error, success, options, value, defau
                         setOpen(true)
                     }}
                     onKeyDown={onKeyDown}
-                    className='min-w-[80px] flex-1 bg-transparent py-0.5 text-sm outline-none placeholder:text-neutral-400'
+                    className='min-w-[80px] flex-1 bg-transparent py-0.5 text-sm text-neutral-900 outline-none dark:text-white placeholder:text-neutral-400'
                 />
                 {chevron(open)}
             </div>
@@ -475,9 +475,9 @@ export const MultiSelect = ({ label, hint, error, success, options, value, defau
                                 onPointerEnter={() => !blocked && setActive(index)}
                                 onMouseDown={(event) => event.preventDefault()}
                                 onClick={() => !blocked && toggle(option)}
-                                className={`flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 ${blocked ? 'cursor-not-allowed opacity-40' : ''} ${index === active ? 'bg-pink-100 text-pink-900 dark:bg-pink-950 dark:text-pink-200' : 'text-neutral-800 dark:text-neutral-200'}`}
+                                className={`flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 ${blocked ? 'cursor-not-allowed opacity-40' : ''} ${index === active ? 'bg-pink-100 text-pink-900 dark:bg-pink-950 dark:text-pink-200' : 'text-neutral-800 dark:text-neutral-200'}`}
                             >
-                                <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border-2 ${checked ? 'border-pink-400 bg-pink-400 text-white' : 'border-neutral-300 dark:border-neutral-600'}`}>
+                                <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-md border-2 ${checked ? 'border-pink-400 bg-pink-400 text-white' : 'border-neutral-300 dark:border-neutral-600'}`}>
                                     {checked && (
                                         <svg className='h-2.5 w-2.5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='4'><path strokeLinecap='round' strokeLinejoin='round' d='m5 12 5 5L20 7' /></svg>
                                     )}

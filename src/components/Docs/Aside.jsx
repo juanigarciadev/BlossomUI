@@ -8,7 +8,7 @@ const sections = [
 ]
 
 const linkClass = ({ isActive }) =>
-    `block rounded-lg px-3 py-1.5 text-sm duration-150 ${isActive
+    `block rounded-xl px-3 py-1.5 text-sm duration-150 ${isActive
         ? 'bg-corporative/10 text-corporative font-medium'
         : 'text-neutral-500 hover:bg-neutral-100 hover:text-neutral-900 dark:hover:bg-neutral-800 dark:hover:text-white'}`
 

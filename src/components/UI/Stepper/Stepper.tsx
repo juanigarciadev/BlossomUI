@@ -56,7 +56,7 @@ export const Stepper = ({ steps, current, orientation = 'horizontal', numbered =
                 )
 
                 const content = clickable ? (
-                    <button type='button' onClick={() => onStepClick(index)} className={`flex gap-3 rounded-lg ${vertical ? 'items-start' : 'items-center'} focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-400`}>
+                    <button type='button' onClick={() => onStepClick(index)} className={`flex gap-3 rounded-xl ${vertical ? 'items-start' : 'items-center'} focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-400`}>
                         {circle}
                         {text}
                     </button>

@@ -56,7 +56,7 @@ const Variant = ({
                     <button
                         type='button'
                         aria-expanded={showCode}
-                        className='flex items-center justify-center gap-1 text-sm px-3 py-2 rounded-lg hover:bg-neutral-200 duration-200 dark:text-white dark:hover:bg-neutral-800'
+                        className='flex items-center justify-center gap-1 text-sm px-3 py-2 rounded-xl hover:bg-neutral-200 duration-200 dark:text-white dark:hover:bg-neutral-800'
                         onClick={() => setShowCode((prev) => !prev)}
                     >
                         {showCode ? <HideCodeIcon /> : <ShowCodeIcon />}
