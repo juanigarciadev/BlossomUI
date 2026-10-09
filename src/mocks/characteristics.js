@@ -1,4 +1,4 @@
-import { Zap, Star, Pencil, Moon, Smile, Shapes } from 'lucide-react'
+import { Zap, Star, Pencil, Moon, Smile, FileCode } from 'lucide-react'
 
 const characteristics = [
     {
@@ -9,17 +9,17 @@ const characteristics = [
     {
         icon: Pencil,
         title: "Customizable",
-        subtitle: "Highly customizable, just modify the Tailwind tags and voilà!",
+        subtitle: "Highly customizable, just modify the Tailwind classes and voilà!",
     },
     {
         icon: Zap,
         title: "Ultra Fast",
-        subtitle: "No extra libraries, just Tailwind!",
+        subtitle: "No extra libraries, just React and Tailwind!",
     },
     {
-        icon: Shapes,
-        title: "SVG-Only",
-        subtitle: "We save data consumption and provide rescalability using only SVGs in our components.",
+        icon: FileCode,
+        title: "TypeScript",
+        subtitle: "Typed props, React hooks where they make sense and one file per component.",
     },
     {
         icon: Moon,

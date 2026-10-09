@@ -1,34 +1,15 @@
-import { AngularIcon, SvelteIcon, ViteIcon, NuxtIcon, AstroIcon, SolidJSIcon, NextJSIcon, LaravelIcon, QwikIcon, MeteorIcon, RemixIcon, PhoenixIcon } from "../assets/Icons/Icons"
+import { ViteIcon, NextJSIcon } from "../assets/Icons/Icons"
 
+// Next.js goes first because it is the default option of the installation guide.
 export const installation = [
-    {
-        name: "Vite",
-        img: ViteIcon,
-        span: "Fast and modern development server and build tool.",
-    },
     {
         name: "Next.js",
         img: NextJSIcon,
         span: "Full-featured React framework with great developer experience.",
     },
     {
-        name: "Astro",
-        img: AstroIcon,
-        span: "The all-in-one web framework designed for speed.",
+        name: "Vite",
+        img: ViteIcon,
+        span: "Fast and modern build tool for React and TypeScript projects.",
     },
-    // {
-    //     name: "Angular",
-    //     img: AngularIcon,
-    //     span: "Platform for building mobile and desktop web applications.",
-    // },
-    // {
-    //     name: "Nuxt",
-    //     img: NuxtIcon,
-    //     span: "Intuitive Vue framework for building universal applications.",
-    // },
-    // {
-    //     name: "SvelteKit",
-    //     img: SvelteIcon,
-    //     span: "The fastest way to build apps of all sizes with Svelte.js.",
-    // },
 ]

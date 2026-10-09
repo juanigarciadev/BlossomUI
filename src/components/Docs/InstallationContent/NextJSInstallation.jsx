@@ -1,98 +1,57 @@
-import React from 'react'
-import CodeBlock from '@codeBlock'
+import Steps from './Steps'
 
-const NextJSInstallation = () => {
-    const createNext = 'npx create-next-app@latest my-project --typescript --eslint\ncd my-project'
-    const installTailwind = 'npm install -D tailwindcss postcss autoprefixer\nnpx tailwindcss init -p'
-    const configurePaths = '/** @type {import("tailwindcss").Config} */\nmodule.exports = {\n  content: [\n    "./app/**/*.{js,ts,jsx,tsx,mdx}",\n    "./pages/**/*.{js,ts,jsx,tsx,mdx}",\n    "./components/**/*.{js,ts,jsx,tsx,mdx}",\n\n    // Or if using `src` directory:\n    "./src/**/*.{js,ts,jsx,tsx,mdx}",\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}'
-    const directives = '@tailwind base;\n@tailwind components;\n@tailwind utilities;'
-    const build = 'npm run dev'
-    const start = 'export default function Home() {\n  return (\n    <h1 className="text-3xl font-bold underline">\n      Hello world!\n    </h1>\n  )\n}'
-    return (
-        <div>
-            <h3 className='text-4xl font-bold pb-4 text-neutral-800 dark:text-white'>With Next.js</h3>
-            <ol className='flex flex-col gap-8 pb-8'>
-                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
-                    <section className='flex gap-2'>
-                        <div>
-                            <div className='flex gap-2'>
-                                <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>1</p>
-                                <h3 className='font-medium pb-2'>Create your project</h3>
-                            </div>
-                            <p className='dark:text-neutral-300 pb-4'>Start by creating a new Next.js project if you don't have one set up already. The most common aproach is to use <a href="https://nextjs.org/docs/pages/api-reference/create-next-app" target='_blank' className='text-corporative hover:text-corporativeHovear'>Create Next App</a>.</p>
-                        </div>
-                    </section>
-                    <CodeBlock name={"Terminal"} code={createNext} language={"bash"} />
-                </li>
+const steps = [
+    {
+        title: 'Create your project',
+        text: 'Start by creating a new Next.js project with TypeScript, the App Router and a src directory. Tailwind CSS is installed in the next steps so it uses version 3. If you already have a Next.js project you can skip this step.',
+        name: 'Terminal',
+        language: 'bash',
+        code: 'npx create-next-app@latest my-project --typescript --eslint --app --src-dir --no-tailwind --import-alias "@/*"\ncd my-project',
+    },
+    {
+        title: 'Install Tailwind CSS',
+        text: 'Install tailwindcss 3 and its peer dependencies, then generate your tailwind.config.js and postcss.config.js files.',
+        name: 'Terminal',
+        language: 'bash',
+        code: 'npm install -D tailwindcss@3 postcss autoprefixer\nnpx tailwindcss init -p',
+    },
+    {
+        title: 'Configure your template paths',
+        text: 'Add the paths to all of your template files in your tailwind.config.js file and enable the class strategy for dark mode.',
+        name: 'tailwind.config.js',
+        language: 'javascript',
+        code: '/** @type {import("tailwindcss").Config} */\nmodule.exports = {\n  darkMode: "class",\n  content: [\n    "./src/**/*.{js,ts,jsx,tsx,mdx}",\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}',
+    },
+    {
+        title: 'Add the Tailwind directives to your CSS',
+        text: 'Replace the content of src/app/globals.css with the @tailwind directives for each of Tailwind\'s layers.',
+        name: 'src/app/globals.css',
+        language: 'css',
+        code: '@tailwind base;\n@tailwind components;\n@tailwind utilities;',
+    },
+    {
+        title: 'Copy a component',
+        text: 'Open any component page, copy the file shown in its Component section and save it in your project, for example as src/components/ui/Button.tsx. Components that handle events or use hooks need "use client" at the top of the page that uses them, because Server Components cannot receive event handlers.',
+        name: 'src/app/page.tsx',
+        language: 'tsx',
+        code: "'use client'\n\nimport { Button } from '@/components/ui/Button'\n\nexport default function Home() {\n  return (\n    <Button color=\"default\" onClick={() => alert('Hello Blossom UI!')}>\n      Hello Blossom UI\n    </Button>\n  )\n}",
+    },
+    {
+        title: 'Dark mode (optional)',
+        text: 'Every component has dark: variants. They are applied when the html element has the dark class. Add it by hand or toggle it with a library such as next-themes.',
+        name: 'src/app/layout.tsx',
+        language: 'tsx',
+        code: '<html lang="en" className="dark">\n  <body>{children}</body>\n</html>',
+    },
+    {
+        title: 'Start your build process',
+        text: 'Run your build process with npm run dev.',
+        name: 'Terminal',
+        language: 'bash',
+        code: 'npm run dev',
+    },
+]
 
-                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
-                    <section className='flex gap-2'>
-                        <div>
-                            <div className='flex gap-2'>
-                                <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>2</p>
-                                <h3 className='font-medium pb-2'>Install Tailwind CSS</h3>
-                            </div>
-                            <p className='dark:text-neutral-300 pb-4'>Install `tailwindcss` and its peer dependencies via npm, and then run the init command to generate both `tailwind.config.js` and `postcss.config.js`.</p>
-                        </div>
-                    </section>
-                    <CodeBlock name={"Terminal"} code={installTailwind} language={"bash"} />
-                </li>
-
-                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
-                    <section className='flex gap-2'>
-                        <div>
-                            <div className='flex gap-2'>
-                                <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>3</p>
-                                <h3 className='font-medium pb-2'>Configure your templates paths</h3>
-                            </div>
-                            <p className='dark:text-neutral-300 pb-4'>Add the paths to all of your template files in your `tailwind.config.js` file.</p>
-                        </div>
-                    </section>
-                    <CodeBlock name={"tailwind.config.js"} code={configurePaths} language={"javascript"} />
-
-                </li>
-
-                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
-                    <section className='flex gap-2'>
-                        <div>
-                            <div className='flex gap-2'>
-                                <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>4</p>
-                                <h3 className='font-medium pb-2'>Add the Tailwind directives to your CSS</h3>
-                            </div>
-                            <p className='dark:text-neutral-300 pb-4'>Add the `@tailwind` directives for each of Tailwind’s layers to your `globals.css` file.</p>
-                        </div>
-                    </section>
-                    <CodeBlock name={"globals.css"} code={directives} language={"css"} />
-                </li>
-
-                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
-                    <section className='flex gap-2'>
-                        <div>
-                            <div className='flex gap-2'>
-                                <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>5</p>
-                                <h3 className='font-medium pb-2'>Start your build process</h3>
-                            </div>
-                            <p className='dark:text-neutral-300 pb-4'>Run your build process with `npm run dev`.</p>
-                        </div>
-                    </section>
-                    <CodeBlock name={"Terminal"} code={build} language={"bash"} />
-                </li>
-
-                <li className='grid grid-cols-2 xl:flex xl:flex-col'>
-                    <section className='flex gap-2'>
-                        <div>
-                            <div className='flex gap-2'>
-                                <p className='flex items-center justify-center w-6 h-6 bg-neutral-200 dark:bg-neutral-800 rounded-md text-sm'>6</p>
-                                <h3 className='font-medium pb-2'>Start using Tailwind in your project</h3>
-                            </div>
-                            <p className='dark:text-neutral-300 pb-4'>Start using Tailwind’s utility classes to style your content.</p>
-                        </div>
-                    </section>
-                    <CodeBlock name={"index.tsx"} code={start} language={"typescript"} />
-                </li>
-            </ol>
-        </div>
-    )
-}
+const NextJSInstallation = () => <Steps title='With Next.js' steps={steps} />
 
 export default NextJSInstallation
