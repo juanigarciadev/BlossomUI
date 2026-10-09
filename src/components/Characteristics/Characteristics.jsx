@@ -2,7 +2,7 @@ import characteristics from "../../mocks/characteristics";
 
 const Characteristics = () => {
   return (
-    <div className="grid grid-cols-3 gap-4 w-full h-auto pt-64 lg:grid-cols-2 md:grid-cols-1 lg:pt-32">
+    <div className="grid grid-cols-3 gap-4 w-full h-auto pt-24 lg:grid-cols-2 md:grid-cols-1 lg:pt-16">
       {characteristics.map((item) => {
         const Icon = item.icon;
         return (

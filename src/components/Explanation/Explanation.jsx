@@ -5,7 +5,7 @@ import CodeBlock from '@codeBlock'
 const Explanation = () => {
     const buttonCode = `<button className='flex justify-center w-fit h-fit text-sm items-center text-center bg-black text-white gap-2 px-4 py-3 rounded-lg cursor-pointer font-medium select-none hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'>Example button</button>`
     return (
-        <div div className='grid grid-cols-2 w-full pt-64 pb-32 lg:flex lg:flex-col-reverse lg:gap-12 lg:pt-32 lg:pb-0' >
+        <div className='grid grid-cols-2 w-full items-center gap-8 pt-24 pb-24 lg:flex lg:flex-col-reverse lg:gap-12 lg:pt-16 lg:pb-0' >
             <section>
                 <CodeBlock name={"Button"} code={buttonCode} language={"javascript"} />
                 <section className="flex justify-center w-full">

@@ -39,6 +39,81 @@ body {
   animation: codeblockTransition 0.3s ease-in-out;
 }
 
+/* Home */
+.text-gradient {
+  background: linear-gradient(90deg, #f472b6, #c084fc, #f472b6);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 6s linear infinite;
+}
+
+.float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.float-slower {
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+.fade-up {
+  animation: fadeUp 0.7s ease-out both;
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes gradientShift {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient,
+  .float-slow,
+  .float-slower,
+  .fade-up,
+  .marquee-track {
+    animation: none;
+  }
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 8px;
