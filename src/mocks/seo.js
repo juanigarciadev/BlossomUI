@@ -9,7 +9,7 @@ export const SITE = {
     tagline: 'React components made with Tailwind CSS',
     description:
         'Blossom UI is a free and open source library of React components written in TypeScript and styled with Tailwind CSS. Copy a single file into your project: buttons, forms, modals, selects, toasts, pagination and more, all with dark mode and typed props.',
-    image: 'https://res.cloudinary.com/diruiumfk/image/upload/v1724003620/blossomui_wcxsqc.png',
+    image: 'https://blossomui.vercel.app/og.png?v=2',
     github: 'https://github.com/juanigarciadev/BlossomUI',
     author: { name: 'Juan Ignacio García', url: 'https://github.com/juanigarciadev' },
     keywords: [
