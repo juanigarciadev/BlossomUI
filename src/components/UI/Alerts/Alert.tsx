@@ -1,11 +1,13 @@
 import { useState, type ReactNode } from 'react'
 
+const ACCENT_VAR = 'var(--blossom-accent,#f472b6)'
+
 export type AlertColor = 'default' | 'dark' | 'red' | 'green' | 'yellow'
 
 export interface AlertProps {
     /** Accessible name of the dismiss button. */
     dismissLabel?: string
-    /** A preset or any CSS color, for example `#7c3aed`. A custom color is used for the border, the icon and a soft tint of the background. */
+    /** A preset, `accent` for the brand color or any CSS color, for example `#7c3aed`. A custom color is used for the border, the icon and a soft tint of the background. */
     color?: AlertColor | (string & {})
     /** `accent` adds a thick border on the left side. */
     variant?: 'filled' | 'outlined' | 'accent'
@@ -65,7 +67,8 @@ const isPreset = (color: string): color is AlertColor => color in box
 
 const actionButton = 'rounded-lg px-4 py-1 text-sm font-medium select-none'
 
-export const Alert = ({ dismissLabel = 'Dismiss alert', color = 'default', variant = 'filled', showIcon = false, list, actions, dismissible = false, onDismiss, children }: AlertProps) => {
+export const Alert = ({ dismissLabel = 'Dismiss alert', color: colorProp = 'default', variant = 'filled', showIcon = false, list, actions, dismissible = false, onDismiss, children }: AlertProps) => {
+    const color = colorProp === 'accent' ? ACCENT_VAR : colorProp
     const [visible, setVisible] = useState(true)
     if (!visible) return null
 

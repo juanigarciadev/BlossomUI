@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 
+const ACCENT_VAR = 'var(--blossom-accent,#f472b6)'
+
 export type ToastColor = 'default' | 'green' | 'red' | 'yellow' | 'dark'
 
 export interface ToastProps {
     /** Accessible name of the dismiss button. */
     dismissLabel?: string
-    /** A preset or any CSS color. A custom color fills the toast and the text switches between black and white to stay readable. */
+    /** A preset, `accent` for the brand color or any CSS color. A custom color fills the toast and the text switches between black and white to stay readable. */
     color?: ToastColor | (string & {})
     children: ReactNode
     /** Text of the action button, for example "Undo". */
@@ -32,6 +34,8 @@ const icons: Record<ToastColor, string> = {
 
 /** Black or white, whichever reads better over a hex or rgb() color. Other CSS colors get white. */
 const readableOn = (color: string) => {
+    // A CSS variable cannot be measured: the text on top of it uses the contrast variable of the accent.
+    if (color.trim().startsWith('var(')) return 'var(--blossom-accent-contrast,#ffffff)'
     const hex = color.trim().replace('#', '')
     const full = hex.length === 3 ? hex.split('').map((char) => char + char).join('') : hex
     const rgb = /^[0-9a-f]{6}$/i.test(full) ? [0, 2, 4].map((index) => parseInt(full.slice(index, index + 2), 16)) : color.match(/\d+/g)?.slice(0, 3).map(Number)
@@ -41,7 +45,8 @@ const readableOn = (color: string) => {
 
 const isPreset = (color: string): color is ToastColor => color in styles
 
-export const Toast = ({ dismissLabel = 'Dismiss', color = 'default', children, actionLabel, onAction, onDismiss }: ToastProps) => {
+export const Toast = ({ dismissLabel = 'Dismiss', color: colorProp = 'default', children, actionLabel, onAction, onDismiss }: ToastProps) => {
+    const color = colorProp === 'accent' ? ACCENT_VAR : colorProp
     const preset = isPreset(color)
     const style = preset ? styles[color] : { box: '', icon: 'bg-black/15', action: 'border-current hover:bg-black/10' }
     // On a custom color the text is black or white depending on the contrast.

@@ -2,6 +2,8 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
 /** Black or white, whichever reads better over a hex or rgb() color. Other CSS colors get white. */
 const readableOn = (color: string) => {
+    // A CSS variable cannot be measured: the text on top of it uses the contrast variable of the accent.
+    if (color.trim().startsWith('var(')) return 'var(--blossom-accent-contrast,#ffffff)'
     const hex = color.trim().replace('#', '')
     const full = hex.length === 3 ? hex.split('').map((char) => char + char).join('') : hex
     const rgb = /^[0-9a-f]{6}$/i.test(full) ? [0, 2, 4].map((index) => parseInt(full.slice(index, index + 2), 16)) : color.match(/\d+/g)?.slice(0, 3).map(Number)
@@ -9,10 +11,12 @@ const readableOn = (color: string) => {
     return (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 > 150 ? '#171717' : '#ffffff'
 }
 
+const ACCENT_VAR = 'var(--blossom-accent,#f472b6)'
+
 export type ButtonColor = 'primary' | 'secondary' | 'default' | 'red' | 'green' | 'yellow' | 'purple' | 'pink'
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
-    /** Visual style of the button: a preset or any CSS color, for example `#7c3aed` or `rgb(124 58 237)`. */
+    /** Visual style of the button: a preset, `accent` for the brand color (`--blossom-accent`) or any CSS color such as `#7c3aed`. */
     color?: ButtonColor | (string & {})
     /** Use fully rounded (pill) corners. */
     rounded?: boolean
@@ -49,7 +53,8 @@ const spinners: Record<ButtonColor, string> = {
     pink: 'border-pink-300 border-l-white',
 }
 
-export const Button = ({ color = 'primary', size = 'md', rounded = false, loading = false, icon, disabled, className = '', children, type = 'button', style, ...props }: ButtonProps) => {
+export const Button = ({ color: colorProp = 'primary', size = 'md', rounded = false, loading = false, icon, disabled, className = '', children, type = 'button', style, ...props }: ButtonProps) => {
+    const color = colorProp === 'accent' ? ACCENT_VAR : colorProp
     const custom = !isPreset(color)
     return (
         <button
@@ -89,7 +94,9 @@ const iconSizes: Record<IconButtonSize, string> = {
 }
 
 /** A square button that only shows an icon of your choice. */
-export const IconButton = ({ icon, label, color = 'secondary', size = 'md', rounded = false, loading = false, disabled, className = '', type = 'button', style, ...props }: IconButtonProps) => (
+export const IconButton = ({ icon, label, color: colorProp = 'secondary', size = 'md', rounded = false, loading = false, disabled, className = '', type = 'button', style, ...props }: IconButtonProps) => {
+    const color = colorProp === 'accent' ? ACCENT_VAR : colorProp
+    return (
     <button
         type={type}
         aria-label={label}
@@ -102,7 +109,8 @@ export const IconButton = ({ icon, label, color = 'secondary', size = 'md', roun
     >
         {loading ? <span className={`h-4 w-4 animate-spin rounded-full border-2 ${isPreset(color) ? spinners[color] : 'border-current border-l-transparent'}`} /> : icon}
     </button>
-)
+    )
+}
 
 export type SocialProvider = 'facebook' | 'x' | 'github' | 'google' | 'apple'
 

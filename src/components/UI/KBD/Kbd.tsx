@@ -2,6 +2,8 @@ import { Fragment, type ReactNode } from 'react'
 
 /** Black or white, whichever reads better over a hex or rgb() color. Other CSS colors get white. */
 const readableOn = (color: string) => {
+    // A CSS variable cannot be measured: the text on top of it uses the contrast variable of the accent.
+    if (color.trim().startsWith('var(')) return 'var(--blossom-accent-contrast,#ffffff)'
     const hex = color.trim().replace('#', '')
     const full = hex.length === 3 ? hex.split('').map((char) => char + char).join('') : hex
     const rgb = /^[0-9a-f]{6}$/i.test(full) ? [0, 2, 4].map((index) => parseInt(full.slice(index, index + 2), 16)) : color.match(/\d+/g)?.slice(0, 3).map(Number)
@@ -9,11 +11,13 @@ const readableOn = (color: string) => {
     return (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 > 150 ? '#171717' : '#ffffff'
 }
 
+const ACCENT_VAR = 'var(--blossom-accent,#f472b6)'
+
 export type KbdColor = 'default' | 'dark' | 'pink' | 'purple' | 'blue' | 'green' | 'yellow' | 'red'
 
 export interface KbdProps {
     children: ReactNode
-    /** Color of the key: a preset or any CSS color. `default` is a neutral gray. */
+    /** Color of the key: a preset, `accent` for the brand color or any CSS color. `default` is a neutral gray. */
     color?: KbdColor | (string & {})
     /** Adds a thicker bottom border so the key looks pressable. */
     relief?: boolean
@@ -46,7 +50,9 @@ const pressed: Record<KbdColor, string> = {
 
 const isPreset = (color: string): color is KbdColor => color in idle
 
-export const Kbd = ({ children, color = 'default', relief = false, active = false }: KbdProps) => (
+export const Kbd = ({ children, color: colorProp = 'default', relief = false, active = false }: KbdProps) => {
+    const color = colorProp === 'accent' ? ACCENT_VAR : colorProp
+    return (
     <kbd
         className={`select-none rounded-xl border px-2 py-1.5 text-sm transition-colors ${relief ? 'border-b-4' : ''} ${isPreset(color) ? (active ? pressed[color] : idle[color]) : ''}`}
         style={
@@ -59,7 +65,8 @@ export const Kbd = ({ children, color = 'default', relief = false, active = fals
     >
         {children}
     </kbd>
-)
+    )
+}
 
 export interface KbdShortcutProps {
     keys: string[]

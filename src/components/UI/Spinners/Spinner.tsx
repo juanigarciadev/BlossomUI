@@ -1,9 +1,11 @@
+const ACCENT_VAR = 'var(--blossom-accent,#f472b6)'
+
 export type SpinnerSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 export type SpinnerColor = 'default' | 'red' | 'green' | 'yellow' | 'purple' | 'pink'
 
 export interface SpinnerProps {
     size?: SpinnerSize
-    /** A preset or any CSS color. */
+    /** A preset, `accent` for the brand color or any CSS color. */
     color?: SpinnerColor | (string & {})
     /** Hide the track so only the moving part is visible. */
     transparent?: boolean
@@ -30,7 +32,9 @@ const colors: Record<SpinnerColor, string> = {
 
 const isPreset = (color: string): color is SpinnerColor => color in colors
 
-export const Spinner = ({ size = 'md', color = 'default', transparent = false, label = 'Loading...' }: SpinnerProps) => (
+export const Spinner = ({ size = 'md', color: colorProp = 'default', transparent = false, label = 'Loading...' }: SpinnerProps) => {
+    const color = colorProp === 'accent' ? ACCENT_VAR : colorProp
+    return (
     <div role='status' className='inline-flex'>
         <div
             className={`animate-spin rounded-full ${sizes[size]} ${isPreset(color) ? colors[color] : ''} ${transparent ? 'border-transparent' : 'border-neutral-200 dark:border-neutral-700'}`}
@@ -38,4 +42,5 @@ export const Spinner = ({ size = 'md', color = 'default', transparent = false, l
         />
         <span className='sr-only'>{label}</span>
     </div>
-)
+    )
+}

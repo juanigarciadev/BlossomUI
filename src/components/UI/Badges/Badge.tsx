@@ -1,11 +1,13 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 
+const ACCENT_VAR = 'var(--blossom-accent,#f472b6)'
+
 export type BadgeColor = 'default' | 'dark' | 'red' | 'green' | 'yellow' | 'purple' | 'pink'
 
 export interface BadgeProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
     /** Accessible name of the dismiss button. */
     dismissLabel?: string
-    /** A preset or any CSS color, for example `#7c3aed`. */
+    /** A preset, `accent` for the brand color or any CSS color, for example `#7c3aed`. */
     color?: BadgeColor | (string & {})
     /** Border instead of the soft filled style. */
     outlined?: boolean
@@ -39,7 +41,8 @@ const outline: Record<BadgeColor, string> = {
 
 const isPreset = (color: string): color is BadgeColor => color in filled
 
-export const Badge = ({ dismissLabel = 'Dismiss', color = 'default', outlined = false, rounded = false, icon, onDismiss, className = '', children, style, ...props }: BadgeProps) => {
+export const Badge = ({ dismissLabel = 'Dismiss', color: colorProp = 'default', outlined = false, rounded = false, icon, onDismiss, className = '', children, style, ...props }: BadgeProps) => {
+    const color = colorProp === 'accent' ? ACCENT_VAR : colorProp
     const iconOnly = icon && !children
     // A custom color is used for the text and the border, with a soft tint of it as background.
     const customStyle = isPreset(color)
