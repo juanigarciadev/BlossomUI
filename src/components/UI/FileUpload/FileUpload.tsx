@@ -71,9 +71,9 @@ export const FileUpload = ({ accept, multiple = false, maxSizeMb, label = 'Uploa
                 onDragOver={(event) => { event.preventDefault(); if (!disabled) setDragging(true) }}
                 onDragLeave={() => setDragging(false)}
                 onDrop={onDrop}
-                className={`flex cursor-pointer flex-col items-center gap-2 rounded-2xl border-2 border-dashed px-6 py-8 text-center transition-colors focus-within:ring-2 focus-within:ring-pink-400 ${disabled ? 'cursor-not-allowed opacity-50' : ''} ${dragging ? 'border-pink-400 bg-pink-400 bg-opacity-10' : 'border-neutral-300 hover:border-pink-400 dark:border-neutral-700'}`}
+                className={`flex cursor-pointer flex-col items-center gap-2 rounded-2xl border-2 border-dashed px-6 py-8 text-center transition-colors focus-within:ring-2 focus-within:ring-[var(--blossom-accent,#f472b6)] ${disabled ? 'cursor-not-allowed opacity-50' : ''} ${dragging ? 'border-[var(--blossom-accent,#f472b6)] bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_10%,transparent)]' : 'border-neutral-300 hover:border-[var(--blossom-accent,#f472b6)] dark:border-neutral-700'}`}
             >
-                <svg className='h-8 w-8 text-pink-400' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='1.8'>
+                <svg className='h-8 w-8 text-[var(--blossom-accent,#f472b6)]' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='1.8'>
                     <path strokeLinecap='round' strokeLinejoin='round' d='M12 16V4m0 0L7 9m5-5 5 5M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2' />
                 </svg>
                 <span className='text-sm font-medium text-neutral-800 dark:text-white'>{label}</span>
@@ -87,7 +87,7 @@ export const FileUpload = ({ accept, multiple = false, maxSizeMb, label = 'Uploa
                         <li key={`${file.name}-${index}`} className='flex items-center justify-between gap-3 rounded-xl border border-neutral-200 px-3 py-2 text-sm dark:border-neutral-700'>
                             <span className='min-w-0 flex-1 truncate text-neutral-800 dark:text-white'>{file.name}</span>
                             <span className='shrink-0 text-xs text-neutral-500'>{formatSize(file.size)}</span>
-                            <button type='button' aria-label={`Remove ${file.name}`} onClick={() => remove(index)} className='shrink-0 rounded-lg p-1 text-neutral-500 outline-none hover:bg-neutral-200 focus-visible:ring-2 focus-visible:ring-pink-400 dark:hover:bg-neutral-800'>
+                            <button type='button' aria-label={`Remove ${file.name}`} onClick={() => remove(index)} className='shrink-0 rounded-lg p-1 text-neutral-500 outline-none hover:bg-neutral-200 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:hover:bg-neutral-800'>
                                 <svg className='h-4 w-4' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'><path strokeLinecap='round' strokeLinejoin='round' d='M6 6l12 12M18 6 6 18' /></svg>
                             </button>
                         </li>

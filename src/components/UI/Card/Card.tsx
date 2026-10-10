@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { accentStyle } from '../accent'
 
 const surface = 'rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 dark:border-neutral-600 dark:bg-neutral-800'
 
 export interface CardProps {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
     title: string
     description?: ReactNode
     /** Icon shown inside a tinted square. */
@@ -13,9 +16,9 @@ export interface CardProps {
     className?: string
 }
 
-export const Card = ({ title, description, icon, footer, className = '' }: CardProps) => (
-    <section className={`flex h-auto w-80 flex-col gap-2 rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 ${className}`}>
-        {icon && <span className='grid h-10 w-10 place-items-center rounded-xl bg-pink-400 bg-opacity-20 text-pink-400'>{icon}</span>}
+export const Card = ({ color, title, description, icon, footer, className = '' }: CardProps) => (
+    <section className={`flex h-auto flex-col gap-2 rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-neutral-700 dark:bg-neutral-800 ${/(^|\s)!?w-/.test(className) ? '' : 'w-80 max-w-full'} ${className}`} style={accentStyle(color)}>
+        {icon && <span className='grid h-10 w-10 place-items-center rounded-xl bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_20%,transparent)] text-[var(--blossom-accent,#f472b6)]'>{icon}</span>}
         <h3 className='text-lg font-medium text-neutral-900 dark:text-white'>{title}</h3>
         {description && <p className='text-sm text-neutral-600 dark:text-neutral-300'>{description}</p>}
         {footer}
@@ -28,6 +31,10 @@ export interface ProductSelection {
 }
 
 export interface ProductCardProps {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
+    /** Color of the badge: any CSS color. Without it the badge uses the accent. */
+    badgeColor?: string
     image: string
     name: string
     price: number
@@ -70,6 +77,7 @@ const Star = ({ filled }: { filled: boolean }) => (
 )
 
 interface LightboxProps {
+    color?: string
     images: string[]
     start: number
     name: string
@@ -77,7 +85,7 @@ interface LightboxProps {
 }
 
 /** Full size view of the product photos, with arrows and thumbnails when there are several. */
-const Lightbox = ({ images, start, name, onClose }: LightboxProps) => {
+const Lightbox = ({ color, images, start, name, onClose }: LightboxProps) => {
     const [index, setIndex] = useState(start)
     const panel = useRef<HTMLDivElement>(null)
     const onCloseRef = useRef(onClose)
@@ -94,7 +102,7 @@ const Lightbox = ({ images, start, name, onClose }: LightboxProps) => {
         panel.current?.focus()
 
         const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') onCloseRef.current()
+            if (event.key === 'Escape' && !event.defaultPrevented) onCloseRef.current()
             else if (event.key === 'ArrowRight') setIndex((current) => (current + 1) % images.length)
             else if (event.key === 'ArrowLeft') setIndex((current) => (current - 1 + images.length) % images.length)
         }
@@ -107,11 +115,12 @@ const Lightbox = ({ images, start, name, onClose }: LightboxProps) => {
         }
     }, [images.length])
 
-    const control = 'grid h-10 w-10 place-items-center rounded-full bg-white/90 text-neutral-900 shadow-md outline-none hover:bg-white focus-visible:ring-2 focus-visible:ring-pink-400'
+    const control = 'grid h-10 w-10 place-items-center rounded-full bg-white/90 text-neutral-900 shadow-md outline-none hover:bg-white focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)]'
 
     return createPortal(
         <div
             className='fixed inset-0 z-[70] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm'
+            style={accentStyle(color)}
             onMouseDown={(event) => event.target === event.currentTarget && onClose()}
         >
             <div ref={panel} role='dialog' aria-modal='true' aria-label={`${name}, photo ${index + 1} of ${images.length}`} tabIndex={-1} className='flex max-h-full w-fit max-w-full flex-col gap-4 outline-none'>
@@ -127,7 +136,7 @@ const Lightbox = ({ images, start, name, onClose }: LightboxProps) => {
                         </button>
                     )}
                     <div className='flex min-w-0 justify-center'>
-                        <img src={images[index]} alt={`${name}, photo ${index + 1}`} className='max-h-[70vh] w-auto max-w-[min(56rem,calc(100vw-9rem))] rounded-2xl bg-neutral-200 object-contain shadow-2xl' />
+                        <img src={images[index]} alt={`${name}, photo ${index + 1}`} className='max-h-[70vh] min-h-[12rem] w-auto min-w-[min(16rem,calc(100vw-9rem))] max-w-[min(56rem,calc(100vw-9rem))] rounded-2xl bg-neutral-200 object-contain shadow-2xl' />
                     </div>
                     {images.length > 1 && (
                         <button type='button' aria-label='Next photo' onClick={() => go(1)} className={`${control} shrink-0`}>
@@ -144,7 +153,7 @@ const Lightbox = ({ images, start, name, onClose }: LightboxProps) => {
                                 aria-label={`Show photo ${position + 1}`}
                                 aria-current={position === index}
                                 onClick={() => setIndex(position)}
-                                className={`h-14 w-14 shrink-0 overflow-hidden rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-pink-400 ${position === index ? 'ring-2 ring-pink-400' : 'opacity-60 hover:opacity-100'}`}
+                                className={`h-14 w-14 shrink-0 overflow-hidden rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${position === index ? 'ring-2 ring-[var(--blossom-accent,#f472b6)]' : 'opacity-60 hover:opacity-100'}`}
                             >
                                 <img src={src} alt='' className='h-full w-full object-cover' />
                             </button>
@@ -158,6 +167,8 @@ const Lightbox = ({ images, start, name, onClose }: LightboxProps) => {
 }
 
 export const ProductCard = ({
+    color,
+    badgeColor,
     image,
     name,
     price,
@@ -180,7 +191,7 @@ export const ProductCard = ({
 }: ProductCardProps) => {
     const [favorite, setFavorite] = useState(false)
     const [added, setAdded] = useState(false)
-    const [color, setColor] = useState<string | undefined>(colors?.[0])
+    const [chosenColor, setChosenColor] = useState<string | undefined>(colors?.[0])
     const [size, setSize] = useState<string | undefined>(undefined)
     const [expanded, setExpanded] = useState(false)
     const gallery = [image, ...images]
@@ -188,10 +199,14 @@ export const ProductCard = ({
     const horizontal = layout === 'horizontal'
     const discount = originalPrice && originalPrice > price ? Math.round((1 - price / originalPrice) * 100) : 0
 
+    const addedTimer = useRef(0)
+    useEffect(() => () => window.clearTimeout(addedTimer.current), [])
+
     const add = () => {
         setAdded(true)
-        onAddToCart?.(name, { color, size })
-        setTimeout(() => setAdded(false), 1500)
+        onAddToCart?.(name, { color: chosenColor, size })
+        window.clearTimeout(addedTimer.current)
+        addedTimer.current = window.setTimeout(() => setAdded(false), 1500)
     }
 
     const toggleFavorite = () => {
@@ -200,7 +215,7 @@ export const ProductCard = ({
     }
 
     return (
-        <article className={`relative flex h-fit flex-col gap-4 p-4 shadow-sm ${horizontal ? 'w-full max-w-xl' : 'w-64'} ${surface} ${className}`}>
+        <article className={`relative flex h-fit flex-col gap-4 p-4 shadow-sm ${/(^|\s)!?w-/.test(className) ? '' : horizontal ? 'w-full max-w-xl' : 'w-64'} ${surface} ${className}`} style={accentStyle(color)}>
             <div className={horizontal ? 'flex gap-4 sm:flex-col' : 'contents'}>
                 <div className={`relative ${horizontal ? 'w-44 shrink-0 sm:w-full' : ''}`}>
                     {canExpand ? (
@@ -209,7 +224,7 @@ export const ProductCard = ({
                             aria-label={`Expand photo of ${name}`}
                             aria-haspopup='dialog'
                             onClick={() => setExpanded(true)}
-                            className={`group block w-full cursor-zoom-in overflow-hidden rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-pink-400 ${horizontal ? 'h-full' : ''}`}
+                            className={`group block w-full cursor-zoom-in overflow-hidden rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${horizontal ? 'h-full' : ''}`}
                         >
                             <img src={image} alt='' className={`w-full bg-neutral-200 object-cover transition-transform duration-300 group-hover:scale-105 dark:bg-neutral-700 ${horizontal ? 'h-full min-h-[10rem]' : 'h-40'} ${inStock ? '' : 'opacity-60'}`} />
                         </button>
@@ -233,7 +248,12 @@ export const ProductCard = ({
                     <div className='flex flex-col gap-1'>
                         {(badge || discount > 0 || !inStock) && (
                             <div className='flex flex-wrap items-center gap-1.5 pb-1'>
-                                {badge && <span className='rounded-lg bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-900 dark:bg-blue-900 dark:text-blue-300'>{badge}</span>}
+                                {badge && (
+                                    <span
+                                        className={`rounded-lg bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_18%,transparent)] px-2 py-0.5 text-xs font-medium text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_45%,black)] dark:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] dark:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_60%,white)]`}
+                                        style={badgeColor ? { color: badgeColor, backgroundColor: `color-mix(in srgb, ${badgeColor} 18%, transparent)` } : undefined}
+                                    >{badge}</span>
+                                )}
                                 {discount > 0 && <span className='rounded-lg bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900 dark:bg-red-900 dark:text-red-200'>-{discount}%</span>}
                                 {!inStock && <span className='rounded-lg bg-neutral-200 px-2 py-0.5 text-xs font-medium text-neutral-800 dark:bg-neutral-700 dark:text-neutral-200'>Out of stock</span>}
                             </div>
@@ -258,10 +278,10 @@ export const ProductCard = ({
                                     key={option}
                                     type='button'
                                     role='radio'
-                                    aria-checked={option === color}
+                                    aria-checked={option === chosenColor}
                                     aria-label={option}
-                                    onClick={() => setColor(option)}
-                                    className={`h-6 w-6 rounded-full border border-black/10 outline-none focus-visible:ring-2 focus-visible:ring-pink-400 ${option === color ? 'ring-2 ring-pink-400 ring-offset-2 dark:ring-offset-neutral-800' : ''}`}
+                                    onClick={() => setChosenColor(option)}
+                                    className={`h-6 w-6 rounded-full border border-black/20 outline-none dark:border-white/40 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${option === chosenColor ? 'ring-2 ring-[var(--blossom-accent,#f472b6)] ring-offset-2 dark:ring-offset-neutral-800' : ''}`}
                                     style={{ backgroundColor: option }}
                                 />
                             ))}
@@ -277,7 +297,7 @@ export const ProductCard = ({
                                     role='radio'
                                     aria-checked={option === size}
                                     onClick={() => setSize(option)}
-                                    className={`min-w-[2.25rem] rounded-lg border px-2 py-1 text-xs font-medium outline-none focus-visible:ring-2 focus-visible:ring-pink-400 ${option === size ? 'border-pink-400 bg-pink-400 bg-opacity-10 text-pink-600 dark:text-pink-300' : 'border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700'}`}
+                                    className={`min-w-[2.25rem] rounded-lg border px-2 py-1 text-xs font-medium outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${option === size ? 'border-[var(--blossom-accent,#f472b6)] bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_10%,transparent)] text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_75%,black)] dark:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_60%,white)]' : 'border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700'}`}
                                 >
                                     {option}
                                 </button>
@@ -301,7 +321,7 @@ export const ProductCard = ({
                     {!inStock ? 'Unavailable' : added ? 'Added!' : 'Add to cart'}
                 </button>
             </div>
-            {expanded && <Lightbox images={gallery} start={0} name={name} onClose={() => setExpanded(false)} />}
+            {expanded && <Lightbox color={color} images={gallery} start={0} name={name} onClose={() => setExpanded(false)} />}
         </article>
     )
 }

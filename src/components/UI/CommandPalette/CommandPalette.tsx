@@ -1,5 +1,6 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { accentStyle } from '../accent'
 
 export interface Command {
     id: string
@@ -15,6 +16,8 @@ export interface Command {
 }
 
 export interface CommandPaletteProps {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
     open: boolean
     onClose: () => void
     commands: Command[]
@@ -22,7 +25,7 @@ export interface CommandPaletteProps {
     emptyText?: string
 }
 
-export const CommandPalette = ({ open, onClose, commands, placeholder = 'Type a command or search...', emptyText = 'No results found.' }: CommandPaletteProps) => {
+export const CommandPalette = ({ color, open, onClose, commands, placeholder = 'Type a command or search...', emptyText = 'No results found.' }: CommandPaletteProps) => {
     const id = useId()
     const input = useRef<HTMLInputElement>(null)
     const [query, setQuery] = useState('')
@@ -82,6 +85,7 @@ export const CommandPalette = ({ open, onClose, commands, placeholder = 'Type a 
     return createPortal(
         <div
             className='fixed inset-0 z-[70] flex items-start justify-center bg-black/50 p-4 pt-[15vh] backdrop-blur-sm'
+            style={accentStyle(color)}
             onMouseDown={(event) => event.target === event.currentTarget && onClose()}
         >
             <div
@@ -115,7 +119,7 @@ export const CommandPalette = ({ open, onClose, commands, placeholder = 'Type a 
                                 aria-selected={index === active}
                                 onPointerEnter={() => setActive(index)}
                                 onClick={() => run(command)}
-                                className={`flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm ${index === active ? 'bg-pink-400 bg-opacity-10 text-pink-600 dark:text-pink-300' : 'text-neutral-700 dark:text-neutral-200'}`}
+                                className={`flex cursor-pointer items-center gap-3 rounded-xl px-3 py-2.5 text-sm ${index === active ? 'bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_10%,transparent)] text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_75%,black)] dark:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_60%,white)]' : 'text-neutral-700 dark:text-neutral-200'}`}
                             >
                                 {command.icon}
                                 <span className='flex-1'>{command.label}</span>

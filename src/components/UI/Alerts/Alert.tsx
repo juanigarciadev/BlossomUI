@@ -32,7 +32,7 @@ const text: Record<AlertColor, string> = {
     dark: 'text-neutral-900 dark:text-white',
     red: 'text-red-900 dark:text-red-300',
     green: 'text-green-900 dark:text-green-300',
-    yellow: 'text-yellow-600 dark:text-yellow-200',
+    yellow: 'text-yellow-900 dark:text-yellow-100',
 }
 
 const outline: Record<AlertColor, string> = {
@@ -97,7 +97,7 @@ export const Alert = ({ color = 'default', variant = 'filled', showIcon = false,
                     <span className={showIcon ? 'pt-0.5' : ''}>{children}</span>
                     {list && (
                         <ul className='list-disc pl-5'>
-                            {list.map((item) => <li key={item}>{item}</li>)}
+                            {list.map((item, index) => <li key={`${item}-${index}`}>{item}</li>)}
                         </ul>
                     )}
                     {actions && <div className='flex flex-wrap gap-2'>{actions}</div>}

@@ -1,4 +1,7 @@
+import { accentStyle } from '../accent'
 export interface PaginationProps {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
     /** Current page, starting at 1. */
     page: number
     /** Total number of pages. */
@@ -33,7 +36,7 @@ const arrow = (direction: 'prev' | 'next') => (
     </svg>
 )
 
-export const Pagination = ({ page, total, onChange, siblings = 1, rounded = false }: PaginationProps) => {
+export const Pagination = ({ color, page, total, onChange, siblings = 1, rounded = false }: PaginationProps) => {
     const shape = rounded ? 'rounded-full' : 'rounded-xl'
     const item = `flex h-10 min-w-10 items-center justify-center px-3 text-sm ${shape}`
     const idle = rounded
@@ -42,7 +45,7 @@ export const Pagination = ({ page, total, onChange, siblings = 1, rounded = fals
     const disabled = 'pointer-events-none opacity-40'
 
     return (
-        <nav aria-label='Pagination'>
+        <nav aria-label='Pagination' style={accentStyle(color)}>
             <ul className='flex items-center gap-1'>
                 <li>
                     <button type='button' aria-label='Previous page' disabled={page <= 1} onClick={() => onChange(page - 1)} className={`${item} ${idle} ${page <= 1 ? disabled : ''}`}>
@@ -60,7 +63,7 @@ export const Pagination = ({ page, total, onChange, siblings = 1, rounded = fals
                                 aria-label={`Page ${entry}`}
                                 aria-current={entry === page ? 'page' : undefined}
                                 onClick={() => onChange(entry)}
-                                className={`${item} ${entry === page ? 'border border-pink-400 bg-pink-400 font-medium text-white' : idle}`}
+                                className={`${item} ${entry === page ? 'border border-[var(--blossom-accent,#f472b6)] bg-[var(--blossom-accent,#f472b6)] font-medium text-[var(--blossom-accent-contrast,#fff)]' : idle}`}
                             >
                                 {entry}
                             </button>
@@ -79,20 +82,22 @@ export const Pagination = ({ page, total, onChange, siblings = 1, rounded = fals
 }
 
 export interface SimplePaginationProps {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
     page: number
     total: number
     onChange: (page: number) => void
 }
 
-export const SimplePagination = ({ page, total, onChange }: SimplePaginationProps) => (
-    <nav aria-label='Pagination' className='flex items-center gap-4 text-sm'>
+export const SimplePagination = ({ color, page, total, onChange }: SimplePaginationProps) => (
+    <nav aria-label='Pagination' className='flex items-center gap-4 text-sm' style={accentStyle(color)}>
         <button type='button' disabled={page <= 1} onClick={() => onChange(page - 1)} className='rounded-xl border border-neutral-300 px-4 py-2 font-medium text-neutral-700 hover:bg-neutral-200 disabled:pointer-events-none disabled:opacity-40 dark:border-neutral-700 dark:text-neutral-200 dark:hover:bg-neutral-800'>
             Previous
         </button>
         <span className='text-neutral-600 dark:text-neutral-300'>
             Page <b className='font-medium text-neutral-900 dark:text-white'>{page}</b> of <b className='font-medium text-neutral-900 dark:text-white'>{total}</b>
         </span>
-        <button type='button' disabled={page >= total} onClick={() => onChange(page + 1)} className='rounded-xl bg-pink-400 px-4 py-2 font-medium text-white hover:bg-pink-500 disabled:pointer-events-none disabled:opacity-40'>
+        <button type='button' disabled={page >= total} onClick={() => onChange(page + 1)} className='rounded-xl bg-[var(--blossom-accent,#f472b6)] px-4 py-2 font-medium text-[var(--blossom-accent-contrast,#fff)] hover:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_88%,black)] disabled:pointer-events-none disabled:opacity-40'>
             Next
         </button>
     </nav>

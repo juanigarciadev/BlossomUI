@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { accentStyle } from '../accent'
 
 export interface CarouselProps {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
     /** Each item is one slide. */
     slides: ReactNode[]
     /** Move to the next slide every `interval` milliseconds. Pauses on hover and focus. */
@@ -12,9 +15,9 @@ export interface CarouselProps {
     dots?: boolean
 }
 
-const arrow = 'absolute top-1/2 z-10 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white text-neutral-800 shadow-md outline-none transition-opacity hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-pink-400 disabled:pointer-events-none disabled:opacity-0 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700'
+const arrow = 'absolute top-1/2 z-10 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white text-neutral-800 shadow-md outline-none transition-opacity hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] disabled:pointer-events-none disabled:opacity-0 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700'
 
-export const Carousel = ({ slides, autoPlay = false, interval = 4000, loop = false, dots = true }: CarouselProps) => {
+export const Carousel = ({ color, slides, autoPlay = false, interval = 4000, loop = false, dots = true }: CarouselProps) => {
     const track = useRef<HTMLDivElement>(null)
     const [index, setIndex] = useState(0)
     const [paused, setPaused] = useState(false)
@@ -56,6 +59,7 @@ export const Carousel = ({ slides, autoPlay = false, interval = 4000, loop = fal
             aria-roledescription='carousel'
             aria-label='Carousel'
             className='relative w-full'
+            style={accentStyle(color)}
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
             onFocus={() => setPaused(true)}
@@ -93,7 +97,7 @@ export const Carousel = ({ slides, autoPlay = false, interval = 4000, loop = fal
                             aria-label={`Go to slide ${position + 1}`}
                             aria-current={position === index}
                             onClick={() => goTo(position)}
-                            className={`h-2 rounded-full outline-none transition-all focus-visible:ring-2 focus-visible:ring-pink-400 ${position === index ? 'w-6 bg-pink-400' : 'w-2 bg-neutral-300 hover:bg-neutral-400 dark:bg-neutral-700'}`}
+                            className={`h-2 rounded-full outline-none transition-all focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${position === index ? 'w-6 bg-[var(--blossom-accent,#f472b6)]' : 'w-2 bg-neutral-300 hover:bg-neutral-400 dark:bg-neutral-700'}`}
                         />
                     ))}
                 </div>

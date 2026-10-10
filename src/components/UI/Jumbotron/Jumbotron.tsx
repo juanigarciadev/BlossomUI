@@ -1,6 +1,9 @@
 import type { ReactNode } from 'react'
+import { accentStyle } from '../accent'
 
 export interface JumbotronProps {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
     title: string
     description?: string
     /** Small text or badge shown above the title. */
@@ -22,11 +25,11 @@ export interface JumbotronProps {
 const surfaces = {
     plain: '',
     card: 'rounded-xl border border-neutral-300 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-800',
-    gradient: 'rounded-xl bg-gradient-to-br from-blue-100 via-white to-purple-100 dark:from-blue-950 dark:via-neutral-900 dark:to-purple-950',
+    gradient: 'rounded-xl bg-gradient-to-br from-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_18%,transparent)] via-white to-purple-100 dark:from-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_35%,black)] dark:via-neutral-900 dark:to-purple-950',
     image: 'relative overflow-hidden rounded-xl bg-neutral-700 bg-cover bg-center',
 }
 
-export const Jumbotron = ({ title, description, eyebrow, actions, media, align = 'center', variant = 'plain', backgroundImage }: JumbotronProps) => {
+export const Jumbotron = ({ color, title, description, eyebrow, actions, media, align = 'center', variant = 'plain', backgroundImage }: JumbotronProps) => {
     const centered = align === 'center'
     const onImage = variant === 'image'
     const padded = variant !== 'plain'
@@ -34,13 +37,13 @@ export const Jumbotron = ({ title, description, eyebrow, actions, media, align =
     return (
         <section
             className={`w-full ${surfaces[variant]} ${padded ? 'px-8 py-16' : 'py-24'}`}
-            style={onImage && backgroundImage ? { backgroundImage: `url('${backgroundImage}')` } : undefined}
+            style={accentStyle(color, onImage && backgroundImage ? { backgroundImage: `url('${backgroundImage}')` } : undefined)}
         >
             {onImage && <div aria-hidden='true' className='absolute inset-0 bg-black/55' />}
             <div className={`relative flex flex-wrap items-center gap-10 ${centered ? 'justify-center text-center' : 'justify-between'}`}>
                 <div className={`flex flex-1 basis-80 flex-col gap-6 ${centered ? 'items-center' : 'items-start'}`}>
                     {eyebrow && (
-                        <span className={`w-fit rounded-full px-4 py-1.5 text-sm font-medium ${onImage ? 'bg-white/20 text-white' : 'bg-pink-100 text-pink-900 dark:bg-pink-950 dark:text-pink-300'}`}>
+                        <span className={`w-fit rounded-full px-4 py-1.5 text-sm font-medium ${onImage ? 'bg-white/20 text-white' : 'bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_18%,transparent)] text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_45%,black)] dark:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_20%,transparent)] dark:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_60%,white)]'}`}>
                             {eyebrow}
                         </span>
                     )}

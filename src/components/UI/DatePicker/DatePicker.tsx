@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { createPortal } from 'react-dom'
+import { accentStyle } from '../accent'
 
 export interface DatePickerProps {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
     value?: Date | null
     defaultValue?: Date | null
     onChange?: (date: Date) => void
@@ -20,7 +23,7 @@ const startOfDay = (date: Date) => new Date(date.getFullYear(), date.getMonth(),
 const sameDay = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 const addDays = (date: Date, days: number) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
 
-export const DatePicker = ({ value, defaultValue = null, onChange, label, placeholder = 'Select a date', min, max, locale = 'en-US', disabled = false }: DatePickerProps) => {
+export const DatePicker = ({ color, value, defaultValue = null, onChange, label, placeholder = 'Select a date', min, max, locale = 'en-US', disabled = false }: DatePickerProps) => {
     const id = useId()
     const trigger = useRef<HTMLButtonElement>(null)
     const panel = useRef<HTMLDivElement>(null)
@@ -126,10 +129,10 @@ export const DatePicker = ({ value, defaultValue = null, onChange, label, placeh
 
     const today = startOfDay(new Date())
     const title = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(monthStart)
-    const navButton = 'grid h-8 w-8 place-items-center rounded-lg text-neutral-600 outline-none hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-pink-400 dark:text-neutral-300 dark:hover:bg-neutral-800'
+    const navButton = 'grid h-8 w-8 place-items-center rounded-lg text-neutral-600 outline-none hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:text-neutral-300 dark:hover:bg-neutral-800'
 
     return (
-        <div className='flex w-full flex-col gap-1'>
+        <div className='flex w-full flex-col gap-1' style={accentStyle(color)}>
             {label && <label htmlFor={id} className='text-sm font-medium text-neutral-800 dark:text-white'>{label}</label>}
             <button
                 ref={trigger}
@@ -139,7 +142,7 @@ export const DatePicker = ({ value, defaultValue = null, onChange, label, placeh
                 aria-haspopup='dialog'
                 aria-expanded={open}
                 onClick={() => (open ? close(false) : openCalendar())}
-                className={`flex w-full items-center justify-between gap-2 rounded-xl border border-neutral-300 bg-transparent px-3 py-2.5 text-left text-sm outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-400/30 disabled:cursor-not-allowed disabled:opacity-60 dark:border-neutral-700 ${open ? 'ring-2 ring-pink-400/30' : ''}`}
+                className={`flex w-full items-center justify-between gap-2 rounded-xl border border-neutral-300 bg-transparent px-3 py-2.5 text-left text-sm outline-none focus:border-[var(--blossom-accent,#f472b6)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-60 dark:border-neutral-700 ${open ? 'ring-2 ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]' : ''}`}
             >
                 <span className={selected ? 'text-neutral-900 dark:text-white' : 'text-neutral-400'}>
                     {selected ? new Intl.DateTimeFormat(locale, { dateStyle: 'long' }).format(selected) : placeholder}
@@ -154,7 +157,7 @@ export const DatePicker = ({ value, defaultValue = null, onChange, label, placeh
                     role='dialog'
                     aria-label='Choose a date'
                     onKeyDown={onKeyDown}
-                    style={{ position: 'fixed', top: box?.top ?? 0, left: box?.left ?? 0, visibility: box ? 'visible' : 'hidden' }}
+                    style={accentStyle(color, { position: 'fixed', top: box?.top ?? 0, left: box?.left ?? 0, visibility: box ? 'visible' : 'hidden' })}
                     className='z-[80] w-72 rounded-xl border border-neutral-200 bg-white p-3 shadow-lg dark:border-neutral-700 dark:bg-neutral-900'
                 >
                     <div className='flex items-center justify-between pb-2'>
@@ -186,7 +189,7 @@ export const DatePicker = ({ value, defaultValue = null, onChange, label, placeh
                                     aria-current={sameDay(date, today) ? 'date' : undefined}
                                     disabled={off}
                                     onClick={() => choose(date)}
-                                    className={`mx-auto grid h-9 w-9 place-items-center rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-pink-400 disabled:cursor-not-allowed disabled:opacity-30 ${isSelected ? 'bg-pink-400 font-medium text-white' : sameDay(date, today) ? 'border border-pink-400 text-neutral-900 dark:text-white' : 'text-neutral-800 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-800'}`}
+                                    className={`mx-auto grid h-9 w-9 place-items-center rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] disabled:cursor-not-allowed disabled:opacity-30 ${isSelected ? 'bg-[var(--blossom-accent,#f472b6)] font-medium text-[var(--blossom-accent-contrast,#fff)]' : sameDay(date, today) ? 'border border-[var(--blossom-accent,#f472b6)] text-neutral-900 dark:text-white' : 'text-neutral-800 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-800'}`}
                                 >
                                     {date.getDate()}
                                 </button>
@@ -206,6 +209,8 @@ export interface DateRange {
 }
 
 export interface DateRangePickerProps {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
     value?: DateRange
     defaultValue?: DateRange
     /** Called once both days are chosen. */
@@ -225,7 +230,7 @@ const emptyRange: DateRange = { start: null, end: null }
 
 
 /** Pick two days: every day between them is highlighted. */
-export const DateRangePicker = ({ value, defaultValue = emptyRange, onChange, label, placeholder = 'Select a range', min, max, locale = 'en-US', disabled = false }: DateRangePickerProps) => {
+export const DateRangePicker = ({ color, value, defaultValue = emptyRange, onChange, label, placeholder = 'Select a range', min, max, locale = 'en-US', disabled = false }: DateRangePickerProps) => {
     const id = useId()
     const trigger = useRef<HTMLButtonElement>(null)
     const panel = useRef<HTMLDivElement>(null)
@@ -351,10 +356,10 @@ export const DateRangePicker = ({ value, defaultValue = emptyRange, onChange, la
     const format = (date: Date) => new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(date)
     const today = startOfDay(new Date())
     const title = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' }).format(monthStart)
-    const navButton = 'grid h-8 w-8 place-items-center rounded-lg text-neutral-600 outline-none hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-pink-400 dark:text-neutral-300 dark:hover:bg-neutral-800'
+    const navButton = 'grid h-8 w-8 place-items-center rounded-lg text-neutral-600 outline-none hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:text-neutral-300 dark:hover:bg-neutral-800'
 
     return (
-        <div className='flex w-full flex-col gap-1'>
+        <div className='flex w-full flex-col gap-1' style={accentStyle(color)}>
             {label && <label htmlFor={id} className='text-sm font-medium text-neutral-800 dark:text-white'>{label}</label>}
             <button
                 ref={trigger}
@@ -364,7 +369,7 @@ export const DateRangePicker = ({ value, defaultValue = emptyRange, onChange, la
                 aria-haspopup='dialog'
                 aria-expanded={open}
                 onClick={() => (open ? close(false) : openCalendar())}
-                className={`flex w-full items-center justify-between gap-2 rounded-xl border border-neutral-300 bg-transparent px-3 py-2.5 text-left text-sm outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-400/30 disabled:cursor-not-allowed disabled:opacity-60 dark:border-neutral-700 ${open ? 'ring-2 ring-pink-400/30' : ''}`}
+                className={`flex w-full items-center justify-between gap-2 rounded-xl border border-neutral-300 bg-transparent px-3 py-2.5 text-left text-sm outline-none focus:border-[var(--blossom-accent,#f472b6)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-60 dark:border-neutral-700 ${open ? 'ring-2 ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]' : ''}`}
             >
                 <span className={range.start && range.end ? 'text-neutral-900 dark:text-white' : 'text-neutral-400'}>
                     {range.start && range.end ? `${format(range.start)} – ${format(range.end)}` : placeholder}
@@ -380,7 +385,7 @@ export const DateRangePicker = ({ value, defaultValue = emptyRange, onChange, la
                     aria-label='Choose a date range'
                     onKeyDown={onKeyDown}
                     onMouseLeave={() => setHover(null)}
-                    style={{ position: 'fixed', top: box?.top ?? 0, left: box?.left ?? 0, visibility: box ? 'visible' : 'hidden' }}
+                    style={accentStyle(color, { position: 'fixed', top: box?.top ?? 0, left: box?.left ?? 0, visibility: box ? 'visible' : 'hidden' })}
                     className='z-[80] w-72 rounded-xl border border-neutral-200 bg-white p-3 shadow-lg dark:border-neutral-700 dark:bg-neutral-900'
                 >
                     <div className='flex items-center justify-between pb-2'>
@@ -402,7 +407,7 @@ export const DateRangePicker = ({ value, defaultValue = emptyRange, onChange, la
                             const isEnd = preview.end ? sameDay(date, preview.end) : false
                             const between = Boolean(preview.start && preview.end && date > preview.start && date < preview.end)
                             const isFocused = sameDay(date, focused)
-                            const band = 'bg-pink-100 dark:bg-pink-950'
+                            const band = 'bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_18%,transparent)] dark:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_20%,transparent)]'
                             return (
                                 <div
                                     key={date.toISOString()}
@@ -418,7 +423,7 @@ export const DateRangePicker = ({ value, defaultValue = emptyRange, onChange, la
                                         disabled={isDisabled(date)}
                                         onClick={() => choose(date)}
                                         onPointerEnter={() => setHover(date)}
-                                        className={`mx-auto grid h-9 w-9 place-items-center rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-pink-400 disabled:cursor-not-allowed disabled:opacity-30 ${isStart || isEnd ? 'bg-pink-400 font-medium text-white' : between ? 'text-pink-900 dark:text-pink-100' : sameDay(date, today) ? 'border border-pink-400 text-neutral-900 dark:text-white' : 'text-neutral-800 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-800'}`}
+                                        className={`mx-auto grid h-9 w-9 place-items-center rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] disabled:cursor-not-allowed disabled:opacity-30 ${isStart || isEnd ? 'bg-[var(--blossom-accent,#f472b6)] font-medium text-[var(--blossom-accent-contrast,#fff)]' : between ? 'text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_45%,black)] dark:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_45%,white)]' : sameDay(date, today) ? 'border border-[var(--blossom-accent,#f472b6)] text-neutral-900 dark:text-white' : 'text-neutral-800 hover:bg-neutral-100 dark:text-neutral-200 dark:hover:bg-neutral-800'}`}
                                     >
                                         {date.getDate()}
                                     </button>

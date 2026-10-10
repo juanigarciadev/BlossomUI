@@ -1,4 +1,5 @@
 import { useMemo, useState, type ReactNode } from 'react'
+import { accentStyle } from '../accent'
 
 export interface TableColumn<T> {
     key: string
@@ -11,6 +12,8 @@ export interface TableColumn<T> {
 }
 
 export interface TableProps<T> {
+    /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
     columns: TableColumn<T>[]
     rows: T[]
     /** Returns a unique id for each row. */
@@ -28,9 +31,9 @@ type Direction = 'asc' | 'desc'
 
 const align = { left: 'text-left', right: 'text-right', center: 'text-center' }
 
-const box = 'h-4 w-4 cursor-pointer rounded border-neutral-300 accent-pink-400'
+const box = 'h-4 w-4 cursor-pointer rounded border-neutral-300 accent-[var(--blossom-accent,#f472b6)]'
 
-export const Table = <T,>({ columns, rows, rowKey, selectable = false, onSelectionChange, empty = 'No results', striped = false, caption }: TableProps<T>) => {
+export const Table = <T,>({ color, columns, rows, rowKey, selectable = false, onSelectionChange, empty = 'No results', striped = false, caption }: TableProps<T>) => {
     const [sort, setSort] = useState<{ key: string; direction: Direction } | null>(null)
     const [selected, setSelected] = useState<string[]>([])
 
@@ -62,7 +65,7 @@ export const Table = <T,>({ columns, rows, rowKey, selectable = false, onSelecti
     const someSelected = selected.length > 0 && !allSelected
 
     return (
-        <div className='w-full overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700'>
+        <div className='w-full overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700' style={accentStyle(color)}>
             <table className='w-full text-sm'>
                 {caption && <caption className='sr-only'>{caption}</caption>}
                 <thead className='bg-neutral-100 text-xs uppercase text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400'>
@@ -92,10 +95,10 @@ export const Table = <T,>({ columns, rows, rowKey, selectable = false, onSelecti
                                         <button
                                             type='button'
                                             onClick={() => toggleSort(column.key)}
-                                            className='inline-flex items-center gap-1 rounded uppercase outline-none hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-pink-400 dark:hover:text-white'
+                                            className='inline-flex items-center gap-1 rounded uppercase outline-none hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:hover:text-white'
                                         >
                                             {column.header}
-                                            <span aria-hidden='true' className={direction ? 'text-pink-500' : 'opacity-40'}>{direction === 'desc' ? '↓' : '↑'}</span>
+                                            <span aria-hidden='true' className={direction ? 'text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_85%,black)]' : 'opacity-40'}>{direction === 'desc' ? '↓' : '↑'}</span>
                                         </button>
                                     ) : column.header}
                                 </th>
@@ -116,7 +119,7 @@ export const Table = <T,>({ columns, rows, rowKey, selectable = false, onSelecti
                             <tr
                                 key={id}
                                 aria-selected={selectable ? checked : undefined}
-                                className={`text-neutral-700 dark:text-neutral-200 ${checked ? 'bg-pink-50 dark:bg-pink-950/40' : striped && index % 2 ? 'bg-neutral-50 dark:bg-neutral-800/50' : ''}`}
+                                className={`text-neutral-700 dark:text-neutral-200 ${checked ? 'bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_10%,transparent)] dark:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_40%,transparent)]' : striped && index % 2 ? 'bg-neutral-50 dark:bg-neutral-800/50' : ''}`}
                             >
                                 {selectable && (
                                     <td className='px-4 py-3'>

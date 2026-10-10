@@ -18,6 +18,7 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
     rounded?: boolean
     /** Shows a spinner and disables the button. */
     loading?: boolean
+    size?: 'sm' | 'md' | 'lg'
     /** Optional icon placed before the label. */
     icon?: ReactNode
 }
@@ -28,12 +29,14 @@ const colors: Record<ButtonColor, string> = {
     default: 'bg-blue-700 text-white hover:bg-blue-800',
     red: 'bg-red-700 text-white hover:bg-red-800',
     green: 'bg-green-700 text-white hover:bg-green-800',
-    yellow: 'bg-yellow-400 text-white hover:bg-yellow-500',
+    yellow: 'bg-yellow-400 text-neutral-900 hover:bg-yellow-500',
     purple: 'bg-purple-600 text-white hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-800',
     pink: 'bg-pink-700 text-white hover:bg-pink-800',
 }
 
 const isPreset = (color: string): color is ButtonColor => color in colors
+
+const buttonSizes = { sm: 'px-3 py-2 text-xs', md: 'px-4 py-3 text-sm', lg: 'px-6 py-3.5 text-base' }
 
 const spinners: Record<ButtonColor, string> = {
     primary: 'border-neutral-200 border-l-neutral-500 dark:border-neutral-400 dark:border-l-neutral-600',
@@ -46,14 +49,14 @@ const spinners: Record<ButtonColor, string> = {
     pink: 'border-pink-300 border-l-white',
 }
 
-export const Button = ({ color = 'primary', rounded = false, loading = false, icon, disabled, className = '', children, type = 'button', style, ...props }: ButtonProps) => {
+export const Button = ({ color = 'primary', size = 'md', rounded = false, loading = false, icon, disabled, className = '', children, type = 'button', style, ...props }: ButtonProps) => {
     const custom = !isPreset(color)
     return (
         <button
             type={type}
             disabled={disabled || loading}
             aria-busy={loading}
-            className={`flex w-fit select-none items-center justify-center gap-2 px-4 py-3 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${isPreset(color) ? colors[color] : 'hover:brightness-90'} ${className}`}
+            className={`flex w-fit select-none items-center justify-center gap-2 ${buttonSizes[size]} font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--blossom-accent,#f472b6)] disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${isPreset(color) ? colors[color] : 'hover:brightness-90'} ${className}`}
             style={custom ? { backgroundColor: color, color: readableOn(color), ...style } : style}
             {...props}
         >
@@ -93,7 +96,7 @@ export const IconButton = ({ icon, label, color = 'secondary', size = 'md', roun
         title={label}
         disabled={disabled || loading}
         aria-busy={loading}
-        className={`flex shrink-0 select-none items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${iconSizes[size]} ${isPreset(color) ? colors[color] : 'hover:brightness-90'} ${className}`}
+        className={`flex shrink-0 select-none items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--blossom-accent,#f472b6)] disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${iconSizes[size]} ${isPreset(color) ? colors[color] : 'hover:brightness-90'} ${className}`}
         style={isPreset(color) ? style : { backgroundColor: color, color: readableOn(color), ...style }}
         {...props}
     >
@@ -144,7 +147,7 @@ export const SocialButton = ({ provider, iconOnly = false, rounded = false, clas
         <button
             type={type}
             aria-label={iconOnly ? label : undefined}
-            className={`inline-flex w-fit select-none items-center justify-center gap-2 text-sm font-medium text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 ${iconOnly ? 'p-3' : 'px-5 py-3'} ${rounded ? 'rounded-full' : 'rounded-xl'} ${style} ${className}`}
+            className={`inline-flex w-fit select-none items-center justify-center gap-2 text-sm font-medium text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--blossom-accent,#f472b6)] ${iconOnly ? 'p-3' : 'px-5 py-3'} ${rounded ? 'rounded-full' : 'rounded-xl'} ${style} ${className}`}
             {...props}
         >
             {icon}

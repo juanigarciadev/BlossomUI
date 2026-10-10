@@ -104,6 +104,13 @@ export const pages = [
         priority: 0.4,
     },
     {
+        url: '/docs/customization/brand-color',
+        title: `Brand color | ${SITE.name}`,
+        description: 'Use your own brand color in every component of Blossom UI with one CSS variable, for a section of the page or for a single component with the color prop.',
+        type: 'article',
+        priority: 0.6,
+    },
+    {
         url: '/docs/customization/colors',
         title: `Tailwind CSS colors | ${SITE.name}`,
         description: 'The full Tailwind CSS color palette with its hex values, to customize your Blossom UI components.',
@@ -139,6 +146,10 @@ export const faq = [
     {
         question: 'Which icon library do the components use?',
         answer: 'None. Components that show an icon receive it as a React element in an icon prop, so you can use Lucide, React Icons, Heroicons, Phosphor or your own SVG. The documentation examples use lucide-react (https://lucide.dev).',
+    },
+    {
+        question: 'How do I change the pink accent to my brand color?',
+        answer: 'Set the --blossom-accent CSS variable once, for example :root { --blossom-accent: #0f766e; }. Tabs, Pagination, Stepper, Forms, focus rings and the rest of the accents follow it. You can also set it on any parent element, or pass a color prop to a single component.',
     },
     {
         question: 'Can I use my own colors?',

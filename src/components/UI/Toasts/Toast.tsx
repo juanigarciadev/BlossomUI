@@ -16,7 +16,7 @@ const styles: Record<ToastColor, { box: string; icon: string; action: string }> 
     default: { box: 'bg-blue-600', icon: 'bg-blue-500 text-blue-100', action: 'border-blue-500 hover:border-blue-700 hover:bg-blue-700' },
     green: { box: 'bg-green-600', icon: 'bg-green-500 text-green-100', action: 'border-green-500 hover:border-green-700 hover:bg-green-700' },
     red: { box: 'bg-red-600', icon: 'bg-red-500 text-red-100', action: 'border-red-500 hover:border-red-700 hover:bg-red-700' },
-    yellow: { box: 'bg-yellow-500', icon: 'bg-yellow-400 text-yellow-100', action: 'border-yellow-400 hover:border-yellow-600 hover:bg-yellow-600' },
+    yellow: { box: 'bg-yellow-400', icon: 'bg-yellow-400 text-yellow-100', action: 'border-yellow-400 hover:border-yellow-600 hover:bg-yellow-600' },
     dark: { box: 'bg-neutral-800 dark:bg-neutral-700', icon: 'bg-neutral-700 text-neutral-200 dark:bg-neutral-600', action: 'border-neutral-600 hover:border-neutral-900 hover:bg-neutral-900' },
 }
 
@@ -43,7 +43,7 @@ export const Toast = ({ color = 'default', children, actionLabel, onAction, onDi
     const preset = isPreset(color)
     const style = preset ? styles[color] : { box: '', icon: 'bg-black/15', action: 'border-current hover:bg-black/10' }
     // On a custom color the text is black or white depending on the contrast.
-    const ink = preset ? 'text-white' : ''
+    const ink = preset ? (color === 'yellow' ? 'text-neutral-900' : 'text-white') : ''
     return (
         <div role='status' className={`inline-flex h-fit w-fit items-center gap-4 rounded-xl px-4 py-4 shadow-lg ${style.box}`} style={preset ? undefined : { backgroundColor: color, color: readableOn(color) }}>
             <span className={`rounded-lg p-1 ${style.icon}`}>
@@ -111,7 +111,7 @@ export interface ToasterProps {
     className?: string
 }
 
-export const Toaster = ({ toasts, onDismiss, className = 'fixed bottom-4 right-4 z-50 flex flex-col items-end gap-2' }: ToasterProps) => (
+export const Toaster = ({ toasts, onDismiss, className = 'fixed bottom-4 right-4 z-[90] flex flex-col items-end gap-2' }: ToasterProps) => (
     <div aria-live='polite' className={className}>
         {toasts.map(({ id, message, color, actionLabel, onAction }) => (
             <Toast key={id} color={color} actionLabel={actionLabel} onAction={onAction} onDismiss={() => onDismiss(id)}>{message}</Toast>

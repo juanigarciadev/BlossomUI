@@ -137,7 +137,7 @@ export const Dropdown = ({ label, items, align = 'start', className = '' }: Drop
                 aria-controls={open ? `${id}-menu` : undefined}
                 onClick={() => (open ? close(false) : openMenu())}
                 onKeyDown={onTriggerKeyDown}
-                className={`flex w-fit select-none items-center justify-center gap-2 rounded-xl border border-neutral-300 px-4 py-2.5 text-sm font-medium text-neutral-800 outline-none transition-colors hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-pink-400 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 ${className}`}
+                className={`flex w-fit select-none items-center justify-center gap-2 rounded-xl border border-neutral-300 px-4 py-2.5 text-sm font-medium text-neutral-800 outline-none transition-colors hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 ${className}`}
             >
                 {label}
                 <svg className={`h-4 w-4 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'><path strokeLinecap='round' strokeLinejoin='round' d='m6 9 6 6 6-6' /></svg>

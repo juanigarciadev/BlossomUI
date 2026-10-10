@@ -20,7 +20,7 @@ export const Breadcrumb = ({ items, separator = 'chevron' }: BreadcrumbProps) =>
                     <Fragment key={`${item.label}-${index}`}>
                         <li className='flex items-center'>
                             {item.href && !last ? (
-                                <a href={item.href} className='rounded-md text-neutral-500 outline-none transition-colors hover:text-pink-500 focus-visible:ring-2 focus-visible:ring-pink-400 dark:text-neutral-400'>
+                                <a href={item.href} className='rounded-md text-neutral-500 outline-none transition-colors hover:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_85%,black)] focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:text-neutral-400'>
                                     {item.label}
                                 </a>
                             ) : (

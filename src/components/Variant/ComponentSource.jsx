@@ -35,6 +35,11 @@ const ComponentSource = ({ source, file }) => {
     const usesHooks = /from 'react'/.test(source) && /\buse[A-Z]\w*\(/.test(source)
     // Components that receive an icon as a prop do not bring an icon library.
     const acceptsIcons = /\bicon\??:\s*ReactNode/.test(source)
+    // Other files of the library that this one imports: they have to be copied too.
+    const dependencies = useMemo(
+        () => [...new Set([...source.matchAll(/from '\.\.\/([A-Za-z]+\/)?([A-Za-z]+)'/g)].map((match) => (match[1] ? `${match[2]}.tsx` : `${match[2]}.ts`)))],
+        [source]
+    )
 
     return (
         <FadeIn as='article'>
@@ -59,6 +64,17 @@ const ComponentSource = ({ source, file }) => {
                     <ChevronDown size={16} className={`duration-200 ${open ? 'rotate-180' : ''}`} />
                 </button>
             </div>
+
+            {dependencies.length > 0 && (
+                <p className='pt-3 text-sm text-neutral-500 dark:text-neutral-400'>
+                    This component imports {dependencies.map((name, index) => (
+                        <span key={name}>
+                            {index > 0 && ', '}
+                            <code className='rounded-md border border-neutral-200 bg-neutral-100 px-1 py-0.5 font-mono text-xs dark:border-neutral-700 dark:bg-neutral-800'>{name}</code>
+                        </span>
+                    ))}. Copy {dependencies.length > 1 ? 'them' : 'it'} too and keep the folders, or change the import paths.
+                </p>
+            )}
 
             {acceptsIcons && (
                 <p className='pt-3 text-sm text-neutral-500 dark:text-neutral-400'>

@@ -108,7 +108,7 @@ export const AvatarGroup = ({ avatars, max = 4, size = 'md', onMoreClick }: Avat
                 // Focusable so the name is also available from the keyboard.
                 return avatar.name ? (
                     <Tooltip key={index} content={avatar.name} arrow>
-                        <span tabIndex={0} className='rounded-full outline-none focus-visible:ring-2 focus-visible:ring-pink-400'>{item}</span>
+                        <span tabIndex={0} className='rounded-full outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)]'>{item}</span>
                     </Tooltip>
                 ) : (
                     <div key={index}>{item}</div>

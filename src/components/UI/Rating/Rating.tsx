@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import type { CSSProperties } from 'react'
 
 export interface RatingProps {
+    /** Color of the filled stars: any CSS color. Gold by default. */
+    color?: string
     /** Current rating, decimals are supported (3.67). */
     value: number
     max?: number
@@ -22,20 +25,20 @@ const Star = ({ fill, size }: { fill: number; size: number }) => (
             <path d={STAR} />
         </svg>
         <span className='absolute inset-0 overflow-hidden' style={{ width: `${fill * 100}%` }}>
-            <svg className='text-[#ffaf39]' width={size} height={size} viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
+            <svg className='text-[var(--blossom-star,#ffaf39)]' width={size} height={size} viewBox='0 0 24 24' fill='currentColor' aria-hidden='true'>
                 <path d={STAR} />
             </svg>
         </span>
     </span>
 )
 
-export const Rating = ({ value, max = 5, size = 20, onChange, showValue = false, reviews }: RatingProps) => {
+export const Rating = ({ color, value, max = 5, size = 20, onChange, showValue = false, reviews }: RatingProps) => {
     const [hover, setHover] = useState<number | null>(null)
     const shown = hover ?? value
     const stars = Array.from({ length: max }, (_, index) => index + 1)
 
     return (
-        <div className='inline-flex items-center gap-2'>
+        <div className='inline-flex items-center gap-2' style={color ? ({ '--blossom-star': color } as CSSProperties) : undefined}>
             <div className='inline-flex gap-0.5' role={onChange ? 'radiogroup' : 'img'} aria-label={`${value} out of ${max} stars`} onMouseLeave={() => setHover(null)}>
                 {stars.map((star) =>
                     onChange ? (
@@ -47,7 +50,7 @@ export const Rating = ({ value, max = 5, size = 20, onChange, showValue = false,
                             aria-label={`${star} star${star > 1 ? 's' : ''}`}
                             onMouseEnter={() => setHover(star)}
                             onClick={() => onChange(star)}
-                            className='rounded-lg transition-transform hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-400'
+                            className='rounded-lg transition-transform hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--blossom-accent,#f472b6)]'
                         >
                             <Star size={size} fill={Math.min(1, Math.max(0, shown - (star - 1)))} />
                         </button>

@@ -71,17 +71,17 @@ export const ChipInput = ({ value, defaultValue = [], onChange, label, hint, pla
             {label && <label htmlFor={id} className='text-sm font-medium text-neutral-800 dark:text-white'>{label}</label>}
             <div
                 onClick={() => input.current?.focus()}
-                className={`flex min-h-[44px] w-full flex-wrap items-center gap-2 rounded-xl border bg-transparent px-3 py-2 focus-within:ring-2 ${error ? 'border-red-500 focus-within:ring-red-500/30' : 'border-neutral-300 focus-within:border-pink-400 focus-within:ring-pink-400/30 dark:border-neutral-700'} ${disabled ? 'cursor-not-allowed opacity-60' : ''}`}
+                className={`flex min-h-[44px] w-full flex-wrap items-center gap-2 rounded-xl border bg-transparent px-3 py-2 focus-within:ring-2 ${error ? 'border-red-500 focus-within:ring-red-500/30' : 'border-neutral-300 focus-within:border-[var(--blossom-accent,#f472b6)] focus-within:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] dark:border-neutral-700'} ${disabled ? 'cursor-not-allowed opacity-60' : ''}`}
             >
                 {chips.map((chip) => (
-                    <span key={chip} className='flex items-center gap-1 rounded-lg bg-pink-100 py-1 pl-2 pr-1 text-xs font-medium text-pink-900 dark:bg-pink-950 dark:text-pink-200'>
+                    <span key={chip} className='flex items-center gap-1 rounded-lg bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_18%,transparent)] py-1 pl-2 pr-1 text-xs font-medium text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_45%,black)] dark:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_20%,transparent)] dark:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_45%,white)]'>
                         {chip}
                         <button
                             type='button'
                             aria-label={`Remove ${chip}`}
                             disabled={disabled}
                             onClick={() => update(chips.filter((item) => item !== chip))}
-                            className='rounded p-0.5 hover:bg-pink-200 dark:hover:bg-pink-900'
+                            className='rounded p-0.5 hover:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_28%,transparent)] dark:hover:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]'
                         >
                             <svg className='h-3 w-3' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='3'><path strokeLinecap='round' strokeLinejoin='round' d='M6 6l12 12M18 6 6 18' /></svg>
                         </button>

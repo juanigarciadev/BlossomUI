@@ -64,6 +64,6 @@ export interface StatsProps {
 /** A responsive row of stats. */
 export const Stats = ({ items }: StatsProps) => (
     <div className='grid w-full grid-cols-[repeat(auto-fit,minmax(11rem,1fr))] gap-4'>
-        {items.map((item) => <Stat key={item.label} {...item} />)}
+        {items.map((item, index) => <Stat key={`${item.label}-${index}`} {...item} />)}
     </div>
 )

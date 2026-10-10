@@ -2,7 +2,7 @@ import { useId, useState, type PointerEvent, type ReactNode } from 'react'
 import { Tooltip } from '../Tooltip/Tooltip'
 
 /** Colors used when a datum does not set its own. They follow the palette of the library. */
-const palette = ['#f472b6', '#a78bfa', '#60a5fa', '#34d399', '#fbbf24', '#f87171']
+const palette = ['var(--blossom-accent,#f472b6)', '#a78bfa', '#60a5fa', '#34d399', '#fbbf24', '#f87171']
 
 const colorAt = (index: number) => palette[index % palette.length]
 
@@ -32,7 +32,7 @@ export interface SparklineProps {
 }
 
 /** A tiny line without axes, ideal inside cards and tables. */
-export const Sparkline = ({ data, color = '#f472b6', filled = true, height = 40, label }: SparklineProps) => {
+export const Sparkline = ({ data, color = 'var(--blossom-accent,#f472b6)', filled = true, height = 40, label }: SparklineProps) => {
     const id = useId()
     if (data.length < 2) return null
 
@@ -139,7 +139,7 @@ export interface LineChartProps {
     label?: string
 }
 
-export const LineChart = ({ data, height = 220, color = '#f472b6', filled = true, label = 'Line chart' }: LineChartProps) => {
+export const LineChart = ({ data, height = 220, color = 'var(--blossom-accent,#f472b6)', filled = true, label = 'Line chart' }: LineChartProps) => {
     const id = useId()
     if (data.length < 2) return null
 
@@ -176,7 +176,7 @@ export const LineChart = ({ data, height = 220, color = '#f472b6', filled = true
                 {points.map(({ x, y }, index) => (
                     <div key={data[index].label} className='absolute -translate-x-1/2 -translate-y-1/2' style={{ left: `${x}%`, top: `${y}%` }}>
                         <Tooltip content={`${data[index].label}: ${format(data[index].value)}`} arrow>
-                            <span tabIndex={0} className='block h-3.5 w-3.5 rounded-full border-2 bg-white outline-none focus-visible:ring-2 focus-visible:ring-pink-400 dark:bg-neutral-900' style={{ borderColor: color }} />
+                            <span tabIndex={0} className='block h-3.5 w-3.5 rounded-full border-2 bg-white outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:bg-neutral-900' style={{ borderColor: color }} />
                         </Tooltip>
                     </div>
                 ))}

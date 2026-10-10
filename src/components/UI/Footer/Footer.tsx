@@ -25,7 +25,7 @@ export interface FooterProps {
     align?: 'left' | 'center'
 }
 
-const link = 'text-neutral-600 hover:text-pink-500 dark:text-neutral-300'
+const link = 'text-neutral-600 hover:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_85%,black)] dark:text-neutral-300'
 
 export const Footer = ({ brand, description, columns, links, social, year = new Date().getFullYear(), align = 'left' }: FooterProps) => {
     const copyright = `© ${year} ${brand}. All rights reserved.`
@@ -60,7 +60,7 @@ export const Footer = ({ brand, description, columns, links, social, year = new 
             {!centered && <p>{copyright}</p>}
             {links && (
                 <nav aria-label='Footer' className='flex flex-wrap items-center justify-center gap-6'>
-                    {links.map((item) => <a key={item.label} href={item.href} className='hover:text-pink-500'>{item.label}</a>)}
+                    {links.map((item) => <a key={item.label} href={item.href} className='hover:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_85%,black)]'>{item.label}</a>)}
                 </nav>
             )}
             {social && <div className='flex gap-3'>{social}</div>}

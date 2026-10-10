@@ -47,7 +47,7 @@ export const Accordion = ({ items, multiple = false, defaultOpen = [], variant =
                                 aria-controls={`${id}-panel-${item.id}`}
                                 disabled={item.disabled}
                                 onClick={() => toggle(item.id)}
-                                className='flex w-full items-center justify-between gap-4 px-4 py-3.5 text-left text-sm font-medium text-neutral-900 outline-none transition-colors hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-pink-400 disabled:cursor-not-allowed disabled:opacity-40 dark:text-white dark:hover:bg-neutral-800'
+                                className='flex w-full items-center justify-between gap-4 px-4 py-3.5 text-left text-sm font-medium text-neutral-900 outline-none transition-colors hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--blossom-accent,#f472b6)] disabled:cursor-not-allowed disabled:opacity-40 dark:text-white dark:hover:bg-neutral-800'
                             >
                                 {item.title}
                                 <svg className={`h-4 w-4 shrink-0 text-neutral-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'>

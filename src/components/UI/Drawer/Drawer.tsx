@@ -34,7 +34,7 @@ export const Drawer = ({ open, onClose, title, children, footer, side = 'right',
         panel.current?.focus()
 
         const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') onCloseRef.current()
+            if (event.key === 'Escape' && !event.defaultPrevented) onCloseRef.current()
         }
         document.addEventListener('keydown', onKeyDown)
 
