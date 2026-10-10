@@ -292,6 +292,10 @@ const FormsDocumentation = () => {
                 <RadioGroup name='brand-radio' label='Plan' defaultValue='pro' color='#0f766e' options={[{ value: 'free', label: 'Free' }, { value: 'pro', label: 'Pro' }]} />
             </Variant>
 
+            <Variant title='Checkbox with error' description='`error` shows a message in red under the label and marks the box as invalid, to validate terms and conditions.' file={file}>
+                <Checkbox label='I accept the terms and conditions' error='You have to accept the terms.' />
+            </Variant>
+
         </DocPage>
     )
 }

@@ -113,6 +113,11 @@ const CardsDocumentation = () => {
                 <ProductCard image={shoe} name='Air Jordan Low' brand='Nike' price={89.9} rating={4} badge='New' badgeColor='#7c3aed' colors={['#171717', '#0f766e']} sizes={['39', '40', '41']} color='#0f766e' />
             </Variant>
 
+            <Variant title='Same height in a grid' description='A product card fills the height of its cell and keeps the price and the button at the bottom, so a row of cards with texts of different length stays aligned.' file={file} previewClassName='grid grid-cols-2 items-stretch gap-4 sm:grid-cols-1'>
+                <ProductCard image={shoe} name='Air Jordan Low' brand='Nike' description='Short text.' price={89.9} />
+                <ProductCard image={shoe} name='Jordan x Dior' brand='Jordan' description='A much longer description that takes two lines in the card, so the other one has to stretch to match its height.' price={149} />
+            </Variant>
+
         </DocPage>
     )
 }

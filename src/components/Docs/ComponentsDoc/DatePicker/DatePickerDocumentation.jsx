@@ -84,6 +84,11 @@ const DatePickerDocumentation = () => {
                 <DateRangePicker label='Trip dates' color='#7c3aed' />
             </Variant>
 
+            <Variant title='Hint and error' description='`hint` adds a helper text and `error` shows a message in red and marks the field as invalid, like the rest of the form fields.' file={file} previewClassName='flex w-full gap-4 [&>*]:max-w-xs'>
+                <DatePicker label='Delivery date' hint='We deliver from tomorrow.' />
+                <DatePicker label='Delivery date' error='Choose a delivery date.' />
+            </Variant>
+
         </DocPage>
     )
 }

@@ -261,7 +261,7 @@ export const ProductCard = ({
     }
 
     return (
-        <article className={`relative flex h-fit flex-col gap-4 p-4 shadow-sm ${/(^|\s)!?w-/.test(className) ? '' : horizontal ? 'w-full max-w-xl' : 'w-64'} ${surface} ${className}`} style={accentStyle(color)}>
+        <article className={`relative flex h-full flex-col gap-4 p-4 shadow-sm ${/(^|\s)!?w-/.test(className) ? '' : horizontal ? 'w-full max-w-xl' : 'w-64'} ${surface} ${className}`} style={accentStyle(color)}>
             <div className={horizontal ? 'flex gap-4 sm:flex-col' : 'contents'}>
                 <div className={`relative ${horizontal ? 'w-44 shrink-0 sm:w-full' : ''}`}>
                     {canExpand ? (
@@ -358,7 +358,7 @@ export const ProductCard = ({
                 </div>
             </div>
 
-            <div className='flex items-center justify-between gap-2'>
+            <div className='mt-auto flex items-center justify-between gap-2'>
                 <div className='flex flex-col leading-tight'>
                     <span className='text-xl font-bold text-black dark:text-white'>{money(price)}</span>
                     {discount > 0 && originalPrice && <span className='text-xs text-neutral-500 line-through'>{money(originalPrice)}</span>}

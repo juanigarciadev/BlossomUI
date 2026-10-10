@@ -94,6 +94,12 @@ const Buttons = () => {
             <Variant title='Rounded social icons only' description='Icon buttons with `rounded` corners.' file={file}>
                 {providers.map((provider) => <SocialButton key={provider} provider={provider} iconOnly rounded />)}
             </Variant>
+            <Variant title='Brand accent' description='Use `color` with `accent` and the button takes the brand color of your site, `--blossom-accent`. Set it once and every button, badge and alert follows it, also in dark mode if you redefine the variable there.' file={file}>
+                <Button color='accent'>Buy now</Button>
+                <Button color='accent' rounded>Subscribe</Button>
+                <IconButton icon={<Heart size={18} />} label='Like' color='accent' />
+            </Variant>
+
             <Variant title='Custom colors' description='Any CSS color works, not only the presets: hex, rgb(), hsl() or a CSS variable. The text switches between black and white to stay readable, and the same goes for `IconButton`.' file={file}>
                 <Button color='#7c3aed'>Violet</Button>
                 <Button color='#0ea5e9' rounded>Sky</Button>

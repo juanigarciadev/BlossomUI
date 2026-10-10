@@ -68,6 +68,12 @@ const SkeletonDocumentation = () => {
             <Variant title='Loading state' description='Swap the skeleton for the real content when the data arrives.' file={file} code={loadingCode}>
                 <LoadingDemo />
             </Variant>
+            <Variant title='Rounded' description='Lines and circles use `full`. For cards and images choose the corners with `rounded`: xl, lg, md or none.' file={file}>
+                <Skeleton className='h-24 w-40' rounded='xl' />
+                <Skeleton className='h-24 w-40' rounded='md' />
+                <Skeleton className='h-24 w-40' rounded='none' />
+            </Variant>
+
         </DocPage>
     )
 }

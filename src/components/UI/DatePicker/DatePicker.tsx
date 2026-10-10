@@ -22,6 +22,10 @@ const defaultLabels: DatePickerLabels = {
 }
 
 export interface DatePickerProps {
+    /** Helper text shown under the field. */
+    hint?: string
+    /** Error message. It is shown in red under the field and marks it as invalid. */
+    error?: string
     /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
     labels?: Partial<DatePickerLabels>
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
@@ -44,7 +48,7 @@ const startOfDay = (date: Date) => new Date(date.getFullYear(), date.getMonth(),
 const sameDay = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 const addDays = (date: Date, days: number) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
 
-export const DatePicker = ({ labels, color, value, defaultValue = null, onChange, label, placeholder = 'Select a date', min, max, locale = 'en-US', disabled = false }: DatePickerProps) => {
+export const DatePicker = ({ hint, error, labels, color, value, defaultValue = null, onChange, label, placeholder = 'Select a date', min, max, locale = 'en-US', disabled = false }: DatePickerProps) => {
     const id = useId()
     const trigger = useRef<HTMLButtonElement>(null)
     const panel = useRef<HTMLDivElement>(null)
@@ -162,8 +166,10 @@ export const DatePicker = ({ labels, color, value, defaultValue = null, onChange
                 disabled={disabled}
                 aria-haspopup='dialog'
                 aria-expanded={open}
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ?? hint ? `${id}-message` : undefined}
                 onClick={() => (open ? close(false) : openCalendar())}
-                className={`flex w-full items-center justify-between gap-2 rounded-xl border border-neutral-300 bg-transparent px-3 py-2.5 text-left text-sm outline-none focus:border-[var(--blossom-accent,#f472b6)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-60 dark:border-neutral-700 ${open ? 'ring-2 ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]' : ''}`}
+                className={`flex w-full items-center justify-between gap-2 rounded-xl border bg-transparent px-3 py-2.5 text-left ${error ? 'border-red-500' : 'border-neutral-300'} text-sm outline-none focus:border-[var(--blossom-accent,#f472b6)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-60 ${error ? '' : 'dark:border-neutral-700'} ${open ? 'ring-2 ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]' : ''}`}
             >
                 <span className={selected ? 'text-neutral-900 dark:text-white' : 'text-neutral-400'}>
                     {selected ? new Intl.DateTimeFormat(locale, { dateStyle: 'long' }).format(selected) : placeholder}
@@ -172,6 +178,7 @@ export const DatePicker = ({ labels, color, value, defaultValue = null, onChange
                     <path strokeLinecap='round' strokeLinejoin='round' d='M8 3v3m8-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z' />
                 </svg>
             </button>
+            {(error ?? hint) && <span id={`${id}-message`} className={`text-xs ${error ? 'text-red-700 dark:text-red-400' : 'text-neutral-500'}`}>{error ?? hint}</span>}
             {open && createPortal(
                 <div
                     ref={panel}
@@ -230,6 +237,10 @@ export interface DateRange {
 }
 
 export interface DateRangePickerProps {
+    /** Helper text shown under the field. */
+    hint?: string
+    /** Error message. It is shown in red under the field and marks it as invalid. */
+    error?: string
     /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
     labels?: Partial<DatePickerLabels>
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
@@ -253,7 +264,7 @@ const emptyRange: DateRange = { start: null, end: null }
 
 
 /** Pick two days: every day between them is highlighted. */
-export const DateRangePicker = ({ labels, color, value, defaultValue = emptyRange, onChange, label, placeholder = 'Select a range', min, max, locale = 'en-US', disabled = false }: DateRangePickerProps) => {
+export const DateRangePicker = ({ hint, error, labels, color, value, defaultValue = emptyRange, onChange, label, placeholder = 'Select a range', min, max, locale = 'en-US', disabled = false }: DateRangePickerProps) => {
     const id = useId()
     const trigger = useRef<HTMLButtonElement>(null)
     const panel = useRef<HTMLDivElement>(null)
@@ -391,8 +402,10 @@ export const DateRangePicker = ({ labels, color, value, defaultValue = emptyRang
                 disabled={disabled}
                 aria-haspopup='dialog'
                 aria-expanded={open}
+                aria-invalid={Boolean(error)}
+                aria-describedby={error ?? hint ? `${id}-message` : undefined}
                 onClick={() => (open ? close(false) : openCalendar())}
-                className={`flex w-full items-center justify-between gap-2 rounded-xl border border-neutral-300 bg-transparent px-3 py-2.5 text-left text-sm outline-none focus:border-[var(--blossom-accent,#f472b6)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-60 dark:border-neutral-700 ${open ? 'ring-2 ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]' : ''}`}
+                className={`flex w-full items-center justify-between gap-2 rounded-xl border bg-transparent px-3 py-2.5 text-left ${error ? 'border-red-500' : 'border-neutral-300'} text-sm outline-none focus:border-[var(--blossom-accent,#f472b6)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-60 ${error ? '' : 'dark:border-neutral-700'} ${open ? 'ring-2 ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]' : ''}`}
             >
                 <span className={range.start && range.end ? 'text-neutral-900 dark:text-white' : 'text-neutral-400'}>
                     {range.start && range.end ? `${format(range.start)} – ${format(range.end)}` : placeholder}
@@ -401,6 +414,7 @@ export const DateRangePicker = ({ labels, color, value, defaultValue = emptyRang
                     <path strokeLinecap='round' strokeLinejoin='round' d='M8 3v3m8-3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z' />
                 </svg>
             </button>
+            {(error ?? hint) && <span id={`${id}-message`} className={`text-xs ${error ? 'text-red-700 dark:text-red-400' : 'text-neutral-500'}`}>{error ?? hint}</span>}
             {open && createPortal(
                 <div
                     ref={panel}

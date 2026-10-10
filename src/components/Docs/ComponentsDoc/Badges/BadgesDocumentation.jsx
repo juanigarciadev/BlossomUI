@@ -78,6 +78,11 @@ const Badges = () => {
             <Variant title='Dismissible' description='Provide `onDismiss` to show a close button. Remove tags to try it.' file={file} code={tagsCode}>
                 <TagsDemo />
             </Variant>
+            <Variant title='Brand accent' description='`accent` uses the brand color of the site, `--blossom-accent`.' file={file}>
+                <Badge color='accent'>New</Badge>
+                <Badge color='accent' outlined rounded>Limited</Badge>
+            </Variant>
+
             <Variant title='Custom colors' description='Any CSS color works, not only the presets: hex, rgb(), hsl() or a CSS variable. The badge uses it for the text and a soft tint for the background.' file={file}>
                 <Badge color='#7c3aed'>Violet</Badge>
                 <Badge color='#0ea5e9' outlined>Sky</Badge>

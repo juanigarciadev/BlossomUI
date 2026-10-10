@@ -532,10 +532,12 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
     description?: string
     /** Shows a dash instead of the check, for "some selected" states. */
     indeterminate?: boolean
+    /** Error message. It is shown in red under the label and marks the checkbox as invalid. */
+    error?: string
 }
 
 /** The native input is hidden but still receives focus, keyboard and form events. */
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({ label, description, indeterminate = false, color, className = '', ...props }, ref) => {
+export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({ label, description, indeterminate = false, error, color, className = '', ...props }, ref) => {
     const inner = useRef<HTMLInputElement | null>(null)
 
     useEffect(() => {
@@ -551,10 +553,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({ label, de
                     else if (ref) ref.current = node
                 }}
                 type='checkbox'
+                aria-invalid={Boolean(error) || undefined}
                 className={`peer sr-only ${className}`}
                 {...props}
             />
-            <span className='mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 border-neutral-300 bg-white text-transparent transition-colors group-hover:border-[var(--blossom-accent,#f472b6)] peer-checked:border-[var(--blossom-accent,#f472b6)] peer-checked:bg-[var(--blossom-accent,#f472b6)] peer-checked:text-white peer-indeterminate:border-[var(--blossom-accent,#f472b6)] peer-indeterminate:bg-[var(--blossom-accent,#f472b6)] peer-indeterminate:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_50%,transparent)] dark:border-neutral-600 dark:bg-neutral-900'>
+            <span data-error={Boolean(error)} className='data-[error=true]:!border-red-500 mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2 border-neutral-300 bg-white text-transparent transition-colors group-hover:border-[var(--blossom-accent,#f472b6)] peer-checked:border-[var(--blossom-accent,#f472b6)] peer-checked:bg-[var(--blossom-accent,#f472b6)] peer-checked:text-white peer-indeterminate:border-[var(--blossom-accent,#f472b6)] peer-indeterminate:bg-[var(--blossom-accent,#f472b6)] peer-indeterminate:text-white peer-focus-visible:ring-2 peer-focus-visible:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_50%,transparent)] dark:border-neutral-600 dark:bg-neutral-900'>
                 {indeterminate ? (
                     <svg className='h-3 w-3' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='4'><path strokeLinecap='round' d='M6 12h12' /></svg>
                 ) : (
@@ -564,6 +567,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({ label, de
             <span className='flex flex-col'>
                 <span className='text-neutral-800 dark:text-white'>{label}</span>
                 {description && <span className='text-xs text-neutral-500'>{description}</span>}
+                {error && <span role='alert' className='text-xs text-red-700 dark:text-red-400'>{error}</span>}
             </span>
         </label>
     )

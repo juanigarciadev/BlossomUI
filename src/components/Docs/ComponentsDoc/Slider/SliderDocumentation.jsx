@@ -48,6 +48,11 @@ const SliderDocumentation = () => {
                 <Slider label='Volume' defaultValue={60} showValue color='#0f766e' />
             </Variant>
 
+            <Variant title='Hint and error' description='`hint` and `error` show a message under the slider.' file={file} previewClassName='flex w-full flex-col gap-6 [&>*]:max-w-sm'>
+                <Slider label='People' min={1} max={10} defaultValue={4} showValue hint='Up to 10 people per tasting.' />
+                <Slider label='People' min={1} max={10} defaultValue={10} showValue error='This tasting is full.' />
+            </Variant>
+
         </DocPage>
     )
 }

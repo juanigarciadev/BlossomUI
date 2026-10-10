@@ -3,11 +3,15 @@ import type { CSSProperties } from 'react'
 export interface SkeletonProps {
     className?: string
     style?: CSSProperties
+    /** Corners of the block: `full` for lines and circles, `xl` for cards and images. */
+    rounded?: 'full' | 'xl' | 'lg' | 'md' | 'none'
 }
 
+const radius = { full: 'rounded-full', xl: 'rounded-xl', lg: 'rounded-lg', md: 'rounded-md', none: '' }
+
 /** A pulsing block. Give it a size with Tailwind classes, e.g. `h-4 w-40`. */
-export const Skeleton = ({ className = '', style }: SkeletonProps) => (
-    <div aria-hidden='true' className={`animate-pulse rounded-full bg-neutral-300 dark:bg-neutral-700 ${className}`} style={style} />
+export const Skeleton = ({ className = '', style, rounded = 'full' }: SkeletonProps) => (
+    <div aria-hidden='true' className={`animate-pulse ${radius[rounded]} bg-neutral-300 dark:bg-neutral-700 ${className}`} style={style} />
 )
 
 const lineWidths = ['75%', '90%', '65%', '80%', '95%', '60%']

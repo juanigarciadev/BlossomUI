@@ -115,6 +115,31 @@ const BrandColor = () => (
         </section>
 
         <section>
+            <CompVersionTitle title='Buttons, badges and the rest' paragraph='Use the `accent` value of `color` and they take the brand color too, so you do not repeat it in every component.' />
+            <CodeBlock
+                name='Brand.tsx'
+                code={`<Button color="accent">Buy now</Button>
+<Badge color="accent">New</Badge>
+<ProgressBar value={70} color="accent" />
+<Alert color="accent">Free shipping from $40.</Alert>`}
+                language='tsx'
+            />
+            <p className='pt-3 text-sm text-neutral-600 dark:text-neutral-300'>
+                It works in Button, IconButton, Badge, Alert, Toast, ProgressBar, Spinner and Kbd. The text on top is white, or the color of <InlineCode text='`--blossom-accent-contrast`' />.
+            </p>
+        </section>
+
+        <section>
+            <CompVersionTitle title='Another color in dark mode' paragraph='Redefine the variable inside the dark class if your brand color needs to be lighter on a dark background.' />
+            <CodeBlock
+                name='index.css'
+                code={`:root { --blossom-accent: #0f766e; }
+.dark { --blossom-accent: #5eead4; --blossom-accent-contrast: #042f2e; }`}
+                language='css'
+            />
+        </section>
+
+        <section>
             <CompVersionTitle title='What follows the accent' paragraph='The selected state, the focus rings and the highlights of the interactive components.' />
             <ul className='flex list-disc flex-col gap-1 pl-6 text-neutral-700 dark:text-neutral-300'>
                 <li>Navigation: Tabs, Navbar, Pagination, Stepper, Breadcrumb hover and Command palette.</li>

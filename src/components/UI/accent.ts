@@ -25,6 +25,6 @@ export const readableOn = (color: string) => {
 
 /** Style that makes an element, and everything inside it, use `color` as its accent. */
 export const accentStyle = (color?: string, style?: CSSProperties): CSSProperties | undefined =>
-    color
+    color && color !== 'accent'
         ? ({ '--blossom-accent': color, '--blossom-accent-contrast': readableOn(color), ...style } as CSSProperties)
         : style
