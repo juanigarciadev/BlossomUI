@@ -35,6 +35,10 @@ const CarouselDocumentation = () => {
             <Variant title='Without dots' description='Hide the dots when there are many slides.' file={file} previewClassName='flex w-full [&>*]:max-w-xl'>
                 <Carousel slides={slides} dots={false} />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for the active dot and the focus rings. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full [&>*]:max-w-xl'>
+                <Carousel slides={slides} color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

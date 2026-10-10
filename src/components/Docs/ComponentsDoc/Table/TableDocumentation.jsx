@@ -64,6 +64,10 @@ const TableDocumentation = () => {
             <Variant title='Empty' description='Pass any node in `empty` for the case without rows.' file={file} previewClassName='flex w-full'>
                 <Table columns={columns} rows={[]} rowKey={rowKey} empty='No members yet' />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for the checkboxes, the selected rows and the sort arrow. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full'>
+                <Table columns={columns} rows={rows} rowKey={rowKey} selectable striped color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

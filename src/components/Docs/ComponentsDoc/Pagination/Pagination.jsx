@@ -80,6 +80,11 @@ const PaginationDocumentation = () => {
             <Variant title='With results' description='Show how many results are being displayed.' file={file} code={resultsCode}>
                 <ResultsDemo />
             </Variant>
+            <Variant title='Custom color' description='Use `color` in `Pagination` and `SimplePagination`. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex flex-col gap-4'>
+                <Pagination page={2} total={5} onChange={() => {}} color='#0f766e' />
+                <SimplePagination page={2} total={5} onChange={() => {}} color='#7c3aed' />
+            </Variant>
+
         </DocPage>
     )
 }

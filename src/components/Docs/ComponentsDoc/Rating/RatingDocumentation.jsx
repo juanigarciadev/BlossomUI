@@ -48,6 +48,11 @@ const RatingDocumentation = () => {
             <Variant title='Review' description='A review with the author, date and rating.' file={file}>
                 <Review author='Katherine Hoffman' rating={4} date='2 days ago'>Great quality and very comfortable. It arrived earlier than expected, I would buy it again.</Review>
             </Variant>
+            <Variant title='Custom color' description='Use `color` to change the color of the stars. They are gold by default.' file={file}>
+                <Rating value={4} showValue color='#0f766e' />
+                <Rating value={3.5} showValue color='#7c3aed' />
+            </Variant>
+
         </DocPage>
     )
 }

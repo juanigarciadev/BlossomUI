@@ -46,6 +46,10 @@ const TimelineDocumentation = () => {
             <Variant title='With cards' description='Group the details of every event inside a card.' file={file} previewClassName='block' code={'<Timeline items={activity} variant="cards" />'}>
                 <Timeline items={activity} variant='cards' />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for the markers. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file}>
+                <Timeline items={releases} color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

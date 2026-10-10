@@ -43,6 +43,10 @@ const NavbarDocumentation = () => {
                     }
                 />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for the active link and the focus ring. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full'>
+                <Navbar brand={brand} links={links} color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

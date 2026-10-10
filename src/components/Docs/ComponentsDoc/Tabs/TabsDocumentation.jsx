@@ -63,6 +63,11 @@ const TabsDocumentation = () => {
             >
                 <ControlledDemo />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for one instance. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full flex-col gap-6'>
+                <Tabs tabs={tabs} color='#0f766e' />
+                <Tabs tabs={tabs} variant='pills' color='#7c3aed' />
+            </Variant>
+
         </DocPage>
     )
 }

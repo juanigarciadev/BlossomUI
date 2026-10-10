@@ -119,6 +119,11 @@ const StepperDocumentation = () => {
             <Variant title='Progress' description='A compact stepper made of segments.' file={file} code={progressCode}>
                 <ProgressDemo />
             </Variant>
+            <Variant title='Custom color' description='Use `color` in `Stepper` and `StepperProgress`. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full flex-col gap-8'>
+                <Stepper steps={steps} current={1} color='#0f766e' />
+                <StepperProgress total={4} current={2} color='#7c3aed' />
+            </Variant>
+
         </DocPage>
     )
 }

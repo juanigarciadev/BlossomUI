@@ -44,6 +44,10 @@ const SurveyDocumentation = () => {
                     ]}
                 />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for the background, the text and the focus ring. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full [&>*]:max-w-md'>
+                <Survey question='How was your visit?' color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

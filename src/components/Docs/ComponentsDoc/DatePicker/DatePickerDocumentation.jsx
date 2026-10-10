@@ -79,6 +79,11 @@ const DatePickerDocumentation = () => {
             >
                 <ControlledRangeDemo />
             </Variant>
+            <Variant title='Custom color' description='Use `color` in `DatePicker` and `DateRangePicker` for the selected days and the focus rings. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full gap-4 [&>*]:max-w-xs'>
+                <DatePicker label='Date' color='#0f766e' />
+                <DateRangePicker label='Trip dates' color='#7c3aed' />
+            </Variant>
+
         </DocPage>
     )
 }

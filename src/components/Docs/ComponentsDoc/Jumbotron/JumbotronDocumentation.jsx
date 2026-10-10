@@ -112,6 +112,10 @@ const JumbotronDocumentation = () => {
                     actions={<><Button color='default'>Get started</Button><Button color='secondary' className='border-white/60 text-white hover:bg-white/10'>Learn more</Button></>}
                 />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for the eyebrow and the gradient. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full'>
+                <Jumbotron eyebrow='New' title='Your brand, your color' description='The pill and the gradient follow the accent.' variant='gradient' color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

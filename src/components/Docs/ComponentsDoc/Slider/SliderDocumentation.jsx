@@ -44,6 +44,10 @@ const SliderDocumentation = () => {
             >
                 <ControlledDemo />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for the filled track, the handle and the focus ring. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full [&>*]:max-w-sm'>
+                <Slider label='Volume' defaultValue={60} showValue color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

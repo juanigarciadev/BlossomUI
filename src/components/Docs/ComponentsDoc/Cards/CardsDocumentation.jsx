@@ -98,6 +98,11 @@ const CardsDocumentation = () => {
                     sizes={['39', '40', '41']}
                 />
             </Variant>
+            <Variant title='Custom color' description='Use `color` in `Card` for the icon and in `ProductCard` for the selected color and size. `badgeColor` sets the color of the badge. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file}>
+                <Card icon={<SmileIcon />} title='Brand color' description='The icon follows the accent.' color='#0f766e' />
+                <ProductCard image={shoe} name='Air Jordan Low' brand='Nike' price={89.9} rating={4} badge='New' badgeColor='#7c3aed' colors={['#171717', '#0f766e']} sizes={['39', '40', '41']} color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

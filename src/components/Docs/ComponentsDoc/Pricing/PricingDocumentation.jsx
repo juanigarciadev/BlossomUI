@@ -66,6 +66,10 @@ const PricingDocumentation = () => {
             <Variant title='Billing toggle' description='Add a monthly / yearly switch. Prices update when the user changes it.' file={file} previewClassName='flex' code={'<Pricing plans={plans} variant="border" billingToggle />'}>
                 <Pricing plans={plans} variant='border' billingToggle />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for the buttons, the highlighted plan and the billing toggle. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full'>
+                <Pricing plans={plans} billingToggle color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

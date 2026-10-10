@@ -35,6 +35,10 @@ const EmptyStateDocumentation = () => {
             <Variant title='Minimal' description='Without icon and action.' file={file} previewClassName='flex w-full'>
                 <EmptyState title='Nothing here' description='Come back later.' />
             </Variant>
+            <Variant title='Custom color' description='Use `color` for the icon. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full'>
+                <EmptyState icon={<Inbox size={22} />} title='No messages yet' description='The icon uses your color.' color='#0f766e' />
+            </Variant>
+
         </DocPage>
     )
 }

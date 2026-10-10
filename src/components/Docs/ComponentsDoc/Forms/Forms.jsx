@@ -285,6 +285,13 @@ const FormsDocumentation = () => {
             <Variant title='Login form' description='A complete form with validation using the components above. Try sending it empty.' file={file} code={loginCode}>
                 <LoginDemo />
             </Variant>
+            <Variant title='Custom color' description='Use `color` on any field or control: the focus ring, the checked state and the options follow it. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>
+                <Input label='Email' placeholder='you@example.com' color='#0f766e' />
+                <Checkbox label='Remember me' defaultChecked color='#0f766e' />
+                <Switch label='Notifications' defaultChecked color='#7c3aed' />
+                <RadioGroup name='brand-radio' label='Plan' defaultValue='pro' color='#0f766e' options={[{ value: 'free', label: 'Free' }, { value: 'pro', label: 'Pro' }]} />
+            </Variant>
+
         </DocPage>
     )
 }
