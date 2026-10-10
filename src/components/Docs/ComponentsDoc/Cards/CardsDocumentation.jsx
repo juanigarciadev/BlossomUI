@@ -118,6 +118,11 @@ const CardsDocumentation = () => {
                 <ProductCard image={shoe} name='Jordan x Dior' brand='Jordan' description='A much longer description that takes two lines in the card, so the other one has to stretch to match its height.' price={149} />
             </Variant>
 
+            <Variant title='Button color' description='`buttonColor` paints the add to cart button with the brand color (`accent`) or any CSS color.' file={file}>
+                <ProductCard image={shoe} name='Air Jordan Low' brand='Nike' price={89.9} buttonColor='accent' />
+                <ProductCard image={shoe} name='Jordan x Dior' brand='Jordan' price={149} buttonColor='#7c3aed' />
+            </Variant>
+
         </DocPage>
     )
 }

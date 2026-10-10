@@ -59,6 +59,10 @@ const ToastsDocumentation = () => {
                 <Toast color='#0ea5e9' onDismiss={() => {}}>Sky blue</Toast>
             </Variant>
 
+            <Variant title='Position' description='`Toaster` has a `position`: top-left, top-center, top-right, bottom-left, bottom-center or bottom-right. Use a top one when the toasts would cover the buttons at the bottom of a dialog. `dismissLabel` translates the close button.' file={file} code={`<Toaster toasts={toasts} onDismiss={dismiss} position='top-right' dismissLabel='Cerrar' />`}>
+                <Toast color='dark'>Preview of a toast</Toast>
+            </Variant>
+
         </DocPage>
     )
 }

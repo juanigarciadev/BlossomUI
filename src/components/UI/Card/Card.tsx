@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { accentStyle } from '../accent'
+import { accentStyle, readableOn } from '../accent'
 import { useOverlay } from '../overlay'
 
 const surface = 'rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 dark:border-neutral-600 dark:bg-neutral-800'
@@ -84,6 +84,8 @@ export interface ProductCardProps {
     color?: string
     /** Color of the badge: any CSS color. Without it the badge uses the accent. */
     badgeColor?: string
+    /** Color of the add to cart button: `accent` for the brand color or any CSS color. Without it the button is black, or white in dark mode. */
+    buttonColor?: string
     image: string
     name: string
     price: number
@@ -204,6 +206,7 @@ const Lightbox = ({ labels, color, images, start, name, onClose }: LightboxProps
 }
 
 export const ProductCard = ({
+    buttonColor,
     labels,
     formatPrice,
     color,
@@ -236,6 +239,7 @@ export const ProductCard = ({
     const gallery = [image, ...images]
     const canExpand = expandable || images.length > 0
     const horizontal = layout === 'horizontal'
+    const buttonPaint = buttonColor === 'accent' ? 'var(--blossom-accent,#f472b6)' : buttonColor ?? ''
     const text: ProductCardLabels = { ...defaultLabels, ...labels }
     // The name of a color when it has one, otherwise its value
     const colorName = (value: string) => {
@@ -367,7 +371,8 @@ export const ProductCard = ({
                     type='button'
                     onClick={add}
                     disabled={!inStock}
-                    className='flex select-none items-center justify-center rounded-xl bg-black px-4 py-3 text-sm font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-neutral-200'
+                    className={`flex select-none items-center justify-center rounded-xl px-4 py-3 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50 ${buttonColor ? 'hover:brightness-90' : 'bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'}`}
+                    style={buttonColor ? { backgroundColor: buttonPaint, color: readableOn(buttonPaint) } : undefined}
                 >
                     {!inStock ? text.unavailable : added ? text.added : text.addToCart}
                 </button>

@@ -114,14 +114,29 @@ export const useToasts = () => {
 export interface ToasterProps {
     toasts: ToastItem[]
     onDismiss: (id: number) => void
-    /** Classes for the container. By default it sits in the bottom right corner of the screen. */
+    /** Accessible name of the close button of every toast. */
+    dismissLabel?: string
+    /** Corner of the screen. Use a top one if the toasts hide the buttons at the bottom of a dialog. */
+    position?: ToasterPosition
+    /** Classes for the container. They replace the ones of `position`. */
     className?: string
 }
 
-export const Toaster = ({ toasts, onDismiss, className = 'fixed bottom-4 right-4 z-[90] flex flex-col items-end gap-2' }: ToasterProps) => (
-    <div aria-live='polite' className={className}>
+export type ToasterPosition = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
+
+const positions: Record<ToasterPosition, string> = {
+    'top-left': 'left-4 top-4 items-start',
+    'top-center': 'left-1/2 top-4 -translate-x-1/2 items-center',
+    'top-right': 'right-4 top-4 items-end',
+    'bottom-left': 'bottom-4 left-4 items-start',
+    'bottom-center': 'bottom-4 left-1/2 -translate-x-1/2 items-center',
+    'bottom-right': 'bottom-4 right-4 items-end',
+}
+
+export const Toaster = ({ toasts, onDismiss, dismissLabel, position = 'bottom-right', className }: ToasterProps) => (
+    <div aria-live='polite' className={className ?? `fixed z-[90] flex flex-col gap-2 ${positions[position]}`}>
         {toasts.map(({ id, message, color, actionLabel, onAction }) => (
-            <Toast key={id} color={color} actionLabel={actionLabel} onAction={onAction} onDismiss={() => onDismiss(id)}>{message}</Toast>
+            <Toast key={id} color={color} dismissLabel={dismissLabel} actionLabel={actionLabel} onAction={onAction} onDismiss={() => onDismiss(id)}>{message}</Toast>
         ))}
     </div>
 )

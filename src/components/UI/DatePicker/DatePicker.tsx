@@ -48,6 +48,14 @@ const startOfDay = (date: Date) => new Date(date.getFullYear(), date.getMonth(),
 const sameDay = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 const addDays = (date: Date, days: number) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
 
+/** The day, or the closest allowed one when it is before `min` or after `max`. */
+const clampDay = (date: Date, min?: Date, max?: Date) => {
+    let day = startOfDay(date)
+    if (min && day < startOfDay(min)) day = startOfDay(min)
+    if (max && day > startOfDay(max)) day = startOfDay(max)
+    return day
+}
+
 export const DatePicker = ({ hint, error, labels, color, value, defaultValue = null, onChange, label, placeholder = 'Select a date', min, max, locale = 'en-US', disabled = false }: DatePickerProps) => {
     const id = useId()
     const trigger = useRef<HTMLButtonElement>(null)
@@ -55,7 +63,7 @@ export const DatePicker = ({ hint, error, labels, color, value, defaultValue = n
     const [internal, setInternal] = useState<Date | null>(defaultValue)
     const selected = value === undefined ? internal : value
     const [open, setOpen] = useState(false)
-    const [focused, setFocused] = useState<Date>(() => startOfDay(selected ?? new Date()))
+    const [focused, setFocused] = useState<Date>(() => clampDay(selected ?? new Date(), min, max))
     const [box, setBox] = useState<{ top: number; left: number } | null>(null)
 
     const close = useCallback((restoreFocus = true) => {
@@ -85,10 +93,19 @@ export const DatePicker = ({ hint, error, labels, color, value, defaultValue = n
         }
         const onScroll = () => close(false)
         document.addEventListener('mousedown', onPointer)
+        // Escape closes the picker first, even when the focus is not inside the calendar yet,
+        // and the dialog behind it does not see it.
+        const onEscape = (event: globalThis.KeyboardEvent) => {
+            if (event.key !== 'Escape') return
+            event.preventDefault()
+            close()
+        }
+        document.addEventListener('keydown', onEscape, true)
         window.addEventListener('resize', onScroll)
         window.addEventListener('scroll', onScroll, true)
         return () => {
             document.removeEventListener('mousedown', onPointer)
+            document.removeEventListener('keydown', onEscape, true)
             window.removeEventListener('resize', onScroll)
             window.removeEventListener('scroll', onScroll, true)
         }
@@ -101,7 +118,7 @@ export const DatePicker = ({ hint, error, labels, color, value, defaultValue = n
 
     const openCalendar = () => {
         if (disabled) return
-        setFocused(startOfDay(selected ?? new Date()))
+        setFocused(clampDay(selected ?? new Date(), min, max))
         setOpen(true)
     }
 
@@ -273,7 +290,7 @@ export const DateRangePicker = ({ hint, error, labels, color, value, defaultValu
     const [draft, setDraft] = useState<DateRange>(range)
     const [hover, setHover] = useState<Date | null>(null)
     const [open, setOpen] = useState(false)
-    const [focused, setFocused] = useState<Date>(() => startOfDay(range.start ?? new Date()))
+    const [focused, setFocused] = useState<Date>(() => clampDay(range.start ?? new Date(), min, max))
     const [box, setBox] = useState<{ top: number; left: number } | null>(null)
 
     const close = useCallback((restoreFocus = true) => {
@@ -303,10 +320,19 @@ export const DateRangePicker = ({ hint, error, labels, color, value, defaultValu
         }
         const onScroll = () => close(false)
         document.addEventListener('mousedown', onPointer)
+        // Escape closes the picker first, even when the focus is not inside the calendar yet,
+        // and the dialog behind it does not see it.
+        const onEscape = (event: globalThis.KeyboardEvent) => {
+            if (event.key !== 'Escape') return
+            event.preventDefault()
+            close()
+        }
+        document.addEventListener('keydown', onEscape, true)
         window.addEventListener('resize', onScroll)
         window.addEventListener('scroll', onScroll, true)
         return () => {
             document.removeEventListener('mousedown', onPointer)
+            document.removeEventListener('keydown', onEscape, true)
             window.removeEventListener('resize', onScroll)
             window.removeEventListener('scroll', onScroll, true)
         }
@@ -321,7 +347,7 @@ export const DateRangePicker = ({ hint, error, labels, color, value, defaultValu
         if (disabled) return
         setDraft(range)
         setHover(null)
-        setFocused(startOfDay(range.start ?? new Date()))
+        setFocused(clampDay(range.start ?? new Date(), min, max))
         setOpen(true)
     }
 

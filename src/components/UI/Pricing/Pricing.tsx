@@ -59,7 +59,7 @@ export const Pricing = ({ labels, formatPrice, color, plans, variant = 'default'
                             type='button'
                             aria-pressed={billing === option}
                             onClick={() => setBilling(option)}
-                            className={`rounded-full px-4 py-1.5 capitalize transition-colors ${billing === option ? 'bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_68%,black)] text-white' : 'text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white'}`}
+                            className={`rounded-full px-4 py-1.5 capitalize transition-colors ${billing === option ? 'bg-[var(--blossom-accent,#f472b6)] text-[var(--blossom-accent-contrast,#fff)]' : 'text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white'}`}
                         >
                             {option === 'yearly' ? text.yearly : text.monthly}
                             {option === 'yearly' && <span className='ml-1 text-xs opacity-80'>-{Math.round((1 - yearlyMonths / 12) * 100)}%</span>}
@@ -70,7 +70,7 @@ export const Pricing = ({ labels, formatPrice, color, plans, variant = 'default'
             <div className='flex w-full items-center justify-center flex-wrap gap-4'>
                 {plans.map((plan) => {
                     const amount = billing === 'yearly' ? plan.price * yearlyMonths : plan.price
-                    const accent = plan.highlighted && variant === 'border' ? 'border-2 border-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_68%,black)]' : 'border-2 border-transparent'
+                    const accent = plan.highlighted && variant === 'border' ? 'border-2 border-[var(--blossom-accent,#f472b6)]' : 'border-2 border-transparent'
                     const size = plan.highlighted && variant === 'size' ? 'scale-105 py-10' : ''
                     return (
                         <article key={plan.name} className={`flex h-auto w-64 flex-col items-center gap-6 rounded-xl bg-white py-6 shadow-md dark:bg-neutral-800 ${accent} ${size}`}>
@@ -95,7 +95,7 @@ export const Pricing = ({ labels, formatPrice, color, plans, variant = 'default'
                                 <button
                                     type='button'
                                     onClick={() => onSelect?.(plan, billing)}
-                                    className='flex h-fit w-full select-none items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_68%,black)] px-4 py-3 text-sm font-medium text-white hover:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_55%,black)]'
+                                    className='flex h-fit w-full select-none items-center justify-center rounded-full bg-[var(--blossom-accent,#f472b6)] px-4 py-3 text-sm font-medium text-[var(--blossom-accent-contrast,#fff)] hover:brightness-90'
                                 >
                                     {plan.cta ?? text.subscribe}
                                 </button>
