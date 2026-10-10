@@ -55,7 +55,7 @@ const Variant = ({
         <FadeIn as='article'>
             <CompVersionTitle title={title} paragraph={description} />
             <div className='rounded-xl border border-neutral-200 overflow-hidden dark:border-neutral-700'>
-                <section className={`${override ?? ''} p-6 bg-white text-neutral-900 dark:text-white w-full overflow-x-auto bg-[radial-gradient(#e5e5e5_1px,transparent_1px)] [background-size:16px_16px] dark:bg-[#222222] dark:bg-[radial-gradient(#333_1px,transparent_1px)] ${previewClassName}`}>
+                <section style={{ '--blossom-surface': '#222222' }} className={`${override ?? ''} p-6 bg-white text-neutral-900 dark:text-white w-full overflow-x-auto bg-[radial-gradient(#e5e5e5_1px,transparent_1px)] [background-size:16px_16px] dark:bg-[#222222] dark:bg-[radial-gradient(#333_1px,transparent_1px)] ${previewClassName}`}>
                     {children}
                 </section>
                 <div className='flex items-center justify-between gap-2 px-3 py-2 border-t border-neutral-200 bg-neutral-50 select-none dark:bg-neutral-900 dark:border-neutral-700 sm:flex-col sm:items-stretch'>

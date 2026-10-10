@@ -8,6 +8,8 @@ export interface TableColumn<T> {
     render?: (row: T) => ReactNode
     /** Lets the user sort the rows by this column. */
     sortable?: boolean
+    /** Value used to sort the rows when the cell is custom and `row[key]` is not what you see. */
+    sortValue?: (row: T) => string | number
     align?: 'left' | 'right' | 'center'
 }
 
@@ -43,7 +45,7 @@ export const Table = <T,>({ labels, color, columns, rows, rowKey, selectable = f
         if (!sort) return rows
         const column = columns.find((item) => item.key === sort.key)
         if (!column) return rows
-        const read = (row: T) => (row as Record<string, unknown>)[column.key]
+        const read = (row: T) => (column.sortValue ? column.sortValue(row) : (row as Record<string, unknown>)[column.key])
         return [...rows].sort((a, b) => {
             const left = read(a)
             const right = read(b)

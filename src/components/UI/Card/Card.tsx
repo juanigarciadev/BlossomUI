@@ -63,6 +63,13 @@ const defaultLabels: ProductCardLabels = {
     viewer: (name, photo, total) => `${name}, photo ${photo} of ${total}`,
 }
 
+export interface ProductColor {
+    /** Any CSS color. */
+    value: string
+    /** Name of the color, used by screen readers and passed to `onAddToCart`. */
+    label?: string
+}
+
 export interface ProductSelection {
     color?: string
     size?: string
@@ -97,8 +104,8 @@ export interface ProductCardProps {
     images?: string[]
     /** Symbol shown before the prices. */
     currency?: string
-    /** Available colors, any CSS color. The user can choose one. */
-    colors?: string[]
+    /** Available colors, a CSS color or an object with a `value` and a `label`. The user can choose one. */
+    colors?: (string | ProductColor)[]
     /** Available sizes, for example S, M and L. The user can choose one. */
     sizes?: string[]
     /** Out of stock products cannot be added to the cart. */
@@ -223,13 +230,18 @@ export const ProductCard = ({
 }: ProductCardProps) => {
     const [favorite, setFavorite] = useState(false)
     const [added, setAdded] = useState(false)
-    const [chosenColor, setChosenColor] = useState<string | undefined>(colors?.[0])
+    const [chosenColor, setChosenColor] = useState<string | undefined>(colors?.[0] ? (typeof colors[0] === 'string' ? colors[0] : colors[0].value) : undefined)
     const [size, setSize] = useState<string | undefined>(undefined)
     const [expanded, setExpanded] = useState(false)
     const gallery = [image, ...images]
     const canExpand = expandable || images.length > 0
     const horizontal = layout === 'horizontal'
     const text: ProductCardLabels = { ...defaultLabels, ...labels }
+    // The name of a color when it has one, otherwise its value
+    const colorName = (value: string) => {
+        const entry = colors?.find((candidate) => (typeof candidate === 'string' ? candidate : candidate.value) === value)
+        return entry && typeof entry !== 'string' ? entry.label ?? entry.value : value
+    }
     const money = (value: number) => (formatPrice ? formatPrice(value) : `${currency}${value.toFixed(2)}`)
     const discount = originalPrice && originalPrice > price ? Math.round((1 - price / originalPrice) * 100) : 0
 
@@ -238,7 +250,7 @@ export const ProductCard = ({
 
     const add = () => {
         setAdded(true)
-        onAddToCart?.(name, { color: chosenColor, size })
+        onAddToCart?.(name, { color: chosenColor && colorName(chosenColor), size })
         window.clearTimeout(addedTimer.current)
         addedTimer.current = window.setTimeout(() => setAdded(false), 1500)
     }
@@ -307,18 +319,23 @@ export const ProductCard = ({
 
                     {colors && colors.length > 0 && (
                         <div role='radiogroup' aria-label={text.color} className='flex items-center gap-2'>
-                            {colors.map((option) => (
-                                <button
-                                    key={option}
-                                    type='button'
-                                    role='radio'
-                                    aria-checked={option === chosenColor}
-                                    aria-label={option}
-                                    onClick={() => setChosenColor(option)}
-                                    className={`h-6 w-6 rounded-full border border-black/20 outline-none dark:border-white/40 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${option === chosenColor ? 'ring-2 ring-[var(--blossom-accent,#f472b6)] ring-offset-2 dark:ring-offset-neutral-800' : ''}`}
-                                    style={{ backgroundColor: option }}
-                                />
-                            ))}
+                            {colors.map((entry) => {
+                                const option = typeof entry === 'string' ? entry : entry.value
+                                const name = typeof entry === 'string' ? entry : entry.label ?? entry.value
+                                return (
+                                    <button
+                                        key={option}
+                                        type='button'
+                                        role='radio'
+                                        aria-checked={option === chosenColor}
+                                        aria-label={name}
+                                        title={name}
+                                        onClick={() => setChosenColor(option)}
+                                        className={`h-6 w-6 rounded-full border border-black/20 outline-none dark:border-white/40 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${option === chosenColor ? 'ring-2 ring-[var(--blossom-accent,#f472b6)] ring-offset-2 dark:ring-offset-neutral-800' : ''}`}
+                                        style={{ backgroundColor: option }}
+                                    />
+                                )
+                            })}
                         </div>
                     )}
 

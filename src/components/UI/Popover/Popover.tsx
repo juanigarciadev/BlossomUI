@@ -2,6 +2,8 @@ import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type 
 import { createPortal } from 'react-dom'
 
 export interface PopoverProps {
+    /** Classes of the button that opens it. Without them it has a border and a padding. */
+    triggerClassName?: string
     /** Content of the button that toggles the popover. */
     trigger: ReactNode
     /** Content of the popover. */
@@ -13,7 +15,7 @@ export interface PopoverProps {
     width?: string
 }
 
-export const Popover = ({ trigger, children, title, placement = 'bottom', align = 'start', width = 'w-72' }: PopoverProps) => {
+export const Popover = ({ triggerClassName, trigger, children, title, placement = 'bottom', align = 'start', width = 'w-72' }: PopoverProps) => {
     const id = useId()
     const button = useRef<HTMLButtonElement>(null)
     const panel = useRef<HTMLDivElement>(null)
@@ -66,7 +68,7 @@ export const Popover = ({ trigger, children, title, placement = 'bottom', align 
                 aria-expanded={open}
                 aria-controls={open ? id : undefined}
                 onClick={() => setOpen((current) => !current)}
-                className='flex w-fit select-none items-center justify-center gap-2 rounded-xl border border-neutral-300 px-4 py-2.5 text-sm font-medium text-neutral-800 outline-none transition-colors hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800'
+                className={triggerClassName ?? 'flex w-fit select-none items-center justify-center gap-2 rounded-xl border border-neutral-300 px-4 py-2.5 text-sm font-medium text-neutral-800 outline-none transition-colors hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800'}
             >
                 {trigger}
             </button>

@@ -71,6 +71,16 @@ const CardsDocumentation = () => {
                 />
             </Variant>
 
+            <Variant title='Named colors' description='Give each color a `label` so screen readers, and `onAddToCart`, say "Midnight" and not a code.' file={file}>
+                <ProductCard
+                    image={shoe}
+                    name='Air Jordan Low'
+                    price={89.9}
+                    colors={[{ value: '#171717', label: 'Midnight' }, { value: '#0f766e', label: 'Teal' }, { value: '#f472b6', label: 'Blossom' }]}
+                    sizes={['39', '40', '41']}
+                />
+            </Variant>
+
             <Variant title='Expandable photo' description='Set `expandable` and pressing the photo opens it in full size. Close it with the button, Escape or a click outside.' file={file}>
                 <ProductCard image={shoe} name='Air Jordan Low' brand='Nike' price={89.9} rating={4} reviews={128} expandable />
             </Variant>

@@ -63,6 +63,21 @@ const TabsDocumentation = () => {
             >
                 <ControlledDemo />
             </Variant>
+            <Variant
+                title='Keep mounted'
+                description='By default only the panel of the selected tab exists. With `keepMounted` the others stay in the page, hidden, so what the user typed is still there when they come back.'
+                file={file}
+                previewClassName='flex w-full'
+            >
+                <Tabs
+                    keepMounted
+                    tabs={[
+                        { id: 'draft', label: 'Draft', content: <textarea className='w-full rounded-xl border border-neutral-300 bg-transparent p-3 text-sm dark:border-neutral-700' placeholder='Write something, switch tab and come back' /> },
+                        { id: 'preview', label: 'Preview', content: 'Your text is still in the draft.' },
+                    ]}
+                />
+            </Variant>
+
             <Variant title='Custom color' description='Use `color` for one instance. Any CSS color works. Without it the component uses the brand color `--blossom-accent`, which is pink by default (see Brand color in Customization).' file={file} previewClassName='flex w-full flex-col gap-6'>
                 <Tabs tabs={tabs} color='#0f766e' />
                 <Tabs tabs={tabs} variant='pills' color='#7c3aed' />

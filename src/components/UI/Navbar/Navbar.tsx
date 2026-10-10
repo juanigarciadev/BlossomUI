@@ -9,6 +9,8 @@ export interface NavbarLink {
 }
 
 export interface NavbarProps {
+    /** Extra classes for the bar, for example to change the offset when it is sticky. */
+    className?: string
     /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
     labels?: { navigation?: string; openMenu?: string; closeMenu?: string }
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
@@ -21,11 +23,11 @@ export interface NavbarProps {
     sticky?: boolean
 }
 
-export const Navbar = ({ labels, color, brand, links, actions, sticky = false }: NavbarProps) => {
+export const Navbar = ({ labels, color, className = '', brand, links, actions, sticky = false }: NavbarProps) => {
     const [open, setOpen] = useState(false)
 
     return (
-        <header className={`z-30 w-full rounded-2xl border border-neutral-200 bg-white/80 backdrop-blur-md dark:border-neutral-700 dark:bg-neutral-900/80 ${sticky ? 'sticky top-4' : ''}`} style={accentStyle(color)}>
+        <header className={`z-30 w-full rounded-2xl border border-neutral-200 bg-white/80 backdrop-blur-md dark:border-neutral-700 dark:bg-neutral-900/80 ${sticky ? 'sticky top-4' : ''} ${className}`} style={accentStyle(color)}>
             <div className='flex items-center justify-between gap-4 px-4 py-3'>
                 <div className='flex items-center gap-8'>
                     <div className='text-lg font-bold text-neutral-900 dark:text-white'>{brand}</div>
@@ -64,6 +66,7 @@ export const Navbar = ({ labels, color, brand, links, actions, sticky = false }:
                             key={link.href}
                             href={link.href}
                             aria-current={link.active ? 'page' : undefined}
+                            onClick={() => setOpen(false)}
                             className={`rounded-xl px-3 py-2 text-sm font-medium ${link.active ? 'bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_10%,transparent)] text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_85%,black)]' : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-800'}`}
                         >
                             {link.label}

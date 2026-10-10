@@ -10,6 +10,8 @@ export interface Tab {
 }
 
 export interface TabsProps {
+    /** Keep the panels of the other tabs mounted (hidden), so they do not lose their state when you change tab. */
+    keepMounted?: boolean
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     tabs: Tab[]
@@ -36,7 +38,7 @@ const tab = {
     boxed: (active: boolean) => `rounded-lg px-4 py-2 ${active ? 'bg-white text-neutral-900 shadow-sm dark:bg-neutral-700 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-white'}`,
 }
 
-export const Tabs = ({ color, tabs, defaultValue, value, onChange, variant = 'underline', fullWidth = false }: TabsProps) => {
+export const Tabs = ({ keepMounted = false, color, tabs, defaultValue, value, onChange, variant = 'underline', fullWidth = false }: TabsProps) => {
     const id = useId()
     const [internal, setInternal] = useState(defaultValue ?? tabs.find((item) => !item.disabled)?.id ?? '')
     const buttons = useRef<Record<string, HTMLButtonElement | null>>({})
@@ -90,10 +92,20 @@ export const Tabs = ({ color, tabs, defaultValue, value, onChange, variant = 'un
                 })}
             </div>
             </div>
-            {active && active.content != null && (
-                <div id={`${id}-panel-${active.id}`} role='tabpanel' aria-labelledby={`${id}-tab-${active.id}`} tabIndex={0} className='pt-4 text-sm text-neutral-600 outline-none dark:text-neutral-300'>
-                    {active.content}
-                </div>
+            {(keepMounted ? tabs : active ? [active] : []).map((item) =>
+                item.content != null && (
+                    <div
+                        key={item.id}
+                        id={`${id}-panel-${item.id}`}
+                        role='tabpanel'
+                        aria-labelledby={`${id}-tab-${item.id}`}
+                        tabIndex={0}
+                        hidden={item.id !== current}
+                        className='pt-4 text-sm text-neutral-600 outline-none dark:text-neutral-300'
+                    >
+                        {item.content}
+                    </div>
+                )
             )}
         </div>
     )
