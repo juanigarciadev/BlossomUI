@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion'
  * the content fades in and slides up a little the first time it enters the viewport.
  * It does nothing for people that asked for reduced motion.
  */
-export const FadeIn = ({ children, className, y = 16, delay = 0, duration = 0.3, amount = 0.1, once = true, as = 'div', ...props }) => {
+export const FadeIn = ({ children, className, y = 16, delay = 0, duration = 0.3, amount = 'some', once = true, as = 'div', ...props }) => {
     const reduce = useReducedMotion()
     const Tag = motion[as]
 
@@ -56,7 +56,7 @@ const item = (y) => ({
 })
 
 /** Wrap a list or grid in `Stagger` and each child in `StaggerItem` so they appear one after another. */
-export const Stagger = ({ children, className, stagger = 0.03, delay = 0, amount = 0.1, as = 'div', ...props }) => {
+export const Stagger = ({ children, className, stagger = 0.03, delay = 0, amount = 'some', as = 'div', ...props }) => {
     const reduce = useReducedMotion()
     const Tag = motion[as]
 

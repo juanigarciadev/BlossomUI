@@ -11,6 +11,8 @@ body {
 #root {
   scrollbar-gutter: auto;
   width: 100vw;
+  /* Nothing can widen the page sideways on a phone. `clip` does not break sticky. */
+  overflow-x: clip;
 }
 
 .tag {

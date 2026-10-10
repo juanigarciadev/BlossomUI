@@ -9,7 +9,7 @@ const ComponentsSection = ({ page = false }) => {
   return (
     <div className={page ? "pt-32 lg:pt-28" : ""}>
       <FadeIn>
-      <Heading className="text-6xl font-bold text-neutral-800 tracking-tight dark:text-white pb-8 text-center">
+      <Heading className="text-6xl font-bold text-neutral-800 tracking-tight dark:text-white pb-8 text-center md:text-5xl xxs:text-4xl">
         Components
       </Heading>
       </FadeIn>
