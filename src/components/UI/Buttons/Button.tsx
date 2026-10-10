@@ -50,6 +50,42 @@ export const Button = ({ color = 'primary', rounded = false, loading = false, ic
     )
 }
 
+export type IconButtonSize = 'sm' | 'md' | 'lg'
+
+export interface IconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color' | 'children'> {
+    /** Any element: an icon from the library you prefer or your own SVG. */
+    icon: ReactNode
+    /** What the button does. It is the accessible name, because the button has no text. */
+    label: string
+    color?: ButtonColor
+    size?: IconButtonSize
+    /** Use a circle instead of rounded corners. */
+    rounded?: boolean
+    /** Shows a spinner and disables the button. */
+    loading?: boolean
+}
+
+const iconSizes: Record<IconButtonSize, string> = {
+    sm: 'h-8 w-8',
+    md: 'h-10 w-10',
+    lg: 'h-12 w-12',
+}
+
+/** A square button that only shows an icon of your choice. */
+export const IconButton = ({ icon, label, color = 'secondary', size = 'md', rounded = false, loading = false, disabled, className = '', type = 'button', ...props }: IconButtonProps) => (
+    <button
+        type={type}
+        aria-label={label}
+        title={label}
+        disabled={disabled || loading}
+        aria-busy={loading}
+        className={`flex shrink-0 select-none items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${iconSizes[size]} ${colors[color]} ${className}`}
+        {...props}
+    >
+        {loading ? <span className={`h-4 w-4 animate-spin rounded-full border-2 ${spinners[color]}`} /> : icon}
+    </button>
+)
+
 export type SocialProvider = 'facebook' | 'x' | 'github' | 'google' | 'apple'
 
 export interface SocialButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {

@@ -44,7 +44,7 @@ export const Slider = ({ min = 0, max = 100, step = 1, value, defaultValue = min
                 value={current}
                 disabled={disabled}
                 onChange={change}
-                style={{ background: `linear-gradient(to right, #f472b6 ${percent}%, transparent ${percent}%)` }}
+                style={{ backgroundImage: `linear-gradient(to right, #f472b6 ${percent}%, transparent ${percent}%)` }}
                 className='h-2 w-full cursor-pointer appearance-none rounded-full bg-neutral-300 outline-none disabled:cursor-not-allowed disabled:opacity-40 dark:bg-neutral-700 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-pink-400 [&::-moz-range-thumb]:bg-white [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-pink-400 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:shadow focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900'
             />
         </div>
