@@ -51,6 +51,7 @@ const DocPage = ({ title, description, children }) => {
                         <ChevronDown size={18} className={`duration-200 ${docNav ? 'rotate-180' : ''}`} />
                     </button>
                 </div>
+                {docNav && <DocNav />}
                 {description && <p className='pt-2 text-lg text-neutral-600 dark:text-neutral-300'><InlineCode text={description} /></p>}
                 {sections.length > 1 && (
                     <nav aria-label='Variants on this page' className='flex flex-wrap items-center gap-2 pt-4'>
@@ -66,7 +67,6 @@ const DocPage = ({ title, description, children }) => {
                         ))}
                     </nav>
                 )}
-                {docNav && <DocNav />}
             </Appear>
 
             <div ref={content} className='flex flex-col pb-16 gap-16'>{children}</div>

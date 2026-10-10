@@ -11,7 +11,7 @@ const DocsLayout = () => {
 
     return (
         <div className='relative min-h-screen w-full flex pt-[70px] lg:pt-4'>
-            <div aria-hidden className='pointer-events-none absolute inset-x-0 top-0 z-0 h-[420px] overflow-hidden'>
+            <div aria-hidden className='pointer-events-none absolute left-1/2 top-0 z-0 h-[420px] w-screen -translate-x-1/2 overflow-hidden'>
                 <div className='absolute -top-32 right-1/4 h-80 w-80 rounded-full bg-corporative opacity-[0.12] blur-3xl dark:opacity-10' />
                 <div className='absolute -top-20 left-1/3 h-72 w-72 rounded-full bg-purple-400 opacity-[0.08] blur-3xl dark:opacity-10' />
             </div>
