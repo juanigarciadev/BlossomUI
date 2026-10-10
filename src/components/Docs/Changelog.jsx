@@ -31,6 +31,7 @@ const releases = [
                     'The track of the Slider is visible before the value is moved.',
                     'Components that use the icon prop do not include an icon library: pass the icons you prefer. The installation guide explains it.',
                     'Escape closes a Select, MultiSelect or date picker first, not the Modal or Drawer behind it.',
+                    'Modal, Drawer, Command palette and the photo viewer keep the focus inside with Tab, close one at a time with Escape and release the page scroll only when the last one closes.',
                     'Typing a name with spaces in a Select no longer chooses the highlighted option.',
                     'Textarea, Select, MultiSelect and RadioGroup link their hint and error message with aria-describedby.',
                     'Yellow buttons, alerts and toasts use dark text for a better contrast, and toasts appear above dialogs.',

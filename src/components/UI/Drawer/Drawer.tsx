@@ -1,5 +1,6 @@
-import { useEffect, useId, useRef, type ReactNode } from 'react'
+import { useId, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
+import { useOverlay } from '../overlay'
 
 export interface DrawerProps {
     open: boolean
@@ -19,31 +20,7 @@ const sizes = { sm: 'max-w-xs', md: 'max-w-sm', lg: 'max-w-lg' }
 export const Drawer = ({ open, onClose, title, children, footer, side = 'right', size = 'md', closeOnBackdrop = true }: DrawerProps) => {
     const titleId = useId()
     const panel = useRef<HTMLDivElement>(null)
-    // Keep the latest onClose without re-running the open/close effect on every render
-    const onCloseRef = useRef(onClose)
-    useEffect(() => {
-        onCloseRef.current = onClose
-    })
-
-    useEffect(() => {
-        if (!open) return
-
-        const previouslyFocused = document.activeElement as HTMLElement | null
-        const previousOverflow = document.body.style.overflow
-        document.body.style.overflow = 'hidden'
-        panel.current?.focus()
-
-        const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape' && !event.defaultPrevented) onCloseRef.current()
-        }
-        document.addEventListener('keydown', onKeyDown)
-
-        return () => {
-            document.removeEventListener('keydown', onKeyDown)
-            document.body.style.overflow = previousOverflow
-            previouslyFocused?.focus()
-        }
-    }, [open])
+    useOverlay(open, onClose, panel)
 
     if (!open) return null
 

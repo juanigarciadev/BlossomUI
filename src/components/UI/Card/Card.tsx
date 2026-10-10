@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { accentStyle } from '../accent'
+import { useOverlay } from '../overlay'
 
 const surface = 'rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 dark:border-neutral-600 dark:bg-neutral-800'
 
@@ -88,31 +89,18 @@ interface LightboxProps {
 const Lightbox = ({ color, images, start, name, onClose }: LightboxProps) => {
     const [index, setIndex] = useState(start)
     const panel = useRef<HTMLDivElement>(null)
-    const onCloseRef = useRef(onClose)
-    useEffect(() => {
-        onCloseRef.current = onClose
-    })
+    useOverlay(true, onClose, panel)
 
     const go = (step: number) => setIndex((current) => (current + step + images.length) % images.length)
 
+    // Arrows move between the photos, the rest of the keys is handled by the overlay.
     useEffect(() => {
-        const previouslyFocused = document.activeElement as HTMLElement | null
-        const previousOverflow = document.body.style.overflow
-        document.body.style.overflow = 'hidden'
-        panel.current?.focus()
-
         const onKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape' && !event.defaultPrevented) onCloseRef.current()
-            else if (event.key === 'ArrowRight') setIndex((current) => (current + 1) % images.length)
+            if (event.key === 'ArrowRight') setIndex((current) => (current + 1) % images.length)
             else if (event.key === 'ArrowLeft') setIndex((current) => (current - 1 + images.length) % images.length)
         }
         document.addEventListener('keydown', onKeyDown)
-
-        return () => {
-            document.removeEventListener('keydown', onKeyDown)
-            document.body.style.overflow = previousOverflow
-            previouslyFocused?.focus()
-        }
+        return () => document.removeEventListener('keydown', onKeyDown)
     }, [images.length])
 
     const control = 'grid h-10 w-10 place-items-center rounded-full bg-white/90 text-neutral-900 shadow-md outline-none hover:bg-white focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)]'

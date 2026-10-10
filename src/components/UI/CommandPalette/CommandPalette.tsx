@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { accentStyle } from '../accent'
+import { useOverlay } from '../overlay'
 
 export interface Command {
     id: string
@@ -37,19 +38,16 @@ export const CommandPalette = ({ color, open, onClose, commands, placeholder = '
         return commands.filter((command) => [command.label, command.group ?? '', ...(command.keywords ?? [])].join(' ').toLowerCase().includes(text))
     }, [commands, query])
 
+    // Scroll lock, Escape, Tab inside the panel and focus restore are shared with the other overlays.
+    const panel = useRef<HTMLDivElement>(null)
+    useOverlay(open, onClose, panel)
+
     // Start from a clean palette every time it opens.
     useEffect(() => {
         if (!open) return
         setQuery('')
         setActive(0)
-        const previouslyFocused = document.activeElement as HTMLElement | null
-        const previousOverflow = document.body.style.overflow
-        document.body.style.overflow = 'hidden'
         input.current?.focus()
-        return () => {
-            document.body.style.overflow = previousOverflow
-            previouslyFocused?.focus()
-        }
     }, [open])
 
     useEffect(() => setActive(0), [query])
@@ -76,9 +74,6 @@ export const CommandPalette = ({ color, open, onClose, commands, placeholder = '
         } else if (event.key === 'Enter') {
             event.preventDefault()
             run(results[active])
-        } else if (event.key === 'Escape') {
-            event.preventDefault()
-            onClose()
         }
     }
 
@@ -89,9 +84,11 @@ export const CommandPalette = ({ color, open, onClose, commands, placeholder = '
             onMouseDown={(event) => event.target === event.currentTarget && onClose()}
         >
             <div
+                ref={panel}
                 role='dialog'
                 aria-modal='true'
                 aria-label='Command palette'
+                tabIndex={-1}
                 onKeyDown={onKeyDown}
                 className='w-full max-w-lg overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-900'
             >
