@@ -8,7 +8,8 @@ const groups = [
     { title: 'Components', items: components, columns: 'grid-cols-2' },
 ]
 
-const MARGIN = 16
+// Room that is left free under the panel, so it does not touch the bottom of the screen
+const MARGIN = 72
 
 /**
  * Index of the documentation for narrow screens. It floats under the title of the page and never
@@ -23,7 +24,7 @@ const DocNav = ({ onClose }) => {
     useLayoutEffect(() => {
         const update = () => {
             const top = panel.current?.getBoundingClientRect().top ?? 0
-            setMaxHeight(Math.max(160, Math.floor(window.innerHeight - top - MARGIN)))
+            setMaxHeight(Math.max(160, Math.min(420, Math.floor(window.innerHeight - top - MARGIN))))
         }
         update()
         window.addEventListener('resize', update)
