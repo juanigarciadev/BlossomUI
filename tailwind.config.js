@@ -4,7 +4,9 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  "darkMode": "class",
+  // Same as the "class" strategy, but a parent with the class "light" turns dark styles off for its children.
+  // The documentation uses it to preview a component in light or dark mode independently of the page.
+  "darkMode": ["variant", "&:is(.dark, .dark *):not(:is(.light, .light *))"],
   theme: {
     screens: {
       "2xl": { max: "1535px" },
