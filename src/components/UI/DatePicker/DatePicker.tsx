@@ -22,6 +22,8 @@ const defaultLabels: DatePickerLabels = {
 }
 
 export interface DatePickerProps {
+    /** Marks the field as required: an asterisk is shown next to the label. */
+    required?: boolean
     /** Helper text shown under the field. */
     hint?: string
     /** Error message. It is shown in red under the field and marks it as invalid. */
@@ -56,7 +58,7 @@ const clampDay = (date: Date, min?: Date, max?: Date) => {
     return day
 }
 
-export const DatePicker = ({ hint, error, labels, color, value, defaultValue = null, onChange, label, placeholder = 'Select a date', min, max, locale = 'en-US', disabled = false }: DatePickerProps) => {
+export const DatePicker = ({ required, hint, error, labels, color, value, defaultValue = null, onChange, label, placeholder = 'Select a date', min, max, locale = 'en-US', disabled = false }: DatePickerProps) => {
     const id = useId()
     const trigger = useRef<HTMLButtonElement>(null)
     const panel = useRef<HTMLDivElement>(null)
@@ -175,7 +177,7 @@ export const DatePicker = ({ hint, error, labels, color, value, defaultValue = n
 
     return (
         <div className='flex w-full flex-col gap-1' style={accentStyle(color)}>
-            {label && <label htmlFor={id} className='text-sm font-medium text-neutral-800 dark:text-white'>{label}</label>}
+            {label && <label htmlFor={id} className='text-sm font-medium text-neutral-800 dark:text-white'>{label}{required && <span aria-hidden='true' className='ml-0.5 text-red-600 dark:text-red-400'>*</span>}</label>}
             <button
                 ref={trigger}
                 id={id}
@@ -184,6 +186,7 @@ export const DatePicker = ({ hint, error, labels, color, value, defaultValue = n
                 aria-haspopup='dialog'
                 aria-expanded={open}
                 aria-invalid={Boolean(error)}
+                aria-required={required || undefined}
                 aria-describedby={error ?? hint ? `${id}-message` : undefined}
                 onClick={() => (open ? close(false) : openCalendar())}
                 className={`flex w-full items-center justify-between gap-2 rounded-xl border bg-transparent px-3 py-2.5 text-left ${error ? 'border-red-500' : 'border-neutral-300'} text-sm outline-none focus:border-[var(--blossom-accent,#f472b6)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-60 ${error ? '' : 'dark:border-neutral-700'} ${open ? 'ring-2 ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]' : ''}`}
@@ -254,6 +257,8 @@ export interface DateRange {
 }
 
 export interface DateRangePickerProps {
+    /** Marks the field as required: an asterisk is shown next to the label. */
+    required?: boolean
     /** Helper text shown under the field. */
     hint?: string
     /** Error message. It is shown in red under the field and marks it as invalid. */
@@ -281,7 +286,7 @@ const emptyRange: DateRange = { start: null, end: null }
 
 
 /** Pick two days: every day between them is highlighted. */
-export const DateRangePicker = ({ hint, error, labels, color, value, defaultValue = emptyRange, onChange, label, placeholder = 'Select a range', min, max, locale = 'en-US', disabled = false }: DateRangePickerProps) => {
+export const DateRangePicker = ({ required, hint, error, labels, color, value, defaultValue = emptyRange, onChange, label, placeholder = 'Select a range', min, max, locale = 'en-US', disabled = false }: DateRangePickerProps) => {
     const id = useId()
     const trigger = useRef<HTMLButtonElement>(null)
     const panel = useRef<HTMLDivElement>(null)
@@ -420,7 +425,7 @@ export const DateRangePicker = ({ hint, error, labels, color, value, defaultValu
 
     return (
         <div className='flex w-full flex-col gap-1' style={accentStyle(color)}>
-            {label && <label htmlFor={id} className='text-sm font-medium text-neutral-800 dark:text-white'>{label}</label>}
+            {label && <label htmlFor={id} className='text-sm font-medium text-neutral-800 dark:text-white'>{label}{required && <span aria-hidden='true' className='ml-0.5 text-red-600 dark:text-red-400'>*</span>}</label>}
             <button
                 ref={trigger}
                 id={id}
@@ -429,6 +434,7 @@ export const DateRangePicker = ({ hint, error, labels, color, value, defaultValu
                 aria-haspopup='dialog'
                 aria-expanded={open}
                 aria-invalid={Boolean(error)}
+                aria-required={required || undefined}
                 aria-describedby={error ?? hint ? `${id}-message` : undefined}
                 onClick={() => (open ? close(false) : openCalendar())}
                 className={`flex w-full items-center justify-between gap-2 rounded-xl border bg-transparent px-3 py-2.5 text-left ${error ? 'border-red-500' : 'border-neutral-300'} text-sm outline-none focus:border-[var(--blossom-accent,#f472b6)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)] disabled:cursor-not-allowed disabled:opacity-60 ${error ? '' : 'dark:border-neutral-700'} ${open ? 'ring-2 ring-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]' : ''}`}

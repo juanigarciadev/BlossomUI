@@ -68,6 +68,10 @@ const TableDocumentation = () => {
                 <Table columns={columns} rows={rows} rowKey={rowKey} selectable striped color='#0f766e' />
             </Variant>
 
+            <Variant title='Pagination' description='Set `pageSize` to show the rows in pages. Sorting goes back to the first page and the checkbox of the header selects the rows of the page. Use `page` and `onPageChange` to control it.' file={file} previewClassName='flex w-full'>
+                <Table columns={columns} rows={[...rows, ...rows.map((row) => ({ ...row, id: row.id + 'b', name: row.name + ' II' }))]} rowKey={rowKey} pageSize={3} selectable />
+            </Variant>
+
         </DocPage>
     )
 }

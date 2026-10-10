@@ -123,6 +123,21 @@ const CardsDocumentation = () => {
                 <ProductCard image={shoe} name='Jordan x Dior' brand='Jordan' price={149} buttonColor='#7c3aed' />
             </Variant>
 
+            <Variant title='Price by size' description='Give each size its own `price` (and `originalPrice`, or `inStock`) and the price of the card changes when the user chooses one. `onAddToCart` receives the price in `selection`. It also works for weights.' file={file}>
+                <ProductCard
+                    image={shoe}
+                    name='Geisha Panama'
+                    brand='Coffee'
+                    description='Floral, peach and honey.'
+                    price={21}
+                    sizes={[
+                        { value: '250 g', price: 21 },
+                        { value: '500 g', price: 38, originalPrice: 42 },
+                        { value: '1 kg', price: 70, inStock: false },
+                    ]}
+                />
+            </Variant>
+
         </DocPage>
     )
 }

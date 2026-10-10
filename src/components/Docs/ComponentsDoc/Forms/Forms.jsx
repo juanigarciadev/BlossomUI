@@ -296,6 +296,12 @@ const FormsDocumentation = () => {
                 <Checkbox label='I accept the terms and conditions' error='You have to accept the terms.' />
             </Variant>
 
+            <Variant title='Required fields' description='`required` shows an asterisk next to the label of any field and marks it for assistive technology.' file={file} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>
+                <Input label='Full name' required />
+                <Select label='Country' required options={countries} />
+                <Checkbox label='I accept the terms' required />
+            </Variant>
+
         </DocPage>
     )
 }

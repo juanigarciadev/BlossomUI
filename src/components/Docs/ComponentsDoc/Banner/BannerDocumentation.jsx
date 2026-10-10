@@ -18,15 +18,15 @@ const BannerDocumentation = () => {
         <DocPage title='Banner' description='Announce something important at the top of your page.'>
             <ComponentSource source={source} file={file} />
 
-            <Variant title='Default' description='A banner with an icon and a message. The close button hides it.' file={file} previewClassName='flex flex-col gap-4'>
+            <Variant title='Default' description='A banner with an icon and a message.' file={file} previewClassName='flex flex-col gap-4'>
                 <Banner icon={<MegaphoneIcon />}>
                     We updated our <a href='#' className='text-blue-500 underline hover:no-underline'>Terms and Conditions</a>
                 </Banner>
                 <SkeletonText />
             </Variant>
 
-            <Variant title='Not dismissible' description='Set `dismissible` to false to remove the close button.' file={file} previewClassName='flex'>
-                <Banner dismissible={false}>Scheduled maintenance on Sunday at 3:00 AM.</Banner>
+            <Variant title='Dismissible' description='Set `dismissible` to add a close button that hides the banner. Use `onDismiss` to know when it happens.' file={file} previewClassName='flex'>
+                <Banner dismissible>Scheduled maintenance on Sunday at 3:00 AM.</Banner>
             </Variant>
             <Variant title='Colors' description='Choose the color with `color`: default, dark, blue, green, yellow or red. Use `accent` for the brand color of your site, or any CSS color. The text switches between black and white to stay readable.' file={file} previewClassName='flex flex-col gap-4'>
                 <Banner color='dark'>Free shipping on orders over $40.</Banner>

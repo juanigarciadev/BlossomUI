@@ -15,7 +15,12 @@ export interface TableColumn<T> {
 
 export interface TableProps<T> {
     /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
-    labels?: { selectAll?: string; selectRow?: string }
+    labels?: { selectAll?: string; selectRow?: string; previous?: string; next?: string; showing?: (from: number, to: number, total: number) => string }
+    /** Rows per page. Without it all the rows are shown. */
+    pageSize?: number
+    /** Current page, starting at 1. Use it with `onPageChange` to control the page. */
+    page?: number
+    onPageChange?: (page: number) => void
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     columns: TableColumn<T>[]
@@ -37,9 +42,10 @@ const align = { left: 'text-left', right: 'text-right', center: 'text-center' }
 
 const box = 'h-4 w-4 cursor-pointer rounded border-neutral-300 accent-[var(--blossom-accent,#f472b6)]'
 
-export const Table = <T,>({ labels, color, columns, rows, rowKey, selectable = false, onSelectionChange, empty = 'No results', striped = false, caption }: TableProps<T>) => {
+export const Table = <T,>({ pageSize, page: pageProp, onPageChange, labels, color, columns, rows, rowKey, selectable = false, onSelectionChange, empty = 'No results', striped = false, caption }: TableProps<T>) => {
     const [sort, setSort] = useState<{ key: string; direction: Direction } | null>(null)
     const [selected, setSelected] = useState<string[]>([])
+    const [internalPage, setInternalPage] = useState(1)
 
     const sorted = useMemo(() => {
         if (!sort) return rows
@@ -54,19 +60,33 @@ export const Table = <T,>({ labels, color, columns, rows, rowKey, selectable = f
         })
     }, [rows, columns, sort])
 
-    const toggleSort = (key: string) =>
+    const goTo = (page: number) => {
+        if (pageProp === undefined) setInternalPage(page)
+        onPageChange?.(page)
+    }
+
+    const toggleSort = (key: string) => {
+        goTo(1)
         setSort((current) => {
             if (current?.key !== key) return { key, direction: 'asc' }
             return current.direction === 'asc' ? { key, direction: 'desc' } : null
         })
+    }
 
     const update = (ids: string[]) => {
         setSelected(ids)
         onSelectionChange?.(rows.filter((row) => ids.includes(rowKey(row))))
     }
 
-    const allSelected = rows.length > 0 && selected.length === rows.length
-    const someSelected = selected.length > 0 && !allSelected
+    // Pages: the header checkbox works on the rows that are on screen
+    const pages = pageSize ? Math.max(1, Math.ceil(sorted.length / pageSize)) : 1
+    const current = Math.min(Math.max(pageProp ?? internalPage, 1), pages)
+    const visible = pageSize ? sorted.slice((current - 1) * pageSize, current * pageSize) : sorted
+    const visibleIds = visible.map(rowKey)
+    const allSelected = visible.length > 0 && visibleIds.every((id) => selected.includes(id))
+    const someSelected = visibleIds.some((id) => selected.includes(id)) && !allSelected
+    const from = visible.length ? (current - 1) * (pageSize ?? 0) + 1 : 0
+    const to = (current - 1) * (pageSize ?? 0) + visible.length
 
     return (
         <div className='w-full overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700' style={accentStyle(color)}>
@@ -82,7 +102,7 @@ export const Table = <T,>({ labels, color, columns, rows, rowKey, selectable = f
                                     className={box}
                                     checked={allSelected}
                                     ref={(element) => { if (element) element.indeterminate = someSelected }}
-                                    onChange={() => update(allSelected ? [] : rows.map(rowKey))}
+                                    onChange={() => update(allSelected ? selected.filter((id) => !visibleIds.includes(id)) : Array.from(new Set([...selected, ...visibleIds])))}
                                 />
                             </th>
                         )}
@@ -116,7 +136,7 @@ export const Table = <T,>({ labels, color, columns, rows, rowKey, selectable = f
                             <td colSpan={columns.length + (selectable ? 1 : 0)} className='px-4 py-10 text-center text-neutral-500'>{empty}</td>
                         </tr>
                     )}
-                    {sorted.map((row, index) => {
+                    {visible.map((row, index) => {
                         const id = rowKey(row)
                         const checked = selected.includes(id)
                         return (
@@ -146,6 +166,30 @@ export const Table = <T,>({ labels, color, columns, rows, rowKey, selectable = f
                     })}
                 </tbody>
             </table>
+            {pageSize && sorted.length > pageSize && (
+                <div className='flex flex-wrap items-center justify-between gap-3 border-t border-neutral-200 px-4 py-3 text-sm dark:border-neutral-700'>
+                    <span className='text-neutral-500'>{labels?.showing ? labels.showing(from, to, sorted.length) : `Showing ${from}-${to} of ${sorted.length}`}</span>
+                    <div className='flex items-center gap-2'>
+                        <button
+                            type='button'
+                            disabled={current <= 1}
+                            onClick={() => goTo(current - 1)}
+                            className='rounded-lg border border-neutral-300 px-3 py-1.5 font-medium outline-none hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] disabled:pointer-events-none disabled:opacity-40 dark:border-neutral-600 dark:hover:bg-neutral-800'
+                        >
+                            {labels?.previous ?? 'Previous'}
+                        </button>
+                        <span className='tabular-nums text-neutral-600 dark:text-neutral-300'>{current} / {pages}</span>
+                        <button
+                            type='button'
+                            disabled={current >= pages}
+                            onClick={() => goTo(current + 1)}
+                            className='rounded-lg border border-neutral-300 px-3 py-1.5 font-medium outline-none hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] disabled:pointer-events-none disabled:opacity-40 dark:border-neutral-600 dark:hover:bg-neutral-800'
+                        >
+                            {labels?.next ?? 'Next'}
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

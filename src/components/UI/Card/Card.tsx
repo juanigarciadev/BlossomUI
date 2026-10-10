@@ -70,9 +70,24 @@ export interface ProductColor {
     label?: string
 }
 
+export interface ProductSize {
+    /** What `onAddToCart` receives, for example "250 g". */
+    value: string
+    /** Text of the button. Without it the value is used. */
+    label?: string
+    /** Price of this size. Without it the price of the product is used. */
+    price?: number
+    /** Price before the discount of this size. */
+    originalPrice?: number
+    /** Set it to false for a size that is not available. */
+    inStock?: boolean
+}
+
 export interface ProductSelection {
     color?: string
     size?: string
+    /** Price of the product with the chosen size. */
+    price?: number
 }
 
 export interface ProductCardProps {
@@ -108,8 +123,8 @@ export interface ProductCardProps {
     currency?: string
     /** Available colors, a CSS color or an object with a `value` and a `label`. The user can choose one. */
     colors?: (string | ProductColor)[]
-    /** Available sizes, for example S, M and L. The user can choose one. */
-    sizes?: string[]
+    /** Available sizes or weights, a string or an object with its own `price`. The user can choose one and the price changes. */
+    sizes?: (string | ProductSize)[]
     /** Out of stock products cannot be added to the cart. */
     inStock?: boolean
     /** `horizontal` puts the image at the left, useful for lists. */
@@ -247,14 +262,19 @@ export const ProductCard = ({
         return entry && typeof entry !== 'string' ? entry.label ?? entry.value : value
     }
     const money = (value: number) => (formatPrice ? formatPrice(value) : `${currency}${value.toFixed(2)}`)
-    const discount = originalPrice && originalPrice > price ? Math.round((1 - price / originalPrice) * 100) : 0
+    const sizeOptions: ProductSize[] = (sizes ?? []).map((entry) => (typeof entry === 'string' ? { value: entry } : entry))
+    const chosenSize = sizeOptions.find((option) => option.value === size)
+    // The price of the chosen size, or the one of the product
+    const shownPrice = chosenSize?.price ?? price
+    const shownBefore = chosenSize?.price !== undefined ? chosenSize.originalPrice : originalPrice
+    const discount = shownBefore && shownBefore > shownPrice ? Math.round((1 - shownPrice / shownBefore) * 100) : 0
 
     const addedTimer = useRef(0)
     useEffect(() => () => window.clearTimeout(addedTimer.current), [])
 
     const add = () => {
         setAdded(true)
-        onAddToCart?.(name, { color: chosenColor && colorName(chosenColor), size })
+        onAddToCart?.(name, { color: chosenColor && colorName(chosenColor), size, price: shownPrice })
         window.clearTimeout(addedTimer.current)
         addedTimer.current = window.setTimeout(() => setAdded(false), 1500)
     }
@@ -345,16 +365,17 @@ export const ProductCard = ({
 
                     {sizes && sizes.length > 0 && (
                         <div role='radiogroup' aria-label={text.size} className='flex flex-wrap gap-2'>
-                            {sizes.map((option) => (
+                            {sizeOptions.map((entry) => (
                                 <button
-                                    key={option}
+                                    key={entry.value}
                                     type='button'
                                     role='radio'
-                                    aria-checked={option === size}
-                                    onClick={() => setSize(option)}
-                                    className={`min-w-[2.25rem] rounded-lg border px-2 py-1 text-xs font-medium outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${option === size ? 'border-[var(--blossom-accent,#f472b6)] bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_10%,transparent)] text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_75%,black)] dark:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_60%,white)]' : 'border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700'}`}
+                                    aria-checked={entry.value === size}
+                                    disabled={entry.inStock === false}
+                                    onClick={() => setSize(entry.value)}
+                                    className={`min-w-[2.25rem] rounded-lg border px-2 py-1 text-xs font-medium outline-none disabled:cursor-not-allowed disabled:line-through disabled:opacity-40 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${entry.value === size ? 'border-[var(--blossom-accent,#f472b6)] bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_10%,transparent)] text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_75%,black)] dark:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_60%,white)]' : 'border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-600 dark:text-neutral-200 dark:hover:bg-neutral-700'}`}
                                 >
-                                    {option}
+                                    {entry.label ?? entry.value}
                                 </button>
                             ))}
                         </div>
@@ -364,8 +385,8 @@ export const ProductCard = ({
 
             <div className='mt-auto flex items-center justify-between gap-2'>
                 <div className='flex flex-col leading-tight'>
-                    <span className='text-xl font-bold text-black dark:text-white'>{money(price)}</span>
-                    {discount > 0 && originalPrice && <span className='text-xs text-neutral-500 line-through'>{money(originalPrice)}</span>}
+                    <span className='text-xl font-bold text-black dark:text-white'>{money(shownPrice)}</span>
+                    {discount > 0 && shownBefore && <span className='text-xs text-neutral-500 line-through'>{money(shownBefore)}</span>}
                 </div>
                 <button
                     type='button'

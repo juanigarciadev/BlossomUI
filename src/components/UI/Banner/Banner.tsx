@@ -13,7 +13,7 @@ export interface BannerProps {
     icon?: ReactNode
     /** Color of the banner: a preset, `accent` for the brand color (`--blossom-accent`) or any CSS color such as `#0f766e`. */
     color?: BannerColor | (string & {})
-    /** Adds a close button; the banner hides itself when it is pressed. */
+    /** Adds a close button; the banner hides itself when it is pressed. Off by default, like in Alert. */
     dismissible?: boolean
     onDismiss?: () => void
 }
@@ -40,7 +40,7 @@ const presets: Record<BannerColor, { box: string; text: string; icon: string; cl
 // Custom colors fill the banner and the text takes the color that reads better on top of it.
 const custom = { box: '', text: '', icon: 'bg-black/15', close: 'opacity-80 hover:bg-black/15 hover:opacity-100' }
 
-export const Banner = ({ label = 'Announcement', dismissLabel = 'Dismiss banner', children, icon, color = 'default', dismissible = true, onDismiss }: BannerProps) => {
+export const Banner = ({ label = 'Announcement', dismissLabel = 'Dismiss banner', children, icon, color = 'default', dismissible = false, onDismiss }: BannerProps) => {
     const [visible, setVisible] = useState(true)
     if (!visible) return null
 
