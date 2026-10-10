@@ -90,7 +90,7 @@ const StepperDocumentation = () => {
         <DocPage title='Stepper' description='Guide users through a process that happens in several steps. You control the current step.'>
             <ComponentSource source={source} file={file} />
 
-            <Variant title='Horizontal' description='Completed, current and pending steps. Completed steps are clickable with onStepClick.' file={file} code={horizontalCode}>
+            <Variant title='Horizontal' description='Completed, current and pending steps. Completed steps are clickable with `onStepClick`.' file={file} code={horizontalCode}>
                 <HorizontalDemo />
             </Variant>
 
@@ -100,7 +100,7 @@ const StepperDocumentation = () => {
 
             <Variant
                 title='Numbered instructions'
-                description='Use numbered to show every step highlighted without tracking progress. Each step can have its own content, like a code block.'
+                description='Use `numbered` to show every step highlighted without tracking progress. Each step can have its own content, like a code block.'
                 file={file}
                 code={numberedCode}
             >

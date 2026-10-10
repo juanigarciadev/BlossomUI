@@ -36,6 +36,24 @@ const StepperDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/
 const SurveyDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Survey/SurveyDocumentation'))
 const TimelineDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Timeline/Timeline'))
 const ToastsDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Toasts/ToastsDocumentation'))
+const AccordionDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Accordion/AccordionDocumentation'))
+const BreadcrumbDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Breadcrumb/BreadcrumbDocumentation'))
+const CarouselDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Carousel/CarouselDocumentation'))
+const ChipinputDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/ChipInput/ChipInputDocumentation'))
+const CommandpaletteDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/CommandPalette/CommandPaletteDocumentation'))
+const DatepickerDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/DatePicker/DatePickerDocumentation'))
+const DrawerDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Drawer/DrawerDocumentation'))
+const DropdownDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Dropdown/DropdownDocumentation'))
+const EmptystateDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/EmptyState/EmptyStateDocumentation'))
+const FileuploadDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/FileUpload/FileUploadDocumentation'))
+const NavbarDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Navbar/NavbarDocumentation'))
+const PopoverDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Popover/PopoverDocumentation'))
+const SliderDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Slider/SliderDocumentation'))
+const StatsDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Stats/StatsDocumentation'))
+const TableDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Table/TableDocumentation'))
+const TabsDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Tabs/TabsDocumentation'))
+const TooltipDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Tooltip/TooltipDocumentation'))
+const ChartsDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Charts/ChartsDocumentation'))
 
 function App() {
 
@@ -59,6 +77,7 @@ function App() {
                 <Route path='/docs/components/banner' element={<BannerDocumentation />} />
                 <Route path='/docs/components/buttons' element={<Buttons />} />
                 <Route path='/docs/components/cards' element={<CardsDocumentation />} />
+                <Route path='/docs/components/charts' element={<ChartsDocumentation />} />
                 <Route path='/docs/components/footer' element={<FooterDocumentation />} />
                 <Route path='/docs/components/forms' element={<FormsDocumentation />} />
                 <Route path='/docs/components/jumbotron' element={<JumbotronDocumentation />} />
@@ -74,6 +93,23 @@ function App() {
                 <Route path='/docs/components/survey' element={<SurveyDocumentation />} />
                 <Route path='/docs/components/timeline' element={<TimelineDocumentation />} />
                 <Route path='/docs/components/toasts' element={<ToastsDocumentation />} />
+                <Route path='/docs/components/accordion' element={<AccordionDocumentation />} />
+                <Route path='/docs/components/breadcrumb' element={<BreadcrumbDocumentation />} />
+                <Route path='/docs/components/carousel' element={<CarouselDocumentation />} />
+                <Route path='/docs/components/chip-input' element={<ChipinputDocumentation />} />
+                <Route path='/docs/components/command-palette' element={<CommandpaletteDocumentation />} />
+                <Route path='/docs/components/date-picker' element={<DatepickerDocumentation />} />
+                <Route path='/docs/components/drawer' element={<DrawerDocumentation />} />
+                <Route path='/docs/components/dropdown' element={<DropdownDocumentation />} />
+                <Route path='/docs/components/empty-state' element={<EmptystateDocumentation />} />
+                <Route path='/docs/components/file-upload' element={<FileuploadDocumentation />} />
+                <Route path='/docs/components/navbar' element={<NavbarDocumentation />} />
+                <Route path='/docs/components/popover' element={<PopoverDocumentation />} />
+                <Route path='/docs/components/slider' element={<SliderDocumentation />} />
+                <Route path='/docs/components/stats' element={<StatsDocumentation />} />
+                <Route path='/docs/components/table' element={<TableDocumentation />} />
+                <Route path='/docs/components/tabs' element={<TabsDocumentation />} />
+                <Route path='/docs/components/tooltip' element={<TooltipDocumentation />} />
               </Route>
               <Route path='*' element={<NotFound />} />
             </Route>

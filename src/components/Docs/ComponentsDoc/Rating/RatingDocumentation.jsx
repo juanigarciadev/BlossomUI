@@ -41,7 +41,7 @@ const RatingDocumentation = () => {
                 <Rating value={4.5} showValue reviews={1243} />
             </Variant>
 
-            <Variant title='Interactive' description='Pass onChange and the stars become clickable. Try it.' file={file} code={interactiveCode}>
+            <Variant title='Interactive' description='Pass `onChange` and the stars become clickable. Try it.' file={file} code={interactiveCode}>
                 <InteractiveDemo />
             </Variant>
 

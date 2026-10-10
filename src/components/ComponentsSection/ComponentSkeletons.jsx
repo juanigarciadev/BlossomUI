@@ -11,6 +11,165 @@ const Lines = ({ widths, className = '' }) => (
 )
 
 const skeletons = {
+    Accordion: () => (
+        <div className='flex flex-col w-full rounded-xl border border-neutral-300 dark:border-neutral-700 divide-y divide-neutral-300 dark:divide-neutral-700'>
+            {[true, false, false].map((open, i) => (
+                <div key={i} className='flex flex-col gap-2 p-3'>
+                    <div className='flex items-center justify-between'>
+                        <div className={`h-2 w-24 ${open ? accent : bar} rounded-full`} />
+                        <div className={`h-2 w-2 ${bar}`} />
+                    </div>
+                    {open && <Lines widths={['90%', '60%']} />}
+                </div>
+            ))}
+        </div>
+    ),
+    Breadcrumb: () => (
+        <div className='flex items-center gap-2'>
+            <div className={`h-2 w-12 ${bar}`} />
+            <span className='text-neutral-400'>›</span>
+            <div className={`h-2 w-16 ${bar}`} />
+            <span className='text-neutral-400'>›</span>
+            <div className={`h-2 w-14 ${accent} rounded-full`} />
+        </div>
+    ),
+    Carousel: () => (
+        <div className='flex flex-col items-center gap-3 w-full'>
+            <div className='flex w-full gap-2'>
+                <div className={`h-20 flex-1 ${block}`} />
+                <div className={`h-20 w-10 ${block} opacity-60`} />
+            </div>
+            <div className='flex gap-1.5'>
+                <div className={`h-1.5 w-5 ${accent} rounded-full`} />
+                <div className={`h-1.5 w-1.5 ${bar}`} />
+                <div className={`h-1.5 w-1.5 ${bar}`} />
+            </div>
+        </div>
+    ),
+    Charts: () => (
+        <div className='flex items-end gap-2 h-20'>
+            {[40, 65, 50, 85, 60, 95].map((h, i) => (
+                <div key={i} className={`w-5 rounded-t-lg ${i === 5 ? accent : soft}`} style={{ height: `${h}%` }} />
+            ))}
+        </div>
+    ),
+    'Chip input': () => (
+        <div className='flex flex-wrap items-center gap-2 w-full p-2 rounded-xl border border-neutral-300 dark:border-neutral-700'>
+            {[accent, soft, soft].map((c, i) => <div key={i} className={`h-5 w-12 rounded-lg ${c}`} />)}
+            <div className={`h-2 w-10 ${bar}`} />
+        </div>
+    ),
+    'Command palette': () => (
+        <div className='flex flex-col w-full rounded-xl border border-neutral-300 dark:border-neutral-700 overflow-hidden'>
+            <div className='p-2 border-b border-neutral-300 dark:border-neutral-700'><div className={`h-2 w-1/2 ${bar}`} /></div>
+            <div className='flex flex-col gap-2 p-2'>
+                {[true, false, false].map((a, i) => (
+                    <div key={i} className={`h-5 rounded-lg ${a ? soft : ''} flex items-center px-2`}><div className={`h-2 w-1/2 ${bar}`} /></div>
+                ))}
+            </div>
+        </div>
+    ),
+    'Date picker': () => (
+        <div className='grid grid-cols-7 gap-1.5'>
+            {Array.from({ length: 14 }, (_, i) => (
+                <div key={i} className={`h-5 w-5 ${i === 9 ? 'rounded-lg bg-corporative' : bar}`} />
+            ))}
+        </div>
+    ),
+    Drawer: () => (
+        <div className='flex w-full h-24 rounded-xl border border-neutral-300 dark:border-neutral-700 overflow-hidden'>
+            <div className='flex-1 bg-neutral-200 dark:bg-neutral-800' />
+            <div className='flex w-2/5 flex-col gap-2 p-3 border-l border-neutral-300 dark:border-neutral-700'>
+                <div className={`h-2 w-3/4 ${accent} rounded-full`} />
+                <Lines widths={['100%', '70%']} />
+            </div>
+        </div>
+    ),
+    Dropdown: () => (
+        <div className='flex flex-col items-start gap-2'>
+            <div className={`h-8 w-24 ${block}`} />
+            <div className='flex flex-col gap-2 p-2 w-32 rounded-xl border border-neutral-300 dark:border-neutral-700'>
+                <div className={`h-2 w-full ${soft} rounded-full`} />
+                <div className={`h-2 w-3/4 ${bar}`} />
+                <div className={`h-2 w-1/2 ${bar}`} />
+            </div>
+        </div>
+    ),
+    'Empty state': () => (
+        <div className='flex flex-col items-center gap-3'>
+            <div className={`h-10 w-10 rounded-full ${soft}`} />
+            <Lines widths={['100px', '70px']} className='items-center' />
+            <div className={`h-6 w-16 rounded-lg ${accent}`} />
+        </div>
+    ),
+    'File upload': () => (
+        <div className='flex flex-col items-center gap-2 w-full p-4 rounded-2xl border-2 border-dashed border-neutral-300 dark:border-neutral-700'>
+            <div className={`h-6 w-6 ${accent} rounded-lg`} />
+            <Lines widths={['80px', '50px']} className='items-center' />
+        </div>
+    ),
+    Navbar: () => (
+        <div className='flex items-center justify-between w-full p-2 rounded-xl border border-neutral-300 dark:border-neutral-700'>
+            <div className={`h-3 w-10 ${accent} rounded-full`} />
+            <div className='flex gap-2'>
+                {[0, 1, 2].map((i) => <div key={i} className={`h-2 w-8 ${bar}`} />)}
+            </div>
+        </div>
+    ),
+    Popover: () => (
+        <div className='flex flex-col items-center gap-2'>
+            <div className='flex flex-col gap-2 p-3 w-32 rounded-xl border border-neutral-300 shadow-md dark:border-neutral-700'>
+                <div className={`h-2 w-2/3 ${accent} rounded-full`} />
+                <Lines widths={['100%', '60%']} />
+            </div>
+            <div className={`h-7 w-20 ${block}`} />
+        </div>
+    ),
+    Slider: () => (
+        <div className='flex flex-col gap-3 w-full'>
+            <div className='relative h-2 w-full rounded-full bg-neutral-300 dark:bg-neutral-700'>
+                <div className='h-2 w-2/3 rounded-full bg-corporative' />
+                <div className='absolute -top-1.5 left-[62%] h-5 w-5 rounded-full border-2 border-corporative bg-white dark:bg-neutral-900' />
+            </div>
+            <Lines widths={['40%']} />
+        </div>
+    ),
+    Stats: () => (
+        <div className='flex gap-3 w-full'>
+            {[0, 1].map((i) => (
+                <div key={i} className='flex flex-col flex-1 gap-2 p-3 rounded-xl border border-neutral-300 dark:border-neutral-700'>
+                    <div className={`h-2 w-10 ${bar}`} />
+                    <div className={`h-4 w-14 ${block}`} />
+                    <div className={`h-2 w-8 ${i ? 'bg-red-300 dark:bg-red-900' : 'bg-green-300 dark:bg-green-900'} rounded-full`} />
+                </div>
+            ))}
+        </div>
+    ),
+    Table: () => (
+        <div className='flex flex-col w-full rounded-xl border border-neutral-300 dark:border-neutral-700 divide-y divide-neutral-300 dark:divide-neutral-700'>
+            {[accent, bar, bar].map((c, i) => (
+                <div key={i} className='flex items-center gap-3 p-2'>
+                    <div className={`h-2 w-1/4 ${c} rounded-full`} />
+                    <div className={`h-2 w-1/3 ${bar}`} />
+                    <div className={`h-2 w-1/6 ${bar}`} />
+                </div>
+            ))}
+        </div>
+    ),
+    Tabs: () => (
+        <div className='flex flex-col gap-3 w-full'>
+            <div className='flex gap-4 border-b border-neutral-300 dark:border-neutral-700'>
+                {[0, 1, 2].map((i) => <div key={i} className={`h-2 w-10 mb-2 rounded-full ${i === 0 ? accent : bar}`} />)}
+            </div>
+            <Lines widths={['90%', '65%']} />
+        </div>
+    ),
+    Tooltip: () => (
+        <div className='flex flex-col items-center gap-1'>
+            <div className='h-6 w-20 rounded-lg bg-neutral-800 dark:bg-neutral-200' />
+            <div className={`h-8 w-8 ${block}`} />
+        </div>
+    ),
     Alerts: () => (
         <div className='flex flex-col gap-2 w-full'>
             {['bg-blue-200 dark:bg-blue-900', 'bg-green-200 dark:bg-green-900', 'bg-red-200 dark:bg-red-900'].map((c, i) => (

@@ -55,11 +55,11 @@ const PricingDocumentation = () => {
                 <Pricing plans={plans} />
             </Variant>
 
-            <Variant title='Border accent' description='Outline the recommended plan with variant border.' file={file} previewClassName='flex' code={'<Pricing plans={plans} variant="border" />'}>
+            <Variant title='Border accent' description='Outline the recommended plan with `variant="border"`.' file={file} previewClassName='flex' code={'<Pricing plans={plans} variant="border" />'}>
                 <Pricing plans={plans} variant='border' />
             </Variant>
 
-            <Variant title='Size accent' description='Make the recommended plan bigger with variant size.' file={file} previewClassName='flex' code={'<Pricing plans={plans} variant="size" />'}>
+            <Variant title='Size accent' description='Make the recommended plan bigger with `variant="size"`.' file={file} previewClassName='flex' code={'<Pricing plans={plans} variant="size" />'}>
                 <Pricing plans={plans} variant='size' />
             </Variant>
 

@@ -30,7 +30,7 @@ const SurveyDocumentation = () => {
                 <Survey question='How happy are you with this recommendation?' />
             </Variant>
 
-            <Variant title='Receiving the answer' description='onSubmit gives you the chosen value from 1 to 5.' file={file} code={scoreCode}>
+            <Variant title='Receiving the answer' description='`onSubmit` gives you the chosen value from 1 to 5.' file={file} code={scoreCode}>
                 <ScoreDemo />
             </Variant>
 

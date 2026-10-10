@@ -22,7 +22,7 @@ const SpinnersDocumentation = () => {
                 {sizes.map((size) => <Spinner key={size} size={size} />)}
             </Variant>
 
-            <Variant title='Colors' description='Use the color prop.' file={file} previewClassName='flex flex-wrap items-center gap-4'>
+            <Variant title='Colors' description='Use the `color` prop.' file={file} previewClassName='flex flex-wrap items-center gap-4'>
                 {colors.map((color) => <Spinner key={color} color={color} />)}
             </Variant>
 

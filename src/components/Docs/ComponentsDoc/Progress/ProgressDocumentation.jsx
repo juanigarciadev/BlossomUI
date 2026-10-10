@@ -65,7 +65,7 @@ const ProgressDocumentation = () => {
                 {sizes.map((size) => <ProgressBar key={size} value={75} size={size} />)}
             </Variant>
 
-            <Variant title='Colors' description='Use the color prop to match the context.' file={file} previewClassName='flex flex-col gap-4'>
+            <Variant title='Colors' description='Use the `color` prop to match the context.' file={file} previewClassName='flex flex-col gap-4'>
                 {colors.map((color, i) => <ProgressBar key={color} value={30 + i * 12} color={color} />)}
             </Variant>
 

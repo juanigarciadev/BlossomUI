@@ -85,7 +85,13 @@ export interface SelectOption {
     value: string
     label: string
     disabled?: boolean
+    /** Image shown before the label, for example a flag. It is decorative: the label names the option. */
+    image?: string
 }
+
+/** Small round image of an option. */
+const optionImage = (src?: string) =>
+    src ? <img src={src} alt='' aria-hidden='true' className='h-5 w-5 shrink-0 rounded-full bg-neutral-200 object-cover dark:bg-neutral-700' /> : null
 
 interface Position {
     top: number
@@ -283,7 +289,10 @@ export const Select = ({ label, hint, error, success, options, value, defaultVal
                 onKeyDown={onKeyDown}
                 className={`${base} flex items-center justify-between gap-2 text-left focus:ring-2 ${open ? 'ring-2' : ''} ${control[state]} ${className}`}
             >
-                <span className={`truncate ${selected ? 'text-neutral-900 dark:text-white' : 'text-neutral-400'}`}>{selected?.label ?? placeholder}</span>
+                <span className={`flex min-w-0 items-center gap-2 ${selected ? 'text-neutral-900 dark:text-white' : 'text-neutral-400'}`}>
+                    {optionImage(selected?.image)}
+                    <span className='truncate'>{selected?.label ?? placeholder}</span>
+                </span>
                 {chevron(open)}
             </button>
             {name && <input type='hidden' name={name} value={current} />}
@@ -301,7 +310,10 @@ export const Select = ({ label, hint, error, success, options, value, defaultVal
                             onClick={() => select(option)}
                             className={`flex cursor-pointer items-center justify-between rounded-lg px-3 py-2 ${option.disabled ? 'cursor-not-allowed opacity-40' : ''} ${index === active ? 'bg-pink-100 text-pink-900 dark:bg-pink-950 dark:text-pink-200' : 'text-neutral-800 dark:text-neutral-200'}`}
                         >
-                            {option.label}
+                            <span className='flex min-w-0 items-center gap-2'>
+                                {optionImage(option.image)}
+                                <span className='truncate'>{option.label}</span>
+                            </span>
                             {option.value === current && checkMark}
                         </li>
                     ))}

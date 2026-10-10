@@ -67,7 +67,7 @@ const PaginationDocumentation = () => {
                 <RoundedDemo />
             </Variant>
 
-            <Variant title='Many pages' description='Long lists collapse into ellipses. Use siblings to control how many neighbors are shown.' file={file} code={code(20)}>
+            <Variant title='Many pages' description='Long lists collapse into ellipses. Use `siblings` to control how many neighbors are shown.' file={file} code={code(20)}>
                 <ManyDemo />
             </Variant>
 

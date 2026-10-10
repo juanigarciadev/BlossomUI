@@ -70,6 +70,24 @@ const submit = (event: FormEvent) => {
   <Button type="submit" color="default">Sign in</Button>
 </form>`
 
+const flag = (code) => `https://flagcdn.com/w40/${code}.png`
+
+const languages = [
+    { value: 'en', label: 'English', image: flag('us') },
+    { value: 'es', label: 'Español', image: flag('ar') },
+    { value: 'pt', label: 'Português', image: flag('br') },
+    { value: 'fr', label: 'Français', image: flag('fr') },
+    { value: 'de', label: 'Deutsch', image: flag('de') },
+]
+
+const imagesCode = `const languages = [
+    { value: 'en', label: 'English', image: 'https://flagcdn.com/w40/us.png' },
+    { value: 'es', label: 'Español', image: 'https://flagcdn.com/w40/ar.png' },
+    { value: 'pt', label: 'Português', image: 'https://flagcdn.com/w40/br.png' },
+]
+
+<Select label="Language" options={languages} defaultValue="en" />`
+
 const ControlledSelect = () => {
     const [country, setCountry] = useState('ar')
     return (
@@ -207,7 +225,7 @@ const FormsDocumentation = () => {
                 <Input label='Email' type='email' placeholder='you@example.com' hint='We will never share your email.' />
             </Variant>
 
-            <Variant title='Input with icon' description='Pass any element to the icon prop.' file={file} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>
+            <Variant title='Input with icon' description='Pass any element to the `icon` prop.' file={file} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>
                 <Input label='Search' placeholder='Search components' icon={<SearchIcon />} />
             </Variant>
 
@@ -220,7 +238,11 @@ const FormsDocumentation = () => {
                 <Select label='Country' placeholder='Choose a country' options={countries} />
             </Variant>
 
-            <Variant title='Select with state' description='Controlled with value and onChange, which receives the chosen value. Use arrows, Enter, Escape or type the first letters of an option.' file={file} code={selectCode}>
+            <Variant title='Select with images' description='Add `image` to each option, for example a flag or an avatar. It shows in the list and in the button.' file={file} code={imagesCode} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>
+                <Select label='Language' options={languages} defaultValue='en' />
+            </Variant>
+
+            <Variant title='Select with state' description='Controlled with `value` and `onChange`, which receives the chosen value. Use arrows, Enter, Escape or type the first letters of an option.' file={file} code={selectCode}>
                 <ControlledSelect />
             </Variant>
 
@@ -232,7 +254,7 @@ const FormsDocumentation = () => {
                 <ControlledMultiSelect />
             </Variant>
 
-            <Variant title='Multi select with limit' description='Use max to limit how many options can be selected.' file={file} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>
+            <Variant title='Multi select with limit' description='Use `max` to limit how many options can be selected.' file={file} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>
                 <MultiSelect label='Skills' placeholder='Choose up to 3' options={skills} defaultValue={['react']} max={3} hint='Pick the ones you know best.' />
             </Variant>
 
@@ -242,7 +264,7 @@ const FormsDocumentation = () => {
                 <Checkbox label='Disabled' disabled />
             </Variant>
 
-            <Variant title='Checkbox group' description='Use indeterminate for a parent checkbox when only some children are selected.' file={file} code={groupCode}>
+            <Variant title='Checkbox group' description='Use `indeterminate` for a parent checkbox when only some children are selected.' file={file} code={groupCode}>
                 <CheckboxGroupDemo />
             </Variant>
 
@@ -252,7 +274,7 @@ const FormsDocumentation = () => {
                 <Radio name='plan' label='Lifetime' disabled />
             </Variant>
 
-            <Variant title='Radio group' description='RadioGroup keeps the chosen value and reports it with onChange.' file={file} code={radioCode}>
+            <Variant title='Radio group' description='`RadioGroup` keeps the chosen value and reports it with `onChange`.' file={file} code={radioCode}>
                 <ControlledRadioGroup />
             </Variant>
 

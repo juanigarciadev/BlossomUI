@@ -24,7 +24,7 @@ const CardsDocumentation = () => {
                 <Card title='Simple card' description='Without an icon it works as a plain container.' />
             </Variant>
 
-            <Variant title='With footer' description='Use the footer prop to add buttons or links.' file={file}>
+            <Variant title='With footer' description='Use the `footer` prop to add buttons or links.' file={file}>
                 <Card
                     icon={<SmileIcon />}
                     title='Get started'

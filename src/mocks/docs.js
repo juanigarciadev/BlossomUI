@@ -26,6 +26,11 @@ export const customization = [
 
 export const components = [
     {
+        name: "Accordion",
+        url: "/docs/components/accordion",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Alerts",
         url: "/docs/components/alerts",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
@@ -46,6 +51,11 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Breadcrumb",
+        url: "/docs/components/breadcrumb",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Buttons",
         url: "/docs/components/buttons",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
@@ -53,6 +63,51 @@ export const components = [
     {
         name: "Cards",
         url: "/docs/components/cards",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Carousel",
+        url: "/docs/components/carousel",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Charts",
+        url: "/docs/components/charts",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Chip input",
+        url: "/docs/components/chip-input",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Command palette",
+        url: "/docs/components/command-palette",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Date picker",
+        url: "/docs/components/date-picker",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Drawer",
+        url: "/docs/components/drawer",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Dropdown",
+        url: "/docs/components/dropdown",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Empty state",
+        url: "/docs/components/empty-state",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "File upload",
+        url: "/docs/components/file-upload",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
@@ -81,8 +136,18 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Navbar",
+        url: "/docs/components/navbar",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Pagination",
         url: "/docs/components/pagination",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Popover",
+        url: "/docs/components/popover",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
@@ -106,8 +171,18 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Slider",
+        url: "/docs/components/slider",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Spinners",
         url: "/docs/components/spinners",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Stats",
+        url: "/docs/components/stats",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
@@ -121,6 +196,16 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Table",
+        url: "/docs/components/table",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Tabs",
+        url: "/docs/components/tabs",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Timeline",
         url: "/docs/components/timeline",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
@@ -130,4 +215,9 @@ export const components = [
         url: "/docs/components/toasts",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
-]
+    {
+        name: "Tooltip",
+        url: "/docs/components/tooltip",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+];

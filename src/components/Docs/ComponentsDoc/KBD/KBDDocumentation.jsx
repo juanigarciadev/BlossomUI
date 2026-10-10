@@ -62,12 +62,12 @@ const KBDDocumentation = () => {
                 {keys.map((key) => <Kbd key={key} relief>{key}</Kbd>)}
             </Variant>
 
-            <Variant title='Shortcuts' description='Combine several keys with KbdShortcut.' file={file} previewClassName='flex flex-col gap-4'>
+            <Variant title='Shortcuts' description='Combine several keys with `KbdShortcut`.' file={file} previewClassName='flex flex-col gap-4'>
                 <KbdShortcut keys={['Ctrl', 'K']} />
                 <KbdShortcut keys={['Ctrl', 'Shift', 'P']} relief />
             </Variant>
 
-            <Variant title='Active' description='Use active to highlight a key while it is pressed. Try it with your keyboard.' file={file} code={pressCode}>
+            <Variant title='Active' description='Use `active` to highlight a key while it is pressed. Try it with your keyboard.' file={file} code={pressCode}>
                 <PressDemo />
             </Variant>
         </DocPage>

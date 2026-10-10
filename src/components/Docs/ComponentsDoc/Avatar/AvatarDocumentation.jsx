@@ -14,8 +14,13 @@ const people = [
 ]
 const photo = people[0]
 
+const names = ['Katherine Hoffman', 'Samuel Torres', 'Lucia Fernandez', 'Martin Pereyra']
+
 const group = people.map((src) => ({ src }))
 const crowd = [...group, ...group, ...group]
+
+const namedGroup = people.map((src, index) => ({ src, name: names[index] }))
+const namedCrowd = [...namedGroup, { name: 'Ana Gomez' }, { name: 'Diego Ruiz' }, { name: 'Sofia Lopez' }]
 
 const AvatarDocumentation = () => {
     return (
@@ -27,7 +32,7 @@ const AvatarDocumentation = () => {
                 <Avatar src={photo} alt='Katherine Hoffman' square />
             </Variant>
 
-            <Variant title='Sizes' description='Use the size prop: sm, md, lg and xl.' file={file} previewClassName='flex flex-wrap items-center gap-4'>
+            <Variant title='Sizes' description='Use the `size` prop: sm, md, lg and xl.' file={file} previewClassName='flex flex-wrap items-center gap-4'>
                 <Avatar src={photo} size='sm' />
                 <Avatar src={photo} size='md' />
                 <Avatar src={photo} size='lg' />
@@ -52,6 +57,11 @@ const AvatarDocumentation = () => {
             <Variant title='Stacked' description='Use the group to display several users. The rest is collapsed into a counter.' file={file} previewClassName='flex flex-col gap-4'>
                 <AvatarGroup avatars={group} />
                 <AvatarGroup avatars={crowd} max={4} />
+            </Variant>
+
+            <Variant title='Stacked with names' description='Add `name` to each avatar to show it in a tooltip on hover or focus. The counter lists the people that are hidden. Avatars without an image use the initials of the name.' file={file} previewClassName='flex flex-col gap-4'>
+                <AvatarGroup avatars={namedGroup} />
+                <AvatarGroup avatars={namedCrowd} max={4} />
             </Variant>
 
             <Variant title='With information' description="Show the user's name and status next to the avatar." file={file} previewClassName='flex flex-wrap gap-8'>

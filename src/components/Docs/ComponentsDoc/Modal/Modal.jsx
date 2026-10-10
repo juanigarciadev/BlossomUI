@@ -123,7 +123,7 @@ const ModalDocumentation = () => {
         <DocPage title='Modal' description='A dialog that closes with Escape or by clicking outside, locks the page scroll and gives the focus back when it closes.'>
             <ComponentSource source={source} file={file} />
 
-            <Variant title='Default' description='A dialog with title, content and actions.' file={file} code={defaultCode}>
+            <Variant title='Default' description='A dialog with a title, content and actions.' file={file} code={defaultCode}>
                 <DefaultDemo />
             </Variant>
 

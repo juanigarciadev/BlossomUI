@@ -54,7 +54,7 @@ const Badges = () => {
                 {colors.map((color) => <Badge key={color} color={color}>{color}</Badge>)}
             </Variant>
 
-            <Variant title='Outlined' description='Use outlined for a bordered version.' file={file}>
+            <Variant title='Outlined' description='Use `outlined` for a bordered version.' file={file}>
                 {colors.map((color) => <Badge key={color} color={color} outlined>{color}</Badge>)}
             </Variant>
 
@@ -63,7 +63,7 @@ const Badges = () => {
                 {colors.map((color) => <Badge key={`o-${color}`} color={color} rounded outlined>{color}</Badge>)}
             </Variant>
 
-            <Variant title='With icons' description='Pass any element to the icon prop.' file={file}>
+            <Variant title='With icons' description='Pass any element to the `icon` prop.' file={file}>
                 <Badge icon={<TagIcon />}>20% off</Badge>
                 <Badge color='dark' icon={<ClockIcon />}>3 minutes ago</Badge>
                 <Badge color='green' rounded icon={<TagIcon />}>In stock</Badge>
@@ -75,7 +75,7 @@ const Badges = () => {
                 <Badge color='pink' icon={<TagIcon />} />
             </Variant>
 
-            <Variant title='Dismissible' description='Provide onDismiss to show a close button. Remove tags to try it.' file={file} code={tagsCode}>
+            <Variant title='Dismissible' description='Provide `onDismiss` to show a close button. Remove tags to try it.' file={file} code={tagsCode}>
                 <TagsDemo />
             </Variant>
         </DocPage>

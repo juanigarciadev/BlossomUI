@@ -33,10 +33,10 @@ const stackCode = `const { toasts, toast, dismiss } = useToasts()
 
 const ToastsDocumentation = () => {
     return (
-        <DocPage title='Toasts' description='Short messages that confirm an action. Manage a stack of them with the useToasts hook.'>
+        <DocPage title='Toasts' description='Short messages that confirm an action. Manage a stack of them with the `useToasts` hook.'>
             <ComponentSource source={source} file={file} />
 
-            <Variant title='Default' description='Toasts in every color. Add onDismiss to show the close button.' file={file} previewClassName='flex flex-col items-start gap-4'>
+            <Variant title='Default' description='Toasts in every color. Add `onDismiss` to show the close button.' file={file} previewClassName='flex flex-col items-start gap-4'>
                 <Toast color='green' onDismiss={() => {}}>Product added to cart.</Toast>
                 <Toast color='red' onDismiss={() => {}}>Product removed from cart.</Toast>
                 <Toast onDismiss={() => {}}>Your profile was updated.</Toast>
@@ -44,13 +44,13 @@ const ToastsDocumentation = () => {
                 <Toast color='dark' onDismiss={() => {}}>New message received.</Toast>
             </Variant>
 
-            <Variant title='With actions' description='Add a button with actionLabel and onAction.' file={file} previewClassName='flex flex-col items-start gap-4'>
+            <Variant title='With actions' description='Add a button with `actionLabel` and `onAction`.' file={file} previewClassName='flex flex-col items-start gap-4'>
                 <Toast color='green' actionLabel='View' onAction={() => {}} onDismiss={() => {}}>Email successfully sent</Toast>
                 <Toast color='red' actionLabel='Show' onAction={() => {}} onDismiss={() => {}}>2 errors found</Toast>
                 <Toast actionLabel='Update' onAction={() => {}} onDismiss={() => {}}>An update is available</Toast>
             </Variant>
 
-            <Variant title='Stack' description='useToasts keeps the list and closes each toast by itself after a few seconds. Press the buttons to try it.' file={file} code={stackCode}>
+            <Variant title='Stack' description='`useToasts` keeps the list and closes each toast by itself after a few seconds. Press the buttons to try it.' file={file} code={stackCode}>
                 <StackDemo />
             </Variant>
         </DocPage>

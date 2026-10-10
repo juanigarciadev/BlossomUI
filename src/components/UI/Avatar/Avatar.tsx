@@ -1,4 +1,5 @@
 import { useState, type ReactNode } from 'react'
+import { Tooltip } from '../Tooltip/Tooltip'
 
 export type AvatarSize = 'sm' | 'md' | 'lg' | 'xl'
 export type AvatarStatus = 'online' | 'away' | 'busy' | 'offline'
@@ -7,7 +8,9 @@ export interface AvatarProps {
     /** Image url. When it is missing or fails to load the initials (or a placeholder) are shown. */
     src?: string
     alt?: string
-    /** Shown when there is no image, e.g. "KH". */
+    /** Name of the person. It is the accessible name of the avatar and the source of the initials when none are given. */
+    name?: string
+    /** Shown when there is no image, e.g. "KH". Taken from `name` when it is missing. */
     initials?: string
     size?: AvatarSize
     /** Rounded corners instead of a circle. */
@@ -32,18 +35,28 @@ const statusColors: Record<AvatarStatus, { bg: string; ring: string }> = {
     offline: { bg: 'bg-neutral-400', ring: 'ring-neutral-400' },
 }
 
-export const Avatar = ({ src, alt = '', initials, size = 'md', square = false, status, statusStyle = 'dot', statusPosition = 'top' }: AvatarProps) => {
+const initialsOf = (name: string) =>
+    name
+        .trim()
+        .split(/\s+/)
+        .slice(0, 2)
+        .map((word) => word[0]?.toUpperCase())
+        .join('')
+
+export const Avatar = ({ src, alt, name, initials: initialsProp, size = 'md', square = false, status, statusStyle = 'dot', statusPosition = 'top' }: AvatarProps) => {
     const [failed, setFailed] = useState(false)
     const { box, dot, text } = sizes[size]
+    const label = alt ?? name ?? ''
+    const initials = initialsProp ?? (name ? initialsOf(name) : undefined)
     const shape = square ? 'rounded-xl' : 'rounded-full'
     const ring = status && statusStyle === 'ring' ? `ring-2 ring-offset-1 dark:ring-offset-neutral-900 ${statusColors[status].ring}` : ''
 
     return (
         <div className='relative w-fit' title={status}>
             {src && !failed ? (
-                <img className={`${box} ${shape} ${ring} bg-neutral-200 object-cover dark:bg-neutral-800`} src={src} alt={alt} onError={() => setFailed(true)} />
+                <img className={`${box} ${shape} ${ring} bg-neutral-200 object-cover dark:bg-neutral-800`} src={src} alt={label} onError={() => setFailed(true)} />
             ) : (
-                <div className={`relative flex items-center justify-center overflow-hidden bg-neutral-200 dark:bg-neutral-600 ${box} ${shape} ${ring}`} role='img' aria-label={alt || initials}>
+                <div className={`relative flex items-center justify-center overflow-hidden bg-neutral-200 dark:bg-neutral-600 ${box} ${shape} ${ring}`} role='img' aria-label={label || initials}>
                     {initials ? (
                         <span className={`font-medium text-neutral-600 dark:text-neutral-300 ${text}`}>{initials}</span>
                     ) : (
@@ -61,7 +74,8 @@ export const Avatar = ({ src, alt = '', initials, size = 'md', square = false, s
 }
 
 export interface AvatarGroupProps {
-    avatars: Pick<AvatarProps, 'src' | 'alt' | 'initials'>[]
+    /** Give each person a `name` to show it in a tooltip when the avatar is hovered or focused. */
+    avatars: Pick<AvatarProps, 'src' | 'alt' | 'name' | 'initials'>[]
     /** Maximum number of avatars before collapsing the rest into a +N counter. */
     max?: number
     size?: AvatarSize
@@ -70,23 +84,37 @@ export interface AvatarGroupProps {
 
 export const AvatarGroup = ({ avatars, max = 4, size = 'md', onMoreClick }: AvatarGroupProps) => {
     const visible = avatars.slice(0, max)
-    const rest = avatars.length - visible.length
+    const hidden = avatars.slice(max)
+    const hiddenNames = hidden.map((avatar) => avatar.name).filter(Boolean).join(', ')
+
+    const counter = (
+        <button
+            type='button'
+            onClick={onMoreClick}
+            className={`flex select-none items-center justify-center rounded-full border-2 border-white bg-neutral-200 text-sm font-medium hover:bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-600 ${sizes[size].box}`}
+        >
+            +{hidden.length}
+        </button>
+    )
+
     return (
         <div className='flex -space-x-4'>
-            {visible.map((avatar, index) => (
-                <div key={index} className='rounded-full border-2 border-white dark:border-neutral-700'>
-                    <Avatar {...avatar} size={size} />
-                </div>
-            ))}
-            {rest > 0 && (
-                <button
-                    type='button'
-                    onClick={onMoreClick}
-                    className={`flex select-none items-center justify-center rounded-full border-2 border-white bg-neutral-200 text-sm font-medium hover:bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-600 ${sizes[size].box}`}
-                >
-                    +{rest}
-                </button>
-            )}
+            {visible.map((avatar, index) => {
+                const item = (
+                    <div className='rounded-full border-2 border-white dark:border-neutral-700'>
+                        <Avatar {...avatar} size={size} />
+                    </div>
+                )
+                // Focusable so the name is also available from the keyboard.
+                return avatar.name ? (
+                    <Tooltip key={index} content={avatar.name} arrow>
+                        <span tabIndex={0} className='rounded-full outline-none focus-visible:ring-2 focus-visible:ring-pink-400'>{item}</span>
+                    </Tooltip>
+                ) : (
+                    <div key={index}>{item}</div>
+                )
+            })}
+            {hidden.length > 0 && (hiddenNames ? <Tooltip content={hiddenNames} arrow>{counter}</Tooltip> : counter)}
         </div>
     )
 }

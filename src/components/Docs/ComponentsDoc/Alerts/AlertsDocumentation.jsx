@@ -24,7 +24,7 @@ const Alerts = () => {
                 {colors.map((color) => <Alert key={color} color={color}>{messages[color]}</Alert>)}
             </Variant>
 
-            <Variant title='Outlined' description='Add a border with variant outlined.' file={file} previewClassName='flex flex-col gap-4'>
+            <Variant title='Outlined' description='Add a border with `variant="outlined"`.' file={file} previewClassName='flex flex-col gap-4'>
                 {colors.map((color) => <Alert key={color} color={color} variant='outlined'>{messages[color]}</Alert>)}
             </Variant>
 
@@ -43,7 +43,7 @@ const Alerts = () => {
 
             <Variant
                 title='With actions'
-                description='Add buttons below the message with the actions prop.'
+                description='Add buttons below the message with the `actions` prop.'
                 file={file}
                 previewClassName='flex flex-col gap-4'
             >
@@ -55,7 +55,7 @@ const Alerts = () => {
                 </Alert>
             </Variant>
 
-            <Variant title='Dismissible' description='With dismissible the alert hides itself when the close button is pressed. Use onDismiss to react to it.' file={file} previewClassName='flex flex-col gap-4'>
+            <Variant title='Dismissible' description='With `dismissible` the alert hides itself when the close button is pressed. Use `onDismiss` to react to it.' file={file} previewClassName='flex flex-col gap-4'>
                 <Alert color='green' showIcon dismissible>Your changes have been saved.</Alert>
                 <Alert color='yellow' showIcon dismissible>Your trial ends in 3 days.</Alert>
             </Variant>

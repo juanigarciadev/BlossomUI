@@ -2,6 +2,30 @@ import DocPage from './DocPage'
 
 const releases = [
     {
+        version: 'v2.1.0',
+        date: 'October 10th, 2026',
+        summary: 'Eighteen new components.',
+        sections: [
+            {
+                title: 'New',
+                items: [
+                    'Navigation: Tabs, Breadcrumb, Navbar and Command palette.',
+                    'Overlays: Dropdown, Popover, Tooltip and Drawer.',
+                    'Data and content: Table with sorting and selection, Accordion, Carousel, Stats with an optional trend line, Empty state and Charts (bar, line, donut, pie and sparkline).',
+                    'Inputs: Date picker with a range mode, File upload with drag and drop, Slider and Chip input.',
+                    'Select options accept an image, for example a flag.',
+                ],
+            },
+            {
+                title: 'Changed',
+                items: [
+                    'Every component uses rounded-xl, and small elements such as close buttons use rounded-lg.',
+                    'Text typed in inputs and the selected value of the Select are now readable in dark mode.',
+                ],
+            },
+        ],
+    },
+    {
         version: 'v2.0.0',
         date: 'October 9th, 2026',
         summary: 'Blossom UI is now a React library written in TypeScript.',

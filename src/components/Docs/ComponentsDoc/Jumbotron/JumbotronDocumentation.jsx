@@ -50,7 +50,7 @@ const JumbotronDocumentation = () => {
                 />
             </Variant>
 
-            <Variant title='With eyebrow' description='Add a small badge above the title with eyebrow.' file={file} previewClassName='flex' code={`<Jumbotron
+            <Variant title='With eyebrow' description='Add a small badge above the title with `eyebrow`.' file={file} previewClassName='flex' code={`<Jumbotron
   eyebrow="Now with dark mode"
   title="Build faster with Blossom UI."
   description="Copy, paste and ship."
@@ -83,7 +83,7 @@ const JumbotronDocumentation = () => {
                 />
             </Variant>
 
-            <Variant title='Left aligned with media' description='With align left the media prop sits beside the text and wraps below it on narrow screens.' file={file} previewClassName='flex' code={`<Jumbotron
+            <Variant title='Left aligned with media' description='With `align` left the `media` prop sits beside the text and wraps below it on narrow screens.' file={file} previewClassName='flex' code={`<Jumbotron
   align="left"
   variant="card"
   eyebrow="Team workspace"
@@ -103,7 +103,7 @@ const JumbotronDocumentation = () => {
                 />
             </Variant>
 
-            <Variant title='With background image' description='Use variant image with backgroundImage. A dark layer keeps the text readable.' file={file} previewClassName='flex'>
+            <Variant title='With background image' description='Use `variant="image"` with `backgroundImage`. A dark layer keeps the text readable.' file={file} previewClassName='flex'>
                 <Jumbotron
                     variant='image'
                     backgroundImage={lake}

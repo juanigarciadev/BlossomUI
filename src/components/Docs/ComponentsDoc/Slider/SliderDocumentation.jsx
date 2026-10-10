@@ -1,0 +1,51 @@
+import { useState } from 'react'
+import DocPage from '../../DocPage'
+import Variant from '../../../Variant/Variant'
+import ComponentSource from '../../../Variant/ComponentSource'
+import source from '../../../UI/Slider/Slider.tsx?raw'
+import { Slider } from '../../../UI/Slider/Slider'
+
+const file = 'src/components/UI/Slider/Slider.tsx'
+
+const ControlledDemo = () => {
+    const [volume, setVolume] = useState(30)
+    return (
+        <div className='flex w-full max-w-sm flex-col gap-3'>
+            <Slider label='Volume' value={volume} onChange={setVolume} showValue unit='%' />
+            <p className='text-sm text-neutral-500'>Volume is {volume}%</p>
+        </div>
+    )
+}
+
+const SliderDocumentation = () => {
+    return (
+        <DocPage title='Slider' description='Pick a number in a range. It is a native range input, so it works with the keyboard and with touch.'>
+            <ComponentSource source={source} file={file} />
+
+            <Variant title='Default' description='Use `label` and `showValue` to display the current number.' file={file} previewClassName='flex w-full [&>*]:max-w-sm'>
+                <Slider label='Brightness' defaultValue={60} showValue unit='%' />
+            </Variant>
+
+            <Variant title='Steps' description='`step` controls the increment, `min` and `max` the range.' file={file} previewClassName='flex w-full [&>*]:max-w-sm'>
+                <Slider label='Price' min={0} max={500} step={50} defaultValue={200} showValue unit=' USD' />
+            </Variant>
+
+            <Variant title='Disabled' description='Disabled sliders are dimmed and cannot be changed.' file={file} previewClassName='flex w-full [&>*]:max-w-sm'>
+                <Slider label='Locked' defaultValue={40} disabled />
+            </Variant>
+
+            <Variant
+                title='Controlled'
+                description='Use `value` and `onChange` to keep the number in your own state.'
+                file={file}
+                code={`const [volume, setVolume] = useState(30)
+
+<Slider label='Volume' value={volume} onChange={setVolume} showValue unit='%' />`}
+            >
+                <ControlledDemo />
+            </Variant>
+        </DocPage>
+    )
+}
+
+export default SliderDocumentation

@@ -30,6 +30,7 @@ const componentSummaries = {
     Badges: 'Badge component in seven colors, filled or outlined, rounded, with icons and an optional dismiss button for tags.',
     Banner: 'Dismissible announcement banner with an icon and a message, ready to place at the top of a page.',
     Buttons: 'Button component with colors, rounded corners, a loading state and social sign in buttons for Facebook, X, Github, Google and Apple.',
+    Charts: 'Chart components without dependencies: bar chart, horizontal bars, line chart, donut, pie and sparkline, drawn with SVG, with tooltips and an accessible summary.',
     Cards: 'Card component with icon, title, description and footer, plus a product card with a favorite toggle and add to cart button.',
     Footer: 'Footer component with a simple row of links, grouped columns with social icons, or a centered layout.',
     Forms: 'Form controls: input, textarea, custom select, multi select with chips, checkbox, radio group and switch, with validation messages.',
@@ -45,6 +46,23 @@ const componentSummaries = {
     Stepper: 'Stepper component, horizontal, vertical or segmented, to guide users through multi step processes.',
     Survey: 'Emoji rating survey component that reports the chosen value and lets the user change or close it.',
     Timeline: 'Timeline component with dots, icons or cards to show events in chronological order.',
+    'Accordion': 'Accordion component with single or multiple open items, flush, bordered and separated styles and an animated height.',
+    'Breadcrumb': 'Breadcrumb navigation component with chevron or slash separators and aria-current on the last item.',
+    'Carousel': 'Carousel component with scroll snap, swipe, arrows, dots and optional autoplay that pauses on hover.',
+    'Chip input': 'Chip input or tag input component with validation, a maximum of chips, paste support and keyboard shortcuts.',
+    'Command palette': 'Command palette component with search, groups, icons, hints and full keyboard navigation.',
+    'Date picker': 'Date picker component with an accessible calendar, a range mode that highlights every day between two dates, min and max dates, locale support and keyboard navigation.',
+    'Drawer': 'Drawer component that slides from the left or the right, with sizes, focus restoration and scroll lock.',
+    'Dropdown': 'Dropdown menu component with icons, separators, danger and disabled items, and full keyboard support.',
+    'Empty state': 'Empty state component with an icon, title, description and action for lists and screens without content.',
+    'File upload': 'File upload component with drag and drop, accepted types, maximum size, multiple files and a list with remove buttons.',
+    'Navbar': 'Navbar component with a brand, links, actions and a responsive mobile menu.',
+    'Popover': 'Popover component anchored to a button, with placement, alignment and dismiss on Escape or outside click.',
+    'Slider': 'Slider component built on the native range input, with label, value, steps and a filled track.',
+    'Stats': 'Stats component to highlight key numbers with trend arrows, icons and a responsive grid.',
+    'Table': 'Table component with sortable columns, row selection, custom cells, striped rows and an empty state.',
+    'Tabs': 'Tabs component with underline, pills and boxed styles, icons and arrow key navigation.',
+    'Tooltip': 'Tooltip component that shows on hover and focus, with four placements and aria-describedby.',
     Toasts: 'Toast notifications in five colors with actions, plus the useToasts hook and Toaster to manage a stack of messages.',
 }
 
@@ -117,6 +135,10 @@ export const faq = [
     {
         question: 'Does Blossom UI work with Next.js and Vite?',
         answer: 'Yes. It works in any React 18 project, including Vite and Next.js. In Next.js, components that use hooks need the "use client" directive when they are imported from a Server Component.',
+    },
+    {
+        question: 'Which icon library do the components use?',
+        answer: 'None. Components that show an icon receive it as a React element in an icon prop, so you can use Lucide, React Icons, Heroicons, Phosphor or your own SVG. The documentation examples use lucide-react (https://lucide.dev).',
     },
     {
         question: 'Does Blossom UI support dark mode?',

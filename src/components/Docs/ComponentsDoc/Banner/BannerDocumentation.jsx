@@ -25,7 +25,7 @@ const BannerDocumentation = () => {
                 <SkeletonText />
             </Variant>
 
-            <Variant title='Not dismissible' description='Set dismissible to false to remove the close button.' file={file} previewClassName='flex'>
+            <Variant title='Not dismissible' description='Set `dismissible` to false to remove the close button.' file={file} previewClassName='flex'>
                 <Banner dismissible={false}>Scheduled maintenance on Sunday at 3:00 AM.</Banner>
             </Variant>
         </DocPage>
