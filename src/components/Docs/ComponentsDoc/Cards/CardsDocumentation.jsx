@@ -13,6 +13,9 @@ const SmileIcon = () => (
 )
 
 const shoe = 'https://res.cloudinary.com/diruiumfk/image/upload/v1701482959/jordan-dior_lp6sqo.webp'
+// Transformations of the same photo, to have more than one picture in the gallery example
+const shoeFlipped = shoe.replace('/upload/', '/upload/a_hflip/')
+const shoeSepia = shoe.replace('/upload/', '/upload/e_sepia/')
 
 const CardsDocumentation = () => {
     return (
@@ -36,6 +39,64 @@ const CardsDocumentation = () => {
             <Variant title='Products' description='Shows a product with its image, rating and price. The favorite and cart buttons keep their own state.' file={file}>
                 <ProductCard image={shoe} name='Air Jordan Low' price={89.9} rating={4} badge='New' />
                 <ProductCard image={shoe} name='Jordan x Dior' price={149} rating={5} />
+            </Variant>
+
+            <Variant title='With description' description='Add `brand`, `description` and `reviews`. The description is cut after two lines.' file={file}>
+                <ProductCard
+                    image={shoe}
+                    brand='Nike'
+                    name='Air Jordan Low'
+                    description='Low top sneakers with a leather upper and a cushioned sole, made for all day comfort on and off the court.'
+                    price={89.9}
+                    rating={4}
+                    reviews={128}
+                />
+            </Variant>
+
+            <Variant title='Discount' description='Set `originalPrice` and the old price is crossed out. The percentage is calculated for you and shown as a badge above the name, together with `badge`. Use `currency` to change the symbol.' file={file}>
+                <ProductCard image={shoe} name='Jordan x Dior' brand='Jordan' price={129} originalPrice={169} rating={5} reviews={86} badge='Sale' />
+                <ProductCard image={shoe} name='Air Jordan Low' price={74.5} originalPrice={89.9} currency='€' rating={4} reviews={32} />
+            </Variant>
+
+            <Variant title='Colors and sizes' description='Give `colors` and `sizes` and the user can choose one. `onAddToCart` receives the choice as its second argument.' file={file}>
+                <ProductCard
+                    image={shoe}
+                    brand='Nike'
+                    name='Air Jordan Low'
+                    description='Available in three colors.'
+                    price={89.9}
+                    rating={4}
+                    colors={['#171717', '#f472b6', '#60a5fa']}
+                    sizes={['38', '39', '40', '41']}
+                />
+            </Variant>
+
+            <Variant title='Expandable photo' description='Set `expandable` and pressing the photo opens it in full size. Close it with the button, Escape or a click outside.' file={file}>
+                <ProductCard image={shoe} name='Air Jordan Low' brand='Nike' price={89.9} rating={4} reviews={128} expandable />
+            </Variant>
+
+            <Variant title='Gallery' description='Pass more photos in `images`. The expanded view gets arrows, thumbnails and keyboard navigation with the left and right keys.' file={file}>
+                <ProductCard image={shoe} images={[shoeFlipped, shoeSepia]} name='Jordan x Dior' brand='Jordan' price={149} rating={5} reviews={86} />
+            </Variant>
+
+            <Variant title='Out of stock' description='Set `inStock` to false: the image is dimmed, an Out of stock badge is shown and the button is disabled.' file={file}>
+                <ProductCard image={shoe} name='Jordan x Dior' brand='Jordan' price={149} rating={5} reviews={86} inStock={false} />
+            </Variant>
+
+            <Variant title='Horizontal' description='Use `layout` horizontal for lists and search results. It stacks on small screens.' file={file} previewClassName='flex w-full [&>*]:max-w-xl'>
+                <ProductCard
+                    layout='horizontal'
+                    image={shoe}
+                    brand='Nike'
+                    name='Air Jordan Low'
+                    description='Low top sneakers with a leather upper and a cushioned sole, made for all day comfort on and off the court.'
+                    price={74.5}
+                    originalPrice={89.9}
+                    rating={4}
+                    reviews={128}
+                    colors={['#171717', '#f472b6']}
+                    sizes={['39', '40', '41']}
+                />
             </Variant>
         </DocPage>
     )
