@@ -39,7 +39,7 @@ const DocPage = ({ title, description, children }) => {
         <div className='w-full min-w-0 relative pl-8 pt-4 lg:pl-0 dark:text-white'>
             <Appear className='relative z-20 mb-10 border-b border-neutral-200 pb-8 dark:border-neutral-800'>
                 {current && <span className='inline-block mb-3 rounded-full border border-corporative/40 bg-corporative/10 px-3 py-1 text-xs font-medium text-corporativeHover dark:text-corporative'>{current.group}</span>}
-                <div className='flex gap-4 items-center'>
+                <div className='relative flex gap-4 items-center'>
                     <h1 className='text-5xl font-bold tracking-tight text-neutral-800 dark:text-white xs:text-4xl'>{title}</h1>
                     <button
                         type='button'
@@ -50,8 +50,8 @@ const DocPage = ({ title, description, children }) => {
                     >
                         <ChevronDown size={18} className={`duration-200 ${docNav ? 'rotate-180' : ''}`} />
                     </button>
+                    {docNav && <DocNav onClose={() => setDocNav(false)} />}
                 </div>
-                {docNav && <DocNav />}
                 {description && <p className='pt-2 text-lg text-neutral-600 dark:text-neutral-300'><InlineCode text={description} /></p>}
                 {sections.length > 1 && (
                     <nav aria-label='Variants on this page' className='flex flex-wrap items-center gap-2 pt-4'>
