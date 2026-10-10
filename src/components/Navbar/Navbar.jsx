@@ -77,7 +77,7 @@ const Navbar = ({ mobileNavToggle, setMobileNavToggle }) => {
         <button
           type="button"
           onClick={() => setSearchOpen(true)}
-          className="mx-auto flex h-11 flex-1 max-w-xl items-center gap-3 rounded-xl border border-neutral-200 bg-neutral-50 px-3 text-sm text-neutral-500 hover:border-corporative duration-200 dark:border-neutral-700 dark:bg-neutral-800 lg:max-w-none lg:flex-none lg:w-10 lg:justify-center lg:px-0"
+          className="mx-auto flex h-11 flex-1 max-w-xl items-center gap-3 rounded-xl border border-neutral-200 bg-neutral-50 px-3 text-sm text-neutral-500 hover:border-corporative duration-200 dark:border-neutral-700 dark:bg-neutral-800 lg:ml-auto lg:-mr-4 lg:max-w-none lg:flex-none lg:w-10 lg:justify-center lg:px-0"
           aria-label="Search docs"
         >
           <Search size={16} />

@@ -52,11 +52,11 @@ const SearchPalette = ({ open, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-start justify-center bg-black/40 px-4 pt-[15vh] backdrop-blur-sm" onMouseDown={onClose}>
+    <div className="fixed inset-0 z-[60] flex items-start justify-center bg-black/40 px-4 pt-[15vh]" onMouseDown={onClose}>
       <div
         role="dialog"
         aria-label="Search documentation"
-        className="fade-up w-full max-w-xl overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl dark:border-neutral-700 dark:bg-neutral-900"
+        className="palette-in w-full max-w-xl overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl dark:border-neutral-700 dark:bg-neutral-900"
         onMouseDown={(e) => e.stopPropagation()}
         onKeyDown={onKeyDown}
       >
