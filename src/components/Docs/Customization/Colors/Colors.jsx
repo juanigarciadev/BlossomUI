@@ -25,7 +25,7 @@ import DocPage from '../../DocPage'
 const Colors = () => {
     return (
         <DocPage title='Colors'>
-                <div className='flex flex-col gap-10 w-full 2xl:flex-col lg:grid lg:grid-cols-5 lg:justify-between md:gap-2 md:gap-y-10 xs:grid-cols-2 xxs:flex xxs:w-12'>
+                <div className='flex w-full flex-col gap-10'>
                     <Slate />
                     <Gray />
                     <Zinc />

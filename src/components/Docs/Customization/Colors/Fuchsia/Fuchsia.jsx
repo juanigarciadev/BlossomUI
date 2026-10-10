@@ -5,7 +5,7 @@ const Fuchsia = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Fuchsia</span>
-            <section className='flex flex-wrap gap-2 lg:flex-col'>
+            <section className='grid w-full grid-cols-11 gap-2 lg:grid-cols-6 sm:grid-cols-4'>
                 <ColorBlock color={'bg-fuchsia-50'} number={'50'} hex={'#fdf4ff'} />
                 <ColorBlock color={'bg-fuchsia-100'} number={'100'} hex={'#fae8ff'} />
                 <ColorBlock color={'bg-fuchsia-200'} number={'200'} hex={'#f5d0fe'} />

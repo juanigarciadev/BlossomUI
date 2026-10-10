@@ -5,7 +5,7 @@ const Emerald = () => {
     return (
         <div className='flex flex-col'>
             <span className='font-medium pb-2'>Emerald</span>
-            <section className='flex flex-wrap gap-2 lg:flex-col'>
+            <section className='grid w-full grid-cols-11 gap-2 lg:grid-cols-6 sm:grid-cols-4'>
                 <ColorBlock color={'bg-emerald-50'} number={'50'} hex={'#ecfdf5'} />
                 <ColorBlock color={'bg-emerald-100'} number={'100'} hex={'#d1fae5'} />
                 <ColorBlock color={'bg-emerald-200'} number={'200'} hex={'#a7f3d0'} />
