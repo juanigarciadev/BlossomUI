@@ -47,6 +47,15 @@ const NavbarDocumentation = () => {
                 <Navbar brand={brand} links={links} color='#0f766e' />
             </Variant>
 
+            <Variant title='Always visible actions' description='`actions` move into the menu on a narrow screen. Put in `alwaysVisibleActions` what has to stay in the bar, like the cart. `breakpoint` is the width in pixels where it collapses and the menu is rendered only when it is needed.' file={file} previewClassName='flex w-full'>
+                <Navbar
+                    brand={brand}
+                    links={links}
+                    actions={<Button color='secondary'>Sign in</Button>}
+                    alwaysVisibleActions={<Button color='accent'>Cart</Button>}
+                />
+            </Variant>
+
         </DocPage>
     )
 }

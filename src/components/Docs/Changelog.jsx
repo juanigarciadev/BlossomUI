@@ -39,6 +39,7 @@ const releases = [
                     'Yellow buttons, alerts and toasts use dark text for a better contrast, and toasts appear above dialogs.',
                     'Tabs can keep the panels mounted, the Navbar menu closes when a link is pressed, Popover accepts its own trigger classes and the product card colors can have a name.',
                     'The date pickers start on the closest allowed day when min or max leave today out, and Escape closes them first. Toaster has a position and a dismissLabel, the plan button of Pricing uses the accent, and the product card has buttonColor.',
+                    'Banner has a color: presets, accent or any CSS color. Navbar has alwaysVisibleActions to keep the cart in the bar on a phone, a breakpoint, and renders its links and actions only once.',
                     'Button has a size prop, Card and Product card accept their own width, and Tabs without content do not draw an empty panel.',
                     'Tailwind CSS 3.3 or newer is needed (the product card uses line-clamp). The documentation is built with Tailwind CSS 3.4.',
                 ],

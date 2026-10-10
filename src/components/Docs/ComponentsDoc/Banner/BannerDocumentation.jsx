@@ -28,6 +28,13 @@ const BannerDocumentation = () => {
             <Variant title='Not dismissible' description='Set `dismissible` to false to remove the close button.' file={file} previewClassName='flex'>
                 <Banner dismissible={false}>Scheduled maintenance on Sunday at 3:00 AM.</Banner>
             </Variant>
+            <Variant title='Colors' description='Choose the color with `color`: default, dark, blue, green, yellow or red. Use `accent` for the brand color of your site, or any CSS color. The text switches between black and white to stay readable.' file={file} previewClassName='flex flex-col gap-4'>
+                <Banner color='dark'>Free shipping on orders over $40.</Banner>
+                <Banner color='accent'>Use the code BLOSSOM and get 10% off.</Banner>
+                <Banner color='yellow'>The store closes early today.</Banner>
+                <Banner color='#7c3aed'>A banner in any color you like.</Banner>
+            </Variant>
+
         </DocPage>
     )
 }
