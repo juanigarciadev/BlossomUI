@@ -343,6 +343,8 @@ export const Select = ({ color, label, hint, error, success, options, value, def
 }
 
 export interface MultiSelectProps extends FieldProps {
+    /** Text shown when the search does not match any option. */
+    noResultsLabel?: string
     options: SelectOption[]
     /** Controlled list of selected values. Use together with `onChange`. */
     value?: string[]
@@ -358,7 +360,7 @@ export interface MultiSelectProps extends FieldProps {
 }
 
 /** Select several options. Selected values are shown as chips and the text field filters the list. */
-export const MultiSelect = ({ color, label, hint, error, success, options, value, defaultValue = [], onChange, placeholder = 'Select options', name, max, disabled = false, className = '' }: MultiSelectProps) => {
+export const MultiSelect = ({ noResultsLabel = 'No results', color, label, hint, error, success, options, value, defaultValue = [], onChange, placeholder = 'Select options', name, max, disabled = false, className = '' }: MultiSelectProps) => {
     const id = useId()
     const state = stateOf(error, success)
     const text = error ?? success ?? hint
@@ -492,7 +494,7 @@ export const MultiSelect = ({ color, label, hint, error, success, options, value
             )}
             {open && position && createPortal(
                 <ul ref={list} id={`${id}-list`} role='listbox' aria-multiselectable='true' aria-labelledby={label ? `${id}-label` : undefined} className={listBox} style={accentStyle(color, listStyle(position))}>
-                    {filtered.length === 0 && <li className='px-3 py-2 text-neutral-500'>No results</li>}
+                    {filtered.length === 0 && <li className='px-3 py-2 text-neutral-500'>{noResultsLabel}</li>}
                     {filtered.map((option, index) => {
                         const checked = current.includes(option.value)
                         const blocked = option.disabled || (!checked && limitReached)

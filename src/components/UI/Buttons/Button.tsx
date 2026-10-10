@@ -108,6 +108,8 @@ export type SocialProvider = 'facebook' | 'x' | 'github' | 'google' | 'apple'
 
 export interface SocialButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
     provider: SocialProvider
+    /** Text of the button, for example to translate it. Without it the text is "Sign in with" and the name of the provider. */
+    label?: string
     /** Render only the icon. */
     iconOnly?: boolean
     rounded?: boolean
@@ -141,8 +143,9 @@ const providers: Record<SocialProvider, { label: string; style: string; icon: Re
     },
 }
 
-export const SocialButton = ({ provider, iconOnly = false, rounded = false, className = '', type = 'button', ...props }: SocialButtonProps) => {
-    const { label, style, icon } = providers[provider]
+export const SocialButton = ({ provider, label: customLabel, iconOnly = false, rounded = false, className = '', type = 'button', ...props }: SocialButtonProps) => {
+    const { label: defaultLabel, style, icon } = providers[provider]
+    const label = customLabel ?? defaultLabel
     return (
         <button
             type={type}

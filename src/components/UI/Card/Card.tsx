@@ -26,12 +26,53 @@ export const Card = ({ color, title, description, icon, footer, className = '' }
     </section>
 )
 
+export interface ProductCardLabels {
+    addToCart: string
+    added: string
+    unavailable: string
+    outOfStock: string
+    addToFavorites: string
+    removeFromFavorites: string
+    expandPhoto: (name: string) => string
+    stars: (rating: number) => string
+    color: string
+    size: string
+    /** Texts of the photo viewer. */
+    close: string
+    previousPhoto: string
+    nextPhoto: string
+    showPhoto: (photo: number) => string
+    viewer: (name: string, photo: number, total: number) => string
+}
+
+const defaultLabels: ProductCardLabels = {
+    addToCart: 'Add to cart',
+    added: 'Added!',
+    unavailable: 'Unavailable',
+    outOfStock: 'Out of stock',
+    addToFavorites: 'Add to favorites',
+    removeFromFavorites: 'Remove from favorites',
+    expandPhoto: (name) => `Expand photo of ${name}`,
+    stars: (rating) => `${rating} out of 5 stars`,
+    color: 'Color',
+    size: 'Size',
+    close: 'Close',
+    previousPhoto: 'Previous photo',
+    nextPhoto: 'Next photo',
+    showPhoto: (photo) => `Show photo ${photo}`,
+    viewer: (name, photo, total) => `${name}, photo ${photo} of ${total}`,
+}
+
 export interface ProductSelection {
     color?: string
     size?: string
 }
 
 export interface ProductCardProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: Partial<ProductCardLabels>
+    /** Formats the prices, for example with `Intl.NumberFormat` to show another currency. Without it `currency` and two decimals are used. */
+    formatPrice?: (price: number) => string
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     /** Color of the badge: any CSS color. Without it the badge uses the accent. */
@@ -78,6 +119,7 @@ const Star = ({ filled }: { filled: boolean }) => (
 )
 
 interface LightboxProps {
+    labels: ProductCardLabels
     color?: string
     images: string[]
     start: number
@@ -86,7 +128,7 @@ interface LightboxProps {
 }
 
 /** Full size view of the product photos, with arrows and thumbnails when there are several. */
-const Lightbox = ({ color, images, start, name, onClose }: LightboxProps) => {
+const Lightbox = ({ labels, color, images, start, name, onClose }: LightboxProps) => {
     const [index, setIndex] = useState(start)
     const panel = useRef<HTMLDivElement>(null)
     useOverlay(true, onClose, panel)
@@ -111,15 +153,15 @@ const Lightbox = ({ color, images, start, name, onClose }: LightboxProps) => {
             style={accentStyle(color)}
             onMouseDown={(event) => event.target === event.currentTarget && onClose()}
         >
-            <div ref={panel} role='dialog' aria-modal='true' aria-label={`${name}, photo ${index + 1} of ${images.length}`} tabIndex={-1} className='flex max-h-full w-fit max-w-full flex-col gap-4 outline-none'>
+            <div ref={panel} role='dialog' aria-modal='true' aria-label={labels.viewer(name, index + 1, images.length)} tabIndex={-1} className='flex max-h-full w-fit max-w-full flex-col gap-4 outline-none'>
                 <div className='flex justify-end'>
-                    <button type='button' aria-label='Close' onClick={onClose} className={control}>
+                    <button type='button' aria-label={labels.close} onClick={onClose} className={control}>
                         <svg className='h-5 w-5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'><path strokeLinecap='round' strokeLinejoin='round' d='M6 6l12 12M18 6 6 18' /></svg>
                     </button>
                 </div>
                 <div className='flex min-h-0 items-center justify-center gap-3'>
                     {images.length > 1 && (
-                        <button type='button' aria-label='Previous photo' onClick={() => go(-1)} className={`${control} shrink-0`}>
+                        <button type='button' aria-label={labels.previousPhoto} onClick={() => go(-1)} className={`${control} shrink-0`}>
                             <svg className='h-5 w-5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2.5'><path strokeLinecap='round' strokeLinejoin='round' d='m15 6-6 6 6 6' /></svg>
                         </button>
                     )}
@@ -127,7 +169,7 @@ const Lightbox = ({ color, images, start, name, onClose }: LightboxProps) => {
                         <img src={images[index]} alt={`${name}, photo ${index + 1}`} className='max-h-[70vh] min-h-[12rem] w-auto min-w-[min(16rem,calc(100vw-9rem))] max-w-[min(56rem,calc(100vw-9rem))] rounded-2xl bg-neutral-200 object-contain shadow-2xl' />
                     </div>
                     {images.length > 1 && (
-                        <button type='button' aria-label='Next photo' onClick={() => go(1)} className={`${control} shrink-0`}>
+                        <button type='button' aria-label={labels.nextPhoto} onClick={() => go(1)} className={`${control} shrink-0`}>
                             <svg className='h-5 w-5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2.5'><path strokeLinecap='round' strokeLinejoin='round' d='m9 6 6 6-6 6' /></svg>
                         </button>
                     )}
@@ -138,7 +180,7 @@ const Lightbox = ({ color, images, start, name, onClose }: LightboxProps) => {
                             <button
                                 key={`${src}-${position}`}
                                 type='button'
-                                aria-label={`Show photo ${position + 1}`}
+                                aria-label={labels.showPhoto(position + 1)}
                                 aria-current={position === index}
                                 onClick={() => setIndex(position)}
                                 className={`h-14 w-14 shrink-0 overflow-hidden rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${position === index ? 'ring-2 ring-[var(--blossom-accent,#f472b6)]' : 'opacity-60 hover:opacity-100'}`}
@@ -155,6 +197,8 @@ const Lightbox = ({ color, images, start, name, onClose }: LightboxProps) => {
 }
 
 export const ProductCard = ({
+    labels,
+    formatPrice,
     color,
     badgeColor,
     image,
@@ -185,6 +229,8 @@ export const ProductCard = ({
     const gallery = [image, ...images]
     const canExpand = expandable || images.length > 0
     const horizontal = layout === 'horizontal'
+    const text: ProductCardLabels = { ...defaultLabels, ...labels }
+    const money = (value: number) => (formatPrice ? formatPrice(value) : `${currency}${value.toFixed(2)}`)
     const discount = originalPrice && originalPrice > price ? Math.round((1 - price / originalPrice) * 100) : 0
 
     const addedTimer = useRef(0)
@@ -209,7 +255,7 @@ export const ProductCard = ({
                     {canExpand ? (
                         <button
                             type='button'
-                            aria-label={`Expand photo of ${name}`}
+                            aria-label={text.expandPhoto(name)}
                             aria-haspopup='dialog'
                             onClick={() => setExpanded(true)}
                             className={`group block w-full cursor-zoom-in overflow-hidden rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${horizontal ? 'h-full' : ''}`}
@@ -221,7 +267,7 @@ export const ProductCard = ({
                     )}
                     <button
                         type='button'
-                        aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'}
+                        aria-label={favorite ? text.removeFromFavorites : text.addToFavorites}
                         aria-pressed={favorite}
                         onClick={toggleFavorite}
                         className='absolute right-2 top-2 rounded-lg bg-white p-1.5 shadow-sm hover:bg-neutral-100 dark:bg-neutral-900 dark:hover:bg-neutral-700'
@@ -243,7 +289,7 @@ export const ProductCard = ({
                                     >{badge}</span>
                                 )}
                                 {discount > 0 && <span className='rounded-lg bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900 dark:bg-red-900 dark:text-red-200'>-{discount}%</span>}
-                                {!inStock && <span className='rounded-lg bg-neutral-200 px-2 py-0.5 text-xs font-medium text-neutral-800 dark:bg-neutral-700 dark:text-neutral-200'>Out of stock</span>}
+                                {!inStock && <span className='rounded-lg bg-neutral-200 px-2 py-0.5 text-xs font-medium text-neutral-800 dark:bg-neutral-700 dark:text-neutral-200'>{text.outOfStock}</span>}
                             </div>
                         )}
                         {brand && <span className='text-xs font-medium uppercase tracking-wide text-neutral-500'>{brand}</span>}
@@ -251,7 +297,7 @@ export const ProductCard = ({
                         {description && <p className='line-clamp-2 text-sm text-neutral-600 dark:text-neutral-300'>{description}</p>}
                         {(rating > 0 || reviews !== undefined) && (
                             <div className='flex items-center gap-2'>
-                                <div className='flex' role='img' aria-label={`${rating} out of 5 stars`}>
+                                <div className='flex' role='img' aria-label={text.stars(rating)}>
                                     {[1, 2, 3, 4, 5].map((n) => <Star key={n} filled={n <= Math.round(rating)} />)}
                                 </div>
                                 {reviews !== undefined && <span className='text-xs text-neutral-500'>({reviews})</span>}
@@ -260,7 +306,7 @@ export const ProductCard = ({
                     </div>
 
                     {colors && colors.length > 0 && (
-                        <div role='radiogroup' aria-label='Color' className='flex items-center gap-2'>
+                        <div role='radiogroup' aria-label={text.color} className='flex items-center gap-2'>
                             {colors.map((option) => (
                                 <button
                                     key={option}
@@ -277,7 +323,7 @@ export const ProductCard = ({
                     )}
 
                     {sizes && sizes.length > 0 && (
-                        <div role='radiogroup' aria-label='Size' className='flex flex-wrap gap-2'>
+                        <div role='radiogroup' aria-label={text.size} className='flex flex-wrap gap-2'>
                             {sizes.map((option) => (
                                 <button
                                     key={option}
@@ -297,8 +343,8 @@ export const ProductCard = ({
 
             <div className='flex items-center justify-between gap-2'>
                 <div className='flex flex-col leading-tight'>
-                    <span className='text-xl font-bold text-black dark:text-white'>{currency}{price.toFixed(2)}</span>
-                    {discount > 0 && originalPrice && <span className='text-xs text-neutral-500 line-through'>{currency}{originalPrice.toFixed(2)}</span>}
+                    <span className='text-xl font-bold text-black dark:text-white'>{money(price)}</span>
+                    {discount > 0 && originalPrice && <span className='text-xs text-neutral-500 line-through'>{money(originalPrice)}</span>}
                 </div>
                 <button
                     type='button'
@@ -306,10 +352,10 @@ export const ProductCard = ({
                     disabled={!inStock}
                     className='flex select-none items-center justify-center rounded-xl bg-black px-4 py-3 text-sm font-medium text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-neutral-200'
                 >
-                    {!inStock ? 'Unavailable' : added ? 'Added!' : 'Add to cart'}
+                    {!inStock ? text.unavailable : added ? text.added : text.addToCart}
                 </button>
             </div>
-            {expanded && <Lightbox color={color} images={gallery} start={0} name={name} onClose={() => setExpanded(false)} />}
+            {expanded && <Lightbox labels={text} color={color} images={gallery} start={0} name={name} onClose={() => setExpanded(false)} />}
         </article>
     )
 }

@@ -1,6 +1,8 @@
 import { useId, useRef, useState, type ChangeEvent, type DragEvent } from 'react'
 
 export interface FileUploadProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: { hint?: string; remove?: (name: string) => string }
     /** Accepted types, same format as the `accept` attribute, for example "image/*,.pdf". */
     accept?: string
     multiple?: boolean
@@ -15,7 +17,7 @@ export interface FileUploadProps {
 
 const formatSize = (bytes: number) => (bytes < 1024 * 1024 ? `${Math.max(1, Math.round(bytes / 1024))} KB` : `${(bytes / 1024 / 1024).toFixed(1)} MB`)
 
-export const FileUpload = ({ accept, multiple = false, maxSizeMb, label = 'Upload files', hint, disabled = false, onChange }: FileUploadProps) => {
+export const FileUpload = ({ labels, accept, multiple = false, maxSizeMb, label = 'Upload files', hint, disabled = false, onChange }: FileUploadProps) => {
     const id = useId()
     const input = useRef<HTMLInputElement>(null)
     const [files, setFiles] = useState<File[]>([])
@@ -87,7 +89,7 @@ export const FileUpload = ({ accept, multiple = false, maxSizeMb, label = 'Uploa
                         <li key={`${file.name}-${index}`} className='flex items-center justify-between gap-3 rounded-xl border border-neutral-200 px-3 py-2 text-sm dark:border-neutral-700'>
                             <span className='min-w-0 flex-1 truncate text-neutral-800 dark:text-white'>{file.name}</span>
                             <span className='shrink-0 text-xs text-neutral-500'>{formatSize(file.size)}</span>
-                            <button type='button' aria-label={`Remove ${file.name}`} onClick={() => remove(index)} className='shrink-0 rounded-lg p-1 text-neutral-500 outline-none hover:bg-neutral-200 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:hover:bg-neutral-800'>
+                            <button type='button' aria-label={labels?.remove ? labels.remove(file.name) : `Remove ${file.name}`} onClick={() => remove(index)} className='shrink-0 rounded-lg p-1 text-neutral-500 outline-none hover:bg-neutral-200 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:hover:bg-neutral-800'>
                                 <svg className='h-4 w-4' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'><path strokeLinecap='round' strokeLinejoin='round' d='M6 6l12 12M18 6 6 18' /></svg>
                             </button>
                         </li>

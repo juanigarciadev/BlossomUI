@@ -55,6 +55,7 @@ const TabsDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Tab
 const TooltipDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Tooltip/TooltipDocumentation'))
 const ChartsDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Charts/ChartsDocumentation'))
 const BrandColor = lazy(() => import('./components/Docs/Customization/BrandColor/BrandColor'))
+const TextsCustomization = lazy(() => import('./components/Docs/Customization/Texts/Texts'))
 
 function App() {
 
@@ -72,6 +73,7 @@ function App() {
                 <Route path='/docs/getting-started/changelog' element={<Changelog />} />
                 <Route path='/docs/customization/dark-mode' element={<DarkMode />} />
                 <Route path='/docs/customization/brand-color' element={<BrandColor />} />
+                <Route path='/docs/customization/texts' element={<TextsCustomization />} />
                 <Route path='/docs/customization/colors' element={<Colors />} />
                 <Route path='/docs/components/alerts' element={<AlertsDocumentation />} />
                 <Route path='/docs/components/avatar' element={<AvatarDocumentation />} />

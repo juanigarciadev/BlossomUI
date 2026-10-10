@@ -111,6 +111,13 @@ export const pages = [
         priority: 0.6,
     },
     {
+        url: '/docs/customization/texts',
+        title: `Texts and translation | ${SITE.name}`,
+        description: 'Translate every text of the Blossom UI components with the labels prop and format prices and dates for your language and currency.',
+        type: 'article',
+        priority: 0.5,
+    },
+    {
         url: '/docs/customization/colors',
         title: `Tailwind CSS colors | ${SITE.name}`,
         description: 'The full Tailwind CSS color palette with its hex values, to customize your Blossom UI components.',
@@ -150,6 +157,10 @@ export const faq = [
     {
         question: 'How do I change the pink accent to my brand color?',
         answer: 'Set the --blossom-accent CSS variable once, for example :root { --blossom-accent: #0f766e; }. Tabs, Pagination, Stepper, Forms, focus rings and the rest of the accents follow it. You can also set it on any parent element, or pass a color prop to a single component.',
+    },
+    {
+        question: 'Can I translate the components to another language?',
+        answer: 'Yes. The texts are in English by default but every component with texts has a labels prop (or a label prop) to change them, and Pricing and the product card have formatPrice to show prices in your currency. Date pickers also take a locale.',
     },
     {
         question: 'Can I use my own colors?',

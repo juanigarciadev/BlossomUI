@@ -2,7 +2,28 @@ import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type 
 import { createPortal } from 'react-dom'
 import { accentStyle } from '../accent'
 
+export interface DatePickerLabels {
+    /** Accessible name of the calendar. */
+    choose: string
+    previousMonth: string
+    nextMonth: string
+    /** Hint of the range picker while it waits for the first day. */
+    firstDay: string
+    /** Hint of the range picker while it waits for the last day. */
+    lastDay: string
+}
+
+const defaultLabels: DatePickerLabels = {
+    choose: 'Choose a date',
+    previousMonth: 'Previous month',
+    nextMonth: 'Next month',
+    firstDay: 'Choose the first day',
+    lastDay: 'Choose the last day',
+}
+
 export interface DatePickerProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: Partial<DatePickerLabels>
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     value?: Date | null
@@ -23,7 +44,7 @@ const startOfDay = (date: Date) => new Date(date.getFullYear(), date.getMonth(),
 const sameDay = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate()
 const addDays = (date: Date, days: number) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days)
 
-export const DatePicker = ({ color, value, defaultValue = null, onChange, label, placeholder = 'Select a date', min, max, locale = 'en-US', disabled = false }: DatePickerProps) => {
+export const DatePicker = ({ labels, color, value, defaultValue = null, onChange, label, placeholder = 'Select a date', min, max, locale = 'en-US', disabled = false }: DatePickerProps) => {
     const id = useId()
     const trigger = useRef<HTMLButtonElement>(null)
     const panel = useRef<HTMLDivElement>(null)
@@ -155,17 +176,17 @@ export const DatePicker = ({ color, value, defaultValue = null, onChange, label,
                 <div
                     ref={panel}
                     role='dialog'
-                    aria-label='Choose a date'
+                    aria-label={labels?.choose ?? defaultLabels.choose}
                     onKeyDown={onKeyDown}
                     style={accentStyle(color, { position: 'fixed', top: box?.top ?? 0, left: box?.left ?? 0, visibility: box ? 'visible' : 'hidden' })}
                     className='z-[80] w-72 rounded-xl border border-neutral-200 bg-white p-3 shadow-lg dark:border-neutral-700 dark:bg-neutral-900'
                 >
                     <div className='flex items-center justify-between pb-2'>
-                        <button type='button' aria-label='Previous month' onClick={() => moveMonth(-1)} className={navButton}>
+                        <button type='button' aria-label={labels?.previousMonth ?? defaultLabels.previousMonth} onClick={() => moveMonth(-1)} className={navButton}>
                             <svg className='h-4 w-4' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'><path strokeLinecap='round' strokeLinejoin='round' d='m15 6-6 6 6 6' /></svg>
                         </button>
                         <span aria-live='polite' className='text-sm font-medium capitalize text-neutral-900 dark:text-white'>{title}</span>
-                        <button type='button' aria-label='Next month' onClick={() => moveMonth(1)} className={navButton}>
+                        <button type='button' aria-label={labels?.nextMonth ?? defaultLabels.nextMonth} onClick={() => moveMonth(1)} className={navButton}>
                             <svg className='h-4 w-4' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'><path strokeLinecap='round' strokeLinejoin='round' d='m9 6 6 6-6 6' /></svg>
                         </button>
                     </div>
@@ -209,6 +230,8 @@ export interface DateRange {
 }
 
 export interface DateRangePickerProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: Partial<DatePickerLabels>
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     value?: DateRange
@@ -230,7 +253,7 @@ const emptyRange: DateRange = { start: null, end: null }
 
 
 /** Pick two days: every day between them is highlighted. */
-export const DateRangePicker = ({ color, value, defaultValue = emptyRange, onChange, label, placeholder = 'Select a range', min, max, locale = 'en-US', disabled = false }: DateRangePickerProps) => {
+export const DateRangePicker = ({ labels, color, value, defaultValue = emptyRange, onChange, label, placeholder = 'Select a range', min, max, locale = 'en-US', disabled = false }: DateRangePickerProps) => {
     const id = useId()
     const trigger = useRef<HTMLButtonElement>(null)
     const panel = useRef<HTMLDivElement>(null)
@@ -382,18 +405,18 @@ export const DateRangePicker = ({ color, value, defaultValue = emptyRange, onCha
                 <div
                     ref={panel}
                     role='dialog'
-                    aria-label='Choose a date range'
+                    aria-label={labels?.choose ?? defaultLabels.choose}
                     onKeyDown={onKeyDown}
                     onMouseLeave={() => setHover(null)}
                     style={accentStyle(color, { position: 'fixed', top: box?.top ?? 0, left: box?.left ?? 0, visibility: box ? 'visible' : 'hidden' })}
                     className='z-[80] w-72 rounded-xl border border-neutral-200 bg-white p-3 shadow-lg dark:border-neutral-700 dark:bg-neutral-900'
                 >
                     <div className='flex items-center justify-between pb-2'>
-                        <button type='button' aria-label='Previous month' onClick={() => moveMonth(-1)} className={navButton}>
+                        <button type='button' aria-label={labels?.previousMonth ?? defaultLabels.previousMonth} onClick={() => moveMonth(-1)} className={navButton}>
                             <svg className='h-4 w-4' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'><path strokeLinecap='round' strokeLinejoin='round' d='m15 6-6 6 6 6' /></svg>
                         </button>
                         <span aria-live='polite' className='text-sm font-medium capitalize text-neutral-900 dark:text-white'>{title}</span>
-                        <button type='button' aria-label='Next month' onClick={() => moveMonth(1)} className={navButton}>
+                        <button type='button' aria-label={labels?.nextMonth ?? defaultLabels.nextMonth} onClick={() => moveMonth(1)} className={navButton}>
                             <svg className='h-4 w-4' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'><path strokeLinecap='round' strokeLinejoin='round' d='m9 6 6 6-6 6' /></svg>
                         </button>
                     </div>
@@ -432,7 +455,7 @@ export const DateRangePicker = ({ color, value, defaultValue = emptyRange, onCha
                         })}
                     </div>
                     <p className='pt-2 text-center text-xs text-neutral-500'>
-                        {!draft.start || draft.end ? 'Choose the first day' : 'Choose the last day'}
+                        {!draft.start || draft.end ? labels?.firstDay ?? defaultLabels.firstDay : labels?.lastDay ?? defaultLabels.lastDay}
                     </p>
                 </div>,
                 document.body

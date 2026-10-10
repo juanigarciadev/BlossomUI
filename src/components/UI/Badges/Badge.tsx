@@ -3,6 +3,8 @@ import type { HTMLAttributes, ReactNode } from 'react'
 export type BadgeColor = 'default' | 'dark' | 'red' | 'green' | 'yellow' | 'purple' | 'pink'
 
 export interface BadgeProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
+    /** Accessible name of the dismiss button. */
+    dismissLabel?: string
     /** A preset or any CSS color, for example `#7c3aed`. */
     color?: BadgeColor | (string & {})
     /** Border instead of the soft filled style. */
@@ -37,7 +39,7 @@ const outline: Record<BadgeColor, string> = {
 
 const isPreset = (color: string): color is BadgeColor => color in filled
 
-export const Badge = ({ color = 'default', outlined = false, rounded = false, icon, onDismiss, className = '', children, style, ...props }: BadgeProps) => {
+export const Badge = ({ dismissLabel = 'Dismiss', color = 'default', outlined = false, rounded = false, icon, onDismiss, className = '', children, style, ...props }: BadgeProps) => {
     const iconOnly = icon && !children
     // A custom color is used for the text and the border, with a soft tint of it as background.
     const customStyle = isPreset(color)
@@ -54,7 +56,7 @@ export const Badge = ({ color = 'default', outlined = false, rounded = false, ic
             {onDismiss && (
                 <button
                     type='button'
-                    aria-label='Dismiss'
+                    aria-label={dismissLabel}
                     onClick={onDismiss}
                     className='-mr-1 ml-1 rounded-lg p-0.5 hover:bg-black/10 dark:hover:bg-white/10'
                 >

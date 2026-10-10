@@ -19,6 +19,7 @@ const releases = [
                     'Avatar stacked groups show the name of each person in a tooltip, and the counter lists who is hidden.',
                     'Tooltip has an optional arrow that points to the element.',
                     'Kbd and KbdShortcut have colors, and a pressed key is filled with its color.',
+                    'Texts: Pagination, Stepper, Rating, Product card, Pricing, Survey, Date pickers, Carousel, Table, Navbar, Footer and the close and dismiss buttons can be translated with a labels prop, and prices can be formatted with formatPrice.',
                     'Brand color: every accent reads the --blossom-accent CSS variable, pink by default, so one line sets your brand everywhere. Tabs, Navbar, Pagination, Stepper, Timeline, Slider, Carousel, Table, Card, Product card, Empty state, Survey, Pricing, Jumbotron, Date pickers, Command palette, Rating and the form controls also have a color prop.',
                     'Custom colors: Button, IconButton, Badge, Alert, Toast, ProgressBar, Spinner and Kbd accept any CSS color in their color prop, not only the presets.',
                 ],

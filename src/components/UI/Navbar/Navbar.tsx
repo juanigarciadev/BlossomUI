@@ -9,6 +9,8 @@ export interface NavbarLink {
 }
 
 export interface NavbarProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: { navigation?: string; openMenu?: string; closeMenu?: string }
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     brand: ReactNode
@@ -19,7 +21,7 @@ export interface NavbarProps {
     sticky?: boolean
 }
 
-export const Navbar = ({ color, brand, links, actions, sticky = false }: NavbarProps) => {
+export const Navbar = ({ labels, color, brand, links, actions, sticky = false }: NavbarProps) => {
     const [open, setOpen] = useState(false)
 
     return (
@@ -27,7 +29,7 @@ export const Navbar = ({ color, brand, links, actions, sticky = false }: NavbarP
             <div className='flex items-center justify-between gap-4 px-4 py-3'>
                 <div className='flex items-center gap-8'>
                     <div className='text-lg font-bold text-neutral-900 dark:text-white'>{brand}</div>
-                    <nav aria-label='Main' className='flex items-center gap-1 sm:hidden'>
+                    <nav aria-label={labels?.navigation ?? 'Main'} className='flex items-center gap-1 sm:hidden'>
                         {links.map((link) => (
                             <a
                                 key={link.href}
@@ -44,7 +46,7 @@ export const Navbar = ({ color, brand, links, actions, sticky = false }: NavbarP
                     <div className='flex items-center gap-2 sm:hidden'>{actions}</div>
                     <button
                         type='button'
-                        aria-label={open ? 'Close menu' : 'Open menu'}
+                        aria-label={open ? labels?.closeMenu ?? 'Close menu' : labels?.openMenu ?? 'Open menu'}
                         aria-expanded={open}
                         onClick={() => setOpen((current) => !current)}
                         className='hidden rounded-xl p-2 text-neutral-700 outline-none hover:bg-neutral-100 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] dark:text-white dark:hover:bg-neutral-800 sm:block'

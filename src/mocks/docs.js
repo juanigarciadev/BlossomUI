@@ -26,6 +26,10 @@ export const customization = [
         name: "Brand color",
         url: "/docs/customization/brand-color",
     },
+    {
+        name: "Texts and translation",
+        url: "/docs/customization/texts",
+    },
 ];
 
 export const components = [

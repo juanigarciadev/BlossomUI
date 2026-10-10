@@ -7,12 +7,14 @@ export interface BreadcrumbItem {
 }
 
 export interface BreadcrumbProps {
+    /** Accessible name of the navigation. */
+    label?: string
     items: BreadcrumbItem[]
     separator?: 'chevron' | 'slash'
 }
 
-export const Breadcrumb = ({ items, separator = 'chevron' }: BreadcrumbProps) => (
-    <nav aria-label='Breadcrumb'>
+export const Breadcrumb = ({ label = 'Breadcrumb', items, separator = 'chevron' }: BreadcrumbProps) => (
+    <nav aria-label={label}>
         <ol className='flex flex-wrap items-center gap-2 text-sm'>
             {items.map((item, index) => {
                 const last = index === items.length - 1

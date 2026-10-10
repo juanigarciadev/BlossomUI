@@ -12,6 +12,8 @@ export interface TableColumn<T> {
 }
 
 export interface TableProps<T> {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: { selectAll?: string; selectRow?: string }
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     columns: TableColumn<T>[]
@@ -33,7 +35,7 @@ const align = { left: 'text-left', right: 'text-right', center: 'text-center' }
 
 const box = 'h-4 w-4 cursor-pointer rounded border-neutral-300 accent-[var(--blossom-accent,#f472b6)]'
 
-export const Table = <T,>({ color, columns, rows, rowKey, selectable = false, onSelectionChange, empty = 'No results', striped = false, caption }: TableProps<T>) => {
+export const Table = <T,>({ labels, color, columns, rows, rowKey, selectable = false, onSelectionChange, empty = 'No results', striped = false, caption }: TableProps<T>) => {
     const [sort, setSort] = useState<{ key: string; direction: Direction } | null>(null)
     const [selected, setSelected] = useState<string[]>([])
 
@@ -74,7 +76,7 @@ export const Table = <T,>({ color, columns, rows, rowKey, selectable = false, on
                             <th scope='col' className='w-10 px-4 py-3'>
                                 <input
                                     type='checkbox'
-                                    aria-label='Select all rows'
+                                    aria-label={labels?.selectAll ?? 'Select all rows'}
                                     className={box}
                                     checked={allSelected}
                                     ref={(element) => { if (element) element.indeterminate = someSelected }}
@@ -125,7 +127,7 @@ export const Table = <T,>({ color, columns, rows, rowKey, selectable = false, on
                                     <td className='px-4 py-3'>
                                         <input
                                             type='checkbox'
-                                            aria-label='Select row'
+                                            aria-label={labels?.selectRow ?? 'Select row'}
                                             className={box}
                                             checked={checked}
                                             onChange={() => update(checked ? selected.filter((value) => value !== id) : [...selected, id])}

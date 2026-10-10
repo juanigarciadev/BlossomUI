@@ -1,6 +1,8 @@
 import { useId, useRef, useState, type ClipboardEvent, type KeyboardEvent } from 'react'
 
 export interface ChipInputProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: { remove?: (chip: string) => string; duplicate?: (chip: string) => string }
     value?: string[]
     defaultValue?: string[]
     onChange?: (value: string[]) => void
@@ -14,7 +16,7 @@ export interface ChipInputProps {
     disabled?: boolean
 }
 
-export const ChipInput = ({ value, defaultValue = [], onChange, label, hint, placeholder = 'Type and press Enter', max, validate, disabled = false }: ChipInputProps) => {
+export const ChipInput = ({ labels, value, defaultValue = [], onChange, label, hint, placeholder = 'Type and press Enter', max, validate, disabled = false }: ChipInputProps) => {
     const id = useId()
     const input = useRef<HTMLInputElement>(null)
     const [internal, setInternal] = useState<string[]>(defaultValue)
@@ -32,7 +34,7 @@ export const ChipInput = ({ value, defaultValue = [], onChange, label, hint, pla
         const chip = raw.trim()
         if (!chip) return false
         if (chips.some((item) => item.toLowerCase() === chip.toLowerCase())) {
-            setError(`"${chip}" is already added`)
+            setError(labels?.duplicate ? labels.duplicate(chip) : `"${chip}" is already added`)
             return false
         }
         const problem = validate?.(chip)
@@ -78,7 +80,7 @@ export const ChipInput = ({ value, defaultValue = [], onChange, label, hint, pla
                         {chip}
                         <button
                             type='button'
-                            aria-label={`Remove ${chip}`}
+                            aria-label={labels?.remove ? labels.remove(chip) : `Remove ${chip}`}
                             disabled={disabled}
                             onClick={() => update(chips.filter((item) => item !== chip))}
                             className='rounded p-0.5 hover:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_28%,transparent)] dark:hover:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_30%,transparent)]'

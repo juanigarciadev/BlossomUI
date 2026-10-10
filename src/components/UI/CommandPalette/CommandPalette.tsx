@@ -17,6 +17,8 @@ export interface Command {
 }
 
 export interface CommandPaletteProps {
+    /** Accessible name of the dialog. */
+    label?: string
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     open: boolean
@@ -26,7 +28,7 @@ export interface CommandPaletteProps {
     emptyText?: string
 }
 
-export const CommandPalette = ({ color, open, onClose, commands, placeholder = 'Type a command or search...', emptyText = 'No results found.' }: CommandPaletteProps) => {
+export const CommandPalette = ({ label = 'Command palette', color, open, onClose, commands, placeholder = 'Type a command or search...', emptyText = 'No results found.' }: CommandPaletteProps) => {
     const id = useId()
     const input = useRef<HTMLInputElement>(null)
     const [query, setQuery] = useState('')
@@ -87,7 +89,7 @@ export const CommandPalette = ({ color, open, onClose, commands, placeholder = '
                 ref={panel}
                 role='dialog'
                 aria-modal='true'
-                aria-label='Command palette'
+                aria-label={label}
                 tabIndex={-1}
                 onKeyDown={onKeyDown}
                 className='w-full max-w-lg overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-900'

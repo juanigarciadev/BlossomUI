@@ -10,21 +10,23 @@ export const Skeleton = ({ className = '' }: SkeletonProps) => (
 const lineWidths = ['w-60', 'w-72', 'w-52', 'w-64', 'w-80', 'w-48']
 
 export interface SkeletonTextProps {
+    /** Text read by screen readers. */
+    label?: string
     /** Number of text lines under the title. */
     lines?: number
 }
 
-export const SkeletonText = ({ lines = 4 }: SkeletonTextProps) => (
+export const SkeletonText = ({ lines = 4, label = 'Loading...' }: SkeletonTextProps) => (
     <div role='status' className='flex flex-col gap-2'>
         <Skeleton className='mb-2 h-4 w-40' />
         {Array.from({ length: lines }, (_, index) => (
             <Skeleton key={index} className={`h-3 ${lineWidths[index % lineWidths.length]}`} />
         ))}
-        <span className='sr-only'>Loading...</span>
+        <span className='sr-only'>{label}</span>
     </div>
 )
 
-export const SkeletonImage = () => (
+export const SkeletonImage = ({ label = 'Loading...' }: { label?: string }) => (
     <div role='status' className='flex w-full animate-pulse items-center gap-4'>
         <div className='flex h-64 w-64 shrink-0 items-center justify-center rounded-xl bg-neutral-300 dark:bg-neutral-700'>
             <svg className='h-10 w-10 text-neutral-400 dark:text-neutral-600' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 20 18'>
@@ -37,6 +39,6 @@ export const SkeletonImage = () => (
             <Skeleton className='h-3 w-4/5' />
             <Skeleton className='h-3 w-3/5' />
         </div>
-        <span className='sr-only'>Loading...</span>
+        <span className='sr-only'>{label}</span>
     </div>
 )
