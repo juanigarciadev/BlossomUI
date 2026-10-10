@@ -15,7 +15,13 @@ const ACCENT_VAR = 'var(--blossom-accent,#f472b6)'
 
 export type KbdColor = 'default' | 'dark' | 'pink' | 'purple' | 'blue' | 'green' | 'yellow' | 'red'
 
+export type KbdSize = 'sm' | 'md'
+
 export interface KbdProps {
+    /** `sm` is smaller and fits inside a button or a bar of 40 px. */
+    size?: KbdSize
+    /** Extra classes of the key. */
+    className?: string
     children: ReactNode
     /** Color of the key: a preset, `accent` for the brand color or any CSS color. `default` is a neutral gray. */
     color?: KbdColor | (string & {})
@@ -50,11 +56,16 @@ const pressed: Record<KbdColor, string> = {
 
 const isPreset = (color: string): color is KbdColor => color in idle
 
-export const Kbd = ({ children, color: colorProp = 'default', relief = false, active = false }: KbdProps) => {
+const sizes: Record<KbdSize, { box: string; relief: string }> = {
+    md: { box: 'rounded-xl px-2 py-1.5 text-sm', relief: 'border-b-4' },
+    sm: { box: 'rounded-md px-1.5 py-0.5 text-xs', relief: 'border-b-2' },
+}
+
+export const Kbd = ({ children, color: colorProp = 'default', size = 'md', className = '', relief = false, active = false }: KbdProps) => {
     const color = colorProp === 'accent' ? ACCENT_VAR : colorProp
     return (
     <kbd
-        className={`select-none rounded-xl border px-2 py-1.5 text-sm transition-colors ${relief ? 'border-b-4' : ''} ${isPreset(color) ? (active ? pressed[color] : idle[color]) : ''}`}
+        className={`select-none border transition-colors ${sizes[size].box} ${relief ? sizes[size].relief : ''} ${isPreset(color) ? (active ? pressed[color] : idle[color]) : ''} ${className}`}
         style={
             isPreset(color)
                 ? undefined
@@ -70,18 +81,21 @@ export const Kbd = ({ children, color: colorProp = 'default', relief = false, ac
 
 export interface KbdShortcutProps {
     keys: string[]
+    size?: KbdSize
+    /** Extra classes of the row of keys. */
+    className?: string
     /** A preset or any CSS color. */
     color?: KbdColor | (string & {})
     relief?: boolean
 }
 
 /** Renders a keyboard shortcut such as Ctrl + K. */
-export const KbdShortcut = ({ keys, color = 'default', relief = false }: KbdShortcutProps) => (
-    <span className='flex items-center gap-1'>
+export const KbdShortcut = ({ keys, color = 'default', size = 'md', className = '', relief = false }: KbdShortcutProps) => (
+    <span className={`flex items-center gap-1 ${className}`}>
         {keys.map((key, index) => (
             <Fragment key={key}>
                 {index > 0 && <span className='text-neutral-500'>+</span>}
-                <Kbd color={color} relief={relief}>{key}</Kbd>
+                <Kbd color={color} size={size} relief={relief}>{key}</Kbd>
             </Fragment>
         ))}
     </span>

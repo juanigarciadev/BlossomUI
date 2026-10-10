@@ -42,6 +42,7 @@ const releases = [
                     'Banner has a color: presets, accent or any CSS color. Navbar has alwaysVisibleActions to keep the cart in the bar on a phone, a breakpoint, and renders its links and actions only once.',
                     'Table has pagination, fields have a required asterisk, the product card can have a price for each size or weight, and Banner is not dismissible unless you set dismissible (it was the other way around).',
                     'The product card has requireSize and preselectSize for the sizes, and the page counter of the Table can be translated with labels.page.',
+                    'Kbd and KbdShortcut have a size (sm and md) and a className.',
                     'Button has a size prop, Card and Product card accept their own width, and Tabs without content do not draw an empty panel.',
                     'Tailwind CSS 3.3 or newer is needed (the product card uses line-clamp). The documentation is built with Tailwind CSS 3.4.',
                 ],

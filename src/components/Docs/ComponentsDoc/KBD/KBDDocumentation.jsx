@@ -88,6 +88,13 @@ const KBDDocumentation = () => {
                 <KbdShortcut keys={['Cmd', 'K']} color='#10b981' relief />
             </Variant>
 
+            <Variant title='Size' description='Use `size` sm for a key that fits inside a button or a bar. `className` adds your own classes, for example a margin.' file={file}>
+                <Kbd size='sm'>Esc</Kbd>
+                <Kbd size='sm' relief>Ctrl</Kbd>
+                <KbdShortcut keys={['Ctrl', 'K']} size='sm' color='accent' />
+                <Kbd>Esc</Kbd>
+            </Variant>
+
         </DocPage>
     )
 }
