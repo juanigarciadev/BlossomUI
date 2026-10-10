@@ -92,6 +92,8 @@ export const Stepper = ({ color, steps, current, orientation = 'horizontal', num
 }
 
 export interface StepperProgressProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: { step?: (current: number, total: number) => string }
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     total: number
@@ -100,10 +102,10 @@ export interface StepperProgressProps {
 }
 
 /** A compact stepper made of segments. */
-export const StepperProgress = ({ color, total, current, label }: StepperProgressProps) => (
+export const StepperProgress = ({ labels, color, total, current, label }: StepperProgressProps) => (
     <div className='w-full' style={accentStyle(color)}>
         <div className='mb-2 flex justify-between text-sm'>
-            <span className='font-medium dark:text-white'>Step {current + 1} of {total}</span>
+            <span className='font-medium dark:text-white'>{labels?.step ? labels.step(current + 1, total) : `Step ${current + 1} of ${total}`}</span>
             {label && <span className='text-neutral-500'>{label}</span>}
         </div>
         <ol className='grid gap-2' style={{ gridTemplateColumns: `repeat(${total}, minmax(0, 1fr))` }}>

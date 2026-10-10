@@ -11,6 +11,8 @@ export interface FooterColumn {
 }
 
 export interface FooterProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: { rights?: string; navigation?: string }
     /** Name of the project shown in the footer. */
     brand: string
     description?: string
@@ -27,8 +29,8 @@ export interface FooterProps {
 
 const link = 'text-neutral-600 hover:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_85%,black)] dark:text-neutral-300'
 
-export const Footer = ({ brand, description, columns, links, social, year = new Date().getFullYear(), align = 'left' }: FooterProps) => {
-    const copyright = `© ${year} ${brand}. All rights reserved.`
+export const Footer = ({ labels, brand, description, columns, links, social, year = new Date().getFullYear(), align = 'left' }: FooterProps) => {
+    const copyright = `© ${year} ${brand}. ${labels?.rights ?? 'All rights reserved.'}`
 
     if (columns?.length) {
         return (
@@ -59,7 +61,7 @@ export const Footer = ({ brand, description, columns, links, social, year = new 
             {centered && <span className='text-xl font-bold text-neutral-900 dark:text-white'>{brand}</span>}
             {!centered && <p>{copyright}</p>}
             {links && (
-                <nav aria-label='Footer' className='flex flex-wrap items-center justify-center gap-6'>
+                <nav aria-label={labels?.navigation ?? 'Footer'} className='flex flex-wrap items-center justify-center gap-6'>
                     {links.map((item) => <a key={item.label} href={item.href} className='hover:text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_85%,black)]'>{item.label}</a>)}
                 </nav>
             )}

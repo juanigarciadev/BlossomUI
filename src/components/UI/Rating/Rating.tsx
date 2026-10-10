@@ -1,7 +1,27 @@
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
 
+export interface RatingLabels {
+    /** Accessible name of the stars, for example "3.5 out of 5 stars". */
+    stars: (value: number, max: number) => string
+    /** Accessible name of the button of one star. */
+    star: (star: number) => string
+    /** Text shown with `showValue`. */
+    outOf: (value: number, max: number) => string
+    /** Text shown after the stars with `reviews`. */
+    reviews: (count: number) => string
+}
+
+const defaultLabels: RatingLabels = {
+    stars: (value, max) => `${value} out of ${max} stars`,
+    star: (star) => `${star} star${star > 1 ? 's' : ''}`,
+    outOf: (value, max) => `${value} out of ${max}`,
+    reviews: (count) => `${count.toLocaleString()} reviews`,
+}
+
 export interface RatingProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    labels?: Partial<RatingLabels>
     /** Color of the filled stars: any CSS color. Gold by default. */
     color?: string
     /** Current rating, decimals are supported (3.67). */
@@ -32,14 +52,15 @@ const Star = ({ fill, size }: { fill: number; size: number }) => (
     </span>
 )
 
-export const Rating = ({ color, value, max = 5, size = 20, onChange, showValue = false, reviews }: RatingProps) => {
+export const Rating = ({ labels, color, value, max = 5, size = 20, onChange, showValue = false, reviews }: RatingProps) => {
     const [hover, setHover] = useState<number | null>(null)
     const shown = hover ?? value
     const stars = Array.from({ length: max }, (_, index) => index + 1)
+    const text = { ...defaultLabels, ...labels }
 
     return (
         <div className='inline-flex items-center gap-2' style={color ? ({ '--blossom-star': color } as CSSProperties) : undefined}>
-            <div className='inline-flex gap-0.5' role={onChange ? 'radiogroup' : 'img'} aria-label={`${value} out of ${max} stars`} onMouseLeave={() => setHover(null)}>
+            <div className='inline-flex gap-0.5' role={onChange ? 'radiogroup' : 'img'} aria-label={text.stars(value, max)} onMouseLeave={() => setHover(null)}>
                 {stars.map((star) =>
                     onChange ? (
                         <button
@@ -47,7 +68,7 @@ export const Rating = ({ color, value, max = 5, size = 20, onChange, showValue =
                             type='button'
                             role='radio'
                             aria-checked={Math.round(value) === star}
-                            aria-label={`${star} star${star > 1 ? 's' : ''}`}
+                            aria-label={text.star(star)}
                             onMouseEnter={() => setHover(star)}
                             onClick={() => onChange(star)}
                             className='rounded-lg transition-transform hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--blossom-accent,#f472b6)]'
@@ -59,8 +80,8 @@ export const Rating = ({ color, value, max = 5, size = 20, onChange, showValue =
                     )
                 )}
             </div>
-            {showValue && <span className='text-sm text-neutral-700 dark:text-neutral-300'>{value} out of {max}</span>}
-            {reviews !== undefined && <span className='text-sm text-neutral-700 underline dark:text-neutral-300'>{reviews.toLocaleString()} reviews</span>}
+            {showValue && <span className='text-sm text-neutral-700 dark:text-neutral-300'>{text.outOf(value, max)}</span>}
+            {reviews !== undefined && <span className='text-sm text-neutral-700 underline dark:text-neutral-300'>{text.reviews(reviews)}</span>}
         </div>
     )
 }

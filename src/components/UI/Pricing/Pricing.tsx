@@ -16,7 +16,21 @@ export interface PricingPlan {
     cta?: string
 }
 
+export interface PricingLabels {
+    billingPeriod: string
+    monthly: string
+    yearly: string
+    /** Text after the price when it is monthly, for example "month" for "/month". */
+    perMonth: string
+    perYear: string
+    subscribe: string
+}
+
 export interface PricingProps {
+    /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
+    /** Formats the price of a plan, for example with `Intl.NumberFormat` to show another currency. */
+    formatPrice?: (price: number) => string
+    labels?: Partial<PricingLabels>
     /** Accent color of this component: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
     color?: string
     plans: PricingPlan[]
@@ -31,13 +45,14 @@ export interface PricingProps {
 const check = 'm10 15.586l-3.293-3.293l-1.414 1.414L10 18.414l9.707-9.707l-1.414-1.414z'
 const cross = 'm16.192 6.344l-4.243 4.242l-4.242-4.242l-1.414 1.414L10.535 12l-4.242 4.242l1.414 1.414l4.242-4.242l4.243 4.242l1.414-1.414L13.364 12l4.242-4.242z'
 
-export const Pricing = ({ color, plans, variant = 'default', billingToggle = false, yearlyMonths = 10, onSelect }: PricingProps) => {
+export const Pricing = ({ labels, formatPrice, color, plans, variant = 'default', billingToggle = false, yearlyMonths = 10, onSelect }: PricingProps) => {
     const [billing, setBilling] = useState<'monthly' | 'yearly'>('monthly')
+    const text: PricingLabels = { billingPeriod: 'Billing period', monthly: 'Monthly', yearly: 'Yearly', perMonth: 'month', perYear: 'year', subscribe: 'Subscribe', ...labels }
 
     return (
         <div className='flex w-full flex-col items-center gap-6 rounded-xl bg-neutral-200 p-4 py-6 dark:bg-neutral-900' style={accentStyle(color)}>
             {billingToggle && (
-                <div role='group' aria-label='Billing period' className='inline-flex rounded-full bg-white p-1 text-sm font-medium shadow-sm dark:bg-neutral-800'>
+                <div role='group' aria-label={text.billingPeriod} className='inline-flex rounded-full bg-white p-1 text-sm font-medium shadow-sm dark:bg-neutral-800'>
                     {(['monthly', 'yearly'] as const).map((option) => (
                         <button
                             key={option}
@@ -46,7 +61,7 @@ export const Pricing = ({ color, plans, variant = 'default', billingToggle = fal
                             onClick={() => setBilling(option)}
                             className={`rounded-full px-4 py-1.5 capitalize transition-colors ${billing === option ? 'bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_68%,black)] text-white' : 'text-neutral-600 hover:text-black dark:text-neutral-300 dark:hover:text-white'}`}
                         >
-                            {option}
+                            {option === 'yearly' ? text.yearly : text.monthly}
                             {option === 'yearly' && <span className='ml-1 text-xs opacity-80'>-{Math.round((1 - yearlyMonths / 12) * 100)}%</span>}
                         </button>
                     ))}
@@ -62,8 +77,8 @@ export const Pricing = ({ color, plans, variant = 'default', billingToggle = fal
                             <div className='flex w-full flex-col items-center gap-2 border-b border-neutral-300 pb-6 dark:border-neutral-700'>
                                 <span className='text-sm font-medium uppercase text-neutral-600 dark:text-neutral-400'>{plan.name}</span>
                                 <div className='inline-flex items-end dark:text-white'>
-                                    <h3 className='text-5xl font-bold'>${amount}</h3>
-                                    <span className='text-xs font-medium'>/{billing === 'yearly' ? 'year' : 'month'}</span>
+                                    <h3 className='text-5xl font-bold'>{formatPrice ? formatPrice(amount) : `$${amount}`}</h3>
+                                    <span className='text-xs font-medium'>/{billing === 'yearly' ? text.perYear : text.perMonth}</span>
                                 </div>
                             </div>
                             <ul className='flex w-full flex-col gap-2 px-6 dark:text-white'>
@@ -82,7 +97,7 @@ export const Pricing = ({ color, plans, variant = 'default', billingToggle = fal
                                     onClick={() => onSelect?.(plan, billing)}
                                     className='flex h-fit w-full select-none items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_68%,black)] px-4 py-3 text-sm font-medium text-white hover:bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_55%,black)]'
                                 >
-                                    {plan.cta ?? 'Subscribe'}
+                                    {plan.cta ?? text.subscribe}
                                 </button>
                             </div>
                         </article>
