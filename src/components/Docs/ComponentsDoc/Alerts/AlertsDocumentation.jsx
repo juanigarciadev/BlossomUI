@@ -59,6 +59,12 @@ const Alerts = () => {
                 <Alert color='green' showIcon dismissible>Your changes have been saved.</Alert>
                 <Alert color='yellow' showIcon dismissible>Your trial ends in 3 days.</Alert>
             </Variant>
+            <Variant title='Custom colors' description='Any CSS color works, not only the presets: hex, rgb(), hsl() or a CSS variable. It is used for the border, the icon and a soft tint of the background, in every `variant`.' file={file} previewClassName='flex flex-col gap-4'>
+                <Alert color='#7c3aed' showIcon>A violet alert for your own brand.</Alert>
+                <Alert color='#0ea5e9' variant='outlined' showIcon>An outlined alert in sky blue.</Alert>
+                <Alert color='#f97316' variant='accent' showIcon>An accent alert in orange.</Alert>
+            </Variant>
+
         </DocPage>
     )
 }

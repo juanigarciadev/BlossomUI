@@ -29,6 +29,12 @@ const SpinnersDocumentation = () => {
             <Variant title='Transparent' description='Without the track around it.' file={file} previewClassName='flex flex-wrap items-center gap-4'>
                 {colors.map((color) => <Spinner key={color} color={color} transparent />)}
             </Variant>
+            <Variant title='Custom colors' description='Any CSS color works, not only the presets: hex, rgb(), hsl() or a CSS variable. ' file={file} previewClassName='flex flex-wrap items-center gap-4'>
+                <Spinner color='#7c3aed' />
+                <Spinner color='#0ea5e9' size='lg' />
+                <Spinner color='#f97316' size='xl' />
+            </Variant>
+
         </DocPage>
     )
 }

@@ -3,7 +3,8 @@ import { useState, type ReactNode } from 'react'
 export type AlertColor = 'default' | 'dark' | 'red' | 'green' | 'yellow'
 
 export interface AlertProps {
-    color?: AlertColor
+    /** A preset or any CSS color, for example `#7c3aed`. A custom color is used for the border, the icon and a soft tint of the background. */
+    color?: AlertColor | (string & {})
     /** `accent` adds a thick border on the left side. */
     variant?: 'filled' | 'outlined' | 'accent'
     /** Show an icon that matches the color. */
@@ -58,6 +59,8 @@ const icons: Record<AlertColor, string> = {
     yellow: 'M12 2L1 21h22L12 2zm0 4.5L19.5 19h-15L12 6.5zM11 10h2v4h-2zm0 5h2v2h-2z',
 }
 
+const isPreset = (color: string): color is AlertColor => color in box
+
 const actionButton = 'rounded-lg px-4 py-1 text-sm font-medium select-none'
 
 export const Alert = ({ color = 'default', variant = 'filled', showIcon = false, list, actions, dismissible = false, onDismiss, children }: AlertProps) => {
@@ -69,15 +72,25 @@ export const Alert = ({ color = 'default', variant = 'filled', showIcon = false,
         onDismiss?.()
     }
 
+    const preset = isPreset(color)
+    const customStyle = preset
+        ? undefined
+        : {
+            backgroundColor: `color-mix(in srgb, ${color} ${variant === 'filled' ? 16 : 10}%, transparent)`,
+            ...(variant === 'outlined' ? { border: `1px solid ${color}` } : {}),
+            ...(variant === 'accent' ? { borderLeft: `4px solid ${color}` } : {}),
+        }
+
     return (
         <div
             role='alert'
-            className={`h-fit w-full px-4 py-4 ${box[color]} ${variant === 'outlined' ? `rounded-xl ${outline[color]}` : variant === 'accent' ? `rounded-r-xl ${accent[color]}` : 'rounded-xl'} ${text[color]}`}
+            className={`h-fit w-full px-4 py-4 ${preset ? `${box[color]} ${text[color]}` : 'text-neutral-900 dark:text-white'} ${variant === 'outlined' ? `rounded-xl ${preset ? outline[color] : ''}` : variant === 'accent' ? `rounded-r-xl ${preset ? accent[color] : ''}` : 'rounded-xl'}`}
+            style={customStyle}
         >
             <div className='flex items-start gap-2'>
                 {showIcon && (
-                    <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' className='shrink-0' aria-hidden='true'>
-                        <path fill='currentColor' d={icons[color]} />
+                    <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' className='shrink-0' style={preset ? undefined : { color }} aria-hidden='true'>
+                        <path fill='currentColor' d={icons[preset ? color : 'default']} />
                     </svg>
                 )}
                 <div className='flex flex-1 flex-col gap-3'>

@@ -3,7 +3,8 @@ import type { HTMLAttributes, ReactNode } from 'react'
 export type BadgeColor = 'default' | 'dark' | 'red' | 'green' | 'yellow' | 'purple' | 'pink'
 
 export interface BadgeProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
-    color?: BadgeColor
+    /** A preset or any CSS color, for example `#7c3aed`. */
+    color?: BadgeColor | (string & {})
     /** Border instead of the soft filled style. */
     outlined?: boolean
     /** Fully rounded corners. */
@@ -34,11 +35,18 @@ const outline: Record<BadgeColor, string> = {
     pink: 'border border-pink-900 bg-pink-100 text-pink-900 dark:border-pink-400 dark:bg-neutral-700 dark:text-pink-400',
 }
 
-export const Badge = ({ color = 'default', outlined = false, rounded = false, icon, onDismiss, className = '', children, ...props }: BadgeProps) => {
+const isPreset = (color: string): color is BadgeColor => color in filled
+
+export const Badge = ({ color = 'default', outlined = false, rounded = false, icon, onDismiss, className = '', children, style, ...props }: BadgeProps) => {
     const iconOnly = icon && !children
+    // A custom color is used for the text and the border, with a soft tint of it as background.
+    const customStyle = isPreset(color)
+        ? style
+        : { color, backgroundColor: `color-mix(in srgb, ${color} ${outlined ? 8 : 18}%, transparent)`, ...(outlined ? { border: `1px solid ${color}` } : {}), ...style }
     return (
         <span
-            className={`flex h-fit w-fit cursor-default items-center gap-1 text-xs font-medium ${iconOnly ? 'p-2' : 'px-2.5 py-1'} ${rounded || iconOnly ? 'rounded-full' : 'rounded-xl'} ${outlined ? outline[color] : filled[color]} ${className}`}
+            className={`flex h-fit w-fit cursor-default items-center gap-1 text-xs font-medium ${iconOnly ? 'p-2' : 'px-2.5 py-1'} ${rounded || iconOnly ? 'rounded-full' : 'rounded-xl'} ${isPreset(color) ? (outlined ? outline[color] : filled[color]) : ''} ${className}`}
+            style={customStyle}
             {...props}
         >
             {icon}

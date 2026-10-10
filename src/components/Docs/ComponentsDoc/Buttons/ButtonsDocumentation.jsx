@@ -94,6 +94,14 @@ const Buttons = () => {
             <Variant title='Rounded social icons only' description='Icon buttons with `rounded` corners.' file={file}>
                 {providers.map((provider) => <SocialButton key={provider} provider={provider} iconOnly rounded />)}
             </Variant>
+            <Variant title='Custom colors' description='Any CSS color works, not only the presets: hex, rgb(), hsl() or a CSS variable. The text switches between black and white to stay readable, and the same goes for `IconButton`.' file={file}>
+                <Button color='#7c3aed'>Violet</Button>
+                <Button color='#0ea5e9' rounded>Sky</Button>
+                <Button color='#f97316'>Orange</Button>
+                <Button color='rgb(16 185 129)'>Emerald</Button>
+                <IconButton icon={<Heart size={18} />} label='Like' color='#e11d48' />
+            </Variant>
+
         </DocPage>
     )
 }

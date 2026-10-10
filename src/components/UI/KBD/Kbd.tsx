@@ -1,11 +1,20 @@
 import { Fragment, type ReactNode } from 'react'
 
+/** Black or white, whichever reads better over a hex or rgb() color. Other CSS colors get white. */
+const readableOn = (color: string) => {
+    const hex = color.trim().replace('#', '')
+    const full = hex.length === 3 ? hex.split('').map((char) => char + char).join('') : hex
+    const rgb = /^[0-9a-f]{6}$/i.test(full) ? [0, 2, 4].map((index) => parseInt(full.slice(index, index + 2), 16)) : color.match(/\d+/g)?.slice(0, 3).map(Number)
+    if (!rgb || rgb.length < 3) return '#ffffff'
+    return (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 > 150 ? '#171717' : '#ffffff'
+}
+
 export type KbdColor = 'default' | 'dark' | 'pink' | 'purple' | 'blue' | 'green' | 'yellow' | 'red'
 
 export interface KbdProps {
     children: ReactNode
-    /** Color of the key. `default` is a neutral gray. */
-    color?: KbdColor
+    /** Color of the key: a preset or any CSS color. `default` is a neutral gray. */
+    color?: KbdColor | (string & {})
     /** Adds a thicker bottom border so the key looks pressable. */
     relief?: boolean
     /** Highlights the key, useful to show that it is being pressed. Uses the color of the key, or pink for `default`. */
@@ -35,9 +44,18 @@ const pressed: Record<KbdColor, string> = {
     red: 'border-red-700 bg-red-500 text-white dark:border-red-300 dark:bg-red-500',
 }
 
+const isPreset = (color: string): color is KbdColor => color in idle
+
 export const Kbd = ({ children, color = 'default', relief = false, active = false }: KbdProps) => (
     <kbd
-        className={`select-none rounded-xl border px-2 py-1.5 text-sm transition-colors ${relief ? 'border-b-4' : ''} ${active ? pressed[color] : idle[color]}`}
+        className={`select-none rounded-xl border px-2 py-1.5 text-sm transition-colors ${relief ? 'border-b-4' : ''} ${isPreset(color) ? (active ? pressed[color] : idle[color]) : ''}`}
+        style={
+            isPreset(color)
+                ? undefined
+                : active
+                    ? { borderColor: color, backgroundColor: color, color: readableOn(color) }
+                    : { borderColor: color, color, backgroundColor: `color-mix(in srgb, ${color} 14%, transparent)` }
+        }
     >
         {children}
     </kbd>
@@ -45,7 +63,8 @@ export const Kbd = ({ children, color = 'default', relief = false, active = fals
 
 export interface KbdShortcutProps {
     keys: string[]
-    color?: KbdColor
+    /** A preset or any CSS color. */
+    color?: KbdColor | (string & {})
     relief?: boolean
 }
 

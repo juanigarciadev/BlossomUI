@@ -141,6 +141,10 @@ export const faq = [
         answer: 'None. Components that show an icon receive it as a React element in an icon prop, so you can use Lucide, React Icons, Heroicons, Phosphor or your own SVG. The documentation examples use lucide-react (https://lucide.dev).',
     },
     {
+        question: 'Can I use my own colors?',
+        answer: 'Yes. Button, IconButton, Badge, Alert, Toast, ProgressBar, Spinner and Kbd accept any CSS color in the color prop, such as "#7c3aed" or "rgb(124 58 237)", in addition to the presets. The text color is chosen automatically to stay readable.',
+    },
+    {
         question: 'Does Blossom UI support dark mode?',
         answer: 'Yes. Every component includes dark: variants and works with the class strategy of Tailwind CSS (darkMode: "class").',
     },

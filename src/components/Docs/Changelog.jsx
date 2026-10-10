@@ -14,6 +14,7 @@ const releases = [
                     'Data and content: Table with sorting and selection, Accordion, Carousel, Stats with an optional trend line, Empty state and Charts (bar, line, donut, pie and sparkline).',
                     'Inputs: Date picker with a range mode, File upload with drag and drop, Slider and Chip input.',
                     'Select options accept an image, for example a flag.',
+                    'Custom colors: Button, IconButton, Badge, Alert, Toast, ProgressBar, Spinner and Kbd accept any CSS color in their color prop, not only the presets.',
                 ],
             },
             {

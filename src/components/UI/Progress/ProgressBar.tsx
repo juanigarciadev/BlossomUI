@@ -5,7 +5,8 @@ export interface ProgressBarProps {
     /** Current progress from 0 to 100. */
     value: number
     size?: ProgressSize
-    color?: ProgressColor
+    /** A preset or any CSS color. */
+    color?: ProgressColor | (string & {})
     /** Text shown above the bar, next to the percentage. */
     label?: string
     /** Show the percentage above the bar. */
@@ -31,6 +32,17 @@ const colors: Record<ProgressColor, string> = {
     pink: 'bg-pink-700',
 }
 
+/** Black or white, whichever reads better over a hex or rgb() color. Other CSS colors get white. */
+const readableOn = (color: string) => {
+    const hex = color.trim().replace('#', '')
+    const full = hex.length === 3 ? hex.split('').map((char) => char + char).join('') : hex
+    const rgb = /^[0-9a-f]{6}$/i.test(full) ? [0, 2, 4].map((index) => parseInt(full.slice(index, index + 2), 16)) : color.match(/\d+/g)?.slice(0, 3).map(Number)
+    if (!rgb || rgb.length < 3) return '#ffffff'
+    return (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 > 150 ? '#171717' : '#ffffff'
+}
+
+const isPreset = (color: string): color is ProgressColor => color in colors
+
 export const ProgressBar = ({ value, size = 'md', color = 'default', label, showValue = false, showValueInside = false }: ProgressBarProps) => {
     const percentage = Math.min(100, Math.max(0, Math.round(value)))
     return (
@@ -50,8 +62,8 @@ export const ProgressBar = ({ value, size = 'md', color = 'default', label, show
                 className={`w-full overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-700 ${heights[size]}`}
             >
                 <div
-                    className={`flex h-full items-center justify-center rounded-full text-xs font-medium text-white transition-[width] duration-500 ${colors[color]}`}
-                    style={{ width: `${percentage}%` }}
+                    className={`flex h-full items-center justify-center rounded-full text-xs font-medium transition-[width] duration-500 ${isPreset(color) ? `text-white ${colors[color]}` : ''}`}
+                    style={isPreset(color) ? { width: `${percentage}%` } : { width: `${percentage}%`, backgroundColor: color, color: readableOn(color) }}
                 >
                     {showValueInside && percentage > 8 && `${percentage}%`}
                 </div>

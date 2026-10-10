@@ -81,6 +81,13 @@ const KBDDocumentation = () => {
             <Variant title='Active' description='Use `active` to highlight a key while it is pressed. Try it with your keyboard.' file={file} code={pressCode}>
                 <PressDemo />
             </Variant>
+            <Variant title='Custom colors' description='Any CSS color works, not only the presets: hex, rgb(), hsl() or a CSS variable. Pressed keys are filled with it.' file={file}>
+                <Kbd color='#7c3aed' relief>Ctrl</Kbd>
+                <Kbd color='#0ea5e9' relief>Alt</Kbd>
+                <Kbd color='#f97316' relief active>Shift</Kbd>
+                <KbdShortcut keys={['Cmd', 'K']} color='#10b981' relief />
+            </Variant>
+
         </DocPage>
     )
 }

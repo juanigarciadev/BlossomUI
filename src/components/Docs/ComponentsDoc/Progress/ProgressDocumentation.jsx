@@ -82,6 +82,12 @@ const ProgressDocumentation = () => {
             <Variant title='Live' description='The bar animates as the value changes. Start the upload to try it.' file={file} code={uploadCode}>
                 <UploadDemo />
             </Variant>
+            <Variant title='Custom colors' description='Any CSS color works, not only the presets: hex, rgb(), hsl() or a CSS variable. ' file={file} previewClassName='flex flex-col gap-4'>
+                <ProgressBar value={70} color='#7c3aed' size='lg' showValueInside />
+                <ProgressBar value={45} color='#0ea5e9' size='lg' showValueInside />
+                <ProgressBar value={85} color='#f97316' size='lg' showValueInside />
+            </Variant>
+
         </DocPage>
     )
 }

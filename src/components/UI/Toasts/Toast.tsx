@@ -3,7 +3,8 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 export type ToastColor = 'default' | 'green' | 'red' | 'yellow' | 'dark'
 
 export interface ToastProps {
-    color?: ToastColor
+    /** A preset or any CSS color. A custom color fills the toast and the text switches between black and white to stay readable. */
+    color?: ToastColor | (string & {})
     children: ReactNode
     /** Text of the action button, for example "Undo". */
     actionLabel?: string
@@ -27,24 +28,38 @@ const icons: Record<ToastColor, string> = {
     dark: 'M11 7h2v2h-2zm0 4h2v6h-2z',
 }
 
+/** Black or white, whichever reads better over a hex or rgb() color. Other CSS colors get white. */
+const readableOn = (color: string) => {
+    const hex = color.trim().replace('#', '')
+    const full = hex.length === 3 ? hex.split('').map((char) => char + char).join('') : hex
+    const rgb = /^[0-9a-f]{6}$/i.test(full) ? [0, 2, 4].map((index) => parseInt(full.slice(index, index + 2), 16)) : color.match(/\d+/g)?.slice(0, 3).map(Number)
+    if (!rgb || rgb.length < 3) return '#ffffff'
+    return (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 > 150 ? '#171717' : '#ffffff'
+}
+
+const isPreset = (color: string): color is ToastColor => color in styles
+
 export const Toast = ({ color = 'default', children, actionLabel, onAction, onDismiss }: ToastProps) => {
-    const style = styles[color]
+    const preset = isPreset(color)
+    const style = preset ? styles[color] : { box: '', icon: 'bg-black/15', action: 'border-current hover:bg-black/10' }
+    // On a custom color the text is black or white depending on the contrast.
+    const ink = preset ? 'text-white' : ''
     return (
-        <div role='status' className={`inline-flex h-fit w-fit items-center gap-4 rounded-xl px-4 py-4 shadow-lg ${style.box}`}>
+        <div role='status' className={`inline-flex h-fit w-fit items-center gap-4 rounded-xl px-4 py-4 shadow-lg ${style.box}`} style={preset ? undefined : { backgroundColor: color, color: readableOn(color) }}>
             <span className={`rounded-lg p-1 ${style.icon}`}>
-                <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d={icons[color]} /></svg>
+                <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d={icons[preset ? color : 'default']} /></svg>
             </span>
-            <span className='text-white'>{children}</span>
+            <span className={ink}>{children}</span>
             {(actionLabel || onDismiss) && (
                 <div className='inline-flex items-center gap-2'>
                     {actionLabel && (
-                        <button type='button' onClick={onAction} className={`select-none rounded-full border bg-transparent px-4 py-[7px] text-sm font-medium text-white ${style.action}`}>
+                        <button type='button' onClick={onAction} className={`select-none rounded-full border bg-transparent px-4 py-[7px] text-sm font-medium ${ink} ${style.action}`}>
                             {actionLabel}
                         </button>
                     )}
-                    {actionLabel && onDismiss && <div className='h-6 w-px bg-white/60' />}
+                    {actionLabel && onDismiss && <div className='h-6 w-px bg-current opacity-60' />}
                     {onDismiss && (
-                        <button type='button' aria-label='Dismiss' onClick={onDismiss} className='rounded-lg p-2 text-white hover:bg-black/20'>
+                        <button type='button' aria-label='Dismiss' onClick={onDismiss} className={`rounded-lg p-2 hover:bg-black/20 ${ink}`}>
                             <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' aria-hidden='true'><path fill='currentColor' d='m16.192 6.344l-4.243 4.242l-4.242-4.242l-1.414 1.414L10.535 12l-4.242 4.242l1.414 1.414l4.242-4.242l4.243 4.242l1.414-1.414L13.364 12l4.242-4.242z' /></svg>
                         </button>
                     )}

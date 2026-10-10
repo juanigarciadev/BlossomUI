@@ -53,6 +53,12 @@ const ToastsDocumentation = () => {
             <Variant title='Stack' description='`useToasts` keeps the list and closes each toast by itself after a few seconds. Press the buttons to try it.' file={file} code={stackCode}>
                 <StackDemo />
             </Variant>
+            <Variant title='Custom colors' description='Any CSS color works, not only the presets: hex, rgb(), hsl() or a CSS variable. The text switches between black and white to stay readable.' file={file} previewClassName='flex flex-col items-start gap-4'>
+                <Toast color='#7c3aed'>Saved in your own color</Toast>
+                <Toast color='#f97316' actionLabel='Undo'>Dark text on a light color</Toast>
+                <Toast color='#0ea5e9' onDismiss={() => {}}>Sky blue</Toast>
+            </Variant>
+
         </DocPage>
     )
 }

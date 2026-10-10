@@ -1,10 +1,19 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
+/** Black or white, whichever reads better over a hex or rgb() color. Other CSS colors get white. */
+const readableOn = (color: string) => {
+    const hex = color.trim().replace('#', '')
+    const full = hex.length === 3 ? hex.split('').map((char) => char + char).join('') : hex
+    const rgb = /^[0-9a-f]{6}$/i.test(full) ? [0, 2, 4].map((index) => parseInt(full.slice(index, index + 2), 16)) : color.match(/\d+/g)?.slice(0, 3).map(Number)
+    if (!rgb || rgb.length < 3) return '#ffffff'
+    return (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000 > 150 ? '#171717' : '#ffffff'
+}
+
 export type ButtonColor = 'primary' | 'secondary' | 'default' | 'red' | 'green' | 'yellow' | 'purple' | 'pink'
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
-    /** Visual style of the button. */
-    color?: ButtonColor
+    /** Visual style of the button: a preset or any CSS color, for example `#7c3aed` or `rgb(124 58 237)`. */
+    color?: ButtonColor | (string & {})
     /** Use fully rounded (pill) corners. */
     rounded?: boolean
     /** Shows a spinner and disables the button. */
@@ -24,6 +33,8 @@ const colors: Record<ButtonColor, string> = {
     pink: 'bg-pink-700 text-white hover:bg-pink-800',
 }
 
+const isPreset = (color: string): color is ButtonColor => color in colors
+
 const spinners: Record<ButtonColor, string> = {
     primary: 'border-neutral-200 border-l-neutral-500 dark:border-neutral-400 dark:border-l-neutral-600',
     secondary: 'border-neutral-400 border-l-neutral-700 dark:border-white dark:border-l-neutral-400',
@@ -35,16 +46,18 @@ const spinners: Record<ButtonColor, string> = {
     pink: 'border-pink-300 border-l-white',
 }
 
-export const Button = ({ color = 'primary', rounded = false, loading = false, icon, disabled, className = '', children, type = 'button', ...props }: ButtonProps) => {
+export const Button = ({ color = 'primary', rounded = false, loading = false, icon, disabled, className = '', children, type = 'button', style, ...props }: ButtonProps) => {
+    const custom = !isPreset(color)
     return (
         <button
             type={type}
             disabled={disabled || loading}
             aria-busy={loading}
-            className={`flex w-fit select-none items-center justify-center gap-2 px-4 py-3 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${colors[color]} ${className}`}
+            className={`flex w-fit select-none items-center justify-center gap-2 px-4 py-3 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${isPreset(color) ? colors[color] : 'hover:brightness-90'} ${className}`}
+            style={custom ? { backgroundColor: color, color: readableOn(color), ...style } : style}
             {...props}
         >
-            {loading ? <span className={`h-4 w-4 animate-spin rounded-full border-2 ${spinners[color]}`} /> : icon}
+            {loading ? <span className={`h-4 w-4 animate-spin rounded-full border-2 ${isPreset(color) ? spinners[color] : 'border-current border-l-transparent'}`} /> : icon}
             {children}
         </button>
     )
@@ -57,7 +70,8 @@ export interface IconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonEle
     icon: ReactNode
     /** What the button does. It is the accessible name, because the button has no text. */
     label: string
-    color?: ButtonColor
+    /** A preset or any CSS color. */
+    color?: ButtonColor | (string & {})
     size?: IconButtonSize
     /** Use a circle instead of rounded corners. */
     rounded?: boolean
@@ -72,17 +86,18 @@ const iconSizes: Record<IconButtonSize, string> = {
 }
 
 /** A square button that only shows an icon of your choice. */
-export const IconButton = ({ icon, label, color = 'secondary', size = 'md', rounded = false, loading = false, disabled, className = '', type = 'button', ...props }: IconButtonProps) => (
+export const IconButton = ({ icon, label, color = 'secondary', size = 'md', rounded = false, loading = false, disabled, className = '', type = 'button', style, ...props }: IconButtonProps) => (
     <button
         type={type}
         aria-label={label}
         title={label}
         disabled={disabled || loading}
         aria-busy={loading}
-        className={`flex shrink-0 select-none items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${iconSizes[size]} ${colors[color]} ${className}`}
+        className={`flex shrink-0 select-none items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-60 ${loading ? 'cursor-progress' : ''} ${rounded ? 'rounded-full' : 'rounded-xl'} ${iconSizes[size]} ${isPreset(color) ? colors[color] : 'hover:brightness-90'} ${className}`}
+        style={isPreset(color) ? style : { backgroundColor: color, color: readableOn(color), ...style }}
         {...props}
     >
-        {loading ? <span className={`h-4 w-4 animate-spin rounded-full border-2 ${spinners[color]}`} /> : icon}
+        {loading ? <span className={`h-4 w-4 animate-spin rounded-full border-2 ${isPreset(color) ? spinners[color] : 'border-current border-l-transparent'}`} /> : icon}
     </button>
 )
 

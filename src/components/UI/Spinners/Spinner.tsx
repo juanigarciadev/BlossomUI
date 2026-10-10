@@ -3,7 +3,8 @@ export type SpinnerColor = 'default' | 'red' | 'green' | 'yellow' | 'purple' | '
 
 export interface SpinnerProps {
     size?: SpinnerSize
-    color?: SpinnerColor
+    /** A preset or any CSS color. */
+    color?: SpinnerColor | (string & {})
     /** Hide the track so only the moving part is visible. */
     transparent?: boolean
     /** Text read by screen readers. */
@@ -27,9 +28,14 @@ const colors: Record<SpinnerColor, string> = {
     pink: 'border-l-pink-700 dark:border-l-pink-700',
 }
 
+const isPreset = (color: string): color is SpinnerColor => color in colors
+
 export const Spinner = ({ size = 'md', color = 'default', transparent = false, label = 'Loading...' }: SpinnerProps) => (
     <div role='status' className='inline-flex'>
-        <div className={`animate-spin rounded-full ${sizes[size]} ${colors[color]} ${transparent ? 'border-transparent' : 'border-neutral-200 dark:border-neutral-700'}`} />
+        <div
+            className={`animate-spin rounded-full ${sizes[size]} ${isPreset(color) ? colors[color] : ''} ${transparent ? 'border-transparent' : 'border-neutral-200 dark:border-neutral-700'}`}
+            style={isPreset(color) ? undefined : { borderLeftColor: color }}
+        />
         <span className='sr-only'>{label}</span>
     </div>
 )
