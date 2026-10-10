@@ -8,6 +8,7 @@ import { Kbd, KbdShortcut } from '../../../UI/KBD/Kbd'
 const file = 'src/components/UI/KBD/Kbd.tsx'
 
 const keys = ['Ctrl', 'Alt', 'Shift', 'Spacebar']
+const colors = ['default', 'dark', 'pink', 'purple', 'blue', 'green', 'yellow', 'red']
 
 const PressDemo = () => {
     const [pressed, setPressed] = useState([])
@@ -53,6 +54,16 @@ const KBDDocumentation = () => {
     return (
         <DocPage title='KBD' description='Display keys and keyboard shortcuts.'>
             <ComponentSource source={source} file={file} />
+
+            <Variant title='Colors' description='Choose the color with the `color` prop. `active` fills the key with that color.' file={file}>
+                {colors.map((color) => <Kbd key={color} color={color}>{color}</Kbd>)}
+            </Variant>
+
+            <Variant title='Colored shortcuts' description='`KbdShortcut` also takes `color` and `relief`.' file={file}>
+                <KbdShortcut keys={['Ctrl', 'K']} color='purple' relief />
+                <KbdShortcut keys={['Shift', 'Alt', 'F']} color='green' relief />
+                <KbdShortcut keys={['Cmd', 'S']} color='dark' relief />
+            </Variant>
 
             <Variant title='Default' description='Special keys with a border.' file={file}>
                 {keys.map((key) => <Kbd key={key}>{key}</Kbd>)}
