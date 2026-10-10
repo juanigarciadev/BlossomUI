@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import DocNav from './DocNav'
+import InlineCode from './InlineCode'
 import Footer from '../Footer/Footer'
 import { Appear, FadeIn } from '../Motion/Motion'
 import { introduction, customization, components } from '../../mocks/docs'
@@ -50,7 +51,7 @@ const DocPage = ({ title, description, children }) => {
                         <ChevronDown size={18} className={`duration-200 ${docNav ? 'rotate-180' : ''}`} />
                     </button>
                 </div>
-                {description && <p className='pt-2 text-lg text-neutral-600 dark:text-neutral-300'>{description}</p>}
+                {description && <p className='pt-2 text-lg text-neutral-600 dark:text-neutral-300'><InlineCode text={description} /></p>}
                 {sections.length > 1 && (
                     <nav aria-label='Variants on this page' className='flex flex-wrap items-center gap-2 pt-4'>
                         <span className='text-sm text-neutral-500'>On this page:</span>

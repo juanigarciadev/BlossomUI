@@ -4,6 +4,14 @@ import ViteInstallation from './InstallationContent/ViteInstallation'
 import NextJSInstallation from './InstallationContent/NextJSInstallation'
 import { ArrowRight } from 'lucide-react'
 import DocPage from './DocPage'
+import CodeBlock from '@codeBlock'
+
+const iconsCode = `npm install lucide-react
+
+import { Heart } from 'lucide-react'
+import { Button } from './components/ui/Button'
+
+<Button icon={<Heart size={16} />}>Like</Button>`
 
 const Installation = () => {
     const [content, setContent] = useState("Next.js")
@@ -36,6 +44,13 @@ const Installation = () => {
                     {content === "Vite" ? <ViteInstallation /> : null}
                     {content === "Next.js" ? <NextJSInstallation /> : null}
                 </div>
+                <section aria-labelledby='icons-title' className='flex flex-col gap-3 pt-10'>
+                    <h2 id='icons-title' className='text-2xl font-bold tracking-tight scroll-mt-24'>Icons</h2>
+                    <p className='text-neutral-600 dark:text-neutral-300'>
+                        Blossom UI does not depend on an icon library. Components that show an icon, such as Button, Badge, Tabs or Dropdown, receive it as a React element in the <code className='rounded-md border border-neutral-200 bg-neutral-100 px-1.5 py-0.5 font-mono text-[0.85em] font-medium text-pink-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-pink-300'>icon</code> prop, so you can use the one you prefer: <a href='https://lucide.dev' target='_blank' rel='noreferrer' className='text-corporative hover:text-corporativeHover'>Lucide</a> (used in these docs), React Icons, Heroicons, Phosphor or your own inline SVG.
+                    </p>
+                    <CodeBlock name='Using Lucide' code={iconsCode} language='tsx' />
+                </section>
         </DocPage>
     )
 }

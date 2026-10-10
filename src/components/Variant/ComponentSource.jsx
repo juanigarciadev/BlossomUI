@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useId, useMemo, useState } from 'react'
+import { ChevronDown } from 'lucide-react'
 import CodeBlock from '@codeBlock'
 import EditInGithub from '@editInGithub'
 import CompVersionTitle from '../CompVersionTitle/CompVersionTitle'
@@ -17,6 +18,14 @@ const tabClass = (active) =>
  */
 const ComponentSource = ({ source, file }) => {
     const [tab, setTab] = useState('code')
+    // Collapsed by default: most people only want to see the examples.
+    const [open, setOpen] = useState(false)
+    const panelId = useId()
+
+    // Open it when the page is reached with a link to this section.
+    useEffect(() => {
+        if (window.location.hash === '#getthecomponent') setOpen(true)
+    }, [])
 
     const fileName = file.split('/').pop()
     const baseName = fileName.replace(/\.tsx?$/, '')
@@ -24,6 +33,8 @@ const ComponentSource = ({ source, file }) => {
     const interfaces = useMemo(() => getInterfaces(source), [source])
     const importLine = `import { ${names.join(', ')} } from './components/ui/${baseName}'`
     const usesHooks = /from 'react'/.test(source) && /\buse[A-Z]\w*\(/.test(source)
+    // Components that receive an icon as a prop do not bring an icon library.
+    const acceptsIcons = /\bicon\??:\s*ReactNode/.test(source)
 
     return (
         <FadeIn as='article'>
@@ -32,86 +43,115 @@ const ComponentSource = ({ source, file }) => {
                 paragraph='Blossom UI is not an npm package. Every component is a single file that you copy into your project and own.'
             />
 
-            <div className='pb-6'>
-                <Stepper
-                    orientation='vertical'
-                    numbered
-                    current={0}
-                    steps={[
-                        {
-                            title: 'Copy the file',
-                            description: (
-                                <>
-                                    Save the code below as <code className='rounded-xl bg-neutral-200 px-1.5 py-0.5 text-xs dark:bg-neutral-800'>src/components/ui/{fileName}</code>.
-                                    {usesHooks && ' It uses React hooks, so in Next.js add "use client" at the top of the file.'}
-                                </>
-                            ),
-                        },
-                        {
-                            title: 'Import it',
-                            description: 'Import the components you need wherever you use them.',
-                            content: <CodeBlock name='Import' code={importLine} language='tsx' />,
-                        },
-                        {
-                            title: 'Use it',
-                            description: (
-                                <>
-                                    Every example on this page shows its own usage under <b className='font-medium'>Show code</b>. Props are typed, so your editor will suggest them.
-                                </>
-                            ),
-                        },
-                    ]}
-                />
+            <div className='flex flex-wrap items-center justify-between gap-3 rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800'>
+                <p className='text-sm text-neutral-600 dark:text-neutral-300'>
+                    <code className='rounded-md bg-neutral-200 px-1.5 py-0.5 text-xs dark:bg-neutral-700'>{fileName}</code>
+                    <span className='pl-2'>Steps, source code and props.</span>
+                </p>
+                <button
+                    type='button'
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={() => setOpen((current) => !current)}
+                    className='flex items-center gap-2 rounded-xl border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-800 outline-none duration-150 hover:bg-neutral-200 focus-visible:ring-2 focus-visible:ring-pink-400 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700'
+                >
+                    {open ? 'Hide' : 'Show'} code
+                    <ChevronDown size={16} className={`duration-200 ${open ? 'rotate-180' : ''}`} />
+                </button>
             </div>
 
-            <div className='flex flex-wrap items-center justify-between gap-2 border-b border-neutral-200 dark:border-neutral-700'>
-                <div role='tablist' className='flex'>
-                    <button type='button' role='tab' aria-selected={tab === 'code'} onClick={() => setTab('code')} className={tabClass(tab === 'code')}>Code</button>
-                    <button type='button' role='tab' aria-selected={tab === 'props'} onClick={() => setTab('props')} className={tabClass(tab === 'props')}>Props</button>
-                </div>
-                <div className='pb-2'>
-                    <EditInGithub url={GITHUB_BASE + file} />
-                </div>
-            </div>
+            {acceptsIcons && (
+                <p className='pt-3 text-sm text-neutral-500 dark:text-neutral-400'>
+                    Icons: this component does not include an icon library. Pass any element in an <code className='rounded-md border border-neutral-200 bg-neutral-100 px-1 py-0.5 font-mono text-xs text-pink-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-pink-300'>icon</code> prop, for example one from{' '}
+                    <a href='https://lucide.dev' target='_blank' rel='noreferrer' className='text-corporative hover:text-corporativeHover'>Lucide</a>
+                    {' '}(the examples use <code className='font-mono text-xs'>lucide-react</code>) or your own SVG.
+                </p>
+            )}
 
-            {tab === 'code' ? (
-                <CodeBlock name={fileName} code={source} language='tsx' />
-            ) : (
-                <div className='flex flex-col gap-8 pt-4'>
-                    {interfaces.length === 0 && <p className='text-sm text-neutral-500'>This component has no props.</p>}
-                    {interfaces.map((entry) => (
-                        <section key={entry.name}>
-                            <h4 className='font-mono text-sm font-medium text-pink-500'>{entry.name}</h4>
-                            {entry.extendsFrom && (
-                                <p className='pb-2 text-xs text-neutral-500'>Also accepts every prop of <code>{entry.extendsFrom}</code>.</p>
-                            )}
-                            {entry.props.length > 0 && (
-                                <div className='overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700'>
-                                    <table className='w-full min-w-[32rem] text-left text-sm'>
-                                        <thead className='bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300'>
-                                            <tr>
-                                                <th className='px-4 py-2 font-medium'>Prop</th>
-                                                <th className='px-4 py-2 font-medium'>Type</th>
-                                                <th className='px-4 py-2 font-medium'>Description</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {entry.props.map((prop) => (
-                                                <tr key={prop.name} className='border-t border-neutral-200 align-top dark:border-neutral-700'>
-                                                    <td className='whitespace-nowrap px-4 py-2 font-mono text-xs'>
-                                                        {prop.name}
-                                                        {!prop.optional && <span title='Required' className='ml-0.5 text-red-500'>*</span>}
-                                                    </td>
-                                                    <td className='px-4 py-2 font-mono text-xs text-neutral-600 dark:text-neutral-400'>{prop.type}</td>
-                                                    <td className='px-4 py-2 text-neutral-600 dark:text-neutral-300'>{prop.description || '—'}</td>
+            {open && (
+                <div id={panelId} className='pt-6'>
+                <div className='pb-6'>
+                    <Stepper
+                        orientation='vertical'
+                        numbered
+                        current={0}
+                        steps={[
+                            {
+                                title: 'Copy the file',
+                                description: (
+                                    <>
+                                        Save the code below as <code className='rounded-xl bg-neutral-200 px-1.5 py-0.5 text-xs dark:bg-neutral-800'>src/components/ui/{fileName}</code>.
+                                        {usesHooks && ' It uses React hooks, so in Next.js add "use client" at the top of the file.'}
+                                    </>
+                                ),
+                            },
+                            {
+                                title: 'Import it',
+                                description: 'Import the components you need wherever you use them.',
+                                content: <CodeBlock name='Import' code={importLine} language='tsx' />,
+                            },
+                            {
+                                title: 'Use it',
+                                description: (
+                                    <>
+                                        Every example on this page shows its own usage under <b className='font-medium'>Show code</b>. Props are typed, so your editor will suggest them.
+                                    </>
+                                ),
+                            },
+                        ]}
+                    />
+                </div>
+
+                <div className='flex flex-wrap items-center justify-between gap-2 border-b border-neutral-200 dark:border-neutral-700'>
+                    <div role='tablist' className='flex'>
+                        <button type='button' role='tab' aria-selected={tab === 'code'} onClick={() => setTab('code')} className={tabClass(tab === 'code')}>Code</button>
+                        <button type='button' role='tab' aria-selected={tab === 'props'} onClick={() => setTab('props')} className={tabClass(tab === 'props')}>Props</button>
+                    </div>
+                    <div className='pb-2'>
+                        <EditInGithub url={GITHUB_BASE + file} />
+                    </div>
+                </div>
+
+                {tab === 'code' ? (
+                    <CodeBlock name={fileName} code={source} language='tsx' />
+                ) : (
+                    <div className='flex flex-col gap-8 pt-4'>
+                        {interfaces.length === 0 && <p className='text-sm text-neutral-500'>This component has no props.</p>}
+                        {interfaces.map((entry) => (
+                            <section key={entry.name}>
+                                <h4 className='font-mono text-sm font-medium text-pink-500'>{entry.name}</h4>
+                                {entry.extendsFrom && (
+                                    <p className='pb-2 text-xs text-neutral-500'>Also accepts every prop of <code>{entry.extendsFrom}</code>.</p>
+                                )}
+                                {entry.props.length > 0 && (
+                                    <div className='overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700'>
+                                        <table className='w-full min-w-[32rem] text-left text-sm'>
+                                            <thead className='bg-neutral-100 text-neutral-600 dark:bg-neutral-800 dark:text-neutral-300'>
+                                                <tr>
+                                                    <th className='px-4 py-2 font-medium'>Prop</th>
+                                                    <th className='px-4 py-2 font-medium'>Type</th>
+                                                    <th className='px-4 py-2 font-medium'>Description</th>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            )}
-                        </section>
-                    ))}
+                                            </thead>
+                                            <tbody>
+                                                {entry.props.map((prop) => (
+                                                    <tr key={prop.name} className='border-t border-neutral-200 align-top dark:border-neutral-700'>
+                                                        <td className='whitespace-nowrap px-4 py-2 font-mono text-xs'>
+                                                            {prop.name}
+                                                            {!prop.optional && <span title='Required' className='ml-0.5 text-red-500'>*</span>}
+                                                        </td>
+                                                        <td className='px-4 py-2 font-mono text-xs text-neutral-600 dark:text-neutral-400'>{prop.type}</td>
+                                                        <td className='px-4 py-2 text-neutral-600 dark:text-neutral-300'>{prop.description || '—'}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )}
+                            </section>
+                        ))}
+                    </div>
+                )}
                 </div>
             )}
         </FadeIn>
