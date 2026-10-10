@@ -30,6 +30,8 @@ export interface ProductCardLabels {
     addToCart: string
     added: string
     unavailable: string
+    /** Text of the button while a size is required and none is chosen. */
+    chooseSize: string
     outOfStock: string
     addToFavorites: string
     removeFromFavorites: string
@@ -49,6 +51,7 @@ const defaultLabels: ProductCardLabels = {
     addToCart: 'Add to cart',
     added: 'Added!',
     unavailable: 'Unavailable',
+    chooseSize: 'Choose a size',
     outOfStock: 'Out of stock',
     addToFavorites: 'Add to favorites',
     removeFromFavorites: 'Remove from favorites',
@@ -99,6 +102,10 @@ export interface ProductCardProps {
     color?: string
     /** Color of the badge: any CSS color. Without it the badge uses the accent. */
     badgeColor?: string
+    /** Start with the first size that is in stock chosen, so the price and `onAddToCart` already have a size. */
+    preselectSize?: boolean
+    /** The add to cart button stays disabled until the user chooses a size. */
+    requireSize?: boolean
     /** Color of the add to cart button: `accent` for the brand color or any CSS color. Without it the button is black, or white in dark mode. */
     buttonColor?: string
     image: string
@@ -222,6 +229,8 @@ const Lightbox = ({ labels, color, images, start, name, onClose }: LightboxProps
 
 export const ProductCard = ({
     buttonColor,
+    preselectSize = false,
+    requireSize = false,
     labels,
     formatPrice,
     color,
@@ -249,7 +258,11 @@ export const ProductCard = ({
     const [favorite, setFavorite] = useState(false)
     const [added, setAdded] = useState(false)
     const [chosenColor, setChosenColor] = useState<string | undefined>(colors?.[0] ? (typeof colors[0] === 'string' ? colors[0] : colors[0].value) : undefined)
-    const [size, setSize] = useState<string | undefined>(undefined)
+    const [size, setSize] = useState<string | undefined>(() => {
+        if (!preselectSize) return undefined
+        const first = (sizes ?? []).map((entry) => (typeof entry === 'string' ? { value: entry } : entry)).find((entry) => entry.inStock !== false)
+        return first?.value
+    })
     const [expanded, setExpanded] = useState(false)
     const gallery = [image, ...images]
     const canExpand = expandable || images.length > 0
@@ -264,6 +277,7 @@ export const ProductCard = ({
     const money = (value: number) => (formatPrice ? formatPrice(value) : `${currency}${value.toFixed(2)}`)
     const sizeOptions: ProductSize[] = (sizes ?? []).map((entry) => (typeof entry === 'string' ? { value: entry } : entry))
     const chosenSize = sizeOptions.find((option) => option.value === size)
+    const needsSize = requireSize && sizeOptions.length > 0 && !chosenSize
     // The price of the chosen size, or the one of the product
     const shownPrice = chosenSize?.price ?? price
     const shownBefore = chosenSize?.price !== undefined ? chosenSize.originalPrice : originalPrice
@@ -391,11 +405,11 @@ export const ProductCard = ({
                 <button
                     type='button'
                     onClick={add}
-                    disabled={!inStock}
+                    disabled={!inStock || needsSize}
                     className={`flex select-none items-center justify-center rounded-xl px-4 py-3 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50 ${buttonColor ? 'hover:brightness-90' : 'bg-black text-white hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200'}`}
                     style={buttonColor ? { backgroundColor: buttonPaint, color: readableOn(buttonPaint) } : undefined}
                 >
-                    {!inStock ? text.unavailable : added ? text.added : text.addToCart}
+                    {!inStock ? text.unavailable : needsSize ? text.chooseSize : added ? text.added : text.addToCart}
                 </button>
             </div>
             {expanded && <Lightbox labels={text} color={color} images={gallery} start={0} name={name} onClose={() => setExpanded(false)} />}

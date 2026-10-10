@@ -138,6 +138,25 @@ const CardsDocumentation = () => {
                 />
             </Variant>
 
+            <Variant title='Choose a size first' description='`requireSize` keeps the button disabled until the user chooses a size, and `preselectSize` starts with the first size in stock already chosen. Without them the card behaves as before.' file={file}>
+                <ProductCard
+                    image={shoe}
+                    name='Geisha Panama'
+                    brand='Coffee'
+                    price={21}
+                    requireSize
+                    sizes={[{ value: '250 g', price: 21 }, { value: '500 g', price: 38 }, { value: '1 kg', price: 70 }]}
+                />
+                <ProductCard
+                    image={shoe}
+                    name='Bourbon Huila'
+                    brand='Coffee'
+                    price={17}
+                    preselectSize
+                    sizes={[{ value: '250 g', price: 17 }, { value: '500 g', price: 31 }, { value: '1 kg', price: 58 }]}
+                />
+            </Variant>
+
         </DocPage>
     )
 }

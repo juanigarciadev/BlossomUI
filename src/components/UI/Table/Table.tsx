@@ -15,7 +15,7 @@ export interface TableColumn<T> {
 
 export interface TableProps<T> {
     /** Texts of the component. Pass only the ones you want to change, for example to translate it. */
-    labels?: { selectAll?: string; selectRow?: string; previous?: string; next?: string; showing?: (from: number, to: number, total: number) => string }
+    labels?: { selectAll?: string; selectRow?: string; previous?: string; next?: string; showing?: (from: number, to: number, total: number) => string; page?: (page: number, total: number) => string }
     /** Rows per page. Without it all the rows are shown. */
     pageSize?: number
     /** Current page, starting at 1. Use it with `onPageChange` to control the page. */
@@ -178,7 +178,7 @@ export const Table = <T,>({ pageSize, page: pageProp, onPageChange, labels, colo
                         >
                             {labels?.previous ?? 'Previous'}
                         </button>
-                        <span className='tabular-nums text-neutral-600 dark:text-neutral-300'>{current} / {pages}</span>
+                        <span className='tabular-nums text-neutral-600 dark:text-neutral-300'>{labels?.page ? labels.page(current, pages) : `${current} / ${pages}`}</span>
                         <button
                             type='button'
                             disabled={current >= pages}
