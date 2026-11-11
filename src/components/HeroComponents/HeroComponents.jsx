@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { Bold, Italic, Underline, TrendingUp } from 'lucide-react'
-import { SocialButton } from '../UI/Buttons/Button'
 import { AvatarGroup } from '../UI/Avatar/Avatar'
 import { Checkbox } from '../UI/Forms/Forms'
 import { Combobox } from '../UI/Combobox/Combobox'
 import { ColorPicker } from '../UI/ColorPicker/ColorPicker'
 import { CopyButton } from '../UI/CopyButton/CopyButton'
-import { Gauge, Sparkline } from '../UI/Charts/Charts'
+import { AreaChart, Gauge } from '../UI/Charts/Charts'
 import { OtpInput } from '../UI/OtpInput/OtpInput'
 import { Rating } from '../UI/Rating/Rating'
 import { SegmentedControl, ToggleGroup } from '../UI/SegmentedControl/SegmentedControl'
@@ -37,6 +36,51 @@ const StepsDemo = () => {
 }
 
 /** A card. `shape` gives each one its own corners so the stack does not look like a grid of boxes. */
+const ranges = {
+    week: {
+        total: '$12.8k',
+        change: '+8.1%',
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        series: [
+            { name: 'Subscriptions', data: [14, 18, 16, 24, 28, 22, 30] },
+            { name: 'Services', data: [6, 8, 9, 7, 12, 10, 14] },
+        ],
+    },
+    month: {
+        total: '$48.2k',
+        change: '+12.4%',
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        series: [
+            { name: 'Subscriptions', data: [42, 48, 55, 61, 70, 82, 96] },
+            { name: 'Services', data: [18, 22, 20, 28, 31, 35, 44] },
+        ],
+    },
+}
+
+/** A small dashboard: the number, the trend, a range switch and a stacked chart that answers to the pointer. */
+const RevenueDemo = () => {
+    const [range, setRange] = useState('month')
+    const data = ranges[range]
+    return (
+        <>
+            <div className='flex items-start justify-between gap-4'>
+                <div className='flex flex-col gap-1'>
+                    <span className='text-xs font-medium uppercase tracking-wide text-neutral-500'>Revenue</span>
+                    <div className='flex items-center gap-2'>
+                        <span className='text-3xl font-bold leading-none text-neutral-900 dark:text-white'>{data.total}</span>
+                        <span className='flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-700 dark:bg-green-900/40 dark:text-green-400'>
+                            <TrendingUp size={12} />
+                            {data.change}
+                        </span>
+                    </div>
+                </div>
+                <SegmentedControl size='sm' label='Range' value={range} onChange={setRange} options={[{ value: 'week', label: 'Week' }, { value: 'month', label: 'Month' }]} />
+            </div>
+            <AreaChart labels={data.labels} series={data.series} stacked height={110} legend={false} label='Revenue' />
+        </>
+    )
+}
+
 const Panel = ({ className = '', children }) => (
     <div className={`relative flex flex-col gap-4 border border-neutral-200 bg-white/70 p-5 shadow-xl shadow-neutral-200/50 backdrop-blur-md dark:border-neutral-700 dark:bg-neutral-800/60 dark:shadow-none ${className}`}>
         {children}
@@ -59,26 +103,8 @@ const HeroComponents = () => {
             {/* Soft shape behind the stack, bigger than the cards */}
             <div aria-hidden className='pointer-events-none absolute -right-16 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-[var(--blossom-accent,#f472b6)] opacity-20 blur-3xl lg:hidden' />
 
-            <Panel className='float-slow rounded-[2rem_2rem_2rem_0.5rem] pb-20 [rotate:-1.5deg] lg:pb-5 lg:[rotate:0deg]'>
-                <div className='flex items-center justify-between gap-4'>
-                    <AvatarGroup avatars={photos.map((src) => ({ src }))} max={3} />
-                    <Rating value={5} />
-                </div>
-                <div className='flex flex-wrap items-center gap-4'>
-                    <div className='flex items-center gap-2'>
-                        <SocialButton provider='google' iconOnly rounded />
-                        <SocialButton provider='github' iconOnly rounded />
-                        <SocialButton provider='apple' iconOnly rounded />
-                    </div>
-                    <div className='min-w-[11rem] flex-1'>
-                        <SegmentedControl
-                            fullWidth
-                            label='Billing'
-                            defaultValue='yearly'
-                            options={[{ value: 'monthly', label: 'Monthly' }, { value: 'yearly', label: 'Yearly' }]}
-                        />
-                    </div>
-                </div>
+            <Panel className='float-slow rounded-[2.25rem] pb-20 [rotate:-1.5deg] lg:pb-5 lg:[rotate:0deg]'>
+                <RevenueDemo />
             </Panel>
 
             {/* The brand color picker hangs off the right edge and over the bottom of the first card */}
@@ -124,17 +150,14 @@ const HeroComponents = () => {
                 <OtpInput size='sm' length={6} separatorAfter={[3]} defaultValue='482' />
             </Panel>
 
-            <Panel className='float-slow ml-2 rounded-[0.5rem_2rem_2rem_2rem] lg:ml-0 lg:rounded-3xl'>
-                {/* A trend that leaves the card at the top right */}
-                <Sticker className='-right-8 -top-8 flex items-center gap-3 rounded-full py-2 pl-4 pr-5 [rotate:5deg] lg:hidden'>
-                    <span className='grid h-8 w-8 place-items-center rounded-full bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_20%,transparent)] text-[var(--blossom-accent,#f472b6)]'>
-                        <TrendingUp size={16} />
-                    </span>
-                    <div className='flex flex-col'>
-                        <span className='text-sm font-bold leading-none text-neutral-900 dark:text-white'>+24%</span>
-                        <span className='text-xs text-neutral-500'>this week</span>
+            <Panel className='float-slow ml-2 rounded-[2.25rem] lg:ml-0 lg:rounded-3xl'>
+                {/* Social proof that leaves the card at the top right */}
+                <Sticker className='-right-8 -top-9 flex items-center gap-3 rounded-full py-2 pl-3 pr-5 [rotate:5deg] lg:hidden'>
+                    <AvatarGroup avatars={photos.map((src) => ({ src }))} max={3} />
+                    <div className='flex flex-col gap-0.5'>
+                        <Rating value={5} size={14} />
+                        <span className='text-xs text-neutral-500'>Loved by 2k devs</span>
                     </div>
-                    <div className='w-16'><Sparkline data={[4, 6, 5, 9, 8, 12, 15]} color='var(--blossom-accent,#f472b6)' height={28} label='Trend: up 24% this week' /></div>
                 </Sticker>
                 <StepsDemo />
             </Panel>
