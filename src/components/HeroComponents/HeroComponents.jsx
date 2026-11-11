@@ -287,7 +287,7 @@ const PageData = ({ wide }) => (
         </Piece>
         <Piece className='absolute left-[40%] top-[56px] z-20 w-fit'>
             <Sticker className='float-slower rounded-[2rem] px-5 pb-3 pt-5 [rotate:6deg] lg:[rotate:0deg]'>
-                <Gauge value={86} unit='%' caption='Satisfaction' size={124} label='Satisfaction' thresholds={[{ from: 0, color: '#f87171' }, { from: 50, color: '#fbbf24' }, { from: 75, color: '#34d399' }]} />
+                <Gauge value={86} unit='%' caption='Satisfaction' size={124} label='Satisfaction' />
             </Sticker>
         </Piece>
         <Piece className='absolute bottom-0 left-4 w-[15rem]'>
