@@ -285,7 +285,7 @@ const PageData = ({ wide }) => (
                 <Heatmap data={heat} rows={['9h', '12h', '15h', '18h']} columns={['M', 'T', 'W', 'T', 'F', 'S', 'S']} cell={20} label='Visits by day and hour' />
             </Panel>
         </Piece>
-        <Piece className='absolute left-[40%] top-1 z-20 w-fit'>
+        <Piece className='absolute left-[40%] top-[56px] z-20 w-fit'>
             <Sticker className='float-slower rounded-[2rem] px-5 pb-3 pt-5 [rotate:6deg] lg:[rotate:0deg]'>
                 <Gauge value={86} unit='%' caption='Satisfaction' size={124} label='Satisfaction' thresholds={[{ from: 0, color: '#f87171' }, { from: 50, color: '#fbbf24' }, { from: 75, color: '#34d399' }]} />
             </Sticker>
@@ -330,7 +330,7 @@ const PageData = ({ wide }) => (
                 </Piece>
             </>
         )}
-        <Piece className={`absolute z-20 w-fit lg:hidden ${wide ? '-right-2 top-8' : '-right-6 bottom-3'}`}>
+        <Piece className={`absolute z-20 w-fit lg:hidden ${wide ? 'right-24 top-[110px]' : '-right-6 bottom-3'}`}>
             <Pill className='float-slow [rotate:5deg]'>
                 <span className='grid h-8 w-8 place-items-center rounded-full bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_20%,transparent)] text-[var(--blossom-accent,#f472b6)]'>
                     <TrendingUp size={16} />
