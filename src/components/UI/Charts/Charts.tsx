@@ -567,8 +567,9 @@ export const Gauge = ({ value, min = 0, max = 100, size = 220, caption, unit = '
                 <path d={d} fill='none' strokeWidth={stroke} strokeLinecap='round' stroke={color} strokeDasharray={`${arc * ratio} ${arc}`} className='transition-[stroke-dasharray,stroke] duration-500' />
             </svg>
             <div className='absolute inset-x-0 bottom-0 flex flex-col items-center text-center'>
-                <span className='text-3xl font-bold leading-none text-neutral-900 dark:text-white'>{format(value)}<span className='text-lg font-medium text-neutral-500'>{unit}</span></span>
-                {caption && <span className='pt-1 text-sm text-neutral-500'>{caption}</span>}
+                {/* The text follows the size of the gauge, so a small one does not overflow its arc */}
+                <span className='font-bold leading-none text-neutral-900 dark:text-white' style={{ fontSize: Math.round(Math.min(Math.max(size / 7, 14), 36)) }}>{format(value)}<span className='font-medium text-neutral-500' style={{ fontSize: '0.6em' }}>{unit}</span></span>
+                {caption && <span className={`pt-1 text-neutral-500 ${size < 140 ? 'text-[10px]' : 'text-sm'}`}>{caption}</span>}
             </div>
         </div>
     )

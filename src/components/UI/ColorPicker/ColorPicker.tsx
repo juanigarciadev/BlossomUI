@@ -31,6 +31,8 @@ export interface ColorPickerProps {
     presets?: string[]
     /** Show the panel in the page instead of in a popover opened by a field. */
     inline?: boolean
+    /** Show the area for saturation and brightness. Turn it off for a compact picker with only the hue bar, the hex field and the presets. */
+    area?: boolean
     disabled?: boolean
 }
 
@@ -85,7 +87,7 @@ const normalize = (hex: string) => {
 const defaultPresets = ['#f472b6', '#a78bfa', '#60a5fa', '#34d399', '#fbbf24', '#f87171', '#171717', '#e5e5e5']
 
 /** The panel: an area for saturation and brightness, a hue bar, a hex field and ready-made colors. */
-const Panel = ({ color, onColor, labels, presets }: { color: string; onColor: (hex: string) => void; labels: ColorPickerLabels; presets: string[] }) => {
+const Panel = ({ color, onColor, labels, presets, area: showArea }: { color: string; onColor: (hex: string) => void; labels: ColorPickerLabels; presets: string[]; area: boolean }) => {
     const area = useRef<HTMLDivElement>(null)
     const [hsv, setHsv] = useState<Hsv>(() => toHsv(color))
     const [text, setText] = useState(color)
@@ -144,30 +146,32 @@ const Panel = ({ color, onColor, labels, presets }: { color: string; onColor: (h
 
     return (
         <div className='flex w-64 max-w-full flex-col gap-3'>
-            <div
-                ref={area}
-                role='slider'
-                tabIndex={0}
-                aria-label={labels.area}
-                aria-valuetext={`Saturation ${Math.round(hsv.s * 100)}%, brightness ${Math.round(hsv.v * 100)}%`}
-                aria-valuenow={Math.round(hsv.s * 100)}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                onPointerDown={(event) => {
-                    event.currentTarget.setPointerCapture(event.pointerId)
-                    fromPointer(event)
-                }}
-                onPointerMove={(event) => event.buttons === 1 && fromPointer(event)}
-                onKeyDown={onAreaKey}
-                style={{ backgroundColor: `hsl(${hsv.h} 100% 50%)`, backgroundImage: 'linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent)' }}
-                className='relative h-40 w-full cursor-crosshair touch-none rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900'
-            >
-                <span
-                    aria-hidden='true'
-                    style={{ left: `${hsv.s * 100}%`, top: `${(1 - hsv.v) * 100}%`, backgroundColor: hex }}
-                    className='pointer-events-none absolute h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow-[0_0_0_1px_rgba(0,0,0,0.3)]'
-                />
-            </div>
+            {showArea && (
+                <div
+                    ref={area}
+                    role='slider'
+                    tabIndex={0}
+                    aria-label={labels.area}
+                    aria-valuetext={`Saturation ${Math.round(hsv.s * 100)}%, brightness ${Math.round(hsv.v * 100)}%`}
+                    aria-valuenow={Math.round(hsv.s * 100)}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    onPointerDown={(event) => {
+                        event.currentTarget.setPointerCapture(event.pointerId)
+                        fromPointer(event)
+                    }}
+                    onPointerMove={(event) => event.buttons === 1 && fromPointer(event)}
+                    onKeyDown={onAreaKey}
+                    style={{ backgroundColor: `hsl(${hsv.h} 100% 50%)`, backgroundImage: 'linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent)' }}
+                    className='relative h-40 w-full cursor-crosshair touch-none rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-900'
+                >
+                    <span
+                        aria-hidden='true'
+                        style={{ left: `${hsv.s * 100}%`, top: `${(1 - hsv.v) * 100}%`, backgroundColor: hex }}
+                        className='pointer-events-none absolute h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow-[0_0_0_1px_rgba(0,0,0,0.3)]'
+                    />
+                </div>
+            )}
             <input
                 type='range'
                 min={0}
@@ -211,7 +215,7 @@ const Panel = ({ color, onColor, labels, presets }: { color: string; onColor: (h
 }
 
 /** A field that opens a color panel. The value is always a `#rrggbb` string. */
-export const ColorPicker = ({ labels, value, defaultValue = '#f472b6', onChange, label, hint, error, presets = defaultPresets, inline = false, disabled = false }: ColorPickerProps) => {
+export const ColorPicker = ({ labels, value, defaultValue = '#f472b6', onChange, label, hint, error, presets = defaultPresets, inline = false, area = true, disabled = false }: ColorPickerProps) => {
     const id = useId()
     const text = { ...defaultLabels, ...labels }
     const trigger = useRef<HTMLButtonElement>(null)
@@ -273,14 +277,14 @@ export const ColorPicker = ({ labels, value, defaultValue = '#f472b6', onChange,
 
     // Focus the area when the panel opens.
     useEffect(() => {
-        if (open && box) panel.current?.querySelector<HTMLElement>('[role="slider"]')?.focus({ preventScroll: true })
+        if (open && box) panel.current?.querySelector<HTMLElement>('[role="slider"], input[type="range"]')?.focus({ preventScroll: true })
     }, [open, box])
 
     if (inline) {
         return (
             <div className='flex w-fit flex-col gap-2'>
                 {label && <span className='text-sm font-medium text-neutral-800 dark:text-white'>{label}</span>}
-                <Panel color={color} onColor={change} labels={text} presets={presets} />
+                <Panel color={color} onColor={change} labels={text} presets={presets} area={area} />
             </div>
         )
     }
@@ -312,7 +316,7 @@ export const ColorPicker = ({ labels, value, defaultValue = '#f472b6', onChange,
                     style={accentStyle(undefined, { position: 'fixed', top: box?.top ?? 0, left: box?.left ?? 0, visibility: box ? 'visible' : 'hidden' })}
                     className='z-[80] rounded-xl border border-neutral-200 bg-white p-3 shadow-lg dark:border-neutral-700 dark:bg-neutral-900'
                 >
-                    <Panel color={color} onColor={change} labels={text} presets={presets} />
+                    <Panel color={color} onColor={change} labels={text} presets={presets} area={area} />
                 </div>,
                 document.body
             )}
