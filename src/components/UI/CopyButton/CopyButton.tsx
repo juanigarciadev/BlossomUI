@@ -83,7 +83,7 @@ export const CopyButton = ({ text, label = 'Copy', copiedLabel = 'Copied', timeo
             onClick={copy}
             aria-label={variant === 'icon' ? (copied ? copiedLabel : label) : undefined}
             style={accentStyle(color)}
-            className={`flex w-fit select-none items-center justify-center gap-2 rounded-xl border font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${variant === 'icon' ? iconSizes[size] : sizes[size]} ${copied ? 'border-[var(--blossom-accent,#f472b6)] bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_14%,transparent)] text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_85%,black)] dark:text-[var(--blossom-accent,#f472b6)]' : 'border-neutral-300 text-neutral-800 hover:bg-neutral-100 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800'} ${className}`}
+            className={`relative flex shrink-0 select-none items-center justify-center gap-2 rounded-xl border font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] ${variant === 'icon' ? iconSizes[size] : `w-fit ${sizes[size]}`} ${copied ? 'border-[var(--blossom-accent,#f472b6)] bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_14%,transparent)] text-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_85%,black)] dark:text-[var(--blossom-accent,#f472b6)]' : 'border-neutral-300 text-neutral-800 hover:bg-neutral-100 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800'} ${className}`}
         >
             {copied ? copiedIcon : icon}
             {variant === 'button' && <span>{copied ? copiedLabel : label}</span>}
