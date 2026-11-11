@@ -240,22 +240,19 @@ const PageBooking = ({ wide }) => (
         </Piece>
         {wide && (
             <>
-                <Piece className='absolute left-[44%] top-3 z-10 w-fit'>
-                    <Pill className='float-slow [rotate:-4deg]'>
-                        <AvatarGroup avatars={photos.map((src) => ({ src }))} max={3} />
-                        <div className='flex flex-col gap-0.5'>
-                            <Rating value={4.5} size={14} />
-                            <span className='text-xs text-neutral-500'>Superhost · 128 reviews</span>
-                        </div>
-                    </Pill>
+                <Piece className='absolute left-[40%] top-2 z-10 w-fit'>
+                    <Sticker className='float-slow flex flex-col gap-1 rounded-2xl px-4 py-3 [rotate:-4deg]'>
+                        <Rating value={4.5} size={14} />
+                        <span className='whitespace-nowrap text-xs text-neutral-500'>Superhost · 128 reviews</span>
+                    </Sticker>
                 </Piece>
-                <Piece className='absolute left-[46%] top-[96px] z-10 w-fit'>
-                    <Sticker className='float-slower flex items-center gap-3 rounded-2xl px-4 py-3 [rotate:3deg]'>
+                <Piece className='absolute left-[44%] top-[104px] z-10 w-fit'>
+                    <Sticker className='float-slower flex items-center gap-3 rounded-full px-4 py-2.5 [rotate:3deg]'>
                         <span className='relative flex h-2.5 w-2.5'>
                             <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60' />
                             <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500' />
                         </span>
-                        <span className='text-sm font-medium text-neutral-800 dark:text-white'>3 rooms left at this price</span>
+                        <span className='whitespace-nowrap text-sm font-medium text-neutral-800 dark:text-white'>3 rooms left</span>
                     </Sticker>
                 </Piece>
             </>
@@ -288,7 +285,7 @@ const PageData = ({ wide }) => (
                 <Heatmap data={heat} rows={['9h', '12h', '15h', '18h']} columns={['M', 'T', 'W', 'T', 'F', 'S', 'S']} cell={20} label='Visits by day and hour' />
             </Panel>
         </Piece>
-        <Piece className='absolute left-[56%] top-2 z-20 w-fit'>
+        <Piece className='absolute left-[40%] top-1 z-20 w-fit'>
             <Sticker className='float-slower rounded-[2rem] px-5 pb-3 pt-5 [rotate:6deg] lg:[rotate:0deg]'>
                 <Gauge value={86} unit='%' caption='Satisfaction' size={124} label='Satisfaction' thresholds={[{ from: 0, color: '#f87171' }, { from: 50, color: '#fbbf24' }, { from: 75, color: '#34d399' }]} />
             </Sticker>
@@ -322,18 +319,18 @@ const PageData = ({ wide }) => (
                         <Sparkline data={[3, 4, 3.6, 4.2, 4.1, 4.8, 5.2]} height={36} label='Conversion trend' />
                     </Panel>
                 </Piece>
-                <Piece className='absolute -right-6 top-6 z-10 w-fit'>
+                <Piece className='absolute -right-6 bottom-3 z-10 w-fit'>
                     <Pill className='float-slower [rotate:4deg]'>
                         <span className='relative flex h-2.5 w-2.5'>
                             <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60' />
                             <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500' />
                         </span>
-                        <span className='text-sm font-medium text-neutral-800 dark:text-white'>Live · 1,284 online</span>
+                        <span className='whitespace-nowrap text-sm font-medium text-neutral-800 dark:text-white'>Live · 1,284 online</span>
                     </Pill>
                 </Piece>
             </>
         )}
-        <Piece className='absolute -right-6 bottom-3 z-20 w-fit lg:hidden'>
+        <Piece className={`absolute z-20 w-fit lg:hidden ${wide ? '-right-2 top-8' : '-right-6 bottom-3'}`}>
             <Pill className='float-slow [rotate:5deg]'>
                 <span className='grid h-8 w-8 place-items-center rounded-full bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_20%,transparent)] text-[var(--blossom-accent,#f472b6)]'>
                     <TrendingUp size={16} />
@@ -407,10 +404,10 @@ const HeroComponents = () => {
                                 className='pointer-events-none absolute left-full top-0 ml-2 flex flex-col items-start text-[var(--blossom-accent,#f472b6)] [rotate:6deg] xl:hidden'
                             >
                                 <span className='whitespace-nowrap text-lg font-bold italic tracking-tight'>Try me!</span>
-                                {/* The arrow starts at the top left of the text and curves down to the picker */}
+                                {/* The arrow leaves the text, goes down and ends pointing left at the picker */}
                                 <svg width='64' height='46' viewBox='0 0 64 46' fill='none' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' strokeLinejoin='round'>
-                                    <path d='M10 4C8 24 22 38 54 38' />
-                                    <path d='M46 30 55 38 46 44' />
+                                    <path d='M50 4C54 24 36 38 8 36' />
+                                    <path d='M17 28 8 36 18 42' />
                                 </svg>
                             </motion.div>
                         )}
