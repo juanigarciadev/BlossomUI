@@ -240,13 +240,13 @@ const PageBooking = ({ wide }) => (
         </Piece>
         {wide && (
             <>
-                <Piece className='absolute left-[40%] top-2 z-10 w-fit'>
+                <Piece className='absolute left-[40%] top-[84px] z-10 w-fit'>
                     <Sticker className='float-slow flex flex-col gap-1 rounded-2xl px-4 py-3 [rotate:-4deg]'>
                         <Rating value={4.5} size={14} />
                         <span className='whitespace-nowrap text-xs text-neutral-500'>Superhost · 128 reviews</span>
                     </Sticker>
                 </Piece>
-                <Piece className='absolute left-[44%] top-[104px] z-10 w-fit'>
+                <Piece className='absolute left-[44%] top-[178px] z-10 w-fit'>
                     <Sticker className='float-slower flex items-center gap-3 rounded-full px-4 py-2.5 [rotate:3deg]'>
                         <span className='relative flex h-2.5 w-2.5'>
                             <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60' />
