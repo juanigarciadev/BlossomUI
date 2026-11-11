@@ -228,7 +228,7 @@ const PageBooking = ({ wide }) => (
             {/* A smaller calendar, so the brand color picker does not cover its last column */}
             <div className='origin-top-left scale-[0.86] lg:scale-100'>
                 <div className='float-slow [rotate:-2deg] lg:[rotate:0deg]'>
-                    <Calendar mode='range' defaultValue={stay} defaultMonth={stay.start} className='shadow-xl shadow-neutral-200/50 dark:shadow-none' />
+                    <Calendar mode='range' defaultValue={stay} defaultMonth={stay.start} className='!rounded-[1.75rem] !border-neutral-200 !bg-white/70 shadow-xl shadow-neutral-200/50 backdrop-blur-md dark:!border-neutral-700 dark:!bg-neutral-800/60 dark:shadow-none' />
                 </div>
             </div>
         </Piece>
