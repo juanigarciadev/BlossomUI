@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Bold, Italic, Underline, TrendingUp } from 'lucide-react'
 import { AvatarGroup } from '../UI/Avatar/Avatar'
@@ -7,7 +7,7 @@ import { Checkbox, Switch } from '../UI/Forms/Forms'
 import { Combobox } from '../UI/Combobox/Combobox'
 import { ColorPicker } from '../UI/ColorPicker/ColorPicker'
 import { CopyButton } from '../UI/CopyButton/CopyButton'
-import { AreaChart, Gauge, Heatmap, RadarChart } from '../UI/Charts/Charts'
+import { AreaChart, Gauge, Heatmap, RadarChart, Sparkline } from '../UI/Charts/Charts'
 import { NumberInput } from '../UI/NumberInput/NumberInput'
 import { Rating } from '../UI/Rating/Rating'
 import { SegmentedControl, ToggleGroup } from '../UI/SegmentedControl/SegmentedControl'
@@ -42,6 +42,19 @@ const useStacked = () => {
         return () => media.removeEventListener('change', update)
     }, [])
     return stacked
+}
+
+/** True when the stage has room for more pieces: on a big screen the middle of a page would be empty otherwise. */
+const useWide = (ref) => {
+    const [wide, setWide] = useState(false)
+    useEffect(() => {
+        const element = ref.current
+        if (!element || typeof ResizeObserver === 'undefined') return
+        const observer = new ResizeObserver(([entry]) => setWide(entry.contentRect.width >= 560))
+        observer.observe(element)
+        return () => observer.disconnect()
+    }, [ref])
+    return wide
 }
 
 /* -------------------------------------------------------------------------- */
@@ -209,7 +222,7 @@ const PageDashboard = () => (
 const today = new Date()
 const stay = { start: new Date(today.getFullYear(), today.getMonth(), 8), end: new Date(today.getFullYear(), today.getMonth(), 14) }
 
-const PageBooking = () => (
+const PageBooking = ({ wide }) => (
     <>
         <Piece className='absolute left-1 top-0 w-72'>
             {/* A smaller calendar, so the brand color picker does not cover its last column */}
@@ -225,6 +238,28 @@ const PageBooking = () => (
                 <TimePicker label='Check-in' defaultValue='15:30' hour12 />
             </Sticker>
         </Piece>
+        {wide && (
+            <>
+                <Piece className='absolute left-[44%] top-3 z-10 w-fit'>
+                    <Pill className='float-slow [rotate:-4deg]'>
+                        <AvatarGroup avatars={photos.map((src) => ({ src }))} max={3} />
+                        <div className='flex flex-col gap-0.5'>
+                            <Rating value={4.5} size={14} />
+                            <span className='text-xs text-neutral-500'>Superhost · 128 reviews</span>
+                        </div>
+                    </Pill>
+                </Piece>
+                <Piece className='absolute left-[46%] top-[96px] z-10 w-fit'>
+                    <Sticker className='float-slower flex items-center gap-3 rounded-2xl px-4 py-3 [rotate:3deg]'>
+                        <span className='relative flex h-2.5 w-2.5'>
+                            <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60' />
+                            <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500' />
+                        </span>
+                        <span className='text-sm font-medium text-neutral-800 dark:text-white'>3 rooms left at this price</span>
+                    </Sticker>
+                </Piece>
+            </>
+        )}
         <Piece className='absolute bottom-0 left-0 w-[80%]'>
             <Panel className='float-slow gap-4 rounded-[2.5rem_1rem_2.5rem_1rem] px-7 py-5 [rotate:1deg] lg:rounded-3xl lg:[rotate:0deg]'>
                 <Slider label='Budget' defaultValue={60} showValue unit=' $/night' min={20} max={200} step={5} />
@@ -245,7 +280,7 @@ const heat = [
     [1, 2, 6, 9, 7, 3, 1],
 ]
 
-const PageData = () => (
+const PageData = ({ wide }) => (
     <>
         <Piece className='absolute left-0 top-0 w-[15rem]'>
             <Panel className='float-slow gap-2 rounded-[2rem_2rem_0.75rem_2rem] p-4 [rotate:-2deg] lg:rounded-3xl lg:[rotate:0deg]'>
@@ -274,6 +309,30 @@ const PageData = () => (
                 />
             </Panel>
         </Piece>
+        {wide && (
+            <>
+                {/* The middle of the page: a conversion card between the radar and the brand color */}
+                <Piece className='absolute left-[40%] top-[236px] z-10 w-[11rem]'>
+                    <Panel className='float-slow gap-1 rounded-[1.75rem] p-4 [rotate:-3deg]'>
+                        <span className='text-xs font-medium uppercase tracking-wide text-neutral-500'>Conversion</span>
+                        <div className='flex items-baseline gap-2'>
+                            <span className='text-2xl font-bold text-neutral-900 dark:text-white'>4.8%</span>
+                            <span className='text-xs font-semibold text-green-600 dark:text-green-400'>+0.6</span>
+                        </div>
+                        <Sparkline data={[3, 4, 3.6, 4.2, 4.1, 4.8, 5.2]} height={36} label='Conversion trend' />
+                    </Panel>
+                </Piece>
+                <Piece className='absolute -right-6 top-6 z-10 w-fit'>
+                    <Pill className='float-slower [rotate:4deg]'>
+                        <span className='relative flex h-2.5 w-2.5'>
+                            <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60' />
+                            <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500' />
+                        </span>
+                        <span className='text-sm font-medium text-neutral-800 dark:text-white'>Live · 1,284 online</span>
+                    </Pill>
+                </Piece>
+            </>
+        )}
         <Piece className='absolute -right-6 bottom-3 z-20 w-fit lg:hidden'>
             <Pill className='float-slow [rotate:5deg]'>
                 <span className='grid h-8 w-8 place-items-center rounded-full bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_20%,transparent)] text-[var(--blossom-accent,#f472b6)]'>
@@ -292,16 +351,16 @@ const PageData = () => (
 /*  The hero                                                                  */
 /* -------------------------------------------------------------------------- */
 
-const pages = { 1: <PageDashboard />, 2: <PageBooking />, 3: <PageData /> }
-
 const HeroComponents = () => {
     // The brand color of the whole stack: the hue bar changes every accent inside it, on every page.
     const [brand, setBrand] = useState('#f472b6')
-    // The hint goes away as soon as the user tries the picker
+    // The hint stays, on every page, until the user tries the picker
     const [tried, setTried] = useState(false)
     const [page, setPage] = useState(1)
     const stacked = useStacked()
     const calm = useReducedMotion()
+    const stage = useRef(null)
+    const wide = useWide(stage)
 
     const go = (next) => {
         heading.dir = next > page ? 1 : -1
@@ -320,7 +379,7 @@ const HeroComponents = () => {
             {/* Soft shape behind the stack, bigger than the cards */}
             <div aria-hidden className='pointer-events-none absolute -right-16 top-1/3 h-72 w-72 -translate-y-1/2 rounded-full bg-[var(--blossom-accent,#f472b6)] opacity-20 blur-3xl lg:hidden' />
 
-            <div className='relative h-[460px] w-full lg:flex lg:h-auto lg:flex-col lg:gap-5'>
+            <div ref={stage} className='relative h-[460px] w-full lg:flex lg:h-auto lg:flex-col lg:gap-5'>
                 {/* The pieces of the open page. When it changes they fly out and the next ones fly in. */}
                 <AnimatePresence initial={false} mode={stacked ? 'wait' : 'sync'}>
                     <motion.div
@@ -331,26 +390,27 @@ const HeroComponents = () => {
                         exit='exit'
                         className='absolute inset-0 lg:static lg:flex lg:flex-col lg:items-start lg:gap-5'
                     >
-                        {pages[page]}
+                        {page === 1 ? <PageDashboard /> : page === 2 ? <PageBooking wide={wide} /> : <PageData wide={wide} />}
                     </motion.div>
                 </AnimatePresence>
 
                 {/* The brand color stays on every page, so every component can be tried with it */}
                 <div className='absolute -right-14 top-[206px] z-30 w-72 lg:relative lg:right-auto lg:top-auto lg:w-fit'>
                     <AnimatePresence>
-                        {page === 1 && !tried && (
+                        {!tried && (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.8 }}
                                 transition={{ delay: 0.4, type: 'spring', stiffness: 200, damping: 16 }}
                                 aria-hidden='true'
-                                className='pointer-events-none absolute right-full top-1 mr-1 flex items-end gap-1 text-[var(--blossom-accent,#f472b6)] [rotate:-6deg] lg:hidden'
+                                className='pointer-events-none absolute left-full top-0 ml-2 flex flex-col items-start text-[var(--blossom-accent,#f472b6)] [rotate:6deg] xl:hidden'
                             >
-                                <span className='whitespace-nowrap pb-3 text-lg font-bold italic tracking-tight'>Try me!</span>
-                                <svg width='56' height='44' viewBox='0 0 56 44' fill='none' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' strokeLinejoin='round'>
-                                    <path d='M3 8C18 0 40 4 50 30' />
-                                    <path d='M41 28 50 32 54 22' />
+                                <span className='whitespace-nowrap text-lg font-bold italic tracking-tight'>Try me!</span>
+                                {/* The arrow starts at the top left of the text and curves down to the picker */}
+                                <svg width='64' height='46' viewBox='0 0 64 46' fill='none' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' strokeLinejoin='round'>
+                                    <path d='M10 4C8 24 22 38 54 38' />
+                                    <path d='M46 30 55 38 46 44' />
                                 </svg>
                             </motion.div>
                         )}
