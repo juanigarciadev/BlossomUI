@@ -365,6 +365,164 @@ const skeletons = {
             ))}
         </div>
     ),
+    'Alert dialog': () => (
+        <div className='flex w-full flex-col gap-3 rounded-xl border border-neutral-300 p-3 dark:border-neutral-700'>
+            <div className='flex items-center gap-3'>
+                <div className='h-8 w-8 rounded-full bg-red-200 dark:bg-red-900/50' />
+                <Lines widths={['90px', '60px']} />
+            </div>
+            <div className='flex justify-end gap-2'>
+                <div className={`h-6 w-14 ${block}`} />
+                <div className='h-6 w-14 rounded-xl bg-red-400 dark:bg-red-700' />
+            </div>
+        </div>
+    ),
+    Calendar: () => (
+        <div className='grid grid-cols-7 gap-1.5'>
+            {Array.from({ length: 21 }, (_, i) => <div key={i} className={`h-3 w-3 rounded-md ${i === 10 ? accent : i > 10 && i < 14 ? soft : 'bg-neutral-300 dark:bg-neutral-700'}`} />)}
+        </div>
+    ),
+    Combobox: () => (
+        <div className='flex w-full flex-col gap-1'>
+            <div className='flex h-9 items-center justify-between rounded-xl border border-neutral-300 px-3 dark:border-neutral-700'>
+                <div className={`h-2 w-12 ${accent} rounded-full`} />
+                <span className='text-neutral-400'>⌄</span>
+            </div>
+            <div className='flex flex-col gap-2 rounded-xl border border-neutral-300 p-2 dark:border-neutral-700'>
+                <div className={`h-2 w-20 ${bar}`} />
+                <div className={`h-2 w-14 ${bar}`} />
+            </div>
+        </div>
+    ),
+    'Context menu': () => (
+        <div className='flex w-28 flex-col gap-2 rounded-xl border border-neutral-300 bg-white p-2 shadow-sm dark:border-neutral-700 dark:bg-neutral-900'>
+            <div className={`h-5 rounded-lg ${soft}`} />
+            <div className={`h-2 w-16 ${bar}`} />
+            <div className='h-px bg-neutral-300 dark:bg-neutral-700' />
+            <div className='h-2 w-12 rounded-full bg-red-300 dark:bg-red-800' />
+        </div>
+    ),
+    'Number input': () => (
+        <div className='flex h-9 w-full items-center justify-between rounded-xl border border-neutral-300 px-3 dark:border-neutral-700'>
+            <span className='text-neutral-400'>−</span>
+            <div className={`h-2 w-6 ${accent} rounded-full`} />
+            <span className='text-neutral-400'>+</span>
+        </div>
+    ),
+    'OTP input': () => (
+        <div className='flex gap-1.5'>
+            {[true, true, true, false, false, false].map((filled, i) => (
+                <div key={i} className={`grid h-8 w-6 place-items-center rounded-lg border ${filled ? 'border-corporative' : 'border-neutral-300 dark:border-neutral-700'}`}>
+                    {filled && <div className={`h-1.5 w-1.5 rounded-full ${accent}`} />}
+                </div>
+            ))}
+        </div>
+    ),
+    'Segmented control': () => (
+        <div className='flex gap-1 rounded-xl bg-neutral-200 p-1 dark:bg-neutral-800'>
+            <div className='h-6 w-14 rounded-lg bg-white shadow-sm dark:bg-neutral-600' />
+            <div className='h-6 w-14' />
+            <div className='h-6 w-14' />
+        </div>
+    ),
+    Separator: () => (
+        <div className='flex w-full items-center gap-3'>
+            <div className='h-px flex-1 bg-neutral-300 dark:bg-neutral-700' />
+            <div className={`h-2 w-4 ${bar}`} />
+            <div className='h-px flex-1 bg-neutral-300 dark:bg-neutral-700' />
+        </div>
+    ),
+    'Time picker': () => (
+        <div className='flex gap-2 rounded-xl border border-neutral-300 p-2 dark:border-neutral-700'>
+            {[1, 2].map((col) => (
+                <div key={col} className='flex flex-col gap-1.5'>
+                    {[0, 1, 2, 3].map((row) => <div key={row} className={`h-3 w-7 rounded-md ${row === 1 ? accent : 'bg-neutral-300 dark:bg-neutral-700'}`} />)}
+                </div>
+            ))}
+        </div>
+    ),
+    Collapsible: () => (
+        <div className='flex w-full flex-col rounded-xl border border-neutral-300 dark:border-neutral-700'>
+            <div className='flex items-center justify-between p-3'>
+                <div className={`h-2 w-20 ${accent} rounded-full`} />
+                <span className='text-neutral-400'>⌃</span>
+            </div>
+            <div className='px-3 pb-3'><Lines widths={['90%', '55%']} /></div>
+        </div>
+    ),
+    'Color picker': () => (
+        <div className='flex w-28 flex-col gap-2'>
+            <div className='h-14 rounded-xl' style={{ backgroundImage: 'linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, #f472b6)' }} />
+            <div className='h-2 rounded-full' style={{ backgroundImage: 'linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00)' }} />
+        </div>
+    ),
+    'Copy button': () => (
+        <div className='flex items-center gap-2 rounded-xl border border-neutral-300 px-3 py-2 dark:border-neutral-700'>
+            <div className={`h-3 w-3 rounded-sm border-2 border-corporative`} />
+            <div className={`h-2 w-10 ${accent} rounded-full`} />
+        </div>
+    ),
+    'Hover card': () => (
+        <div className='flex flex-col items-start gap-2'>
+            <div className={`h-2 w-16 ${accent} rounded-full`} />
+            <div className='flex w-32 flex-col gap-2 rounded-xl border border-neutral-300 bg-white p-2 shadow-sm dark:border-neutral-700 dark:bg-neutral-900'>
+                <div className='flex items-center gap-2'><div className={`h-5 w-5 rounded-full ${soft}`} /><Lines widths={['40px']} /></div>
+                <Lines widths={['100%', '70%']} />
+            </div>
+        </div>
+    ),
+    Menubar: () => (
+        <div className='flex flex-col gap-1'>
+            <div className='flex gap-2 rounded-xl border border-neutral-300 p-1.5 dark:border-neutral-700'>
+                <div className={`h-4 w-8 rounded-md ${soft}`} /><div className={`h-4 w-8 rounded-md ${bar}`} /><div className={`h-4 w-8 rounded-md ${bar}`} />
+            </div>
+            <div className='ml-1 flex w-20 flex-col gap-1.5 rounded-lg border border-neutral-300 p-1.5 dark:border-neutral-700'><Lines widths={['100%', '70%']} /></div>
+        </div>
+    ),
+    'Navigation menu': () => (
+        <div className='flex flex-col gap-1'>
+            <div className='flex gap-3'>
+                <div className={`h-2 w-10 ${accent} rounded-full`} /><div className={`h-2 w-8 ${bar}`} /><div className={`h-2 w-8 ${bar}`} />
+            </div>
+            <div className='grid w-36 grid-cols-2 gap-2 rounded-xl border border-neutral-300 p-2 dark:border-neutral-700'>
+                <Lines widths={['100%', '70%']} /><Lines widths={['100%', '60%']} />
+            </div>
+        </div>
+    ),
+    'Resizable panels': () => (
+        <div className='flex h-16 w-full overflow-hidden rounded-xl border border-neutral-300 dark:border-neutral-700'>
+            <div className='w-2/5 bg-neutral-100 dark:bg-neutral-800' />
+            <div className='relative w-px bg-corporative'><div className='absolute left-1/2 top-1/2 h-4 w-2 -translate-x-1/2 -translate-y-1/2 rounded-sm bg-corporative' /></div>
+            <div className='flex-1' />
+        </div>
+    ),
+    'Scroll area': () => (
+        <div className='relative flex h-20 w-full flex-col gap-2 overflow-hidden rounded-xl border border-neutral-300 p-3 dark:border-neutral-700'>
+            <Lines widths={['90%', '70%', '80%', '60%']} />
+            <div className='absolute bottom-2 right-1 top-2 w-1 rounded-full bg-neutral-300 dark:bg-neutral-700'><div className='h-1/2 w-full rounded-full bg-neutral-500' /></div>
+        </div>
+    ),
+    Sidebar: () => (
+        <div className='flex h-20 w-24 flex-col gap-2 rounded-xl border border-neutral-300 p-2 dark:border-neutral-700'>
+            <div className={`h-3 w-full rounded-md ${soft}`} />
+            <div className={`h-2 w-14 ${bar}`} /><div className={`h-2 w-10 ${bar}`} />
+        </div>
+    ),
+    'Transfer list': () => (
+        <div className='flex items-center gap-2'>
+            <div className='flex h-16 w-16 flex-col gap-2 rounded-lg border border-neutral-300 p-2 dark:border-neutral-700'><Lines widths={['100%', '70%', '85%']} /></div>
+            <span className='text-neutral-400'>⇄</span>
+            <div className='flex h-16 w-16 flex-col gap-2 rounded-lg border border-neutral-300 p-2 dark:border-neutral-700'><div className={`h-2 w-10 ${accent} rounded-full`} /></div>
+        </div>
+    ),
+    Tree: () => (
+        <div className='flex flex-col gap-2'>
+            <div className='flex items-center gap-2'><span className='text-neutral-400'>⌄</span><div className={`h-2 w-14 ${bar}`} /></div>
+            <div className='ml-5 flex items-center gap-2'><div className={`h-2 w-12 ${accent} rounded-full`} /></div>
+            <div className='ml-5 flex items-center gap-2'><div className={`h-2 w-16 ${bar}`} /></div>
+            <div className='flex items-center gap-2'><span className='text-neutral-400'>›</span><div className={`h-2 w-10 ${bar}`} /></div>
+        </div>
+    ),
     Timeline: () => (
         <div className='flex flex-col gap-4 border-l border-neutral-300 pl-4 dark:border-neutral-700'>
             {[accent, bar, bar].map((c, i) => (

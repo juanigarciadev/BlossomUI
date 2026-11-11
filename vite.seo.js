@@ -43,6 +43,26 @@ const componentFiles = {
     'Accordion': 'Accordion/Accordion.tsx',
     'Breadcrumb': 'Breadcrumb/Breadcrumb.tsx',
     'Carousel': 'Carousel/Carousel.tsx',
+    'Alert dialog': 'AlertDialog/AlertDialog.tsx',
+    'Calendar': 'Calendar/Calendar.tsx',
+    'Combobox': 'Combobox/Combobox.tsx',
+    'Context menu': 'ContextMenu/ContextMenu.tsx',
+    'Number input': 'NumberInput/NumberInput.tsx',
+    'OTP input': 'OtpInput/OtpInput.tsx',
+    'Segmented control': 'SegmentedControl/SegmentedControl.tsx',
+    'Separator': 'Separator/Separator.tsx',
+    'Time picker': 'TimePicker/TimePicker.tsx',
+    'Collapsible': 'Collapsible/Collapsible.tsx',
+    'Color picker': 'ColorPicker/ColorPicker.tsx',
+    'Copy button': 'CopyButton/CopyButton.tsx',
+    'Hover card': 'HoverCard/HoverCard.tsx',
+    'Menubar': 'Menubar/Menubar.tsx',
+    'Navigation menu': 'NavigationMenu/NavigationMenu.tsx',
+    'Resizable panels': 'Resizable/Resizable.tsx',
+    'Scroll area': 'ScrollArea/ScrollArea.tsx',
+    'Sidebar': 'Sidebar/Sidebar.tsx',
+    'Transfer list': 'TransferList/TransferList.tsx',
+    'Tree': 'Tree/Tree.tsx',
     'Chip input': 'ChipInput/ChipInput.tsx',
     'Command palette': 'CommandPalette/CommandPalette.tsx',
     'Date picker': 'DatePicker/DatePicker.tsx',
@@ -190,7 +210,7 @@ const staticFiles = () => {
 
 // ---- html per route --------------------------------------------------------
 
-const setTag = (html, pattern, replacement) => html.replace(pattern, replacement)
+const setTag = (html, pattern, replacement) => html.replace(pattern, () => replacement)
 
 /** Text content of a page, hidden for people but readable by crawlers that do not run JavaScript. */
 const fallbackContent = (page) => {
@@ -233,8 +253,8 @@ const renderPage = (template, page) => {
     html = setTag(html, /<meta name="twitter:description" content="[^"]*"\s*\/?>/, `<meta name="twitter:description" content="${description}" />`)
 
     const ld = `<script type="application/ld+json" data-route-ld="true">${JSON.stringify(structuredData(page)).replace(/</g, '\\u003c')}</script>`
-    html = html.replace('</head>', `  ${ld}\n</head>`)
-    html = html.replace('<script type="module"', `${fallbackContent(page)}\n  <script type="module"`)
+    html = html.replace('</head>', () => `  ${ld}\n</head>`)
+    html = html.replace('<script type="module"', () => `${fallbackContent(page)}\n  <script type="module"`)
     return html
 }
 

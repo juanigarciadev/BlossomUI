@@ -2,6 +2,32 @@ import DocPage from './DocPage'
 
 const releases = [
     {
+        version: 'v2.2.0',
+        date: 'November 10th, 2026',
+        summary: 'Twenty new components and four new charts.',
+        sections: [
+            {
+                title: 'New',
+                items: [
+                    'Inputs: OTP input for verification codes (paste, autofill, mask and validation), Number input with buttons, limits, steps and decimals, Combobox with search, descriptions, custom values and server search, Time picker with 12 or 24 hours, Color picker with a saturation area, a hue bar, a hex field and presets, and Transfer list to move items between two lists. Chip input has suggestions.',
+                    'Selection: Segmented control with a sliding thumb, ToggleGroup for buttons that can be on and off, and Calendar, the month grid of the date pickers as a component of its own with single and range modes.',
+                    'Navigation: Sidebar with groups, nested items, badges and a collapsed mode, Menubar like the top of a desktop app, Navigation menu with mega menu panels, and Tree with the keyboard model of a native tree.',
+                    'Overlays and disclosure: Context menu that opens with a right click, a long press or the keyboard, Alert dialog to confirm important actions, Hover card with interactive content, and Collapsible, a single section that opens with a height animation.',
+                    'Layout: Separator, a line that can hold a label, Resizable panels with handles you drag or move with the keyboard, and Scroll area with slim custom scrollbars.',
+                    'Utilities: Copy button that copies a text and confirms it.',
+                    'Charts: AreaChart (with a stacked mode), RadarChart, Gauge with color thresholds and Heatmap.',
+                ],
+            },
+            {
+                title: 'Documentation',
+                items: [
+                    'The index of the documentation sits at the left of the screen and a fixed table of contents at the right highlights the section you are reading.',
+                    'A new 404 page and no white flash when a page loads in dark mode.',
+                ],
+            },
+        ],
+    },
+    {
         version: 'v2.1.0',
         date: 'October 10th, 2026',
         summary: 'Eighteen new components.',
@@ -99,7 +125,7 @@ const Changelog = () => {
             <ol className='flex flex-col gap-10 border-l border-neutral-200 pl-6 dark:border-neutral-700'>
                 {releases.map((release) => (
                     <li key={release.version} className='relative'>
-                        <span className='absolute -left-[31px] top-1.5 h-2.5 w-2.5 rounded-full bg-corporative' />
+                        <span className='absolute -left-[29.5px] top-1.5 h-2.5 w-2.5 rounded-full bg-corporative' />
                         <h2 className='text-lg font-medium'>{release.version}</h2>
                         <span className='text-sm text-neutral-600 dark:text-neutral-500'>Released on {release.date}.</span>
                         <p className='pt-2 text-neutral-700 dark:text-neutral-300'>{release.summary}</p>

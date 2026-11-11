@@ -39,6 +39,11 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Alert dialog",
+        url: "/docs/components/alert-dialog",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Alerts",
         url: "/docs/components/alerts",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
@@ -69,6 +74,11 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Calendar",
+        url: "/docs/components/calendar",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Cards",
         url: "/docs/components/cards",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
@@ -89,8 +99,33 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Collapsible",
+        url: "/docs/components/collapsible",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Color picker",
+        url: "/docs/components/color-picker",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Combobox",
+        url: "/docs/components/combobox",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Command palette",
         url: "/docs/components/command-palette",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Context menu",
+        url: "/docs/components/context-menu",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Copy button",
+        url: "/docs/components/copy-button",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
@@ -129,6 +164,11 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Hover card",
+        url: "/docs/components/hover-card",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Jumbotron",
         url: "/docs/components/jumbotron",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
@@ -139,6 +179,11 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Menubar",
+        url: "/docs/components/menubar",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Modal",
         url: "/docs/components/modal",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
@@ -146,6 +191,21 @@ export const components = [
     {
         name: "Navbar",
         url: "/docs/components/navbar",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Navigation menu",
+        url: "/docs/components/navigation-menu",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Number input",
+        url: "/docs/components/number-input",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "OTP input",
+        url: "/docs/components/otp-input",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
@@ -171,6 +231,31 @@ export const components = [
     {
         name: "Rating",
         url: "/docs/components/rating",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Resizable panels",
+        url: "/docs/components/resizable-panels",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Scroll area",
+        url: "/docs/components/scroll-area",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Segmented control",
+        url: "/docs/components/segmented-control",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Separator",
+        url: "/docs/components/separator",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Sidebar",
+        url: "/docs/components/sidebar",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
@@ -214,6 +299,11 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Time picker",
+        url: "/docs/components/time-picker",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Timeline",
         url: "/docs/components/timeline",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
@@ -226,6 +316,16 @@ export const components = [
     {
         name: "Tooltip",
         url: "/docs/components/tooltip",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Transfer list",
+        url: "/docs/components/transfer-list",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
+        name: "Tree",
+        url: "/docs/components/tree",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
 ];

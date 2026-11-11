@@ -48,6 +48,9 @@ const ChipInputDocumentation = () => {
             >
                 <ControlledDemo />
             </Variant>
+            <Variant title='Suggestions' description='`suggestions` are offered while typing. Pick one with the arrow keys and Enter, or with the mouse. The user can still type anything else.' file={file} previewClassName='flex w-full [&>*]:max-w-md'>
+                <ChipInput label='Skills' placeholder='Try React or Type' suggestions={['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Next.js', 'Testing', 'GraphQL', 'Accessibility']} defaultValue={['React']} />
+            </Variant>
         </DocPage>
     )
 }

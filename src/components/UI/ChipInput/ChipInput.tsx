@@ -14,16 +14,29 @@ export interface ChipInputProps {
     /** Return an error message to reject a chip, or nothing to accept it. */
     validate?: (chip: string) => string | undefined
     disabled?: boolean
+    /** Values offered while typing. The user can pick one with the arrow keys and Enter, or with the mouse, and can still type anything else. */
+    suggestions?: string[]
+    /** Most suggestions shown at once. */
+    maxSuggestions?: number
 }
 
-export const ChipInput = ({ labels, value, defaultValue = [], onChange, label, hint, placeholder = 'Type and press Enter', max, validate, disabled = false }: ChipInputProps) => {
+export const ChipInput = ({ labels, value, defaultValue = [], onChange, label, hint, placeholder = 'Type and press Enter', max, validate, disabled = false, suggestions = [], maxSuggestions = 6 }: ChipInputProps) => {
     const id = useId()
     const input = useRef<HTMLInputElement>(null)
     const [internal, setInternal] = useState<string[]>(defaultValue)
     const [draft, setDraft] = useState('')
     const [error, setError] = useState('')
+    const [focused, setFocused] = useState(false)
+    const [active, setActive] = useState(-1)
     const chips = value ?? internal
     const full = max !== undefined && chips.length >= max
+
+    // Suggestions that are not chips yet and match what is typed
+    const matches = suggestions
+        .filter((suggestion) => !chips.some((chip) => chip.toLowerCase() === suggestion.toLowerCase()) && suggestion.toLowerCase().includes(draft.trim().toLowerCase()))
+        .slice(0, maxSuggestions)
+    const listOpen = focused && !disabled && !full && matches.length > 0
+    const activeIndex = Math.min(active, matches.length - 1)
 
     const update = (next: string[]) => {
         if (value === undefined) setInternal(next)
@@ -49,7 +62,19 @@ export const ChipInput = ({ labels, value, defaultValue = [], onChange, label, h
     }
 
     const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter' || event.key === ',') {
+        if (listOpen && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
+            event.preventDefault()
+            setActive((index) => (event.key === 'ArrowDown' ? (index + 1) % matches.length : (index - 1 + matches.length) % matches.length))
+        } else if (listOpen && event.key === 'Escape') {
+            event.preventDefault()
+            setFocused(false)
+        } else if (event.key === 'Enter' && listOpen && activeIndex >= 0) {
+            event.preventDefault()
+            if (add(matches[activeIndex])) {
+                setDraft('')
+                setActive(-1)
+            }
+        } else if (event.key === 'Enter' || event.key === ',') {
             event.preventDefault()
             if (add(draft)) setDraft('')
         } else if (event.key === 'Backspace' && !draft && chips.length > 0) {
@@ -69,7 +94,7 @@ export const ChipInput = ({ labels, value, defaultValue = [], onChange, label, h
     }
 
     return (
-        <div className='flex w-full flex-col gap-1'>
+        <div className='relative flex w-full flex-col gap-1'>
             {label && <label htmlFor={id} className='text-sm font-medium text-neutral-800 dark:text-white'>{label}</label>}
             <div
                 onClick={() => input.current?.focus()}
@@ -95,14 +120,43 @@ export const ChipInput = ({ labels, value, defaultValue = [], onChange, label, h
                     value={draft}
                     disabled={disabled || full}
                     placeholder={chips.length || full ? '' : placeholder}
-                    onChange={(event) => { setDraft(event.target.value); if (error) setError('') }}
+                    onChange={(event) => { setDraft(event.target.value); setActive(-1); setFocused(true); if (error) setError('') }}
+                    onFocus={() => setFocused(true)}
+                    role={suggestions.length ? 'combobox' : undefined}
+                    aria-expanded={suggestions.length ? listOpen : undefined}
+                    aria-controls={listOpen ? `${id}-suggestions` : undefined}
+                    aria-autocomplete={suggestions.length ? 'list' : undefined}
+                    aria-activedescendant={listOpen && activeIndex >= 0 ? `${id}-suggestion-${activeIndex}` : undefined}
                     onKeyDown={onKeyDown}
                     onPaste={onPaste}
-                    onBlur={() => { if (draft && add(draft)) setDraft('') }}
+                    onBlur={() => { setFocused(false); setActive(-1); if (draft && add(draft)) setDraft('') }}
                     aria-invalid={Boolean(error)}
                     className='min-w-[80px] flex-1 bg-transparent py-0.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 dark:text-white'
                 />
             </div>
+            {listOpen && (
+                <ul
+                    id={`${id}-suggestions`}
+                    role='listbox'
+                    // Pressing a suggestion must not take the focus from the field, or the typed text would be added first.
+                    onMouseDown={(event) => event.preventDefault()}
+                    className='absolute left-0 right-0 top-full z-20 mt-1 max-h-56 overflow-auto rounded-xl border border-neutral-200 bg-white p-1 text-sm shadow-lg dark:border-neutral-700 dark:bg-neutral-900'
+                >
+                    {matches.map((suggestion, index) => (
+                        <li
+                            key={suggestion}
+                            id={`${id}-suggestion-${index}`}
+                            role='option'
+                            aria-selected={index === activeIndex}
+                            onPointerEnter={() => setActive(index)}
+                            onClick={() => { if (add(suggestion)) { setDraft(''); setActive(-1); input.current?.focus() } }}
+                            className={`cursor-pointer rounded-lg px-3 py-2 text-neutral-800 dark:text-white ${index === activeIndex ? 'bg-neutral-100 dark:bg-neutral-800' : ''}`}
+                        >
+                            {suggestion}
+                        </li>
+                    ))}
+                </ul>
+            )}
             {(error || hint || max !== undefined) && (
                 <span className={`text-xs ${error ? 'text-red-700 dark:text-red-400' : 'text-neutral-500'}`}>
                     {error || hint}{!error && max !== undefined ? `${hint ? ' · ' : ''}${chips.length}/${max}` : ''}

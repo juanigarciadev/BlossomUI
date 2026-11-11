@@ -54,6 +54,26 @@ const TableDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Ta
 const TabsDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Tabs/TabsDocumentation'))
 const TooltipDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Tooltip/TooltipDocumentation'))
 const ChartsDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Charts/ChartsDocumentation'))
+const AlertDialogDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/AlertDialog/AlertDialogDocumentation'))
+const CalendarDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Calendar/CalendarDocumentation'))
+const ComboboxDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Combobox/ComboboxDocumentation'))
+const ContextMenuDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/ContextMenu/ContextMenuDocumentation'))
+const NumberInputDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/NumberInput/NumberInputDocumentation'))
+const OtpInputDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/OtpInput/OtpInputDocumentation'))
+const SegmentedControlDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/SegmentedControl/SegmentedControlDocumentation'))
+const SeparatorDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Separator/SeparatorDocumentation'))
+const TimePickerDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/TimePicker/TimePickerDocumentation'))
+const CollapsibleDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Collapsible/CollapsibleDocumentation'))
+const ColorPickerDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/ColorPicker/ColorPickerDocumentation'))
+const CopyButtonDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/CopyButton/CopyButtonDocumentation'))
+const HoverCardDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/HoverCard/HoverCardDocumentation'))
+const MenubarDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Menubar/MenubarDocumentation'))
+const NavigationMenuDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/NavigationMenu/NavigationMenuDocumentation'))
+const ResizableDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Resizable/ResizableDocumentation'))
+const ScrollAreaDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/ScrollArea/ScrollAreaDocumentation'))
+const SidebarDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Sidebar/SidebarDocumentation'))
+const TransferListDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/TransferList/TransferListDocumentation'))
+const TreeDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Tree/TreeDocumentation'))
 const BrandColor = lazy(() => import('./components/Docs/Customization/BrandColor/BrandColor'))
 const TextsCustomization = lazy(() => import('./components/Docs/Customization/Texts/Texts'))
 
@@ -113,6 +133,26 @@ function App() {
                 <Route path='/docs/components/stats' element={<StatsDocumentation />} />
                 <Route path='/docs/components/table' element={<TableDocumentation />} />
                 <Route path='/docs/components/tabs' element={<TabsDocumentation />} />
+                <Route path='/docs/components/alert-dialog' element={<AlertDialogDocumentation />} />
+                <Route path='/docs/components/calendar' element={<CalendarDocumentation />} />
+                <Route path='/docs/components/combobox' element={<ComboboxDocumentation />} />
+                <Route path='/docs/components/context-menu' element={<ContextMenuDocumentation />} />
+                <Route path='/docs/components/number-input' element={<NumberInputDocumentation />} />
+                <Route path='/docs/components/otp-input' element={<OtpInputDocumentation />} />
+                <Route path='/docs/components/segmented-control' element={<SegmentedControlDocumentation />} />
+                <Route path='/docs/components/separator' element={<SeparatorDocumentation />} />
+                <Route path='/docs/components/time-picker' element={<TimePickerDocumentation />} />
+                <Route path='/docs/components/collapsible' element={<CollapsibleDocumentation />} />
+                <Route path='/docs/components/color-picker' element={<ColorPickerDocumentation />} />
+                <Route path='/docs/components/copy-button' element={<CopyButtonDocumentation />} />
+                <Route path='/docs/components/hover-card' element={<HoverCardDocumentation />} />
+                <Route path='/docs/components/menubar' element={<MenubarDocumentation />} />
+                <Route path='/docs/components/navigation-menu' element={<NavigationMenuDocumentation />} />
+                <Route path='/docs/components/resizable-panels' element={<ResizableDocumentation />} />
+                <Route path='/docs/components/scroll-area' element={<ScrollAreaDocumentation />} />
+                <Route path='/docs/components/sidebar' element={<SidebarDocumentation />} />
+                <Route path='/docs/components/transfer-list' element={<TransferListDocumentation />} />
+                <Route path='/docs/components/tree' element={<TreeDocumentation />} />
                 <Route path='/docs/components/tooltip' element={<TooltipDocumentation />} />
               </Route>
               <Route path='*' element={<NotFound />} />
