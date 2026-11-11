@@ -405,10 +405,22 @@ const HeroComponents = () => {
                             >
                                 <span className='whitespace-nowrap text-lg font-bold italic tracking-tight'>Try me!</span>
                                 {/* The arrow leaves the text, goes down and ends pointing left at the picker */}
-                                <svg width='64' height='46' viewBox='0 0 64 46' fill='none' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' strokeLinejoin='round'>
+                                {/* It nudges towards the picker, again and again, until the picker is used */}
+                                <motion.svg
+                                    width='64'
+                                    height='46'
+                                    viewBox='0 0 64 46'
+                                    fill='none'
+                                    stroke='currentColor'
+                                    strokeWidth='2.5'
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    animate={calm ? undefined : { x: [0, -9, 0], y: [0, 2, 0] }}
+                                    transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut', repeatDelay: 0.25 }}
+                                >
                                     <path d='M50 4C54 24 36 38 8 36' />
                                     <path d='M17 28 8 36 18 42' />
-                                </svg>
+                                </motion.svg>
                             </motion.div>
                         )}
                     </AnimatePresence>
