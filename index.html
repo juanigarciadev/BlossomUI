@@ -3,19 +3,24 @@
 
 <head>
   <meta charset="UTF-8" />
+  <!-- First thing in the head, before any stylesheet: the theme is known before the first paint, so a dark page never starts white.
+       The inline background is removed by the app (ThemeContext) once the stylesheet is applied. -->
+  <script>
+    try {
+      var t = localStorage.getItem('blossomui-theme');
+      var dark = t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches);
+      var root = document.documentElement;
+      if (dark) root.classList.add('dark');
+      root.style.backgroundColor = dark ? '#171717' : '#ffffff';
+      root.style.colorScheme = dark ? 'dark' : 'light';
+    } catch (e) {}
+  </script>
   <link rel="icon" type="image/x-icon" href="./cherry-blossom.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <script>
-    try {
-      var t = localStorage.getItem('blossomui-theme');
-      if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark');
-    } catch (e) {}
-  </script>
 
   <!-- SEO. The build writes the right values of these tags into one html file per route. -->
   <title>Blossom UI - React components made with Tailwind CSS</title>

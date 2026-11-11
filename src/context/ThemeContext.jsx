@@ -17,7 +17,11 @@ const ThemeContextProvider = ({ children }) => {
     const [theme, setTheme] = useState(getInitialTheme)
 
     useEffect(() => {
-        document.documentElement.classList.toggle('dark', theme === "dark")
+        const root = document.documentElement
+        root.classList.toggle('dark', theme === "dark")
+        // The head script painted the background before the stylesheet arrived: from here on the stylesheet decides.
+        root.style.backgroundColor = ''
+        root.style.colorScheme = theme === "dark" ? 'dark' : 'light'
         try {
             localStorage.setItem(STORAGE_KEY, theme === "dark" ? "dark" : "light")
         } catch { /* storage unavailable */ }

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import DocNav from './DocNav'
 import InlineCode from './InlineCode'
+import TableOfContents from './TableOfContents'
 import Footer from '../Footer/Footer'
 import { Appear, FadeIn } from '../Motion/Motion'
 import { introduction, customization, components } from '../../mocks/docs'
@@ -36,7 +37,9 @@ const DocPage = ({ title, description, children }) => {
     }, [pathname])
 
     return (
-        <div className='w-full min-w-0 relative pl-8 pt-4 lg:pl-0 dark:text-white'>
+        <div className='w-full min-w-0 relative dark:text-white'>
+            <div className='flex gap-10'>
+            <div className='min-w-0 flex-1'>
             <Appear className='relative z-20 mb-10 border-b border-neutral-200 pb-8 dark:border-neutral-800'>
                 {current && <span className='inline-block mb-3 rounded-full border border-corporative/40 bg-corporative/10 px-3 py-1 text-xs font-medium text-corporativeHover dark:text-corporative'>{current.group}</span>}
                 <div className='relative flex gap-4 items-center'>
@@ -53,20 +56,6 @@ const DocPage = ({ title, description, children }) => {
                     {docNav && <DocNav onClose={() => setDocNav(false)} />}
                 </div>
                 {description && <p className='pt-2 text-lg text-neutral-600 dark:text-neutral-300'><InlineCode text={description} /></p>}
-                {sections.length > 1 && (
-                    <nav aria-label='Variants on this page' className='flex flex-wrap items-center gap-2 pt-4'>
-                        <span className='text-sm text-neutral-500'>On this page:</span>
-                        {sections.map((section) => (
-                            <a
-                                key={section.id}
-                                href={`#${section.id}`}
-                                className='text-sm px-3 py-1 rounded-full border border-neutral-300 text-neutral-600 hover:border-corporative hover:text-corporative duration-200 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-corporative dark:hover:text-corporative'
-                            >
-                                {section.label}
-                            </a>
-                        ))}
-                    </nav>
-                )}
             </Appear>
 
             <div ref={content} className='flex flex-col pb-16 gap-16'>{children}</div>
@@ -87,6 +76,9 @@ const DocPage = ({ title, description, children }) => {
                     )}
                 </FadeIn>
             )}
+            </div>
+            {sections.length > 1 && <TableOfContents sections={sections} />}
+            </div>
             <Footer />
         </div>
     )
