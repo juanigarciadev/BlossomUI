@@ -4,7 +4,7 @@ const releases = [
     {
         version: 'v2.2.0',
         date: 'November 10th, 2026',
-        summary: 'Twenty new components and four new charts.',
+        summary: 'Twenty-one new components and four new charts.',
         sections: [
             {
                 title: 'New',
@@ -14,7 +14,7 @@ const releases = [
                     'Navigation: Sidebar with groups, nested items, badges and a collapsed mode, Menubar like the top of a desktop app, Navigation menu with mega menu panels, and Tree with the keyboard model of a native tree.',
                     'Overlays and disclosure: Context menu that opens with a right click, a long press or the keyboard, Alert dialog to confirm important actions, Hover card with interactive content, and Collapsible, a single section that opens with a height animation.',
                     'Layout: Separator, a line that can hold a label, Resizable panels with handles you drag or move with the keyboard, and Scroll area with slim custom scrollbars.',
-                    'Utilities: Copy button that copies a text and confirms it.',
+                    'Utilities: Copy button that copies a text and confirms it, and Timer button, a button with a bar that fills and calls a function when it is full, to move a carousel or a tour by itself.',
                     'Charts: AreaChart (with a stacked mode), RadarChart, Gauge with color thresholds and Heatmap.',
                 ],
             },

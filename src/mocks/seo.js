@@ -69,6 +69,7 @@ const componentSummaries = {
     'Sidebar': 'Sidebar component with groups, nested items, badges, links and a collapsed mode with tooltips.',
     'Transfer list': 'Transfer list component to move items between two lists, with search, check all and keyboard support.',
     'Tree': 'Tree component for files and categories, with the keyboard model of a native tree, controlled state and icons.',
+    'Timer button': 'Timer button component, a button with a bar that fills while time passes and calls a function when it is full, for autoplay, tours and undo actions.',
     'Chip input': 'Chip input or tag input component with validation, a maximum of chips, paste support and keyboard shortcuts.',
     'Command palette': 'Command palette component with search, groups, icons, hints and full keyboard navigation.',
     'Date picker': 'Date picker component with an accessible calendar, a range mode that highlights every day between two dates, min and max dates, locale support and keyboard navigation.',

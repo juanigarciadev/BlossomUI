@@ -309,6 +309,11 @@ export const components = [
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
     },
     {
+        name: "Timer button",
+        url: "/docs/components/timer-button",
+        img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",
+    },
+    {
         name: "Toasts",
         url: "/docs/components/toasts",
         img: "https://res.cloudinary.com/diruiumfk/image/upload/v1695356796/buttons_qmxrku.png",

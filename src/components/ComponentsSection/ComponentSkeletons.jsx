@@ -523,6 +523,13 @@ const skeletons = {
             <div className='flex items-center gap-2'><span className='text-neutral-400'>›</span><div className={`h-2 w-10 ${bar}`} /></div>
         </div>
     ),
+    'Timer button': () => (
+        <div className='relative flex h-9 w-28 items-center gap-2 overflow-hidden rounded-xl border border-neutral-300 px-3 dark:border-neutral-700'>
+            <div className='absolute inset-y-0 left-0 w-2/3 bg-corporative bg-opacity-30' />
+            <div className={`relative h-2 w-2 rounded-sm ${accent}`} />
+            <div className={`relative h-2 w-10 ${bar}`} />
+        </div>
+    ),
     Timeline: () => (
         <div className='flex flex-col gap-4 border-l border-neutral-300 pl-4 dark:border-neutral-700'>
             {[accent, bar, bar].map((c, i) => (

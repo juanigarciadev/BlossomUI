@@ -74,6 +74,7 @@ const ScrollAreaDocumentation = lazy(() => import('./components/Docs/ComponentsD
 const SidebarDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Sidebar/SidebarDocumentation'))
 const TransferListDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/TransferList/TransferListDocumentation'))
 const TreeDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/Tree/TreeDocumentation'))
+const TimerButtonDocumentation = lazy(() => import('./components/Docs/ComponentsDoc/TimerButton/TimerButtonDocumentation'))
 const BrandColor = lazy(() => import('./components/Docs/Customization/BrandColor/BrandColor'))
 const TextsCustomization = lazy(() => import('./components/Docs/Customization/Texts/Texts'))
 
@@ -153,6 +154,7 @@ function App() {
                 <Route path='/docs/components/sidebar' element={<SidebarDocumentation />} />
                 <Route path='/docs/components/transfer-list' element={<TransferListDocumentation />} />
                 <Route path='/docs/components/tree' element={<TreeDocumentation />} />
+                <Route path='/docs/components/timer-button' element={<TimerButtonDocumentation />} />
                 <Route path='/docs/components/tooltip' element={<TooltipDocumentation />} />
               </Route>
               <Route path='*' element={<NotFound />} />

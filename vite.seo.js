@@ -63,6 +63,7 @@ const componentFiles = {
     'Sidebar': 'Sidebar/Sidebar.tsx',
     'Transfer list': 'TransferList/TransferList.tsx',
     'Tree': 'Tree/Tree.tsx',
+    'Timer button': 'TimerButton/TimerButton.tsx',
     'Chip input': 'ChipInput/ChipInput.tsx',
     'Command palette': 'CommandPalette/CommandPalette.tsx',
     'Date picker': 'DatePicker/DatePicker.tsx',

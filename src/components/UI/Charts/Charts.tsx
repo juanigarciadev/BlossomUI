@@ -564,7 +564,7 @@ export const Gauge = ({ value, min = 0, max = 100, size = 220, caption, unit = '
         <div role='meter' aria-label={label} aria-valuenow={value} aria-valuemin={min} aria-valuemax={max} aria-valuetext={`${format(value)}${unit}`} className='relative max-w-full' style={{ width: size, height }}>
             <svg width={size} height={height} viewBox={`0 0 ${size} ${height}`} className='overflow-visible'>
                 <path d={d} fill='none' strokeWidth={stroke} strokeLinecap='round' className='stroke-neutral-200 dark:stroke-neutral-800' />
-                <path d={d} fill='none' strokeWidth={stroke} strokeLinecap='round' stroke={color} strokeDasharray={`${arc * ratio} ${arc}`} className='transition-[stroke-dasharray,stroke] duration-500' />
+                <path d={d} fill='none' strokeWidth={stroke} strokeLinecap='round' stroke={color} strokeDasharray={`${arc * ratio} ${arc}`} className='transition-[stroke-dasharray,stroke] duration-300' />
             </svg>
             <div className='absolute inset-x-0 bottom-0 flex flex-col items-center text-center'>
                 {/* The text follows the size of the gauge, so a small one does not overflow its arc */}

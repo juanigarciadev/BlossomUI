@@ -27,7 +27,7 @@ const Home = () => {
         <div className="float-slower absolute top-40 right-1/4 h-96 w-96 rounded-full bg-purple-400 opacity-20 blur-3xl dark:opacity-15" />
       </div>
 
-      <main className="relative z-10 grid grid-cols-2 items-center gap-8 pt-52 lg:flex lg:flex-col lg:items-start lg:gap-12 lg:pt-32">
+      <main className="relative z-10 grid grid-cols-2 items-center gap-8 pt-40 lg:flex lg:flex-col lg:items-start lg:gap-12 lg:pt-32">
         <Appear as="section" className="flex flex-col gap-6">
           <span className="flex items-center gap-2 font-medium h-fit w-fit text-sm px-4 py-2 rounded-full border border-corporative/40 bg-corporative/10 text-corporativeHover cursor-default dark:text-corporative">
             <Sparkles size={14} />

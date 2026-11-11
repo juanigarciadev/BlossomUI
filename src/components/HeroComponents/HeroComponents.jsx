@@ -1,17 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Bold, Italic, Underline, TrendingUp } from 'lucide-react'
 import { AvatarGroup } from '../UI/Avatar/Avatar'
-import { Checkbox } from '../UI/Forms/Forms'
+import { Calendar } from '../UI/Calendar/Calendar'
+import { Checkbox, Switch } from '../UI/Forms/Forms'
 import { Combobox } from '../UI/Combobox/Combobox'
 import { ColorPicker } from '../UI/ColorPicker/ColorPicker'
 import { CopyButton } from '../UI/CopyButton/CopyButton'
-import { AreaChart, Gauge } from '../UI/Charts/Charts'
-import { OtpInput } from '../UI/OtpInput/OtpInput'
+import { AreaChart, Gauge, Heatmap, RadarChart } from '../UI/Charts/Charts'
+import { NumberInput } from '../UI/NumberInput/NumberInput'
 import { Rating } from '../UI/Rating/Rating'
 import { SegmentedControl, ToggleGroup } from '../UI/SegmentedControl/SegmentedControl'
-import { Separator } from '../UI/Separator/Separator'
 import { SimplePagination } from '../UI/Pagination/Pagination'
+import { Slider } from '../UI/Slider/Slider'
 import { StepperProgress } from '../UI/Stepper/Stepper'
+import { TimePicker } from '../UI/TimePicker/TimePicker'
+import { TimerButton } from '../UI/TimerButton/TimerButton'
 import { accentStyle } from '../UI/accent'
 import { Appear } from '../Motion/Motion'
 
@@ -22,20 +26,79 @@ const photos = [
     'https://res.cloudinary.com/diruiumfk/image/upload/v1698155370/person-image-2_sjyoj5.jpg',
 ]
 
-/** The progress bar and the pagination share the same page, so both always say the same thing. */
-const StepsDemo = () => {
-    const [page, setPage] = useState(3)
+const PAGES = 3
+
+/** Milliseconds each page stays before the timer button moves to the next one. */
+const AUTOPLAY = 7000
+
+/** True on the layouts where the pieces are stacked instead of placed on top of each other. */
+const useStacked = () => {
+    const query = '(max-width: 1023px)'
+    const [stacked, setStacked] = useState(() => window.matchMedia?.(query).matches ?? false)
+    useEffect(() => {
+        const media = window.matchMedia(query)
+        const update = () => setStacked(media.matches)
+        media.addEventListener('change', update)
+        return () => media.removeEventListener('change', update)
+    }, [])
+    return stacked
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Flying pieces                                                             */
+/* -------------------------------------------------------------------------- */
+
+// Each page is a group of pieces. They arrive from the side the user is going to and leave towards the other one,
+// one after another, as if they were thrown.
+const scene = {
+    initial: {},
+    animate: { transition: { staggerChildren: 0.07 } },
+    exit: { transition: { staggerChildren: 0.04 } },
+}
+
+// Which way the user is going: 1 for the next page, -1 for the previous one. The pieces that leave are frozen with the
+// props they had, so the direction is read from here at the moment they fly.
+const heading = { dir: 1 }
+
+const flight = (calm) => ({
+    initial: () => (calm ? { opacity: 0 } : { opacity: 0, x: heading.dir * 170, y: 70, rotate: heading.dir * 14, scale: 0.85 }),
+    animate: { opacity: 1, x: 0, y: 0, rotate: 0, scale: 1, transition: { type: 'spring', stiffness: 150, damping: 17 } },
+    exit: () => (calm ? { opacity: 0, transition: { duration: 0.15 } } : { opacity: 0, x: heading.dir * -190, y: -80, rotate: heading.dir * -16, scale: 0.85, transition: { duration: 0.36, ease: 'easeIn' } }),
+})
+
+/** Moves a piece in and out. The float animation lives on the card inside, because a CSS animation would cancel this one. */
+const Piece = ({ className = '', children }) => {
+    const calm = useReducedMotion()
     return (
-        <>
-            <StepperProgress total={4} current={page - 1} />
-            <div className='flex justify-end'>
-                <SimplePagination page={page} total={4} onChange={setPage} />
-            </div>
-        </>
+        <motion.div variants={flight(calm)} className={`${className} lg:static lg:w-full`}>
+            {children}
+        </motion.div>
     )
 }
 
-/** A card. `shape` gives each one its own corners so the stack does not look like a grid of boxes. */
+/** A card. */
+const Panel = ({ className = '', children }) => (
+    <div className={`relative flex flex-col gap-4 border border-neutral-200 bg-white/70 p-5 shadow-xl shadow-neutral-200/50 backdrop-blur-md dark:border-neutral-700 dark:bg-neutral-800/60 dark:shadow-none ${className}`}>
+        {children}
+    </div>
+)
+
+/** A piece with a solid background, so it reads on top of whatever is behind it. */
+const Sticker = ({ className = '', children }) => (
+    <div className={`relative rounded-2xl border border-neutral-200 bg-white p-3 shadow-2xl shadow-neutral-300/60 dark:border-neutral-600 dark:bg-neutral-800 dark:shadow-black/40 lg:shadow-lg ${className}`}>
+        {children}
+    </div>
+)
+
+/** A small label that leaves the card it belongs to. */
+const Pill = ({ className = '', children }) => (
+    <Sticker className={`flex items-center gap-3 rounded-full py-2 pl-3 pr-5 ${className}`}>{children}</Sticker>
+)
+
+/* -------------------------------------------------------------------------- */
+/*  Page 1: a dashboard                                                       */
+/* -------------------------------------------------------------------------- */
+
 const ranges = {
     week: {
         total: '$12.8k',
@@ -57,7 +120,7 @@ const ranges = {
     },
 }
 
-/** A small dashboard: the number, the trend, a range switch and a stacked chart that answers to the pointer. */
+/** The number, the trend, a range switch and a stacked chart that answers to the pointer. */
 const RevenueDemo = () => {
     const [range, setRange] = useState('month')
     const data = ranges[range]
@@ -76,59 +139,34 @@ const RevenueDemo = () => {
                 </div>
                 <SegmentedControl size='sm' label='Range' value={range} onChange={setRange} options={[{ value: 'week', label: 'Week' }, { value: 'month', label: 'Month' }]} />
             </div>
-            <AreaChart labels={data.labels} series={data.series} stacked height={110} legend={false} label='Revenue' />
+            <AreaChart labels={data.labels} series={data.series} stacked height={100} legend={false} label='Revenue' />
         </>
     )
 }
 
-const Panel = ({ className = '', children }) => (
-    <div className={`relative flex flex-col gap-4 border border-neutral-200 bg-white/70 p-5 shadow-xl shadow-neutral-200/50 backdrop-blur-md dark:border-neutral-700 dark:bg-neutral-800/60 dark:shadow-none ${className}`}>
-        {children}
-    </div>
-)
-
-/** A piece that sticks out of a card: it has a solid background so it reads on top of whatever is behind. */
-const Sticker = ({ className = '', flow = false, children }) => (
-    <div className={`z-20 rounded-2xl border border-neutral-200 bg-white p-3 shadow-2xl shadow-neutral-300/60 dark:border-neutral-600 dark:bg-neutral-800 dark:shadow-black/40 ${flow ? 'relative lg:shadow-lg' : 'absolute'} ${className}`}>
-        {children}
-    </div>
-)
-
-const HeroComponents = () => {
-    // The brand color of the whole stack: the hue bar changes every accent inside it.
-    const [brand, setBrand] = useState('#f472b6')
-
-    return (
-        <Appear as='section' delay={0.1} y={24} style={accentStyle(brand)} className='relative flex w-full flex-col gap-4 lg:items-start'>
-            {/* Soft shape behind the stack, bigger than the cards */}
-            <div aria-hidden className='pointer-events-none absolute -right-16 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-[var(--blossom-accent,#f472b6)] opacity-20 blur-3xl lg:hidden' />
-
-            <Panel className='float-slow rounded-[2.25rem] pb-20 [rotate:-1.5deg] lg:pb-5 lg:[rotate:0deg]'>
+const PageDashboard = () => (
+    <>
+        <Piece className='absolute left-0 top-0 w-[94%]'>
+            <Panel className='float-slow rounded-[2.25rem] [rotate:-1.5deg] lg:[rotate:0deg]'>
                 <RevenueDemo />
             </Panel>
-
-            {/* The brand color picker hangs off the right edge and over the bottom of the first card */}
-            <Sticker flow className='float-slower -mt-14 ml-auto mr-[-4.5rem] w-72 [rotate:3deg] lg:mx-0 lg:mt-0 lg:w-fit lg:[rotate:0deg]'>
-                <ColorPicker inline area={false} label='Brand color' value={brand} onChange={setBrand} presets={['#f472b6', '#a78bfa', '#60a5fa', '#34d399', '#fbbf24', '#f87171']} />
-            </Sticker>
-
-            <Panel className='float-slower ml-6 rounded-[1rem_2.5rem_1rem_2.5rem] pl-7 lg:ml-0 lg:rounded-3xl lg:pl-5'>
-                {/* A gauge on a round tag that leaves the card at the top left */}
-                <Sticker className='-left-14 -top-12 rounded-full px-5 pb-3 pt-4 [rotate:-8deg] lg:hidden'>
-                    <Gauge value={72} unit='%' caption='Score' size={96} label='Score' />
-                </Sticker>
-                <Combobox
-                    placeholder='Search a framework…'
-                    defaultValue='react'
-                    options={[
-                        { value: 'react', label: 'React' },
-                        { value: 'vue', label: 'Vue' },
-                        { value: 'svelte', label: 'Svelte' },
-                        { value: 'solid', label: 'Solid' },
-                        { value: 'astro', label: 'Astro' },
-                    ]}
-                />
-                <div className='flex flex-wrap items-center justify-between gap-4'>
+        </Piece>
+        <Piece className='absolute bottom-0 left-3 w-[88%]'>
+            <Panel className='float-slower gap-3 rounded-[1rem_2.5rem_1rem_2.5rem] lg:rounded-3xl'>
+                <div className='max-w-[12rem]'>
+                    <Combobox
+                        placeholder='Search a framework…'
+                        defaultValue='react'
+                        options={[
+                            { value: 'react', label: 'React' },
+                            { value: 'vue', label: 'Vue' },
+                            { value: 'svelte', label: 'Svelte' },
+                            { value: 'solid', label: 'Solid' },
+                            { value: 'astro', label: 'Astro' },
+                        ]}
+                    />
+                </div>
+                <div className='flex flex-wrap items-center gap-4'>
                     <ToggleGroup
                         type='multiple'
                         label='Text format'
@@ -142,24 +180,206 @@ const HeroComponents = () => {
                     />
                     <div className='flex items-center gap-3'>
                         <Checkbox label='Remember me' defaultChecked />
-                        <Separator orientation='vertical' decorative className='h-6' />
                         <CopyButton variant='icon' size='sm' text='npm install blossom-ui' label='Copy the install command' />
                     </div>
                 </div>
-                <Separator>verify</Separator>
-                <OtpInput size='sm' length={6} separatorAfter={[3]} defaultValue='482' />
             </Panel>
+        </Piece>
+        <Piece className='absolute -left-10 top-[226px] z-20 w-fit lg:hidden'>
+            <Sticker className='float-slower rounded-full px-5 pb-3 pt-4 [rotate:-8deg]'>
+                <Gauge value={72} unit='%' caption='Score' size={96} label='Score' />
+            </Sticker>
+        </Piece>
+        <Piece className='absolute -bottom-10 -right-10 z-20 w-fit lg:hidden'>
+            <Pill className='float-slow [rotate:5deg]'>
+                <AvatarGroup avatars={photos.map((src) => ({ src }))} max={3} />
+                <div className='flex flex-col gap-0.5'>
+                    <Rating value={5} size={14} />
+                    <span className='text-xs text-neutral-500'>Loved by 2k devs</span>
+                </div>
+            </Pill>
+        </Piece>
+    </>
+)
 
-            <Panel className='float-slow ml-2 rounded-[2.25rem] lg:ml-0 lg:rounded-3xl'>
-                {/* Social proof that leaves the card at the top right */}
-                <Sticker className='-right-8 -top-9 flex items-center gap-3 rounded-full py-2 pl-3 pr-5 [rotate:5deg] lg:hidden'>
-                    <AvatarGroup avatars={photos.map((src) => ({ src }))} max={3} />
-                    <div className='flex flex-col gap-0.5'>
-                        <Rating value={5} size={14} />
-                        <span className='text-xs text-neutral-500'>Loved by 2k devs</span>
-                    </div>
-                </Sticker>
-                <StepsDemo />
+/* -------------------------------------------------------------------------- */
+/*  Page 2: a booking                                                         */
+/* -------------------------------------------------------------------------- */
+
+const today = new Date()
+const stay = { start: new Date(today.getFullYear(), today.getMonth(), 8), end: new Date(today.getFullYear(), today.getMonth(), 14) }
+
+const PageBooking = () => (
+    <>
+        <Piece className='absolute left-1 top-0 w-72'>
+            {/* A smaller calendar, so the brand color picker does not cover its last column */}
+            <div className='origin-top-left scale-[0.86] lg:scale-100'>
+                <div className='float-slow [rotate:-2deg] lg:[rotate:0deg]'>
+                    <Calendar mode='range' defaultValue={stay} defaultMonth={stay.start} className='shadow-xl shadow-neutral-200/50 dark:shadow-none' />
+                </div>
+            </div>
+        </Piece>
+        <Piece className='absolute -right-10 top-0 z-20 w-[13.5rem]'>
+            <Sticker className='float-slower flex flex-col gap-3 [rotate:4deg] lg:[rotate:0deg]'>
+                <NumberInput label='Guests' defaultValue={2} min={1} max={10} />
+                <TimePicker label='Check-in' defaultValue='15:30' hour12 />
+            </Sticker>
+        </Piece>
+        <Piece className='absolute bottom-0 left-0 w-[80%]'>
+            <Panel className='float-slow gap-4 rounded-[2.5rem_1rem_2.5rem_1rem] px-7 py-5 [rotate:1deg] lg:rounded-3xl lg:[rotate:0deg]'>
+                <Slider label='Budget' defaultValue={60} showValue unit=' $/night' min={20} max={200} step={5} />
+                <Switch label='Free cancellation' defaultChecked />
+            </Panel>
+        </Piece>
+    </>
+)
+
+/* -------------------------------------------------------------------------- */
+/*  Page 3: data                                                              */
+/* -------------------------------------------------------------------------- */
+
+const heat = [
+    [1, 3, 5, 8, 6, 2, 1],
+    [2, 4, 9, 12, 10, 5, 2],
+    [3, 6, 11, 15, 13, 7, 3],
+    [1, 2, 6, 9, 7, 3, 1],
+]
+
+const PageData = () => (
+    <>
+        <Piece className='absolute left-0 top-0 w-[15rem]'>
+            <Panel className='float-slow gap-2 rounded-[2rem_2rem_0.75rem_2rem] p-4 [rotate:-2deg] lg:rounded-3xl lg:[rotate:0deg]'>
+                <span className='text-xs font-medium uppercase tracking-wide text-neutral-500'>Visits by day and hour</span>
+                <Heatmap data={heat} rows={['9h', '12h', '15h', '18h']} columns={['M', 'T', 'W', 'T', 'F', 'S', 'S']} cell={20} label='Visits by day and hour' />
+            </Panel>
+        </Piece>
+        <Piece className='absolute left-[56%] top-2 z-20 w-fit'>
+            <Sticker className='float-slower rounded-[2rem] px-5 pb-3 pt-5 [rotate:6deg] lg:[rotate:0deg]'>
+                <Gauge value={86} unit='%' caption='Satisfaction' size={124} label='Satisfaction' thresholds={[{ from: 0, color: '#f87171' }, { from: 50, color: '#fbbf24' }, { from: 75, color: '#34d399' }]} />
+            </Sticker>
+        </Piece>
+        <Piece className='absolute bottom-0 left-4 w-[15rem]'>
+            <Panel className='float-slower items-center gap-1 rounded-[0.75rem_2.25rem_2.25rem_2.25rem] p-4 [rotate:1.5deg] lg:rounded-3xl lg:[rotate:0deg]'>
+                <span className='self-start text-xs font-medium uppercase tracking-wide text-neutral-500'>Skills</span>
+                <RadarChart
+                    axes={['Design', 'Code', 'Writing', 'Speed', 'Testing', 'Support']}
+                    max={10}
+                    size={190}
+                    legend={false}
+                    label='Skills'
+                    series={[
+                        { name: 'Ana', values: [9, 6, 7, 5, 8, 6] },
+                        { name: 'Luis', values: [5, 9, 4, 8, 6, 7], color: '#60a5fa' },
+                    ]}
+                />
+            </Panel>
+        </Piece>
+        <Piece className='absolute -right-6 bottom-3 z-20 w-fit lg:hidden'>
+            <Pill className='float-slow [rotate:5deg]'>
+                <span className='grid h-8 w-8 place-items-center rounded-full bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_20%,transparent)] text-[var(--blossom-accent,#f472b6)]'>
+                    <TrendingUp size={16} />
+                </span>
+                <div className='flex flex-col'>
+                    <span className='text-sm font-bold leading-none text-neutral-900 dark:text-white'>+24%</span>
+                    <span className='text-xs text-neutral-500'>this week</span>
+                </div>
+            </Pill>
+        </Piece>
+    </>
+)
+
+/* -------------------------------------------------------------------------- */
+/*  The hero                                                                  */
+/* -------------------------------------------------------------------------- */
+
+const pages = { 1: <PageDashboard />, 2: <PageBooking />, 3: <PageData /> }
+
+const HeroComponents = () => {
+    // The brand color of the whole stack: the hue bar changes every accent inside it, on every page.
+    const [brand, setBrand] = useState('#f472b6')
+    // The hint goes away as soon as the user tries the picker
+    const [tried, setTried] = useState(false)
+    const [page, setPage] = useState(1)
+    const stacked = useStacked()
+    const calm = useReducedMotion()
+
+    const go = (next) => {
+        heading.dir = next > page ? 1 : -1
+        setPage(next)
+    }
+
+    return (
+        <Appear
+            as='section'
+            delay={0.1}
+            y={24}
+            style={accentStyle(brand)}
+            // Every color in the stack follows the brand color with a short transition, so the change is felt but not slow
+            className='relative flex w-full flex-col gap-5 lg:items-start [&_*]:transition-[background-color,border-color,color,fill,stroke,box-shadow,left,width,stroke-dasharray] [&_*]:duration-200'
+        >
+            {/* Soft shape behind the stack, bigger than the cards */}
+            <div aria-hidden className='pointer-events-none absolute -right-16 top-1/3 h-72 w-72 -translate-y-1/2 rounded-full bg-[var(--blossom-accent,#f472b6)] opacity-20 blur-3xl lg:hidden' />
+
+            <div className='relative h-[460px] w-full lg:flex lg:h-auto lg:flex-col lg:gap-5'>
+                {/* The pieces of the open page. When it changes they fly out and the next ones fly in. */}
+                <AnimatePresence initial={false} mode={stacked ? 'wait' : 'sync'}>
+                    <motion.div
+                        key={page}
+                        variants={scene}
+                        initial='initial'
+                        animate='animate'
+                        exit='exit'
+                        className='absolute inset-0 lg:static lg:flex lg:flex-col lg:items-start lg:gap-5'
+                    >
+                        {pages[page]}
+                    </motion.div>
+                </AnimatePresence>
+
+                {/* The brand color stays on every page, so every component can be tried with it */}
+                <div className='absolute -right-14 top-[206px] z-30 w-72 lg:relative lg:right-auto lg:top-auto lg:w-fit'>
+                    <AnimatePresence>
+                        {page === 1 && !tried && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.8 }}
+                                transition={{ delay: 0.4, type: 'spring', stiffness: 200, damping: 16 }}
+                                aria-hidden='true'
+                                className='pointer-events-none absolute right-full top-1 mr-1 flex items-end gap-1 text-[var(--blossom-accent,#f472b6)] [rotate:-6deg] lg:hidden'
+                            >
+                                <span className='whitespace-nowrap pb-3 text-lg font-bold italic tracking-tight'>Try me!</span>
+                                <svg width='56' height='44' viewBox='0 0 56 44' fill='none' stroke='currentColor' strokeWidth='2.5' strokeLinecap='round' strokeLinejoin='round'>
+                                    <path d='M3 8C18 0 40 4 50 30' />
+                                    <path d='M41 28 50 32 54 22' />
+                                </svg>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                    <Sticker className='float-slower [rotate:3deg] lg:[rotate:0deg]'>
+                        <ColorPicker
+                            inline
+                            area={false}
+                            label='Brand color'
+                            value={brand}
+                            onChange={(color) => {
+                                setBrand(color)
+                                setTried(true)
+                            }}
+                            presets={['#f472b6', '#a78bfa', '#60a5fa', '#34d399', '#fbbf24', '#f87171']}
+                        />
+                    </Sticker>
+                </div>
+            </div>
+
+            <Panel className='float-slow z-10 ml-2 gap-3 rounded-[2.25rem] py-4 lg:ml-0 lg:rounded-3xl'>
+                <StepperProgress total={PAGES} current={page - 1} />
+                <div className='flex items-center justify-between gap-3'>
+                    {/* Moves to the next page by itself. Pressing it pauses it, and going to another page by hand starts the bar again. */}
+                    <TimerButton size='sm' duration={AUTOPLAY} defaultRunning={!calm} resetKey={page} onComplete={() => go(page % PAGES + 1)} labels={{ pause: 'Pause the automatic change of page', play: 'Change the page automatically' }}>
+                        Auto
+                    </TimerButton>
+                    <SimplePagination page={page} total={PAGES} onChange={go} />
+                </div>
             </Panel>
         </Appear>
     )
