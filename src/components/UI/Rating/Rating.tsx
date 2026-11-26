@@ -1,3 +1,9 @@
+// Blossom UI (https://github.com/juanigarciadev/BlossomUI)
+// Copyright (c) Juan Ignacio García
+// SPDX-License-Identifier: MPL-2.0
+// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+// If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
 

@@ -102,6 +102,17 @@ The site is built with [Vite](https://vitejs.dev/), [React](https://react.dev/),
 
 This project started as a personal challenge to improve my programming skills, always focused on helping others: a free library so nobody has to build a design system from scratch and lose time in their projects. It is built by one person, so contributions are very welcome. Anyone can review and open a pull request to add, improve or fix any component.
 
+## License
+
+Blossom UI is released under the [Mozilla Public License 2.0](LICENSE). In short:
+
+- You can use the components in personal and commercial projects, including closed source ones.
+- Keep the license notice at the top of every file you copy.
+- If you distribute a modified version of one of those files, that file stays under the MPL 2.0 and its source must be available. The rest of your project keeps your own license.
+- The license does not grant rights to the Blossom UI name or logo.
+
+This summary is not a substitute for the license text.
+
 ## Support
 
 If Blossom UI saves you time, you can [support me via GitHub Sponsors](https://github.com/sponsors/juanigarciadev).
