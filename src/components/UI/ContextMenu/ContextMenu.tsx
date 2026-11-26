@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { accentStyle } from '../accent'
@@ -47,7 +49,7 @@ export const ContextMenu = ({ items, children, color, label, disabled = false, c
     const id = useId()
     const area = useRef<HTMLDivElement>(null)
     const menu = useRef<HTMLDivElement>(null)
-    const press = useRef<number>()
+    const press = useRef<number | undefined>(undefined)
     const [point, setPoint] = useState<{ x: number; y: number } | null>(null)
     const [box, setBox] = useState<{ top: number; left: number } | null>(null)
     const [active, setActive] = useState(-1)

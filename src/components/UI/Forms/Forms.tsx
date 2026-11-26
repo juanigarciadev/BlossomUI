@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { forwardRef, useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type InputHTMLAttributes, type KeyboardEvent, type ReactNode, type RefObject, type TextareaHTMLAttributes } from 'react'
 import { createPortal } from 'react-dom'
 import { accentStyle } from '../accent'
@@ -56,9 +58,11 @@ const Field = ({ id, label, hint, error, success, color, required, children }: F
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement>, FieldProps {
     /** Icon shown inside the field, on the left. */
     icon?: ReactNode
+    /** Content shown inside the field, on the right, for example a small button. */
+    action?: ReactNode
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(({ label, hint, error, success, color, icon, className = '', ...props }, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ label, hint, error, success, color, icon, action, className = '', ...props }, ref) => {
     const id = useId()
     const state = stateOf(error, success)
     return (
@@ -70,14 +74,54 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ label, hint, er
                     id={id}
                     aria-invalid={state === 'error'}
                     aria-describedby={error ?? success ?? hint ? `${id}-message` : undefined}
-                    className={`${base} ${control[state]} ${icon ? 'pl-10' : ''} ${className}`}
+                    className={`${base} ${control[state]} ${icon ? 'pl-10' : ''} ${action ? 'pr-11' : ''} ${className}`}
                     {...props}
                 />
+                {action && <span className='absolute right-1.5 top-1/2 flex -translate-y-1/2 items-center'>{action}</span>}
             </div>
         </Field>
     )
 })
 Input.displayName = 'Input'
+
+export interface PasswordInputProps extends Omit<InputProps, 'type' | 'action'> {
+    /** Accessible name of the button while the password is hidden. */
+    showLabel?: string
+    /** Accessible name of the button while the password is visible. */
+    hideLabel?: string
+}
+
+/** A password field with a button to show or hide what was typed. */
+export const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(({ showLabel = 'Show password', hideLabel = 'Hide password', ...props }, ref) => {
+    const [visible, setVisible] = useState(false)
+    return (
+        <Input
+            ref={ref}
+            autoCapitalize='none'
+            spellCheck={false}
+            {...props}
+            type={visible ? 'text' : 'password'}
+            // Edge adds its own reveal button: hide it so there is only one.
+            className={`[&::-ms-reveal]:hidden ${props.className ?? ''}`}
+            action={
+                <button
+                    type='button'
+                    aria-label={visible ? hideLabel : showLabel}
+                    disabled={props.disabled}
+                    onClick={() => setVisible((current) => !current)}
+                    className='grid h-8 w-8 place-items-center rounded-lg text-neutral-500 outline-none hover:text-neutral-900 focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] disabled:cursor-not-allowed disabled:opacity-60 dark:text-neutral-400 dark:hover:text-white'
+                >
+                    <svg className='h-4 w-4' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'>
+                        <path d='M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z' />
+                        <circle cx='12' cy='12' r='3' />
+                        {visible && <path d='m4 4 16 16' />}
+                    </svg>
+                </button>
+            }
+        />
+    )
+})
+PasswordInput.displayName = 'PasswordInput'
 
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement>, FieldProps {}
 

@@ -6,6 +6,7 @@ import CompVersionTitle from '../CompVersionTitle/CompVersionTitle'
 import { FadeIn } from '../Motion/Motion'
 import { Stepper } from '../UI/Stepper/Stepper'
 import { getExports, getInterfaces } from '../../utils/parseComponent'
+import { SITE } from '../../mocks/seo'
 
 const GITHUB_BASE = 'https://github.com/juanigarciadev/BlossomUI/blob/main/'
 
@@ -32,7 +33,7 @@ const ComponentSource = ({ source, file }) => {
     const names = useMemo(() => getExports(source), [source])
     const interfaces = useMemo(() => getInterfaces(source), [source])
     const importLine = `import { ${names.join(', ')} } from './components/ui/${baseName}'`
-    const usesHooks = /from 'react'/.test(source) && /\buse[A-Z]\w*\(/.test(source)
+    const slug = baseName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
     // Components that receive an icon as a prop do not bring an icon library.
     const acceptsIcons = /\bicon\??:\s*ReactNode/.test(source)
     // Other files of the library that this one imports: they have to be copied too.
@@ -45,7 +46,7 @@ const ComponentSource = ({ source, file }) => {
         <FadeIn as='article'>
             <CompVersionTitle
                 title='Get the component'
-                paragraph='Blossom UI is not an npm package. Every component is a single file that you copy into your project and own.'
+                paragraph='Add the file with a command, copy it by hand or install the whole library from npm.'
             />
 
             <div className='flex flex-wrap items-center justify-between gap-3 rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800'>
@@ -72,7 +73,7 @@ const ComponentSource = ({ source, file }) => {
                             {index > 0 && ', '}
                             <code className='rounded-md border border-neutral-200 bg-neutral-100 px-1 py-0.5 font-mono text-xs dark:border-neutral-700 dark:bg-neutral-800'>{name}</code>
                         </span>
-                    ))}. Copy {dependencies.length > 1 ? 'them' : 'it'} too and keep the folders, or change the import paths.
+                    ))}. If you copy by hand, copy {dependencies.length > 1 ? 'them' : 'it'} too and keep the folders, or change the import paths.
                 </p>
             )}
 
@@ -93,18 +94,18 @@ const ComponentSource = ({ source, file }) => {
                         current={0}
                         steps={[
                             {
-                                title: 'Copy the file',
+                                title: 'Get the file',
                                 description: (
                                     <>
-                                        Save the code below as <code className='rounded-xl bg-neutral-200 px-1.5 py-0.5 text-xs dark:bg-neutral-800'>src/components/ui/{fileName}</code>.
-                                        {usesHooks && ' It uses React hooks, so in Next.js add "use client" at the top of the file.'}
+                                        Run the command, or save the code below as <code className='rounded-xl bg-neutral-200 px-1.5 py-0.5 text-xs dark:bg-neutral-800'>src/components/ui/{fileName}</code>. The command also copies the files it imports.
                                     </>
                                 ),
+                                content: <CodeBlock name='Terminal' code={`npx ${SITE.package} add ${slug}`} language='bash' />,
                             },
                             {
                                 title: 'Import it',
                                 description: 'Import the components you need wherever you use them.',
-                                content: <CodeBlock name='Import' code={importLine} language='tsx' />,
+                                content: <CodeBlock name='Import' code={`${importLine}\n\n// Or, with the package installed:\nimport { ${names.join(', ')} } from '${SITE.package}/${slug}'`} language='tsx' />,
                             },
                             {
                                 title: 'Use it',

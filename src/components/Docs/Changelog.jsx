@@ -2,6 +2,29 @@ import DocPage from './DocPage'
 
 const releases = [
     {
+        version: 'v2.3.0',
+        date: 'November 26th, 2026',
+        summary: 'Blossom UI is also an npm package.',
+        sections: [
+            {
+                title: 'New',
+                items: [
+                    'Install the whole library with npm install @blossomui/react, with one entry per component.',
+                    'Add single components to your project with npx @blossomui/react add. Copy and paste keeps working.',
+                    'HoldButton, a button that has to be held to confirm, and PasswordInput, a field that can show or hide the password.',
+                ],
+            },
+            {
+                title: 'Fixes',
+                items: [
+                    'AlertDialog, product card, OTP input and Transfer list no longer depend on custom breakpoints, so they respond correctly with the default Tailwind configuration.',
+                    'Sidebar and Transfer list have their thin scrollbars without extra CSS.',
+                    'Components that need it include "use client", overlays can render on the server and the files type check with React 19.',
+                ],
+            },
+        ],
+    },
+    {
         version: 'v2.2.0',
         date: 'November 10th, 2026',
         summary: 'Twenty-one new components and four new charts.',

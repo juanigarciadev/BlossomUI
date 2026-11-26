@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useEffect, useId, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { useOverlay } from '../overlay'
@@ -56,7 +58,7 @@ export const AlertDialog = ({ open, onClose, onConfirm, title, children, tone = 
         if (open) panel.current?.querySelector<HTMLButtonElement>('button')?.focus()
     }, [open])
 
-    if (!open) return null
+    if (!open || typeof document === 'undefined') return null
 
     const style = tones[tone]
 
@@ -76,7 +78,7 @@ export const AlertDialog = ({ open, onClose, onConfirm, title, children, tone = 
                 tabIndex={-1}
                 className='w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-800 shadow-xl outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-white'
             >
-                <div className='flex gap-4 xs:flex-col'>
+                <div className='flex gap-4 [@media(max-width:400px)]:flex-col'>
                     <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-full ${style.icon}`}>
                         {icon ?? (
                             <svg className='h-5 w-5' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth='2'>
@@ -89,7 +91,7 @@ export const AlertDialog = ({ open, onClose, onConfirm, title, children, tone = 
                         {children && <div id={descriptionId} className='text-sm text-neutral-600 dark:text-neutral-300'>{children}</div>}
                     </div>
                 </div>
-                <div className='mt-6 flex justify-end gap-2 xs:flex-col-reverse [&>*]:xs:w-full'>
+                <div className='mt-6 flex justify-end gap-2 [@media(max-width:400px)]:flex-col-reverse [@media(max-width:400px)]:[&>*]:w-full'>
                     <Button color='secondary' disabled={loading} onClick={onClose}>{cancelLabel}</Button>
                     <Button color={confirmColor ?? style.button} loading={loading} onClick={onConfirm}>{confirmLabel}</Button>
                 </div>

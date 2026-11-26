@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { accentStyle } from '../accent'
 export interface PaginationLabels {
     navigation: string
@@ -85,7 +87,7 @@ export const Pagination = ({ labels, color, page, total, onChange, siblings = 1,
                 <li>
                     <button type='button' aria-label={text(labels).previousPage} disabled={page <= 1} onClick={() => onChange(page - 1)} className={`${item} ${idle} ${page <= 1 ? disabled : ''}`}>
                         {arrow('prev')}
-                        {!rounded && <span className='ml-1 max-[640px]:hidden'>{text(labels).previous}</span>}
+                        {!rounded && <span className='ml-1 [@media(max-width:640px)]:hidden'>{text(labels).previous}</span>}
                     </button>
                 </li>
                 {getPages(page, total, siblings).map((entry) => (
@@ -107,7 +109,7 @@ export const Pagination = ({ labels, color, page, total, onChange, siblings = 1,
                 ))}
                 <li>
                     <button type='button' aria-label={text(labels).nextPage} disabled={page >= total} onClick={() => onChange(page + 1)} className={`${item} ${idle} ${page >= total ? disabled : ''}`}>
-                        {!rounded && <span className='mr-1 max-[640px]:hidden'>{text(labels).next}</span>}
+                        {!rounded && <span className='mr-1 [@media(max-width:640px)]:hidden'>{text(labels).next}</span>}
                         {arrow('next')}
                     </button>
                 </li>

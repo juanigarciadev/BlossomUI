@@ -8,8 +8,8 @@ const linkClass = "text-corporative cursor-pointer hover:text-corporativeHover";
 const steps = [
   {
     icon: Copy,
-    title: "Copy & paste",
-    text: "Every component is a single .tsx file. Copy it into your project and import it, there is no package to install and no lock-in.",
+    title: "Copy or install",
+    text: "Every component is a single .tsx file. Copy it, add it with one command or install the whole library from npm.",
   },
   {
     icon: Palette,
@@ -27,7 +27,7 @@ const Introduction = () => {
   return (
     <DocPage
       title="Introduction"
-      description="Free and open source React components written in TypeScript and styled with Tailwind CSS. Copy them into your project and make them yours."
+      description="Free and open source React components written in TypeScript and styled with Tailwind CSS. Copy them into your project or install them from npm."
     >
       <section className="flex flex-col gap-2">
         <p>
@@ -36,7 +36,7 @@ const Introduction = () => {
             Tailwind CSS
           </a>
           . Their use is completely free. You only need a React 18 project (Next.js, Vite or any other) with
-          Tailwind CSS 3 installed. The components are written in TypeScript.
+          Tailwind CSS installed. The components are written in TypeScript.
         </p>
         <Link to="/docs/getting-started/installation" className={`flex items-center ${linkClass}`}>
           How to set up my project

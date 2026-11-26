@@ -3,7 +3,7 @@ import DocPage from '../../DocPage'
 import Variant from '../../../Variant/Variant'
 import ComponentSource from '../../../Variant/ComponentSource'
 import source from '../../../UI/TimerButton/TimerButton.tsx?raw'
-import { TimerButton } from '../../../UI/TimerButton/TimerButton'
+import { TimerButton, HoldButton } from '../../../UI/TimerButton/TimerButton'
 import { Button } from '../../../UI/Buttons/Button'
 
 const file = 'src/components/UI/TimerButton/TimerButton.tsx'
@@ -78,6 +78,21 @@ const controlledCode = `const [running, setRunning] = useState(false)
 
 <Button onClick={() => setRunning(!running)}>Toggle from outside</Button>`
 
+const HoldDemo = () => {
+    const [deleted, setDeleted] = useState(false)
+    return (
+        <div className='flex flex-col items-start gap-3'>
+            <HoldButton color='#ef4444' onComplete={() => setDeleted(true)}>Hold to delete</HoldButton>
+            <p role='status' className='text-sm text-neutral-500'>{deleted ? 'Deleted.' : 'Keep it pressed until the bar is full.'}</p>
+            {deleted && <Button size='sm' color='secondary' onClick={() => setDeleted(false)}>Restore</Button>}
+        </div>
+    )
+}
+
+const holdCode = `<HoldButton color="#ef4444" onComplete={() => deleteProject()}>
+  Hold to delete
+</HoldButton>`
+
 const TimerButtonDocumentation = () => {
     return (
         <DocPage title='Timer button' description='A button with a bar that fills while time passes. When it is full it calls `onComplete`, so it can move a carousel, a tour or a step by itself. Pressing it pauses it.'>
@@ -89,6 +104,10 @@ const TimerButtonDocumentation = () => {
 
             <Variant title='Autoplay' description='The classic use: `defaultRunning` starts it, `onComplete` goes to the next slide and `resetKey` starts the bar again when the user changes slide by hand.' file={file} code={slidesCode}>
                 <SlidesDemo />
+            </Variant>
+
+            <Variant title='Hold to confirm' description='`HoldButton` calls `onComplete` only if it is held for the whole `duration`, 1.5 seconds by default. Releasing early cancels. It works with mouse, touch, Space and Enter.' file={file} code={holdCode}>
+                <HoldDemo />
             </Variant>
 
             <Variant title='Only once' description='With `loop={false}` it stops after the first time, for example to give the user a moment to undo something.' file={file}>

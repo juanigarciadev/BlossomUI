@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useId, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { useOverlay } from '../overlay'
@@ -30,7 +32,7 @@ export const Drawer = ({ closeLabel = 'Close', open, onClose, title, children, f
     const panel = useRef<HTMLDivElement>(null)
     useOverlay(open, onClose, panel)
 
-    if (!open) return null
+    if (!open || typeof document === 'undefined') return null
 
     return createPortal(
         <div

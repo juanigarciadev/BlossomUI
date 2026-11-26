@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { accentStyle, readableOn } from '../accent'
@@ -306,8 +308,8 @@ export const ProductCard = ({
 
     return (
         <article className={`relative flex h-full flex-col gap-4 p-4 shadow-sm ${/(^|\s)!?w-/.test(className) ? '' : horizontal ? 'w-full max-w-xl' : 'w-64'} ${surface} ${className}`} style={accentStyle(color)}>
-            <div className={horizontal ? 'flex gap-4 sm:flex-col' : 'contents'}>
-                <div className={`relative ${horizontal ? 'w-44 shrink-0 sm:w-full' : ''}`}>
+            <div className={horizontal ? 'flex gap-4 [@media(max-width:639px)]:flex-col' : 'contents'}>
+                <div className={`relative ${horizontal ? 'w-44 shrink-0 [@media(max-width:639px)]:w-full' : ''}`}>
                     {canExpand ? (
                         <button
                             type='button'

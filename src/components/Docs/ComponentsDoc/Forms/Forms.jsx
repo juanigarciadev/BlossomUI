@@ -3,7 +3,7 @@ import DocPage from '../../DocPage'
 import Variant from '../../../Variant/Variant'
 import ComponentSource from '../../../Variant/ComponentSource'
 import source from '../../../UI/Forms/Forms.tsx?raw'
-import { Input, Textarea, Select, MultiSelect, Checkbox, Radio, RadioGroup, Switch } from '../../../UI/Forms/Forms'
+import { Input, PasswordInput, Textarea, Select, MultiSelect, Checkbox, Radio, RadioGroup, Switch } from '../../../UI/Forms/Forms'
 import { Button } from '../../../UI/Buttons/Button'
 
 const file = 'src/components/UI/Forms/Forms.tsx'
@@ -45,7 +45,7 @@ const LoginDemo = () => {
                 <p className='text-sm text-neutral-600 dark:text-neutral-300'>Sign in to your account.</p>
             </div>
             <Input label='Email' type='email' placeholder='you@example.com' value={values.email} onChange={change('email')} error={errors.email} />
-            <Input label='Password' type='password' placeholder='••••••••' value={values.password} onChange={change('password')} error={errors.password} />
+            <PasswordInput label='Password' placeholder='••••••••' value={values.password} onChange={change('password')} error={errors.password} />
             <Checkbox label='Remember me' />
             <Button type='submit' color='default' className='w-full'>Sign in</Button>
             {submitted && <span className='text-sm text-green-700 dark:text-green-400'>Everything is valid, you are in!</span>}
@@ -66,7 +66,7 @@ const submit = (event: FormEvent) => {
 
 <form onSubmit={submit} noValidate>
   <Input label="Email" type="email" value={values.email} onChange={(e) => setValues({ ...values, email: e.target.value })} error={errors.email} />
-  <Input label="Password" type="password" value={values.password} onChange={(e) => setValues({ ...values, password: e.target.value })} error={errors.password} />
+  <PasswordInput label="Password" value={values.password} onChange={(e) => setValues({ ...values, password: e.target.value })} error={errors.password} />
   <Button type="submit" color="default">Sign in</Button>
 </form>`
 
@@ -227,6 +227,10 @@ const FormsDocumentation = () => {
 
             <Variant title='Input with icon' description='Pass any element to the `icon` prop.' file={file} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>
                 <Input label='Search' placeholder='Search components' icon={<SearchIcon />} />
+            </Variant>
+
+            <Variant title='Password' description='`PasswordInput` has a button to show or hide the password. It takes the same props as `Input`, and `showLabel` and `hideLabel` translate the button.' file={file} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>
+                <PasswordInput label='Password' placeholder='••••••••' defaultValue='blossom-2026' autoComplete='new-password' hint='Use at least 8 characters.' />
             </Variant>
 
             <Variant title='Validation' description='Show a success or an error message and the field changes color.' file={file} previewClassName='flex flex-col gap-4 [&>*]:max-w-sm'>

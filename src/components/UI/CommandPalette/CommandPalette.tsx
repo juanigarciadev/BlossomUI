@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { accentStyle } from '../accent'
@@ -64,7 +66,7 @@ export const CommandPalette = ({ label = 'Command palette', color, open, onClose
         if (open) document.getElementById(`${id}-option-${active}`)?.scrollIntoView({ block: 'nearest' })
     }, [open, active, id])
 
-    if (!open) return null
+    if (!open || typeof document === 'undefined') return null
 
     const run = (command?: Command) => {
         if (!command) return

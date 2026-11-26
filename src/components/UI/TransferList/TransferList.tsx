@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useId, useMemo, useState, type KeyboardEvent } from 'react'
 import { accentStyle } from '../accent'
 
@@ -133,7 +135,7 @@ const List = ({ title, items, checked, onToggle, onToggleAll, searchable, labels
                     />
                 </div>
             )}
-            <ul role='listbox' aria-multiselectable='true' aria-labelledby={`${id}-title`} onKeyDown={onKeyDown} style={{ height }} className='thin-scroll overflow-y-auto p-1'>
+            <ul role='listbox' aria-multiselectable='true' aria-labelledby={`${id}-title`} onKeyDown={onKeyDown} style={{ height }} className='[scrollbar-color:rgba(115,115,115,0.5)_transparent] [scrollbar-width:thin] overflow-y-auto p-1'>
                 {visible.length === 0 && <li className='px-3 py-6 text-center text-sm text-neutral-500'>{labels.empty}</li>}
                 {visible.map((item, position) => {
                     const isChecked = checked.includes(item.id)
@@ -205,20 +207,20 @@ export const TransferList = ({ labels, items, value, defaultValue = [], onChange
     const pickedRight = checkedRight.filter((entry) => movableRight.includes(entry))
 
     return (
-        <div style={accentStyle(color)} className={`flex w-full items-stretch gap-3 md:flex-col ${className}`}>
+        <div style={accentStyle(color)} className={`flex w-full items-stretch gap-3 [@media(max-width:767px)]:flex-col ${className}`}>
             <List title={text.available} items={left} checked={checkedLeft} onToggle={toggle(setCheckedLeft)} onToggleAll={toggleAll(left, checkedLeft, setCheckedLeft)} searchable={searchable} labels={text} height={height} />
-            <div className='flex shrink-0 flex-col items-center justify-center gap-2 md:flex-row'>
+            <div className='flex shrink-0 flex-col items-center justify-center gap-2 [@media(max-width:767px)]:flex-row'>
                 <button type='button' aria-label={text.moveAllRight} disabled={movableLeft.length === 0} onClick={() => moveRight(movableLeft)} className={transferButton}>
-                    <span className='md:rotate-90'>{arrow('m6 17 5-5-5-5m7 10 5-5-5-5')}</span>
+                    <span className='[@media(max-width:767px)]:rotate-90'>{arrow('m6 17 5-5-5-5m7 10 5-5-5-5')}</span>
                 </button>
                 <button type='button' aria-label={text.moveRight} disabled={pickedLeft.length === 0} onClick={() => moveRight(pickedLeft)} className={transferButton}>
-                    <span className='md:rotate-90'>{arrow('m9 6 6 6-6 6')}</span>
+                    <span className='[@media(max-width:767px)]:rotate-90'>{arrow('m9 6 6 6-6 6')}</span>
                 </button>
                 <button type='button' aria-label={text.moveLeft} disabled={pickedRight.length === 0} onClick={() => moveLeft(pickedRight)} className={transferButton}>
-                    <span className='md:rotate-90'>{arrow('m15 6-6 6 6 6')}</span>
+                    <span className='[@media(max-width:767px)]:rotate-90'>{arrow('m15 6-6 6 6 6')}</span>
                 </button>
                 <button type='button' aria-label={text.moveAllLeft} disabled={movableRight.length === 0} onClick={() => moveLeft(movableRight)} className={transferButton}>
-                    <span className='md:rotate-90'>{arrow('m18 17-5-5 5-5m-7 10-5-5 5-5')}</span>
+                    <span className='[@media(max-width:767px)]:rotate-90'>{arrow('m18 17-5-5 5-5m-7 10-5-5 5-5')}</span>
                 </button>
             </div>
             <List title={text.selected} items={right} checked={checkedRight} onToggle={toggle(setCheckedRight)} onToggleAll={toggleAll(right, checkedRight, setCheckedRight)} searchable={searchable} labels={text} height={height} />

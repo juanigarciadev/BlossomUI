@@ -8,6 +8,7 @@ import HeroComponents from "../HeroComponents/HeroComponents";
 import ComponentRows from "./ComponentRows";
 import { Appear } from "../Motion/Motion";
 import CallToAction from "./CallToAction";
+import InstallCommand from "../InstallCommand/InstallCommand";
 import { components } from "../../mocks/docs";
 
 const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -37,8 +38,9 @@ const Home = () => {
             Your next project, in record time with <span className="text-gradient">Blossom UI</span>.
           </h1>
           <p className="text-lg text-neutral-700 dark:text-neutral-300">
-            Customizable, reusable and beautiful components made with Tailwind. Copy, paste and ship.
+            Customizable, reusable and beautiful components made with Tailwind. Install, import and ship.
           </p>
+          <InstallCommand />
           <div className="flex gap-4 sm:flex-col">
             <Link
               to="/docs/getting-started/introduction"

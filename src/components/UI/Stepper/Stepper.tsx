@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import type { ReactNode } from 'react'
 import { accentStyle } from '../accent'
 
@@ -59,7 +61,7 @@ export const Stepper = ({ color, steps, current, orientation = 'horizontal', num
 
                 const text = (
                     <span className='flex flex-col text-left'>
-                        <span className={`font-medium ${done || active ? 'dark:text-white' : 'text-neutral-500'} ${vertical ? '' : 'max-[640px]:hidden'}`}>{step.title}</span>
+                        <span className={`font-medium ${done || active ? 'dark:text-white' : 'text-neutral-500'} ${vertical ? '' : '[@media(max-width:640px)]:hidden'}`}>{step.title}</span>
                         {vertical && step.description && <span className='text-neutral-500'>{step.description}</span>}
                     </span>
                 )

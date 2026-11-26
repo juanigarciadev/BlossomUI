@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { accentStyle } from '../accent'
 
@@ -71,7 +73,7 @@ const writeClipboard = async (text: string) => {
 /** A button that copies a text and confirms it. The confirmation is also announced to screen readers. */
 export const CopyButton = ({ text, label = 'Copy', copiedLabel = 'Copied', timeout = 2000, variant = 'button', size = 'md', color, onCopy, icon = copyIcon, copiedIcon = checkIcon, className = '' }: CopyButtonProps) => {
     const [copied, setCopied] = useState(false)
-    const timer = useRef<number>()
+    const timer = useRef<number | undefined>(undefined)
 
     useEffect(() => () => window.clearTimeout(timer.current), [])
 

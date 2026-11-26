@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useCallback, useEffect, useRef, useState, type PointerEvent, type ReactNode } from 'react'
 import { accentStyle } from '../accent'
 
@@ -34,7 +36,7 @@ export const ScrollArea = ({ children, orientation = 'vertical', visibility = 'h
     const viewport = useRef<HTMLDivElement>(null)
     const content = useRef<HTMLDivElement>(null)
     const drag = useRef<{ axis: 'y' | 'x'; pointer: number; scroll: number } | null>(null)
-    const idle = useRef<number>()
+    const idle = useRef<number | undefined>(undefined)
     const [bars, setBars] = useState<{ y: Bar | null; x: Bar | null }>({ y: null, x: null })
     const [active, setActive] = useState(false)
     const [hover, setHover] = useState(false)

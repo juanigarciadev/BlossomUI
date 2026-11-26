@@ -1,4 +1,6 @@
 import Steps from './Steps'
+import { SITE } from '../../../mocks/seo'
+import { INSTALL_COMMAND } from '../../InstallCommand/InstallCommand'
 
 const steps = [
     {
@@ -9,6 +11,13 @@ const steps = [
         code: 'npx create-next-app@latest my-project --typescript --eslint --app --src-dir --no-tailwind --import-alias "@/*"\ncd my-project',
     },
     {
+        title: 'Install Blossom UI',
+        text: 'Add the library to your project.',
+        name: 'Terminal',
+        language: 'bash',
+        code: INSTALL_COMMAND,
+    },
+    {
         title: 'Install Tailwind CSS',
         text: 'Install tailwindcss 3 and its peer dependencies, then generate your tailwind.config.js and postcss.config.js files.',
         name: 'Terminal',
@@ -17,10 +26,10 @@ const steps = [
     },
     {
         title: 'Configure your template paths',
-        text: 'Add the paths to all of your template files in your tailwind.config.js file and enable the class strategy for dark mode.',
+        text: 'In tailwind.config.js add your files and the files of Blossom UI, so Tailwind generates their classes. The components use the dark: variant, so enable the class strategy.',
         name: 'tailwind.config.js',
         language: 'javascript',
-        code: '/** @type {import("tailwindcss").Config} */\nmodule.exports = {\n  darkMode: "class",\n  content: [\n    "./src/**/*.{js,ts,jsx,tsx,mdx}",\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}',
+        code: '/** @type {import("tailwindcss").Config} */\nmodule.exports = {\n  darkMode: "class",\n  content: [\n    "./src/**/*.{js,ts,jsx,tsx,mdx}",\n' + `    "./node_modules/${SITE.package}/dist/**/*.js",\n` + '  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}',
     },
     {
         title: 'Add the Tailwind directives to your CSS',
@@ -30,11 +39,11 @@ const steps = [
         code: '@tailwind base;\n@tailwind components;\n@tailwind utilities;',
     },
     {
-        title: 'Copy a component',
-        text: 'Open any component page, copy the file shown in its Component section and save it in your project, for example as src/components/ui/Button.tsx. Components that handle events or use hooks need "use client" at the top of the page that uses them, because Server Components cannot receive event handlers.',
+        title: 'Use a component',
+        text: 'Import it from the package. A page that passes event handlers needs "use client", because Server Components cannot send functions to the client.',
         name: 'src/app/page.tsx',
         language: 'tsx',
-        code: "'use client'\n\nimport { Button } from '@/components/ui/Button'\n\nexport default function Home() {\n  return (\n    <Button color=\"default\" onClick={() => alert('Hello Blossom UI!')}>\n      Hello Blossom UI\n    </Button>\n  )\n}",
+        code: `'use client'\n\nimport { Button } from '${SITE.package}'\n\nexport default function Home() {\n  return (\n    <Button color="default" onClick={() => alert('Hello Blossom UI!')}>\n      Hello Blossom UI\n    </Button>\n  )\n}`,
     },
     {
         title: 'Dark mode (optional)',

@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useId, useState, type ReactNode } from 'react'
 import { accentStyle } from '../accent'
 import { Tooltip } from '../Tooltip/Tooltip'
@@ -153,7 +155,7 @@ export const Sidebar = ({ labels, sections, activeId, onNavigate, header, footer
                     )}
                 </div>
             )}
-            <div className='thin-scroll flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overflow-x-hidden p-3'>
+            <div className='[scrollbar-color:rgba(115,115,115,0.5)_transparent] [scrollbar-width:thin] flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overflow-x-hidden p-3'>
                 {sections.map((section, index) => (
                     <div key={section.title ?? index} className='flex flex-col gap-1'>
                         {section.title && !isCollapsed && <h3 className='px-3 pb-1 text-xs font-medium uppercase tracking-wide text-neutral-400'>{section.title}</h3>}

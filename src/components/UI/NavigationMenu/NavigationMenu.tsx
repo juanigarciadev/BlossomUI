@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { accentStyle } from '../accent'
 
@@ -52,7 +54,7 @@ export const NavigationMenu = ({ items, activeId, hoverDelay = 120, color, label
     const id = useId()
     const root = useRef<HTMLElement>(null)
     const triggers = useRef<Record<string, HTMLElement | null>>({})
-    const timer = useRef<number>()
+    const timer = useRef<number | undefined>(undefined)
     const [open, setOpen] = useState<string | null>(null)
     const current = items.find((item) => item.id === open)
 

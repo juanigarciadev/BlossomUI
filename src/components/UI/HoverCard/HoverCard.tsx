@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { accentStyle } from '../accent'
@@ -36,7 +38,7 @@ export const HoverCard = ({ content, children, placement = 'bottom', openDelay =
     const id = useId()
     const trigger = useRef<HTMLSpanElement>(null)
     const card = useRef<HTMLDivElement>(null)
-    const timer = useRef<number>()
+    const timer = useRef<number | undefined>(undefined)
     const [open, setOpen] = useState(false)
     const [box, setBox] = useState<{ top: number; left: number } | null>(null)
 

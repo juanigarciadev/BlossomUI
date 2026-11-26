@@ -4,7 +4,7 @@
 
 # Blossom UI
 
-**Blossom UI** is a library of free and open source React components written in TypeScript and styled with Tailwind CSS. There is nothing to install: every component is a **single file with typed props** that you copy into your project and make yours.
+**Blossom UI** is a library of free and open source React components written in TypeScript and styled with Tailwind CSS. Every component is a **single file with typed props**: copy it into your project and make it yours, or install the library from npm.
 
 [Live site and documentation](https://blossomui.vercel.app/) · [Components](https://blossomui.vercel.app/components) · [Changelog](https://blossomui.vercel.app/docs/getting-started/changelog)
 
@@ -24,9 +24,26 @@ Alerts, Accordion, Avatar, Badges, Banner, Breadcrumb, Buttons (and icon buttons
 
 ## Quick start
 
-1. Use a React 18 project (Vite, Next.js or any other) with **Tailwind CSS 3.3 or newer** and `darkMode: 'class'`.
-2. Open the page of a component in the [documentation](https://blossomui.vercel.app/components), copy its file to `src/components/ui/`.
-3. Import it:
+You need a React 18 or newer project (Vite, Next.js or any other) with **Tailwind CSS 3.3 or newer** and `darkMode: 'class'`.
+
+### Install the library
+
+```bash
+npm install @blossomui/react
+```
+
+Add `./node_modules/@blossomui/react/dist/**/*.js` to the `content` of your Tailwind configuration, then `import { Button } from '@blossomui/react'`. The [package README](package/README.md) covers Tailwind 4 and the per component entries.
+
+### Add single components
+
+```bash
+npx @blossomui/react add button modal
+```
+
+### Copy and paste
+
+1. Open the page of a component in the [documentation](https://blossomui.vercel.app/components), copy its file to `src/components/ui/`.
+2. Import it:
 
 ```tsx
 import { Button } from './components/ui/Button'
@@ -101,6 +118,19 @@ The site is built with [Vite](https://vitejs.dev/), [React](https://react.dev/),
 ## About
 
 This project started as a personal challenge to improve my programming skills, always focused on helping others: a free library so nobody has to build a design system from scratch and lose time in their projects. It is built by one person, so contributions are very welcome. Anyone can review and open a pull request to add, improve or fix any component.
+
+## Publish the package
+
+The package lives in `package/` and is built from `src/components/UI`.
+
+```bash
+npm run build:lib   # build only
+cd package
+npm login          # your account must belong to the "blossomui" organization on npm
+npm publish         # builds again before publishing
+```
+
+Raise `version` in `package/package.json` before every release.
 
 ## License
 

@@ -80,6 +80,9 @@ const componentFiles = {
     'Tooltip': 'Tooltip/Tooltip.tsx',
 }
 
+// Name of a component for the `add` command, the same rule as the package build.
+const slug = (file) => path.basename(file, '.tsx').replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
+
 const escapeHtml = (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 const absolute = (url) => SITE.url + (url === '/' ? '' : url)
 const today = () => new Date().toISOString().slice(0, 10)
@@ -124,7 +127,7 @@ const componentMarkdown = (page, component) =>
         '',
         '## How to use it',
         '',
-        `Blossom UI is not an npm package. Copy the file \`${component.file}\` into your React project (for example as \`src/components/ui/${path.basename(component.file)}\`). It needs React 18 and Tailwind CSS 3.`,
+        `Add it with \`npx ${SITE.package} add ${slug(component.file)}\`, or copy the file \`${component.file}\` into your React project (for example as \`src/components/ui/${path.basename(component.file)}\`). You can also install the whole library with \`npm install ${SITE.package}\`. It needs React 18 or newer and Tailwind CSS 3.3 or newer.`,
         '',
         '```tsx',
         component.importLine,
@@ -148,7 +151,7 @@ const llmsTxt = () => {
         '',
         `> ${SITE.description}`,
         '',
-        'Blossom UI is not an npm package: every component is a single TypeScript file that you copy into your React project. Components are styled with Tailwind CSS 3, support dark mode and use React hooks where they manage state (modal, select, toasts, stepper, pagination, rating).',
+        `Every component is a single TypeScript file. Use the library in three ways: \`npm install ${SITE.package}\`, \`npx ${SITE.package} add <component>\` to copy single components, or copy and paste the file. Components are styled with Tailwind CSS, support dark mode and use React hooks where they manage state (modal, select, toasts, stepper, pagination, rating).`,
         '',
     ]
     for (const group of groups) {
@@ -233,7 +236,7 @@ const fallbackContent = (page) => {
         : ''
 
     const heading = page.type === 'home' ? SITE.name : page.name ?? page.title.split(' | ')[0]
-    const usage = component ? `<h2>How to use it</h2><p>Copy ${escapeHtml(component.file)} into your React project and import it.</p><pre><code>${escapeHtml(component.importLine)}</code></pre>` : ''
+    const usage = component ? `<h2>How to use it</h2><p>Run npx ${SITE.package} add ${slug(component.file)}, or copy ${escapeHtml(component.file)} into your React project and import it.</p><pre><code>${escapeHtml(component.importLine)}</code></pre>` : ''
 
     return `<div id="seo-fallback" hidden><header><a href="/">${SITE.name}</a></header><main><h1>${escapeHtml(heading)}</h1><p>${escapeHtml(page.description)}</p>${usage}${props ? `<h2>Props</h2>${props}` : ''}${questions}</main><nav aria-label="Documentation">${nav}</nav></div>`
 }

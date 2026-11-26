@@ -53,7 +53,7 @@ export const Footer = ({ labels, brand, description, columns, links, social, yea
                         </nav>
                     ))}
                 </div>
-                <div className='mt-6 flex items-center justify-between gap-4 border-t border-neutral-300 pt-4 text-sm text-neutral-500 dark:border-neutral-700 max-[640px]:flex-col'>
+                <div className='mt-6 flex items-center justify-between gap-4 border-t border-neutral-300 pt-4 text-sm text-neutral-500 dark:border-neutral-700 [@media(max-width:640px)]:flex-col'>
                     <p>{copyright}</p>
                     {social && <div className='flex gap-3'>{social}</div>}
                 </div>
@@ -63,7 +63,7 @@ export const Footer = ({ labels, brand, description, columns, links, social, yea
 
     const centered = align === 'center'
     return (
-        <footer className={`flex w-full gap-4 rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 px-6 py-5 text-sm text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ${centered ? 'flex-col items-center py-8 text-center' : 'items-center justify-between max-[640px]:flex-col'}`}>
+        <footer className={`flex w-full gap-4 rounded-xl border border-neutral-300 bg-neutral-200 bg-opacity-40 px-6 py-5 text-sm text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-300 ${centered ? 'flex-col items-center py-8 text-center' : 'items-center justify-between [@media(max-width:640px)]:flex-col'}`}>
             {centered && <span className='text-xl font-bold text-neutral-900 dark:text-white'>{brand}</span>}
             {!centered && <p>{copyright}</p>}
             {links && (

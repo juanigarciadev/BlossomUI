@@ -11,7 +11,7 @@ const CallToAction = () => {
           Ready to make your project <span className="text-gradient">bloom</span>?
         </h2>
         <p className="max-w-xl text-neutral-600 dark:text-neutral-300">
-          Pick a component, copy the code and make it yours. No installs, no lock-in, just Tailwind.
+          Pick a component, copy the code and make it yours, or install the library. No lock-in, just Tailwind.
         </p>
         <Link
           to="/docs/getting-started/introduction"

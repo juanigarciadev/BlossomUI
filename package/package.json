@@ -1,0 +1,301 @@
+{
+  "name": "@blossomui/react",
+  "version": "2.3.0",
+  "description": "React components written in TypeScript and styled with Tailwind CSS. Install the library, add single components or copy the files.",
+  "license": "MPL-2.0",
+  "author": "Juan Ignacio García",
+  "homepage": "https://blossomui.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanigarciadev/BlossomUI.git",
+    "directory": "package"
+  },
+  "bugs": "https://github.com/juanigarciadev/BlossomUI/issues",
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "tailwindcss",
+    "typescript",
+    "dark-mode"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "bin": {
+    "blossom-ui": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "source",
+    "registry.json"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepack": "node scripts/build.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "tailwindcss": ">=3.3"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./accordion": {
+      "types": "./dist/Accordion/Accordion.d.ts",
+      "default": "./dist/Accordion/Accordion.js"
+    },
+    "./alert-dialog": {
+      "types": "./dist/AlertDialog/AlertDialog.d.ts",
+      "default": "./dist/AlertDialog/AlertDialog.js"
+    },
+    "./alert": {
+      "types": "./dist/Alerts/Alert.d.ts",
+      "default": "./dist/Alerts/Alert.js"
+    },
+    "./avatar": {
+      "types": "./dist/Avatar/Avatar.d.ts",
+      "default": "./dist/Avatar/Avatar.js"
+    },
+    "./badge": {
+      "types": "./dist/Badges/Badge.d.ts",
+      "default": "./dist/Badges/Badge.js"
+    },
+    "./banner": {
+      "types": "./dist/Banner/Banner.d.ts",
+      "default": "./dist/Banner/Banner.js"
+    },
+    "./breadcrumb": {
+      "types": "./dist/Breadcrumb/Breadcrumb.d.ts",
+      "default": "./dist/Breadcrumb/Breadcrumb.js"
+    },
+    "./button": {
+      "types": "./dist/Buttons/Button.d.ts",
+      "default": "./dist/Buttons/Button.js"
+    },
+    "./calendar": {
+      "types": "./dist/Calendar/Calendar.d.ts",
+      "default": "./dist/Calendar/Calendar.js"
+    },
+    "./card": {
+      "types": "./dist/Card/Card.d.ts",
+      "default": "./dist/Card/Card.js"
+    },
+    "./carousel": {
+      "types": "./dist/Carousel/Carousel.d.ts",
+      "default": "./dist/Carousel/Carousel.js"
+    },
+    "./charts": {
+      "types": "./dist/Charts/Charts.d.ts",
+      "default": "./dist/Charts/Charts.js"
+    },
+    "./chip-input": {
+      "types": "./dist/ChipInput/ChipInput.d.ts",
+      "default": "./dist/ChipInput/ChipInput.js"
+    },
+    "./collapsible": {
+      "types": "./dist/Collapsible/Collapsible.d.ts",
+      "default": "./dist/Collapsible/Collapsible.js"
+    },
+    "./color-picker": {
+      "types": "./dist/ColorPicker/ColorPicker.d.ts",
+      "default": "./dist/ColorPicker/ColorPicker.js"
+    },
+    "./combobox": {
+      "types": "./dist/Combobox/Combobox.d.ts",
+      "default": "./dist/Combobox/Combobox.js"
+    },
+    "./command-palette": {
+      "types": "./dist/CommandPalette/CommandPalette.d.ts",
+      "default": "./dist/CommandPalette/CommandPalette.js"
+    },
+    "./context-menu": {
+      "types": "./dist/ContextMenu/ContextMenu.d.ts",
+      "default": "./dist/ContextMenu/ContextMenu.js"
+    },
+    "./copy-button": {
+      "types": "./dist/CopyButton/CopyButton.d.ts",
+      "default": "./dist/CopyButton/CopyButton.js"
+    },
+    "./date-picker": {
+      "types": "./dist/DatePicker/DatePicker.d.ts",
+      "default": "./dist/DatePicker/DatePicker.js"
+    },
+    "./drawer": {
+      "types": "./dist/Drawer/Drawer.d.ts",
+      "default": "./dist/Drawer/Drawer.js"
+    },
+    "./dropdown": {
+      "types": "./dist/Dropdown/Dropdown.d.ts",
+      "default": "./dist/Dropdown/Dropdown.js"
+    },
+    "./empty-state": {
+      "types": "./dist/EmptyState/EmptyState.d.ts",
+      "default": "./dist/EmptyState/EmptyState.js"
+    },
+    "./file-upload": {
+      "types": "./dist/FileUpload/FileUpload.d.ts",
+      "default": "./dist/FileUpload/FileUpload.js"
+    },
+    "./footer": {
+      "types": "./dist/Footer/Footer.d.ts",
+      "default": "./dist/Footer/Footer.js"
+    },
+    "./forms": {
+      "types": "./dist/Forms/Forms.d.ts",
+      "default": "./dist/Forms/Forms.js"
+    },
+    "./hover-card": {
+      "types": "./dist/HoverCard/HoverCard.d.ts",
+      "default": "./dist/HoverCard/HoverCard.js"
+    },
+    "./jumbotron": {
+      "types": "./dist/Jumbotron/Jumbotron.d.ts",
+      "default": "./dist/Jumbotron/Jumbotron.js"
+    },
+    "./kbd": {
+      "types": "./dist/KBD/Kbd.d.ts",
+      "default": "./dist/KBD/Kbd.js"
+    },
+    "./menubar": {
+      "types": "./dist/Menubar/Menubar.d.ts",
+      "default": "./dist/Menubar/Menubar.js"
+    },
+    "./modal": {
+      "types": "./dist/Modal/Modal.d.ts",
+      "default": "./dist/Modal/Modal.js"
+    },
+    "./navbar": {
+      "types": "./dist/Navbar/Navbar.d.ts",
+      "default": "./dist/Navbar/Navbar.js"
+    },
+    "./navigation-menu": {
+      "types": "./dist/NavigationMenu/NavigationMenu.d.ts",
+      "default": "./dist/NavigationMenu/NavigationMenu.js"
+    },
+    "./number-input": {
+      "types": "./dist/NumberInput/NumberInput.d.ts",
+      "default": "./dist/NumberInput/NumberInput.js"
+    },
+    "./otp-input": {
+      "types": "./dist/OtpInput/OtpInput.d.ts",
+      "default": "./dist/OtpInput/OtpInput.js"
+    },
+    "./pagination": {
+      "types": "./dist/Pagination/Pagination.d.ts",
+      "default": "./dist/Pagination/Pagination.js"
+    },
+    "./popover": {
+      "types": "./dist/Popover/Popover.d.ts",
+      "default": "./dist/Popover/Popover.js"
+    },
+    "./pricing": {
+      "types": "./dist/Pricing/Pricing.d.ts",
+      "default": "./dist/Pricing/Pricing.js"
+    },
+    "./progress-bar": {
+      "types": "./dist/Progress/ProgressBar.d.ts",
+      "default": "./dist/Progress/ProgressBar.js"
+    },
+    "./rating": {
+      "types": "./dist/Rating/Rating.d.ts",
+      "default": "./dist/Rating/Rating.js"
+    },
+    "./resizable": {
+      "types": "./dist/Resizable/Resizable.d.ts",
+      "default": "./dist/Resizable/Resizable.js"
+    },
+    "./scroll-area": {
+      "types": "./dist/ScrollArea/ScrollArea.d.ts",
+      "default": "./dist/ScrollArea/ScrollArea.js"
+    },
+    "./segmented-control": {
+      "types": "./dist/SegmentedControl/SegmentedControl.d.ts",
+      "default": "./dist/SegmentedControl/SegmentedControl.js"
+    },
+    "./separator": {
+      "types": "./dist/Separator/Separator.d.ts",
+      "default": "./dist/Separator/Separator.js"
+    },
+    "./sidebar": {
+      "types": "./dist/Sidebar/Sidebar.d.ts",
+      "default": "./dist/Sidebar/Sidebar.js"
+    },
+    "./skeleton": {
+      "types": "./dist/Skeleton/Skeleton.d.ts",
+      "default": "./dist/Skeleton/Skeleton.js"
+    },
+    "./slider": {
+      "types": "./dist/Slider/Slider.d.ts",
+      "default": "./dist/Slider/Slider.js"
+    },
+    "./spinner": {
+      "types": "./dist/Spinners/Spinner.d.ts",
+      "default": "./dist/Spinners/Spinner.js"
+    },
+    "./stats": {
+      "types": "./dist/Stats/Stats.d.ts",
+      "default": "./dist/Stats/Stats.js"
+    },
+    "./stepper": {
+      "types": "./dist/Stepper/Stepper.d.ts",
+      "default": "./dist/Stepper/Stepper.js"
+    },
+    "./survey": {
+      "types": "./dist/Survey/Survey.d.ts",
+      "default": "./dist/Survey/Survey.js"
+    },
+    "./table": {
+      "types": "./dist/Table/Table.d.ts",
+      "default": "./dist/Table/Table.js"
+    },
+    "./tabs": {
+      "types": "./dist/Tabs/Tabs.d.ts",
+      "default": "./dist/Tabs/Tabs.js"
+    },
+    "./time-picker": {
+      "types": "./dist/TimePicker/TimePicker.d.ts",
+      "default": "./dist/TimePicker/TimePicker.js"
+    },
+    "./timeline": {
+      "types": "./dist/Timeline/Timeline.d.ts",
+      "default": "./dist/Timeline/Timeline.js"
+    },
+    "./timer-button": {
+      "types": "./dist/TimerButton/TimerButton.d.ts",
+      "default": "./dist/TimerButton/TimerButton.js"
+    },
+    "./toast": {
+      "types": "./dist/Toasts/Toast.d.ts",
+      "default": "./dist/Toasts/Toast.js"
+    },
+    "./tooltip": {
+      "types": "./dist/Tooltip/Tooltip.d.ts",
+      "default": "./dist/Tooltip/Tooltip.js"
+    },
+    "./transfer-list": {
+      "types": "./dist/TransferList/TransferList.d.ts",
+      "default": "./dist/TransferList/TransferList.js"
+    },
+    "./tree": {
+      "types": "./dist/Tree/Tree.d.ts",
+      "default": "./dist/Tree/Tree.js"
+    },
+    "./accent": {
+      "types": "./dist/accent.d.ts",
+      "default": "./dist/accent.js"
+    },
+    "./package.json": "./package.json"
+  }
+}

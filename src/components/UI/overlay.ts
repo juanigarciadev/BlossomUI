@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useEffect, useRef, type RefObject } from 'react'
 
 /**
@@ -21,7 +23,7 @@ let previousOverflow = ''
 
 const focusable = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
-export const useOverlay = (open: boolean, onClose: () => void, panel: RefObject<HTMLElement>) => {
+export const useOverlay = (open: boolean, onClose: () => void, panel: RefObject<HTMLElement | null>) => {
     // Keep the latest onClose without running the effect again on every render
     const onCloseRef = useRef(onClose)
     useEffect(() => {

@@ -1,4 +1,6 @@
 import Steps from './Steps'
+import { SITE } from '../../../mocks/seo'
+import { INSTALL_COMMAND } from '../../InstallCommand/InstallCommand'
 
 const steps = [
     {
@@ -9,6 +11,13 @@ const steps = [
         code: 'npm create vite@latest my-project -- --template react-ts\ncd my-project\nnpm install',
     },
     {
+        title: 'Install Blossom UI',
+        text: 'Add the library to your project.',
+        name: 'Terminal',
+        language: 'bash',
+        code: INSTALL_COMMAND,
+    },
+    {
         title: 'Install Tailwind CSS',
         text: 'Install tailwindcss and its peer dependencies, then generate your tailwind.config.js and postcss.config.js files.',
         name: 'Terminal',
@@ -17,10 +26,10 @@ const steps = [
     },
     {
         title: 'Configure your template paths',
-        text: 'Add the paths to all of your template files in your tailwind.config.js file. The components also use the dark: variant, so enable the class strategy.',
+        text: 'In tailwind.config.js add your files and the files of Blossom UI, so Tailwind generates their classes. The components use the dark: variant, so enable the class strategy.',
         name: 'tailwind.config.js',
         language: 'javascript',
-        code: "/** @type {import('tailwindcss').Config} */\nexport default {\n  darkMode: 'class',\n  content: [\n    './index.html',\n    './src/**/*.{js,ts,jsx,tsx}',\n  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}",
+        code: "/** @type {import('tailwindcss').Config} */\nexport default {\n  darkMode: 'class',\n  content: [\n    './index.html',\n    './src/**/*.{js,ts,jsx,tsx}',\n" + `    './node_modules/${SITE.package}/dist/**/*.js',\n` + "  ],\n  theme: {\n    extend: {},\n  },\n  plugins: [],\n}",
     },
     {
         title: 'Add the Tailwind directives to your CSS',
@@ -30,11 +39,11 @@ const steps = [
         code: '@tailwind base;\n@tailwind components;\n@tailwind utilities;',
     },
     {
-        title: 'Copy a component',
-        text: 'Open any component page, copy the file shown in its Component section and save it in your project, for example as src/components/ui/Button.tsx. Components only need React 18 and Tailwind CSS, there is nothing else to install.',
+        title: 'Use a component',
+        text: 'Import it from the package and use it.',
         name: 'src/App.tsx',
         language: 'tsx',
-        code: "import { Button } from './components/ui/Button'\n\nexport default function App() {\n  return (\n    <Button color=\"default\" onClick={() => alert('Hello Blossom UI!')}>\n      Hello Blossom UI\n    </Button>\n  )\n}",
+        code: `import { Button } from '${SITE.package}'\n\nexport default function App() {\n  return (\n    <Button color="default" onClick={() => alert('Hello Blossom UI!')}>\n      Hello Blossom UI\n    </Button>\n  )\n}`,
     },
     {
         title: 'Dark mode (optional)',

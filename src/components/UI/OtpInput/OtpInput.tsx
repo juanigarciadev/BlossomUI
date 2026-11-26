@@ -4,6 +4,8 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+'use client'
+
 import { useId, useRef, useState, type ClipboardEvent, type KeyboardEvent } from 'react'
 import { accentStyle } from '../accent'
 
@@ -141,9 +143,9 @@ export const OtpInput = ({ length = 6, value, defaultValue = '', onChange, onCom
     return (
         <div className='flex w-fit max-w-full flex-col gap-1' style={accentStyle(color)}>
             {label && <span id={`${id}-label`} className='text-sm font-medium text-neutral-800 dark:text-white'>{label}</span>}
-            <div role='group' aria-labelledby={label ? `${id}-label` : undefined} aria-describedby={text ? `${id}-message` : undefined} className='flex items-center gap-2 xs:gap-1.5'>
+            <div role='group' aria-labelledby={label ? `${id}-label` : undefined} aria-describedby={text ? `${id}-message` : undefined} className='flex items-center gap-2 [@media(max-width:400px)]:gap-1.5'>
                 {Array.from({ length }, (_, index) => (
-                    <span key={index} className='flex items-center gap-2 xs:gap-1.5'>
+                    <span key={index} className='flex items-center gap-2 [@media(max-width:400px)]:gap-1.5'>
                         <input
                             ref={(element) => { inputs.current[index] = element }}
                             type={mask ? 'password' : 'text'}

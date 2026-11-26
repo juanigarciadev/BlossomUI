@@ -4,7 +4,9 @@
 // This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
 // If a copy of the MPL was not distributed with this file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+'use client'
+
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { accentStyle } from '../accent'
 
 export interface TimerButtonLabels {
@@ -136,6 +138,104 @@ export const TimerButton = ({ labels, duration = 5000, onComplete, loop = true, 
                 {children}
                 {showTime && <span className='min-w-[1.5ch] text-right tabular-nums text-neutral-500 dark:text-neutral-400'>{text.remaining(seconds)}</span>}
             </span>
+        </button>
+    )
+}
+
+export interface HoldButtonProps {
+    /** Text of the button, for example "Hold to delete". */
+    children: ReactNode
+    /** Called once, when the button was held for the whole `duration`. */
+    onComplete?: () => void
+    /** Milliseconds the button has to be held. */
+    duration?: number
+    /** Explains the gesture to screen readers. */
+    hint?: string
+    disabled?: boolean
+    size?: 'sm' | 'md' | 'lg'
+    /** Accent color of the bar: any CSS color. Without it the component uses `--blossom-accent`, which is pink by default. */
+    color?: string
+    className?: string
+}
+
+/** A button that has to be held to confirm, for actions that should not happen by accident. Works with mouse, touch, Space and Enter. Releasing early cancels. */
+export const HoldButton = ({ children, onComplete, duration = 1500, hint = 'Press and hold to confirm', disabled = false, size = 'md', color, className = '' }: HoldButtonProps) => {
+    const id = useId()
+    const [holding, setHolding] = useState(false)
+    const bar = useRef<HTMLSpanElement>(null)
+
+    const complete = useRef(onComplete)
+    useEffect(() => {
+        complete.current = onComplete
+    })
+
+    useEffect(() => {
+        const fill = bar.current
+        if (!holding || disabled || !fill) return
+        let frame = 0
+        let elapsed = 0
+        let last = performance.now()
+        fill.style.transition = 'none'
+        const tick = (now: number) => {
+            // A long gap (a frozen page) counts as a short one, so it never confirms by itself
+            elapsed += Math.min(now - last, 100)
+            last = now
+            fill.style.transform = `scaleX(${Math.min(elapsed / duration, 1)})`
+            if (elapsed >= duration) complete.current?.()
+            else frame = requestAnimationFrame(tick)
+        }
+        frame = requestAnimationFrame(tick)
+        return () => {
+            cancelAnimationFrame(frame)
+            fill.style.transition = 'transform 200ms ease-out'
+            fill.style.transform = 'scaleX(0)'
+        }
+    }, [holding, disabled, duration])
+
+    // A button disabled in the middle of a hold must not start again when it is enabled.
+    useEffect(() => {
+        if (disabled) setHolding(false)
+    }, [disabled])
+
+    const start = () => setHolding(true)
+    const stop = () => setHolding(false)
+    const isHoldKey = (key: string) => key === ' ' || key === 'Enter'
+
+    return (
+        <button
+            type='button'
+            disabled={disabled}
+            aria-describedby={`${id}-hint`}
+            onPointerDown={(event) => {
+                if (event.button !== 0) return
+                // Touch keeps the pointer on the button: release it so sliding the finger away cancels.
+                if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId)
+                start()
+            }}
+            onPointerUp={stop}
+            onPointerLeave={stop}
+            onPointerCancel={stop}
+            onKeyDown={(event) => {
+                if (!isHoldKey(event.key)) return
+                event.preventDefault()
+                if (!event.repeat) start()
+            }}
+            onKeyUp={(event) => {
+                if (isHoldKey(event.key)) stop()
+            }}
+            onBlur={stop}
+            onContextMenu={(event) => event.preventDefault()}
+            style={accentStyle(color)}
+            className={`relative flex w-fit touch-manipulation select-none items-center justify-center gap-2 overflow-hidden rounded-xl border border-neutral-300 font-medium text-neutral-800 outline-none transition [-webkit-touch-callout:none] focus-visible:ring-2 focus-visible:ring-[var(--blossom-accent,#f472b6)] enabled:hover:bg-neutral-100 enabled:active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 dark:border-neutral-700 dark:text-white dark:enabled:hover:bg-neutral-800 ${sizes[size]} ${className}`}
+        >
+            <span
+                ref={bar}
+                aria-hidden='true'
+                className='absolute inset-0 origin-left bg-[color-mix(in_srgb,var(--blossom-accent,#f472b6)_40%,transparent)]'
+                style={{ transform: 'scaleX(0)' }}
+            />
+            <span className='relative flex items-center gap-2'>{children}</span>
+            <span id={`${id}-hint`} className='sr-only'>{hint}</span>
         </button>
     )
 }

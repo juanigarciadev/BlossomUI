@@ -6,9 +6,10 @@ import { introduction, customization, components } from './docs.js'
 export const SITE = {
     url: 'https://blossomui.vercel.app',
     name: 'Blossom UI',
+    package: '@blossomui/react',
     tagline: 'React components made with Tailwind CSS',
     description:
-        'Blossom UI is a free and open source library of React components written in TypeScript and styled with Tailwind CSS. Copy a single file into your project: buttons, forms, modals, selects, toasts, pagination and more, all with dark mode and typed props.',
+        'Blossom UI is a free and open source library of React components written in TypeScript and styled with Tailwind CSS. Install the library or copy single components: buttons, forms, modals, selects, toasts, pagination and more, all with dark mode and typed props.',
     image: 'https://blossomui.vercel.app/og.png?v=2',
     github: 'https://github.com/juanigarciadev/BlossomUI',
     author: { name: 'Juan Ignacio García', url: 'https://github.com/juanigarciadev' },
@@ -33,7 +34,7 @@ const componentSummaries = {
     Charts: 'Chart components without dependencies: bar chart, horizontal bars, line chart, donut, pie and sparkline, drawn with SVG, with tooltips and an accessible summary.',
     Cards: 'Card component with icon, title, description and footer, plus a product card with description, brand, reviews, discount, color and size options, out of stock state, horizontal layout, favorite toggle and add to cart button.',
     Footer: 'Footer component with a simple row of links, grouped columns with social icons, or a centered layout.',
-    Forms: 'Form controls: input, textarea, custom select, multi select with chips, checkbox, radio group and switch, with validation messages.',
+    Forms: 'Form controls: input, password input with a show and hide button, textarea, custom select, multi select with chips, checkbox, radio group and switch, with validation messages.',
     Jumbotron: 'Hero section component with eyebrow, title, description, actions and media. Plain, card, gradient and background image styles.',
     KBD: 'Keyboard key component with relief and an active state, plus a shortcut helper such as Ctrl + K.',
     Modal: 'Accessible modal dialog for React. Closes with Escape or a click outside, locks scroll and restores focus.',
@@ -69,7 +70,7 @@ const componentSummaries = {
     'Sidebar': 'Sidebar component with groups, nested items, badges, links and a collapsed mode with tooltips.',
     'Transfer list': 'Transfer list component to move items between two lists, with search, check all and keyboard support.',
     'Tree': 'Tree component for files and categories, with the keyboard model of a native tree, controlled state and icons.',
-    'Timer button': 'Timer button component, a button with a bar that fills while time passes and calls a function when it is full, for autoplay, tours and undo actions.',
+    'Timer button': 'Timer button component, a button with a bar that fills while time passes and calls a function when it is full, for autoplay, tours and undo actions, and a hold to confirm button.',
     'Chip input': 'Chip input or tag input component with validation, a maximum of chips, paste support and keyboard shortcuts.',
     'Command palette': 'Command palette component with search, groups, icons, hints and full keyboard navigation.',
     'Date picker': 'Date picker component with an accessible calendar, a range mode that highlights every day between two dates, min and max dates, locale support and keyboard navigation.',
@@ -161,15 +162,15 @@ export const pagesByUrl = Object.fromEntries(pages.map((page) => [page.url, page
 export const faq = [
     {
         question: 'What is Blossom UI?',
-        answer: 'Blossom UI is a free and open source library of React components written in TypeScript and styled with Tailwind CSS. Each component is a single file that you copy into your project.',
+        answer: 'Blossom UI is a free and open source library of React components written in TypeScript and styled with Tailwind CSS. Each component is a single file: copy it into your project, add it with one command or install the whole library.',
     },
     {
-        question: 'Is Blossom UI an npm package?',
-        answer: 'No. There is nothing to install except React and Tailwind CSS. You copy the file of the component you need, so you own the code and can change it freely.',
+        question: 'Do I have to install Blossom UI?',
+        answer: 'No. You can copy the file of the component you need, or add it with npx @blossomui/react add button, so you own the code and can change it freely. If you prefer a dependency, npm install @blossomui/react gives you the whole library. All the ways need React and Tailwind CSS.',
     },
     {
         question: 'Does Blossom UI work with Next.js and Vite?',
-        answer: 'Yes. It works in any React 18 project, including Vite and Next.js. In Next.js, components that use hooks need the "use client" directive when they are imported from a Server Component.',
+        answer: 'Yes. It works in any React 18 project, including Vite and Next.js. Components that use hooks or events already have the "use client" directive for the Next.js App Router.',
     },
     {
         question: 'Which icon library do the components use?',
